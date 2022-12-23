@@ -1,0 +1,48 @@
+<DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
+  <Scripts>
+    <ScriptName>RollHandlers</ScriptName>
+    <FolderID>9</FolderID>
+    <Script>
+function AttackHandler(rSource, rTarget, rRoll)
+
+    local rMessage = ActionsManager.createActionMessage(rSource, rRoll);
+    rMessage.text = rMessage.text .. "[ATTACK]";
+    if rTarget then
+        rMessage.text = rMessage.text .. " vs " .. rTarget.sName;                 
+    end
+
+    Comm.deliverChatMessage(rMessage);    
+
+    if rTarget then
+        local rMessageResult = ChatManager.createBaseMessage(rSource, rRoll.sUser);
+        rMessageResult.text = rMessage.text;
+
+        local nTotal = ActionsManager.total(rRoll) + rRoll.nBonuses;
+        rCreature = DB.findNode(rTarget.sCTNode);
+        if (nTotal &gt;= rCreature.getChild("defense").getValue()) then
+            rMessageResult.text = rMessageResult.text .. " [HIT]";
+        else
+            rMessageResult.text = rMessageResult.text .. " [MISS]";
+        end
+        Comm.deliverChatMessage(rMessageResult);    
+    end
+
+end
+
+
+function InitHandler(rSource, rTarget, rRoll)
+
+    local rMessage = ActionsManager.createActionMessage(rSource, rRoll);
+    Comm.deliverChatMessage(rMessage);    
+
+    if (rSource) then
+        local nTotal = ActionsManager.total(rRoll) + rRoll.nBonuses;
+        rCreature = DB.findNode(rSource.sCreatureNode);
+        rCreature.getChild("initresult").setValue(nTotal);
+    end
+
+end</Script>
+    <RegisterScript>true</RegisterScript>
+    <Encoding />
+  </Scripts>
+</DocumentElement>

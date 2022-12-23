@@ -1,0 +1,211 @@
+- Tiradas:
+	- d100
+	- Éxito: menor o igual que la la habilidad -> Target number
+	- Cuanto más alto, mejor
+	- Superior Results:
+		- Éxito con 33 o más -> superior success
+		- Éxito con 66 o más -> dos superior successs
+		- Fallo con 66 o menos -> superior failure
+		- Fallo con 33 o menos -> dos superior failures
+	- Críticos:
+		- Si doble (11, 22, 33...) -> critical result
+		- Si doble y éxito -> critical success
+		- Si doble y fallo -> critical failure
+		- 00 es siempre un critical success
+		- 99 es siempre un critical failure
+		- If a critical is also a superior result, only the critical applies.
+	- Defaulting
+		- Si no tienes una skill, puedes tirar por su aptitude asociada.
+		- There is no modifier for defaulting on a skill test, but critical successes are ignored.
+	- Daños y otras cosas: d6 y d10
+
+- Modificadores: Afectan a la dificultad, no a la tirada
+	Difficulty 		Situational Factor 	Modifier
+	Very Easy 		Major Bonus 		+30
+	Easy 			Moderate Benefit 	+20
+	Slightly Easy 	Minor Boost 		+10
+	Average 							+/–0
+	Slightly Hard 	Minor Hindrance 	–10
+	Hard Moderate 	Impediment 			–20
+	Very Hard 		Major Drawback 		–30
+
+- Iniciativa:
+	- 1d6 + Initiative stat
+	- EL valor más alto actúa primero
+	- Ante empates, se actua a la vez, se desempata por REF o se lanza para desempatar
+	- La iniciativa se mantiene todo el combate
+	- Take the Initiative: Se puede gastar Vigor o Insight para actuar primero. Se vuelve a la posición original en el siguiente round.
+		- Si varios gastan Vigor o Insight, actúan en orden de iniciativa por delante del resto
+	- Extra Action: Al final del turno se puede gastar Vigor o Insight para tener Extra Actions.
+		- If multiple characters take extra actions, they are handled in Initiative order.
+
+- Pools:
+	- Each pool is linked to a different group of aptitudes and skills
+		- Insight pool is linked to mental capabilities: Cognition, Intuition, and their linked skills.
+		- Moxie pool is linked to social interactions: Savvy, Willpower, and linked skills. It may also be used for Rep and Infection Tests.
+		- Vigor pool is linked to physical efforts: Reflexes, Somatics, and their linked skills.
+		- Flex is a wild-card pool. It can be used to affect dice rolls for any tests and for narrative control.
+	- RECHARGING POOLS
+		- Short Recharge (2/day) - 10 minutos - 1d6 pool points (you decide where to allocate them)
+		- Long Recharge (1/day) - 4 u 8 horas - A long recharge completely recharged your pools to their full value.
+	- TEMPORARY POOLS
+		- Some effects, such as drugs and psi sleights, provide temporary pool bonuses.
+		- These points should be considered extra points that are expended before any of your regular pool points.
+		- These bonus points may be restored with a recharge, but only if all of your normal pool points are restored first.
+
+CHARACTER STATS
+	- Everyone gets 20 CP (Customization Points)
+	
+	- EGO - mind, personality, memories, inherent traits, and learned skills
+		- Aptitudes
+		- Aptitude Checks
+		- Skills
+		- Initiative
+		- Lucidity
+		- Trauma Threshold
+		- Insanity Rating
+		- Ego traits
+		- Motivations
+		- Some Flex Pool
+			- Every ego starts with 1 permanent Flex point Pools
+			- Extra Flex points cost 2 CP each. You may not start with more than 3 ego Flex points (not counting Flex derived from your morph)
+			- 2 MP = 1 Flex), upto a maximum of 3.
+				- These Flex points are temporary, they will be reset the next time you resleeve
+		
+	- Morph - is your physical (or sometimes virtual) form. It provides you with pools to enhance your skills, Durability to represent your health and constitution, implants or robotic enhancements, and some traits and derived stats of its own.
+		- Se puede tener más de uno
+		- Pools
+		- Durability
+		- Wound Threshold
+		- Death Rating
+		- Morph traits
+			- Positive traits have an MP cost listed.
+			- Negative traits give you bonus MP.
+			- No more than 6 MP worth of negative traits may be purchased.
+		
+	- APTITUDES
+		- Mín. 5 Máx. 30
+			- Extra aptitude points cost 1 CP each.
+		- Cognition (COG) represents your intelligence, problem-solving talent, and capacity for logical analysis.
+		- Intuition (INT) is your gut instinct and ability to evaluate on the fly. It includes physical awareness, creativity, cleverness, and cunning.
+		- Reflexes (REF) is your coordination, manual dexterity, nimbleness, balance, and reaction speed.
+		- Savvy (SAV) represents your social awareness, adaptability, empathy, and ability to influence others.
+		- Somatics (SOM) is how well you can exploit your morph’s physical capabilities, including strength, stamina, and sustained positioning and motion.
+		- Willpower (WIL) is your self-control, mental fortitude, and strength of personality.
+		- Aptitude Checks -> Aptitude × 3
+	
+	- DERIVED STATS
+		- Initiative (INIT): Initiative determines the order in which people act during action turns. Initiative & Order of Actions -> 33. -> (REF + INT) ÷ 5
+		- Wound Threshold (WT): The amount of damage you can take before receiving a wound. Physical Health -> 220. -> DUR ÷ 5
+		- Durability (DUR): Your character’s health, determined by your morph. Physical Health -> 220.
+		- Death Rating (DR): The amount of damage it takes to kill you, determined by morph. Physical Health -> 220. -> DUR x 1.5 (biomorphs); DUR x 2 (synthmorphs/infomorphs)
+		- Trauma Threshold (TT): The amount of stress you can take before receiving a trauma. Lucidity and Stress -> 222. -> LUC ÷ 5
+		- Lucidity (LUC): Your character’s mental health, based on Willpower. Lucidity and Stress -> 222. -> WIL × 2
+		- Insanity Rating (IR): The amount of stress that will drive you insane, based on Willpower. Lucidity and Stress -> 222. -> LUC × 2
+		- Pools: Your Insight, Moxie, Vigor, and Flex pools, mostly derived from your morph, with a Flex bonus from your ego. Pools -> 34.
+		- Infection Rating: If playing an async, your Infection Rating indicates the strength of the virus's hold over you. Infection Rating -> 272. -> Psi trait level × 10
+	
+	- Traits
+		- Positive traits have a CP cost listed.
+		- Negative traits give you bonus CP.
+			- No more than 6 CP worth of negative traits may be purchased.
+	
+	- Rep
+		- reputation score in different social networks
+			- You have 100 points to divide between rep networks.
+			- Every point of CP buys you 5 rep points.
+		- @-rep: The Circle-A List, for autonomists, anarchists, Titanians, scum, and Extropians.
+		- c-rep: CivicNet, used by the Planetary Consortium, Morningstar Constellation, Lunar-Lagrange Alliance, Jovian Republic, and other hypercorps and capitalists.
+		- f-rep: Fame, the media network used by metacelebrities, journalists, socialites, artists, and glitterati.
+		- g-rep: Guanxi, the network for triads, cartels, gangs, and other criminal groups.
+		- i-rep: The Eye, Firewall’s secret internal network.
+		- r-rep: Research Network Affiliates, used by Argonauts, scientists, technologists, and researchers of all stripes.
+		- x-rep: ExploreNet, the social network for gatecrashers and exoplanet colonists
+	
+	- Gear
+		- packs
+		- Combat wear
+			- Ranged -> varios datos
+				- Munición
+				- Firing Modes
+				- Range
+			- Melee -> solo el daño (DV)
+			- Armor -> dos valores enegy and kinetic
+		- Gear Points (GP) 
+	- Motivations
+	
+	- Skills
+		- Each point of CP gets you 5 skill points
+			- no skill may be raised above 80. (¿en la creación?)
+		- Pueden tener valores de
+			- Background
+			- Career
+			- Interest
+			- Faction (solo Know: [Faction])
+			- Customization Points
+			- Aptitude (bono enlazado de las aptitudes)
+			- SPECIALIZATIONS
+				- +10 bonus to that skill when that specialization applies.
+				- This specialization bonus does not count towards the skill maximum of 80.
+		- Skills con segundo nombre
+			- Active skills:
+				- Hardware
+				- Medicine
+				- Pilot
+				- Exotic Skill (Apt. dependiente)
+ 			- Know skills
+				- todas
+			- SPECIALIZATIONS
+	
+	- Languajes: 2+
+		- 1 si COG + INT is 35+
+		- 2 si COG + INT is 45+
+		- You may purchase additional languages at 1 CP each.
+		- Sin tiradas (o se sabe o no se sabe)
+	
+	- SLEIGHTS (psi powers)
+		- Psi sleights cost 1 CP per sleight.
+		- You may only purchase psi-gamma sleights if you have the Psi trait at Level 2.
+		- The maximum number of sleights you may purchase during character creation is 10.
+	
+- Combate
+	- Ataque
+		- Melee (close combat)
+		- Guns (ranged weapons)
+		- Athletics (thrown grenades)
+		- Hardware: Explosives (placed charges)
+		- Interface (electronic weapon systems)
+		- Exotic skill
+	- Defensa
+		- Defense is an automatic action. Unless they are surprised ->227 or incapacitated ->226, the defender always has the option to respond.
+		- Melee Defense: Against a melee attack, the defender may choose to block and parry using their own Melee skill or dodge using Fray.
+		- Ranged Defense: Ranged and area-effect attacks are much harder to dodge; defenders use their Fray skill ÷ 2.
+		- Psi Defense: Psi sleights are resisted with WIL Check.
+		- Full Defense: Characters that have declared they are engaging in full defense ▶226 may defend as above, with a +30 modifier.
+	- Opposed test Ataque vs Defensa
+	- Daño
+		- Every attack has a Damage Value (DV)
+			- Dos tipos energy y kinetic
+		- Se resta el Armor Value (AV) adecuado del objetivo
+		- armor-piercing attacks reduce the AV by half.
+
+- Heridas
+	- All physical harm is measured in damage points.
+	- If the accumulated damage equals or exceeds the defender’s Durability, they are incapacitated and may die
+		- Yopu gain the unconscious/disabled condition ->226 and cannot be revived until your damage points are reduced below your Durability,
+	- If the accumulated damage equals the defender’s Death Rating, they are killed/destroyed.
+	- If the inflicted damage, less armor, from a single attack equals or exceeds the defender’s Wound Threshold, they suffer one or more wounds
+		- A wound is scored for each multiple of the Wound Threshold that the damage exceeds.
+		- Each wound applies a cumulative –10 modifier to actions and –1 to Initiative.
+
+- Mental health
+	- Stress points
+		- If you build up an amount of stress points equal to or greater than your Lucidity score, your ego immediately suffers a mental breakdown
+		- Any source capable of inflicting cognitive stress is given a Stress Value (SV).
+			- Some Stress Values list two numbers. The first number before the slash applies if you fail your WIL Check. The second number, after the slash, applies even if you succeed.
+	- Trauma
+		- If your character receives a number of stress points at once that equals or exceeds their Trauma Threshold, they have suffered a trauma.
+		- Each trauma applies a cumulative –10 modifier to all of the character’s actions and –1 to Initiative
+
+- Natural healing
+	
