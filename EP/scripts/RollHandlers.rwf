@@ -1,7 +1,7 @@
 <DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
   <Scripts>
     <ScriptName>RollHandlers</ScriptName>
-    <FolderID>9</FolderID>
+    <FolderID>12</FolderID>
     <Script>
 function AttackHandler(rSource, rTarget, rRoll)
 

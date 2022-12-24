@@ -1,0 +1,11 @@
+<DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
+  <Scripts>
+    <ScriptName>Tools</ScriptName>
+    <FolderID>12</FolderID>
+    <Script>function RoundNumber(nNumber)
+	return nNumber % 1 &gt;= 0.5 and math.ceil(nNumber) or math.floor(nNumber);
+end</Script>
+    <RegisterScript>true</RegisterScript>
+    <Encoding />
+  </Scripts>
+</DocumentElement>
