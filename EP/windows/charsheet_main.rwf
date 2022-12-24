@@ -214,7 +214,10 @@
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"495"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"217"}}
 ]}}</Definition>
-    <LUACode />
+    <LUACode>function onValueChanged()
+	window.DeathRating.Update();
+end
+</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
