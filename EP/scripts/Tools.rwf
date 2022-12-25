@@ -4,6 +4,30 @@
     <FolderID>12</FolderID>
     <Script>function RoundNumber(nNumber)
 	return nNumber % 1 &gt;= 0.5 and math.ceil(nNumber) or math.floor(nNumber);
+end
+
+function ChatMenssage(sMenssage, sFont, sIcon, bDMOnly, sUser)
+	if not sFont then sFont="msgfont"; end;
+	local msg = {font = sFont, icon = sIcon, secret = bDMOnly};
+	msg.text = sMenssage;
+	if sUser then
+		if sUser == "" then
+			Comm.deliverChatMessage(msg);
+		else
+			Comm.deliverChatMessage(msg, sUser);
+		end
+	elseif bDMOnly then
+		msg.secret = true;
+		if Session.IsHost then
+			Comm.deliverChatMessage(msg);
+		else
+			--Debug.chat("not sUser bDMOnly not Session.IsHost");
+			Comm.deliverChatMessage(msg, User.getUsername());
+		end
+	else
+		Comm.deliverChatMessage(msg);
+	end
+	--Comm.deliverChatMessage(msg);
 end</Script>
     <RegisterScript>true</RegisterScript>
     <Encoding />
