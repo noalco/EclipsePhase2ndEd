@@ -6,49 +6,59 @@
 -- Please see the license.html file included with this distribution for 
 -- attribution and copyright information.
 --
-
-ActiveSkills = {
-	["Athletics"] =  {sApt="SOM",  nAptMult=1,  sType="Physical",  bHasField=false},
-	["Deceive"] =   {sApt="SAV",  nAptMult=1,  sType="Social",  bHasField=false},
-	["Exotic Skill"] =  {sApt="",   nAptMult=1,  sType="",  bHasField=true},
-	["Fray"] =    {sApt="REF",  nAptMult=2,  sType="Combat",  bHasField=false},
-	["Free Fall"] =  {sApt="SOM",  nAptMult=1,  sType="Physical",  bHasField=false},
-	["Guns"] =    {sApt="REF",  nAptMult=1,  sType="Combat",  bHasField=false},
-	["Hardware"] =   {sApt="COG",  nAptMult=1,  sType="Technical",  bHasField=true},
-	["Infiltrate"] =  {sApt="REF",  nAptMult=1,  sType="Physical",  bHasField=false},
-	["Infosec"] =   {sApt="COG",  nAptMult=1,  sType="Technical",  bHasField=false},
-	["Interface"] =  {sApt="COG",  nAptMult=1,  sType="Technical",  bHasField=false},
-	["Kinesics"] =   {sApt="SAV",  nAptMult=1,  sType="Social",  bHasField=false},
-	["Medicine"] =   {sApt="COG",  nAptMult=1,  sType="Technical",  bHasField=true},
-	["Melee"] =   {sApt="SOM",  nAptMult=1,  sType="Combat",  bHasField=false},
-	["Perceive"] =   {sApt="INT",  nAptMult=2,  sType="Mental",  bHasField=false},
-	["Persuade"] =   {sApt="SAV",  nAptMult=1,  sType="Social",  bHasField=false},
-	["Pilot"] =   {sApt="REF",  nAptMult=1,  sType="Vehicle",  bHasField=true},
-	["Program"] =   {sApt="COG",  nAptMult=1,  sType="Technical",  bHasField=false},
-	["Provoke"] =   {sApt="SAV",  nAptMult=1,  sType="Social",  bHasField=false},
-	["Psi"] =    {sApt="WIL",  nAptMult=1,  sType="Mental · Psi",  bHasField=false},
-	["Research"] =   {sApt="INT",  nAptMult=1,  sType="Technical",  bHasField=false},
-	["Survival"] =   {sApt="INT",  nAptMult=1,  sType="Mental",  bHasField=false},
-}
-
-Aptitudes = {
-	["COG"] = {Path=".Cognition", Pool="Insight"},
-	["INT"] = {Path=".Intuition", Pool="Insight"},
-	["REF"] = {Path=".Reflexes", Pool="Vigor"},
-	["SAV"] = {Path=".Savvy", Pool="Moxie"},
-	["SOM"] = {Path=".Somatics", Pool="Vigor"},
-	["WIL"] = {Path=".Willpower", Pool="Moxie"},
-}
-
-
-
 local sFocus = "name";
 
 function onInit()
+	nNode=getDatabaseNode()
+	DB.addHandler(Tools.getCharNodePath(nNode)..".Aptitudes.Checks", "onChildUpdate", onStatUpdate);
+	onStatUpdate();
+	constructDefaultSkills();
 	if newfocus then
 		sFocus = newfocus[1];
 	end
 end
+
+-- Create default skill selection
+function constructDefaultSkills()
+	-- Create missing entries for all known skills
+	local entrymap = {};
+	for _,w in pairs(getWindows()) do
+		local sLabel = w.name.getValue();
+
+		local t = DataCommon.ActiveSkills[sLabel];
+		if t and not t.bHasField then
+			if not entrymap[sLabel] then
+				entrymap[sLabel] = { w };
+			else
+				table.insert(entrymap[sLabel], w);
+			end
+		end
+	end
+
+	-- Set properties and create missing entries for all known skills
+	for k, t in pairs(DataCommon.ActiveSkills) do
+		if not t.bHasField then
+			local matches = entrymap[k];
+
+			if not matches then
+				local w = createWindow();
+				if w then
+					w.name.setValue(k);
+					w.aptitude.setStringValue(t.sApt);
+					w.Type.setStringValue(t.sType);
+					w.AptMult.setValue(t.nAptMult);
+					matches = { w };
+				end
+			end
+		end
+	end
+
+	-- Set properties for all skills
+	for _,w in pairs(getWindows()) do
+		w.updateWindow();
+	end
+end
+
 
 function onListChanged()
 	update();
@@ -59,7 +69,8 @@ function update()
 	if window[sEdit] then
 		local bEdit = (window[sEdit].getValue() == 1);
 		for _,w in ipairs(getWindows()) do
-			w.idelete.setVisibility(bEdit);
+			local bHasField=w.name.getValue()~="" and DataCommon.ActiveSkills[w.name.getValue()].bHasField
+			w.idelete.setVisibility(bEdit and bHasField);
 		end
 	end
 end
@@ -77,10 +88,22 @@ end
 
 function onStatUpdate()
 	for _,w in pairs(getWindows()) do
-		w.onStatUpdate();
+		w.updateWindow();
+	end
+end
+
+function UpdateFray2(bck, car, int, cp)
+	for _,w in pairs(getWindows()) do
+		if w.name.getValue()=="Fray/2 (vs. ranged attacks)" then
+			w.Background.setValue(bck);
+			w.Career.setValue(car);
+			w.Interest.setValue(int);
+			w.CustomizationPoints.setValue(cp);
+			break;
+		end
 	end
 end</Script>
-    <RegisterScript>true</RegisterScript>
+    <RegisterScript>false</RegisterScript>
     <Encoding />
   </Scripts>
 </DocumentElement>

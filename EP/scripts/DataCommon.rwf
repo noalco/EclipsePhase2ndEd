@@ -1,0 +1,42 @@
+<DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
+  <Scripts>
+    <ScriptName>DataCommon</ScriptName>
+    <FolderID>14</FolderID>
+    <Script>ActiveSkills = {
+	["Athletics"] = {sApt="SOM", nAptMult=1, sType="Physical", bHasField=false},
+	["Deceive"] = {sApt="SAV", nAptMult=1, sType="Social", bHasField=false},
+	["Exotic Skill"] = {sApt="", nAptMult=1, sType="", bHasField=true},
+	["Fray"] = {sApt="REF", nAptMult=2, sType="Combat", bHasField=false},
+	["Fray/2 (vs. ranged attacks)"] = {sApt="REF", nAptMult=2, sType="Combat", bHasField=false},
+	["Free Fall"] = {sApt="SOM", nAptMult=1, sType="Physical", bHasField=false},
+	["Guns"] = {sApt="REF", nAptMult=1, sType="Combat", bHasField=false},
+	["Hardware"] = {sApt="COG", nAptMult=1, sType="Technical", bHasField=true},
+	["Infiltrate"] = {sApt="REF", nAptMult=1, sType="Physical", bHasField=false},
+	["Infosec"] = {sApt="COG", nAptMult=1, sType="Technical", bHasField=false},
+	["Interface"] = {sApt="COG", nAptMult=1, sType="Technical", bHasField=false},
+	["Kinesics"] = {sApt="SAV", nAptMult=1, sType="Social", bHasField=false},
+	["Medicine"] = {sApt="COG", nAptMult=1, sType="Technical", bHasField=true},
+	["Melee"] = {sApt="SOM", nAptMult=1, sType="Combat", bHasField=false},
+	["Perceive"] = {sApt="INT", nAptMult=2, sType="Mental", bHasField=false},
+	["Persuade"] = {sApt="SAV", nAptMult=1, sType="Social", bHasField=false},
+	["Pilot"] = {sApt="REF", nAptMult=1, sType="Vehicle", bHasField=true},
+	["Program"] = {sApt="COG", nAptMult=1, sType="Technical", bHasField=false},
+	["Provoke"] = {sApt="SAV", nAptMult=1, sType="Social", bHasField=false},
+	["Psi"] = {sApt="WIL", nAptMult=1, sType="MentalPsi", bHasField=false},
+	["Research"] = {sApt="INT", nAptMult=1, sType="Technical", bHasField=false},
+	["Survival"] = {sApt="INT", nAptMult=1, sType="Mental", bHasField=false},
+}
+
+Aptitudes = {
+	["COG"] = {sPath=".Aptitudes.Checks.CognitionCheck", sPool="Insight"},
+	["INT"] = {sPath=".Aptitudes.Checks.IntuitionCheck", sPool="Insight"},
+	["REF"] = {sPath=".Aptitudes.Checks.ReflexesCheck", sPool="Vigor"},
+	["SAV"] = {sPath=".Aptitudes.Checks.SavvyCheck", sPool="Moxie"},
+	["SOM"] = {sPath=".Aptitudes.Checks.SomaticsCheck", sPool="Vigor"},
+	["WIL"] = {sPath=".Aptitudes.Checks.WillpowerCheck", sPool="Moxie"},
+}
+</Script>
+    <RegisterScript>true</RegisterScript>
+    <Encoding />
+  </Scripts>
+</DocumentElement>

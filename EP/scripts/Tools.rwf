@@ -28,6 +28,13 @@ function ChatMenssage(sMenssage, sFont, sIcon, bDMOnly, sUser)
 		Comm.deliverChatMessage(msg);
 	end
 	--Comm.deliverChatMessage(msg);
+end
+
+function getCharNodePath(nNode)
+	if nNode and nNode.getPath and nNode.getPath():match("(charsheet%.id%-%d*)") then
+		return nNode.getPath():match("(charsheet%.id%-%d*)");
+	else return "";
+	end
 end</Script>
     <RegisterScript>true</RegisterScript>
     <Encoding />
