@@ -1,0 +1,86 @@
+<DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
+  <Scripts>
+    <ScriptName>list_active_skills</ScriptName>
+    <FolderID>3</FolderID>
+    <Script>-- 
+-- Please see the license.html file included with this distribution for 
+-- attribution and copyright information.
+--
+
+ActiveSkills = {
+	["Athletics"] =  {sApt="SOM",  nAptMult=1,  sType="Physical",  bHasField=false},
+	["Deceive"] =   {sApt="SAV",  nAptMult=1,  sType="Social",  bHasField=false},
+	["Exotic Skill"] =  {sApt="",   nAptMult=1,  sType="",  bHasField=true},
+	["Fray"] =    {sApt="REF",  nAptMult=2,  sType="Combat",  bHasField=false},
+	["Free Fall"] =  {sApt="SOM",  nAptMult=1,  sType="Physical",  bHasField=false},
+	["Guns"] =    {sApt="REF",  nAptMult=1,  sType="Combat",  bHasField=false},
+	["Hardware"] =   {sApt="COG",  nAptMult=1,  sType="Technical",  bHasField=true},
+	["Infiltrate"] =  {sApt="REF",  nAptMult=1,  sType="Physical",  bHasField=false},
+	["Infosec"] =   {sApt="COG",  nAptMult=1,  sType="Technical",  bHasField=false},
+	["Interface"] =  {sApt="COG",  nAptMult=1,  sType="Technical",  bHasField=false},
+	["Kinesics"] =   {sApt="SAV",  nAptMult=1,  sType="Social",  bHasField=false},
+	["Medicine"] =   {sApt="COG",  nAptMult=1,  sType="Technical",  bHasField=true},
+	["Melee"] =   {sApt="SOM",  nAptMult=1,  sType="Combat",  bHasField=false},
+	["Perceive"] =   {sApt="INT",  nAptMult=2,  sType="Mental",  bHasField=false},
+	["Persuade"] =   {sApt="SAV",  nAptMult=1,  sType="Social",  bHasField=false},
+	["Pilot"] =   {sApt="REF",  nAptMult=1,  sType="Vehicle",  bHasField=true},
+	["Program"] =   {sApt="COG",  nAptMult=1,  sType="Technical",  bHasField=false},
+	["Provoke"] =   {sApt="SAV",  nAptMult=1,  sType="Social",  bHasField=false},
+	["Psi"] =    {sApt="WIL",  nAptMult=1,  sType="Mental · Psi",  bHasField=false},
+	["Research"] =   {sApt="INT",  nAptMult=1,  sType="Technical",  bHasField=false},
+	["Survival"] =   {sApt="INT",  nAptMult=1,  sType="Mental",  bHasField=false},
+}
+
+Aptitudes = {
+	["COG"] = {Path=".Cognition", Pool="Insight"},
+	["INT"] = {Path=".Intuition", Pool="Insight"},
+	["REF"] = {Path=".Reflexes", Pool="Vigor"},
+	["SAV"] = {Path=".Savvy", Pool="Moxie"},
+	["SOM"] = {Path=".Somatics", Pool="Vigor"},
+	["WIL"] = {Path=".Willpower", Pool="Moxie"},
+}
+
+
+
+local sFocus = "name";
+
+function onInit()
+	if newfocus then
+		sFocus = newfocus[1];
+	end
+end
+
+function onListChanged()
+	update();
+end
+
+function update()
+	local sEdit = getName() .. "_iedit";
+	if window[sEdit] then
+		local bEdit = (window[sEdit].getValue() == 1);
+		for _,w in ipairs(getWindows()) do
+			w.idelete.setVisibility(bEdit);
+		end
+	end
+end
+
+function addEntry(bFocus)
+	local w = createWindow();
+	if bFocus and w[sFocus] then
+		w[sFocus].setFocus();
+	end
+	if self.onEntryAdded then
+		self.onEntryAdded(w);
+	end
+	return w;
+end
+
+function onStatUpdate()
+	for _,w in pairs(getWindows()) do
+		w.onStatUpdate();
+	end
+end</Script>
+    <RegisterScript>true</RegisterScript>
+    <Encoding />
+  </Scripts>
+</DocumentElement>
