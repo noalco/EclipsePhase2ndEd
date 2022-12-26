@@ -86,6 +86,24 @@ function addEntry(bFocus)
 	return w;
 end
 
+function addEntryWithField(bFocus, sSkill)
+	local t=DataCommon.ActiveSkills[sSkill];
+	if t then
+		local w=addEntry(false);
+		w.name.setValue(sSkill);
+		w.aptitude.setStringValue(t.sApt);
+		w.aptitude.setReadOnly(sSkill~="Exotic Skill");
+		w.Type.setStringValue(t.sType);
+		w.Type.setReadOnly(sSkill~="Exotic Skill");
+		w.Field.setVisible(true);
+		w.AptMult.setValue(t.nAptMult);
+		w.AptMult.setVisible(t.nAptMult&gt;1 or sSkill=="Exotic Skill");
+		w.AptMult.setReadOnly(sSkill~="Exotic Skill");
+		w.LabelX.setVisible(t.nAptMult&gt;1 or sSkill=="Exotic Skill");
+	end
+end
+
+
 function onStatUpdate()
 	for _,w in pairs(getWindows()) do
 		w.updateWindow();
