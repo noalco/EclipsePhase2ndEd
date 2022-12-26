@@ -3273,7 +3273,7 @@ end
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"ButtonCaption","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"ButtonField"},
-      {"Name":"ButtonStateList","Value":{"@xsi:type":"ArrayOfButtonStateDefinition"}},
+      {"Name":"ButtonStateList","Value":{"@xsi:type":"ArrayOfButtonStateDefinition","ButtonStateDefinition":[{"Text":"ES","Tooltip":"Add an Exotic Skill","Icon":"SkillAdd"},{"Text":"ES","Tooltip":"Add an Exotic Skill","Icon":"SkillAdd_down"}]}},
       {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"ButtonAddExoticSkill"}},
       {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
       {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
@@ -3284,7 +3284,7 @@ end
       {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
       {"Name":"Disabled"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
-      {"Name":"FontName","Value":{"@xsi:type":"xsd:string","#text":"button-white"}},
+      {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"FrameName","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"GMEditOnly"},
@@ -3301,8 +3301,8 @@ end
       {"Name":"MinimumHeight"},
       {"Name":"MinimumWidth"},
       {"Name":"NextTabTarget"},
-      {"Name":"NormalIconName","Value":{"@xsi:type":"xsd:string","#text":"SkillAddHW"}},
-      {"Name":"PressedIconName","Value":{"@xsi:type":"xsd:string","#text":"SkillAddHW_down"}},
+      {"Name":"NormalIconName","Value":{"@xsi:type":"xsd:string","#text":"SkillAdd"}},
+      {"Name":"PressedIconName","Value":{"@xsi:type":"xsd:string","#text":"SkillAdd_down"}},
       {"Name":"PrevTabTarget"},
       {"Name":"ReadOnly"},
       {"Name":"RelativeMargin"},
@@ -3317,8 +3317,13 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"364"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"15"}}
 ]}}</Definition>
-    <LUACode>function onButtonPress()
+    <LUACode>function onClickRelease(button, x, y)
+	setValue(1);
 	window.ActiveSkillsList.addEntryWithField(false, "Exotic Skill");
+end
+
+function onClickDown(button, x, y)
+	setValue(1);
 end
 </LUACode>
     <GroupIndex>0</GroupIndex>
@@ -3336,7 +3341,7 @@ end
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"ButtonCaption","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"ButtonField"},
-      {"Name":"ButtonStateList","Value":{"@xsi:type":"ArrayOfButtonStateDefinition"}},
+      {"Name":"ButtonStateList","Value":{"@xsi:type":"ArrayOfButtonStateDefinition","ButtonStateDefinition":[{"Text":"HW","Tooltip":"Add a Hardware Skill","Icon":"SkillAdd"},{"Text":"HW","Tooltip":"Add a Hardware Skill","Icon":"SkillAdd_down"}]}},
       {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"ButtonAddHW"}},
       {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
       {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
@@ -3347,7 +3352,7 @@ end
       {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
       {"Name":"Disabled"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
-      {"Name":"FontName","Value":{"@xsi:type":"xsd:string","#text":"button-white"}},
+      {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"FrameName","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"GMEditOnly"},
@@ -3364,8 +3369,8 @@ end
       {"Name":"MinimumHeight"},
       {"Name":"MinimumWidth"},
       {"Name":"NextTabTarget"},
-      {"Name":"NormalIconName","Value":{"@xsi:type":"xsd:string","#text":"SkillAddHW"}},
-      {"Name":"PressedIconName","Value":{"@xsi:type":"xsd:string","#text":"SkillAddHW_down"}},
+      {"Name":"NormalIconName","Value":{"@xsi:type":"xsd:string","#text":"SkillAdd"}},
+      {"Name":"PressedIconName","Value":{"@xsi:type":"xsd:string","#text":"SkillAdd_down"}},
       {"Name":"PrevTabTarget"},
       {"Name":"ReadOnly"},
       {"Name":"RelativeMargin"},
@@ -3380,8 +3385,13 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"386"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"15"}}
 ]}}</Definition>
-    <LUACode>function onButtonPress()
+    <LUACode>function onClickRelease(button, x, y)
+	setValue(1);
 	window.ActiveSkillsList.addEntryWithField(false, "Hardware");
+end
+
+function onClickDown(button, x, y)
+	setValue(1);
 end
 </LUACode>
     <GroupIndex>0</GroupIndex>
@@ -3399,7 +3409,7 @@ end
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"ButtonCaption","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"ButtonField"},
-      {"Name":"ButtonStateList","Value":{"@xsi:type":"ArrayOfButtonStateDefinition"}},
+      {"Name":"ButtonStateList","Value":{"@xsi:type":"ArrayOfButtonStateDefinition","ButtonStateDefinition":[{"Text":"Me","Tooltip":"Add a Medicine Skill","Icon":"SkillAdd"},{"Text":"Me","Tooltip":"Add a Medicine Skill","Icon":"SkillAdd_down"}]}},
       {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"ButtonAddMedicine"}},
       {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
       {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
@@ -3410,7 +3420,7 @@ end
       {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
       {"Name":"Disabled"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
-      {"Name":"FontName","Value":{"@xsi:type":"xsd:string","#text":"button-white"}},
+      {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"FrameName","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"GMEditOnly"},
@@ -3427,8 +3437,8 @@ end
       {"Name":"MinimumHeight"},
       {"Name":"MinimumWidth"},
       {"Name":"NextTabTarget"},
-      {"Name":"NormalIconName","Value":{"@xsi:type":"xsd:string","#text":"SkillAddHW"}},
-      {"Name":"PressedIconName","Value":{"@xsi:type":"xsd:string","#text":"SkillAddHW_down"}},
+      {"Name":"NormalIconName","Value":{"@xsi:type":"xsd:string","#text":"SkillAdd"}},
+      {"Name":"PressedIconName","Value":{"@xsi:type":"xsd:string","#text":"SkillAdd_down"}},
       {"Name":"PrevTabTarget"},
       {"Name":"ReadOnly"},
       {"Name":"RelativeMargin"},
@@ -3443,8 +3453,13 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"408"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"15"}}
 ]}}</Definition>
-    <LUACode>function onButtonPress()
+    <LUACode>function onClickRelease(button, x, y)
+	setValue(1);
 	window.ActiveSkillsList.addEntryWithField(false, "Medicine");
+end
+
+function onClickDown(button, x, y)
+	setValue(1);
 end
 </LUACode>
     <GroupIndex>0</GroupIndex>
@@ -3462,7 +3477,7 @@ end
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"ButtonCaption","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"ButtonField"},
-      {"Name":"ButtonStateList","Value":{"@xsi:type":"ArrayOfButtonStateDefinition"}},
+      {"Name":"ButtonStateList","Value":{"@xsi:type":"ArrayOfButtonStateDefinition","ButtonStateDefinition":[{"Text":"Pi","Tooltip":"Add a Pilot Skill","Icon":"SkillAdd"},{"Text":"Pi","Tooltip":"Add a Pilot Skill","Icon":"SkillAdd_down"}]}},
       {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"ButtonAddPilot"}},
       {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
       {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
@@ -3473,7 +3488,7 @@ end
       {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
       {"Name":"Disabled"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
-      {"Name":"FontName","Value":{"@xsi:type":"xsd:string","#text":"button-white"}},
+      {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"FrameName","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"GMEditOnly"},
@@ -3490,8 +3505,8 @@ end
       {"Name":"MinimumHeight"},
       {"Name":"MinimumWidth"},
       {"Name":"NextTabTarget"},
-      {"Name":"NormalIconName","Value":{"@xsi:type":"xsd:string","#text":"SkillAddHW"}},
-      {"Name":"PressedIconName","Value":{"@xsi:type":"xsd:string","#text":"SkillAddHW_down"}},
+      {"Name":"NormalIconName","Value":{"@xsi:type":"xsd:string","#text":"SkillAdd"}},
+      {"Name":"PressedIconName","Value":{"@xsi:type":"xsd:string","#text":"SkillAdd_down"}},
       {"Name":"PrevTabTarget"},
       {"Name":"ReadOnly"},
       {"Name":"RelativeMargin"},
@@ -3506,8 +3521,13 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"429"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"15"}}
 ]}}</Definition>
-    <LUACode>function onButtonPress()
+    <LUACode>function onClickRelease(button, x, y)
+	setValue(1);
 	window.ActiveSkillsList.addEntryWithField(false, "Pilot");
+end
+
+function onClickDown(button, x, y)
+	setValue(1);
 end
 </LUACode>
     <GroupIndex>0</GroupIndex>
@@ -23260,16 +23280,6 @@ end</Script>
     <IconName>SkillAdd_down</IconName>
     <FolderID>7</FolderID>
     <IconFile>graphics\buttons\SkillAdd_down.png</IconFile>
-  </Icons>
-  <Icons>
-    <IconName>SkillAddHW</IconName>
-    <FolderID>7</FolderID>
-    <IconFile>graphics\buttons\SkillAddHW.png</IconFile>
-  </Icons>
-  <Icons>
-    <IconName>SkillAddHW_down</IconName>
-    <FolderID>7</FolderID>
-    <IconFile>graphics\buttons\SkillAddHW_down.png</IconFile>
   </Icons>
   <Icons>
     <IconName>tab_combat</IconName>
