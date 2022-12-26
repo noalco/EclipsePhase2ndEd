@@ -1,0 +1,54 @@
+<DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
+  <Scripts>
+    <ScriptName>list_know_skills</ScriptName>
+    <FolderID>3</FolderID>
+    <Script>-- 
+-- Please see the license.html file included with this distribution for 
+-- attribution and copyright information.
+--
+local sFocus = "name";
+
+function onInit()
+	nNode=getDatabaseNode()
+	DB.addHandler(Tools.getCharNodePath(nNode)..".Aptitudes.Checks", "onChildUpdate", onStatUpdate);
+	onStatUpdate();
+	if newfocus then
+		sFocus = newfocus[1];
+	end
+end
+
+function onListChanged()
+	update();
+end
+
+function update()
+	local sEdit = getName() .. "_iedit";
+	if window[sEdit] then
+		local bEdit = (window[sEdit].getValue() == 1);
+		for _,w in ipairs(getWindows()) do
+			w.idelete.setVisibility(bEdit);
+		end
+	end
+end
+
+function addEntry(bFocus)
+	local w = createWindow();
+	if bFocus and w[sFocus] then
+		w[sFocus].setFocus();
+	end
+	if self.onEntryAdded then
+		self.onEntryAdded(w);
+	end
+	return w;
+end
+
+function onStatUpdate()
+	for _,w in pairs(getWindows()) do
+		w.updateWindow();
+	end
+end
+</Script>
+    <RegisterScript>false</RegisterScript>
+    <Encoding />
+  </Scripts>
+</DocumentElement>
