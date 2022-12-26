@@ -55,8 +55,8 @@
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"530"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"55"}}
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"535"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"85"}}
 ]}}</Definition>
     <LUACode>local nPrev=0;
 
@@ -1329,8 +1329,8 @@ end
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"530"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"21"}}
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"535"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"51"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
@@ -1548,7 +1548,7 @@ end
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"55"}},
       {"Name":"Disabled"},
       {"Name":"FieldCurrent","Value":{"@xsi:type":"xsd:string","#text":"Pools.Recharge.CurrentShortRecharge"}},
-      {"Name":"FieldMax","Value":{"@xsi:type":"xsd:string","#text":".Pools.Recharge.MaxShortRecharge"}},
+      {"Name":"FieldMax","Value":{"@xsi:type":"xsd:string","#text":"Pools.Recharge.MaxShortRecharge"}},
       {"Name":"FrameName"},
       {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"GMEditOnly"},
