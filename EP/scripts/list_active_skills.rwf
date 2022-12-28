@@ -10,8 +10,10 @@ local sFocus = "name";
 
 function onInit()
 	nNode=getDatabaseNode()
-	DB.addHandler(Tools.getCharNodePath(nNode)..".Aptitudes.Checks", "onChildUpdate", onStatUpdate);
-	onStatUpdate();
+	DB.addHandler(Tools.getCharNodePath(nNode)..".Aptitudes.Checks", "onChildUpdate", onAptitudeUpdate);
+	DB.addHandler(Tools.getCharNodePath(nNode)..".Background.SkillList", "onChildUpdate", onBackgroundSkillListUpdate);
+	onAptitudeUpdate();
+	onBackgroundSkillListUpdate();
 	constructDefaultSkills();
 	if newfocus then
 		sFocus = newfocus[1];
@@ -104,9 +106,15 @@ function addEntryWithField(bFocus, sSkill)
 end
 
 
-function onStatUpdate()
+function onAptitudeUpdate()
 	for _,w in pairs(getWindows()) do
 		w.updateWindow();
+	end
+end
+
+function onBackgroundSkillListUpdate()
+	for _,nodeSkill in pairs(DB.getDatabasenode()) do
+	
 	end
 end
 

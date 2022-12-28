@@ -10,8 +10,8 @@ local sFocus = "name";
 
 function onInit()
 	nNode=getDatabaseNode()
-	DB.addHandler(Tools.getCharNodePath(nNode)..".Aptitudes.Checks", "onChildUpdate", onStatUpdate);
-	onStatUpdate();
+	DB.addHandler(Tools.getCharNodePath(nNode)..".Aptitudes.Checks", "onChildUpdate", onAptitudeUpdate);
+	onAptitudeUpdate();
 	if newfocus then
 		sFocus = newfocus[1];
 	end
@@ -42,7 +42,7 @@ function addEntry(bFocus)
 	return w;
 end
 
-function onStatUpdate()
+function onAptitudeUpdate()
 	for _,w in pairs(getWindows()) do
 		w.updateWindow();
 	end

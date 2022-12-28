@@ -1,20 +1,42 @@
 <DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
   <Scripts>
     <ScriptName>Sidebars</ScriptName>
-    <FolderID>14</FolderID>
-    <Script>--function onInit()
---	aRecordOverrides = {
---		["Porphs"] = {
---			bExport=true,
---			aDataMap = {"morphs", "reference.morphs"},
---			sListDisplayClass = "MorphBase",
---			sRecordDisplayClass ="MorphDataWindow",
---			sEditMode = "play",
---		},
---	}
---	LibraryData.overrideRecordTypes(aRecordOverrides);
---	
---end</Script>
+    <FolderID>17</FolderID>
+    <Script>function onInit()
+	aRecordOverrides = {
+		["backgrounds"] = {
+			bExport=true,
+			aDataMap = {"reference.backgrounds"},
+			sListDisplayClass = "BackgroundBase",
+			sRecordDisplayClass ="BackgroundSidebarWindow",
+			sEditMode = "play",
+			bExport = true,
+			sSidebarCategory = "character",
+		},
+		["careers"] = {
+			bExport=true,
+			aDataMap = {"reference.careers"},
+			sListDisplayClass = "CareerBase",
+			sRecordDisplayClass ="CareerSidebarWindow",
+			sEditMode = "play",
+			bExport = true,
+			sSidebarCategory = "character",
+		},
+		["interest"] = {
+			bExport=true,
+			aDataMap = {"reference.interest"},
+			sListDisplayClass = "InterestBase",
+			sRecordDisplayClass ="InterestSidebarWindow",
+			sEditMode = "play",
+			bExport = true,
+			sSidebarCategory = "character",
+		},
+	}
+	
+	
+	LibraryData.overrideRecordTypes(aRecordOverrides);
+	
+end</Script>
     <RegisterScript>true</RegisterScript>
     <Encoding />
   </Scripts>
