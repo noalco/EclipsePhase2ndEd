@@ -12,6 +12,8 @@ function onInit()
 	nNode=getDatabaseNode()
 	DB.addHandler(Tools.getCharNodePath(nNode)..".Aptitudes.Checks", "onChildUpdate", onAptitudeUpdate);
 	DB.addHandler(Tools.getCharNodePath(nNode)..".Background.SkillList", "onChildUpdate", onBackgroundSkillListUpdate);
+	DB.addHandler(Tools.getCharNodePath(nNode)..".Career.SkillList", "onChildUpdate", onCareerSkillListUpdate);
+	DB.addHandler(Tools.getCharNodePath(nNode)..".Interest.SkillList", "onChildUpdate", onInterestSkillListUpdate);
 	onAptitudeUpdate();
 	onBackgroundSkillListUpdate();
 	constructDefaultSkills();
@@ -113,8 +115,36 @@ function onAptitudeUpdate()
 end
 
 function onBackgroundSkillListUpdate()
-	for _,nodeSkill in pairs(DB.getDatabasenode()) do
-	
+	SkillListUpdate("Background");
+end
+
+function onCareerSkillListUpdate()
+	SkillListUpdate("Career");
+end
+
+function onInterestSkillListUpdate()
+	SkillListUpdate("Interest");
+end
+
+function SkillListUpdate(sSkillType)
+	local tSkills={}
+	local sSkillName;
+	for _,nodeSkill in pairs(DB.getChildren(Tools.getCharNodePath(getDatabaseNode()).."."..sSkillType..".SkillList")) do
+		sSkillName=DB.getValue(nodeSkill, "Name", "");
+		tSkills[sSkillName]={};
+		tSkills[sSkillName].Score=DB.getValue(nodeSkill, "Score", 0);
+		tSkills[sSkillName].bHasField=DataCommon.ActiveSkills[sSkillName].bHasField;
+		if tSkills[sSkillName].bHasField then
+			tSkills[sSkillName].Field=DB.getValue(nodeSkill, "Field", 0):lower();
+		end
+	end
+	for _,w in pairs(getWindows()) do
+		sSkillName=w.name.getValue()
+		if tSkills[sSkillName] and (not tSkills[sSkillName].bHasField or tSkills[sSkillName].bHasField and tSkills[sSkillName].Field==w.Field.getValue():lower()) then
+			w[sSkillType].setValue(tSkills[w.name.getValue()].Score);
+		else
+			w[sSkillType].setValue(0);
+		end
 	end
 end
 

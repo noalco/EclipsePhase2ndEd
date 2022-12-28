@@ -10,7 +10,6 @@
 			sListDisplayClass = "BackgroundBase",
 			sRecordDisplayClass ="BackgroundSidebarWindow",
 			sEditMode = "play",
-			bExport = true,
 			sSidebarCategory = "character",
 		},
 		["careers"] = {
@@ -19,7 +18,6 @@
 			sListDisplayClass = "CareerBase",
 			sRecordDisplayClass ="CareerSidebarWindow",
 			sEditMode = "play",
-			bExport = true,
 			sSidebarCategory = "character",
 		},
 		["interest"] = {
@@ -28,7 +26,6 @@
 			sListDisplayClass = "InterestBase",
 			sRecordDisplayClass ="InterestSidebarWindow",
 			sEditMode = "play",
-			bExport = true,
 			sSidebarCategory = "character",
 		},
 	}

@@ -270,7 +270,7 @@
       {"Name":"ReadOnly"},
       {"Name":"RelativeMargin"},
       {"Name":"RelativeStacking"},
-      {"Name":"ScriptFile"},
+      {"Name":"ScriptFile","Value":{"@xsi:type":"xsd:string","#text":"campaign/scripts/masterindexitem_name.lua"}},
       {"Name":"Source","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"StackVertWith"},
       {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
