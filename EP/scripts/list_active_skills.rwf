@@ -104,6 +104,7 @@ function addEntryWithField(bFocus, sSkill)
 		w.AptMult.setVisible(t.nAptMult&gt;1 or sSkill=="Exotic Skill");
 		w.AptMult.setReadOnly(sSkill~="Exotic Skill");
 		w.LabelX.setVisible(t.nAptMult&gt;1 or sSkill=="Exotic Skill");
+		w.UpdateBonus();
 	end
 end
 
