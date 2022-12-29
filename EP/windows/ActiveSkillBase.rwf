@@ -83,6 +83,22 @@
 	end
 end
 
+function FindSkillWithField(sSkillType, sSkill, sField)
+	sField=sField:lower();
+	for _,nodeSkill in pairs(DB.getChildren(Tools.getCharNodePath(getDatabaseNode()).."."..sSkillType..".SkillList")) do
+		if DB.getValue(nodeSkill, "Name", "")==sSkill and DB.getValue(nodeSkill, "Field", ""):lower()==sField then
+			return DB.getValue(nodeSkill, "Score", 0);
+		end
+	end
+	return 0;
+end
+
+function UpdateBonus()
+	Background.setValue(FindSkillWithField("Background", name.getValue(), Field.getValue()));
+	Career.setValue(FindSkillWithField("Career", name.getValue(), Field.getValue()));
+	Interest.setValue(FindSkillWithField("Interest", name.getValue(), Field.getValue()));
+end
+
 function GetRollMessage()
 	local sMessage=name.getValue();
 	if Field.getValue()~="" then
@@ -661,6 +677,10 @@ end
 ]}}</Definition>
     <LUACode>function onInit()
 	setVisible(DataCommon.ActiveSkills[window.name.getValue()] and DataCommon.ActiveSkills[window.name.getValue()].bHasField);
+end
+
+function onValueChanged()
+	window.UpdateBonus();
 end
 </LUACode>
     <GroupIndex>0</GroupIndex>

@@ -135,7 +135,7 @@ function SkillListUpdate(sSkillType)
 		tSkills[sSkillName].Score=DB.getValue(nodeSkill, "Score", 0);
 		tSkills[sSkillName].bHasField=DataCommon.ActiveSkills[sSkillName].bHasField;
 		if tSkills[sSkillName].bHasField then
-			tSkills[sSkillName].Field=DB.getValue(nodeSkill, "Field", 0):lower();
+			tSkills[sSkillName].Field=DB.getValue(nodeSkill, "Field", ""):lower();
 		end
 	end
 	for _,w in pairs(getWindows()) do
