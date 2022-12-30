@@ -132,11 +132,13 @@ function SkillListUpdate(sSkillType)
 	local sSkillName;
 	for _,nodeSkill in pairs(DB.getChildren(Tools.getCharNodePath(getDatabaseNode()).."."..sSkillType..".SkillList")) do
 		sSkillName=DB.getValue(nodeSkill, "Name", "");
-		tSkills[sSkillName]={};
-		tSkills[sSkillName].Score=DB.getValue(nodeSkill, "Score", 0);
-		tSkills[sSkillName].bHasField=DataCommon.ActiveSkills[sSkillName].bHasField;
-		if tSkills[sSkillName].bHasField then
-			tSkills[sSkillName].Field=DB.getValue(nodeSkill, "Field", ""):lower();
+		if sSkillName~="" then
+			tSkills[sSkillName]={};
+			tSkills[sSkillName].Score=DB.getValue(nodeSkill, "Score", 0);
+			tSkills[sSkillName].bHasField=DataCommon.ActiveSkills[sSkillName].bHasField;
+			if tSkills[sSkillName].bHasField then
+				tSkills[sSkillName].Field=DB.getValue(nodeSkill, "Field", ""):lower();
+			end
 		end
 	end
 	for _,w in pairs(getWindows()) do

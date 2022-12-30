@@ -1,7 +1,7 @@
 <DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
   <Scripts>
     <ScriptName>Sidebars</ScriptName>
-    <FolderID>17</FolderID>
+    <FolderID>18</FolderID>
     <Script>function onInit()
 	aRecordOverrides = {
 		["backgrounds"] = {
@@ -27,6 +27,12 @@
 			sRecordDisplayClass ="InterestSidebarWindow",
 			sEditMode = "play",
 			sSidebarCategory = "character",
+		},
+		["item"] = {
+			aDataMap = {"reference.items"},
+			aCustomFilters = {
+				["Gear Type"] = { sField = "Type" },
+			},
 		},
 	}
 	

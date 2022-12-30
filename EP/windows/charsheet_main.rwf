@@ -98,7 +98,7 @@
       {"Name":"RelativeMargin"},
       {"Name":"RelativeStacking"},
       {"Name":"ScriptFile"},
-      {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":".Background.Background"}},
+      {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":".Background.name"}},
       {"Name":"StackVertWith"},
       {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
       {"Name":"Tooltip"},
@@ -156,7 +156,7 @@ end
       {"Name":"RelativeMargin"},
       {"Name":"RelativeStacking"},
       {"Name":"ScriptFile"},
-      {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":"Background.BackgroundLink"}},
+      {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":"Background.link"}},
       {"Name":"StackVertWith"},
       {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
       {"Name":"Tooltip"},
@@ -166,13 +166,7 @@ end
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"25"}}
 ]}}</Definition>
     <LUACode>function onDrop(x, y, dragdata)
-	local sClass,sRecord = dragdata.getShortcutData();
-	if sClass=="BackgroundSidebarWindow" or sClass=="BackgroundWindow" then
-		local backgroundNode=getDatabaseNode().getParent();
-		DB.deleteChildren(backgroundNode.getChild("SkillList"));
-		DB.copyNode(sRecord, backgroundNode);
-		window.Background.setValue(DB.getValue(sRecord..".name", ""));
-	end
+	window.CopyLink(dragdata, "Background", getDatabaseNode().getParent());
 end
 </LUACode>
     <GroupIndex>0</GroupIndex>
@@ -290,7 +284,7 @@ end
       {"Name":"RelativeMargin"},
       {"Name":"RelativeStacking"},
       {"Name":"ScriptFile"},
-      {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":".Career.Career"}},
+      {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":".Career.name"}},
       {"Name":"StackVertWith"},
       {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
       {"Name":"Tooltip"},
@@ -348,7 +342,7 @@ end
       {"Name":"RelativeMargin"},
       {"Name":"RelativeStacking"},
       {"Name":"ScriptFile"},
-      {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":".Career.CareerLink"}},
+      {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":".Career.link"}},
       {"Name":"StackVertWith"},
       {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
       {"Name":"Tooltip"},
@@ -358,13 +352,7 @@ end
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"25"}}
 ]}}</Definition>
     <LUACode>function onDrop(x, y, dragdata)
-	local sClass,sRecord = dragdata.getShortcutData();
-	if sClass=="CareerSidebarWindow" or sClass=="CareerWindow" then
-		local careerNode=getDatabaseNode().getParent();
-		DB.deleteChildren(careerNode.getChild("SkillList"));
-		DB.copyNode(sRecord, careerNode);
-		window.Career.setValue(DB.getValue(sRecord..".name", ""));
-	end
+	window.CopyLink(dragdata, "Career", getDatabaseNode().getParent());
 end
 </LUACode>
     <GroupIndex>0</GroupIndex>
@@ -422,7 +410,15 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"0"}}
 ]}}</Definition>
-    <LUACode />
+    <LUACode>function CopyLink(dragdata, sNodeType, Node)
+	local sClass,sRecord = dragdata.getShortcutData();
+	if sClass==sNodeType.."SidebarWindow" or sClass==sNodeType.."Window" then
+		if sRecord~=Node.getPath() then
+			DB.deleteChildren(Node.getChild("SkillList"));
+			DB.copyNode(sRecord, Node);
+		end
+	end
+end</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -1343,7 +1339,7 @@ end
       {"Name":"RelativeMargin"},
       {"Name":"RelativeStacking"},
       {"Name":"ScriptFile"},
-      {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":"Interest.Interest"}},
+      {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":"Interest.name"}},
       {"Name":"StackVertWith"},
       {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
       {"Name":"Tooltip"},
@@ -1401,7 +1397,7 @@ end
       {"Name":"RelativeMargin"},
       {"Name":"RelativeStacking"},
       {"Name":"ScriptFile"},
-      {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":"Interest.InterestLink"}},
+      {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":"Interest.link"}},
       {"Name":"StackVertWith"},
       {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
       {"Name":"Tooltip"},
@@ -1411,13 +1407,7 @@ end
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"72"}}
 ]}}</Definition>
     <LUACode>function onDrop(x, y, dragdata)
-	local sClass,sRecord = dragdata.getShortcutData();
-	if sClass=="InterestSidebarWindow" or sClass=="InterestWindow" then
-		local interestNode=getDatabaseNode().getParent();
-		DB.deleteChildren(interestNode.getChild("SkillList"));
-		DB.copyNode(sRecord, interestNode);
-		window.Interest.setValue(DB.getValue(sRecord..".name", ""));
-	end
+	window.CopyLink(dragdata, "Interest", getDatabaseNode().getParent());
 end
 </LUACode>
     <GroupIndex>0</GroupIndex>
