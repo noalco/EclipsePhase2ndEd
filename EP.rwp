@@ -8684,7 +8684,39 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"0"}}
 ]}}</Definition>
-    <LUACode>function UpdateMultiLayerArmorPenalties()
+    <LUACode>function onInit()
+--	UpdateMultiLayerArmorPenalties();
+	CalculateArmorValues();
+	local charNode=Tools.getCharNodePath(getDatabaseNode());
+	DB.addHandler(charNode..".Morph.Durability", "onUpdate", UpdateMultiLayerArmorPenalties);
+	DB.addHandler(charNode..".Aptitudes.Scores.Somatics", "onUpdate", UpdateMultiLayerArmorPenalties);
+	DB.addHandler(charNode..".inventorylist", "onChildUpdate", CalculateArmorValues);
+end
+
+function CalculateArmorValues()
+	local nKineticAV=0;
+	local nEnergyAV=0;
+	local nLayers=0
+	for _,w in pairs(inventorylist.getWindows()) do
+		if w.carried.getValue()==2 then
+			local nodeItem=w.getDatabaseNode();
+			if DB.getValue(nodeItem, "Type", "")=="Armor" then
+				nKineticAV=nKineticAV+DB.getValue(nodeItem, "Armor.KineticAV", 0);
+				nEnergyAV=nEnergyAV+DB.getValue(nodeItem, "Armor.EnergyAV", 0);
+				if DB.getValue(nodeItem, "Armor.NoAdditionalArmorLayer", 0)==0 then nLayers=nLayers+1; end
+			elseif DB.getValue(nodeItem, "Type", "")=="Armor Mod" then
+				nKineticAV=nKineticAV+DB.getValue(nodeItem, "Armor.KineticAV", 0);
+				nEnergyAV=nEnergyAV+DB.getValue(nodeItem, "Armor.EnergyAV", 0);
+			end
+		end
+	end
+	KineticAV.setValue(nKineticAV);
+	EnergyAV.setValue(nEnergyAV);
+	NumLayers.setValue(nLayers);
+	UpdateMultiLayerArmorPenalties()
+end
+
+function UpdateMultiLayerArmorPenalties()
 	local nNumLayers=NumLayers.getValue()-1;
 	local nPenalty=0;
 	if nNumLayers&gt;0 then
@@ -8703,13 +8735,6 @@ end
 		PhAP.setValue(0);
 		MRP.setValue("No Pen.");
 	end
-end
-
-function onInit()
-	UpdateMultiLayerArmorPenalties();
-	local charNode=Tools.getCharNodePath(getDatabaseNode());
-	DB.addHandler(charNode..".Morph.Durability", "onUpdate", UpdateMultiLayerArmorPenalties);
-	DB.addHandler(charNode..".Aptitudes.Scores.Somatics", "onUpdate", UpdateMultiLayerArmorPenalties);
 end
 </LUACode>
     <GroupIndex>0</GroupIndex>
@@ -8761,7 +8786,7 @@ end
       {"Name":"NoDrop"},
       {"Name":"NoKeyEdit"},
       {"Name":"PrevTabTarget"},
-      {"Name":"ReadOnly"},
+      {"Name":"ReadOnly","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"RelativeMargin"},
       {"Name":"RelativeStacking"},
       {"Name":"ScriptFile"},
@@ -8771,13 +8796,13 @@ end
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"163"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"115"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"33"}}
 ]}}</Definition>
-    <LUACode>function onValueChanged()
-	window.UpdateMultiLayerArmorPenalties();
-end
-</LUACode>
+    <LUACode>--function onValueChanged()
+--	window.UpdateMultiLayerArmorPenalties();
+--end
+--</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -9096,7 +9121,7 @@ end
       {"Name":"NoDrop"},
       {"Name":"NoKeyEdit"},
       {"Name":"PrevTabTarget"},
-      {"Name":"ReadOnly"},
+      {"Name":"ReadOnly","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"RelativeMargin"},
       {"Name":"RelativeStacking"},
       {"Name":"ScriptFile"},
@@ -9106,13 +9131,13 @@ end
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"115"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"159"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"33"}}
 ]}}</Definition>
-    <LUACode>function onValueChanged()
-	window.UpdateMultiLayerArmorPenalties();
-end
-</LUACode>
+    <LUACode>--function onValueChanged()
+--	window.UpdateMultiLayerArmorPenalties();
+--end
+--</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -9427,7 +9452,7 @@ end
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"163"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"115"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"18"}}
 ]}}</Definition>
     <LUACode />
@@ -9480,7 +9505,7 @@ end
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"115"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"159"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"18"}}
 ]}}</Definition>
     <LUACode />
@@ -9688,7 +9713,7 @@ end
       {"Name":"HoverCursor"},
       {"Name":"InheritSizePosition"},
       {"Name":"InsertBefore"},
-      {"Name":"Invisible"},
+      {"Name":"Invisible","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"MaximumHeight"},
       {"Name":"MaximumWidth"},
       {"Name":"MaxValue"},
@@ -9711,13 +9736,13 @@ end
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"398"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"25"}}
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"504"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"27"}}
 ]}}</Definition>
-    <LUACode>function onValueChanged()
-	window.UpdateMultiLayerArmorPenalties();
-end
-</LUACode>
+    <LUACode>--function onValueChanged()
+--	window.UpdateMultiLayerArmorPenalties();
+--end
+--</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -21940,7 +21965,7 @@ end
       {"Name":"RelativeMargin","Value":{"@xsi:type":"xsd:int","#text":"-5"}},
       {"Name":"RelativeStacking"},
       {"Name":"ScriptFile"},
-      {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":".ArmorKineticAV"}},
+      {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":".Armor.KineticAV"}},
       {"Name":"StackVertWith"},
       {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame","StateFrame":[{"StateFrameID":"keyedit","StateFrameName":"fieldfocus","StateFrameOffset":"2,2,0,0","StateFrameNoBaseFrame":{"@xsi:nil":"true"},"StateFrameHideReadOnly":"true"},{"StateFrameID":"hover","StateFrameName":"fieldfocus","StateFrameOffset":"2,2,0,0","StateFrameNoBaseFrame":{"@xsi:nil":"true"},"StateFrameHideReadOnly":"true"}]}},
       {"Name":"Tooltip"},
