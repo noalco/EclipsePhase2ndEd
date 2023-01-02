@@ -215,7 +215,7 @@
       {"Name":"PlayerControl","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"Resize","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"RightMargin","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"ScriptFile"},
+      {"Name":"ScriptFile","Value":{"@xsi:type":"xsd:string","#text":"CharacterSheet/scripts/CharManager.lua"}},
       {"Name":"Sharable"},
       {"Name":"ShareAs"},
       {"Name":"SoftClose","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
@@ -227,7 +227,8 @@
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"0"}}
 ]}}</Definition>
-    <LUACode />
+    <LUACode xml:space="preserve">
+</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>

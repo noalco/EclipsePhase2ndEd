@@ -1,0 +1,20 @@
+<DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
+  <Scripts>
+    <ScriptName>CharManager</ScriptName>
+    <FolderID>6</FolderID>
+    <Script>function onInit()
+	ItemManager.setCustomCharAdd(onCharItemAdd);
+	ItemManager.setCustomCharRemove(onCharItemDelete);
+end
+
+function onCharItemAdd(nodeItem)
+	Debug.chat("onCharItemAdd", nodeItem);
+end
+
+function onCharItemDelete(nodeItem)
+	Debug.chat("onCharItemDelete", nodeItem);
+end</Script>
+    <RegisterScript>false</RegisterScript>
+    <Encoding />
+  </Scripts>
+</DocumentElement>
