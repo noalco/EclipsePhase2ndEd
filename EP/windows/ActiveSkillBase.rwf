@@ -53,7 +53,17 @@
 ]}}</Definition>
     <LUACode>function updateWindow()
 --	ActiveSkills = {["Athletics"] = {sApt="SOM", nAptMult=1, sType="Physical", bHasField=false},
-	local tSkill=DataCommon.ActiveSkills[name.getValue()];
+	local sSkillName=name.getValue();
+	if sSkillName=="Melee" or sSkillName=="Guns" then
+		local sNodeChar=Tools.getCharNodePath(getDatabaseNode());
+		local sWindowPath=getDatabaseNode().getPath();
+		if sSkillName=="Melee" and DB.getValue(sNodeChar..".Paths.MeleeSkillPath")~=sWindowPath then
+			DB.setValue(sNodeChar..".Paths.MeleeSkillPath", "string", sWindowPath);
+		elseif sSkillName=="Guns" and DB.getValue(sNodeChar..".Paths.GunsSkillPath")~=sWindowPath then
+			DB.setValue(sNodeChar..".Paths.GunsSkillPath", "string", sWindowPath);
+		end
+	end
+	local tSkill=DataCommon.ActiveSkills[sSkillName];
 	if tSkill then
 --		Aptitudes = {["COG"] = {sPath=".Aptitudes.Checks.Cognition", sPool="Insight"},
 		local tAptitude=DataCommon.Aptitudes[tSkill.sApt];
@@ -94,9 +104,10 @@ function FindSkillWithField(sSkillType, sSkill, sField)
 end
 
 function UpdateBonus()
-	Background.setValue(FindSkillWithField("Background", name.getValue(), Field.getValue()));
-	Career.setValue(FindSkillWithField("Career", name.getValue(), Field.getValue()));
-	Interest.setValue(FindSkillWithField("Interest", name.getValue(), Field.getValue()));
+	local sSkillName=name.getValue();
+	Background.setValue(FindSkillWithField("Background", sSkillName, Field.getValue()));
+	Career.setValue(FindSkillWithField("Career", sSkillName, Field.getValue()));
+	Interest.setValue(FindSkillWithField("Interest", sSkillName, Field.getValue()));
 end
 
 function GetRollMessage()
@@ -339,7 +350,7 @@ end</LUACode>
       {"Name":"DisplaySign"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
-      {"Name":"FrameName","Value":{"@xsi:type":"xsd:string","#text":"fielddark"}},
+      {"Name":"FrameName","Value":{"@xsi:type":"xsd:string","#text":"fielddark_grey"}},
       {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"GMEditOnly"},
       {"Name":"GMVisibleOnly"},
@@ -362,7 +373,7 @@ end</LUACode>
       {"Name":"NoDrop"},
       {"Name":"NoKeyEdit"},
       {"Name":"PrevTabTarget"},
-      {"Name":"ReadOnly"},
+      {"Name":"ReadOnly","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"RelativeMargin"},
       {"Name":"RelativeStacking"},
       {"Name":"ScriptFile"},
@@ -382,13 +393,13 @@ end</LUACode>
 	end
 end
 
-function onInit()
-	if window.name.getValue()=="Fray/2 (vs. ranged attacks)" then
-		setReadOnly(true);
-		setFrame("fielddark_grey");
-	end
-end
-</LUACode>
+--function onInit()
+--	if window.name.getValue()=="Fray/2 (vs. ranged attacks)" then
+--		setReadOnly(true);
+--		setFrame("fielddark_grey");
+--	end
+--end
+--</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -488,7 +499,7 @@ end
       {"Name":"DisplaySign"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
-      {"Name":"FrameName","Value":{"@xsi:type":"xsd:string","#text":"fielddark"}},
+      {"Name":"FrameName","Value":{"@xsi:type":"xsd:string","#text":"fielddark_grey"}},
       {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"GMEditOnly"},
       {"Name":"GMVisibleOnly"},
@@ -511,7 +522,7 @@ end
       {"Name":"NoDrop"},
       {"Name":"NoKeyEdit"},
       {"Name":"PrevTabTarget"},
-      {"Name":"ReadOnly"},
+      {"Name":"ReadOnly","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"RelativeMargin"},
       {"Name":"RelativeStacking"},
       {"Name":"ScriptFile"},
@@ -548,7 +559,7 @@ end
     <ControlClass>FGNumberField</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"top","AnchorTo":"top","Parent":"AptitudeBonus"}}},
-      {"Name":"AdvancedTemplate"},
+      {"Name":"AdvancedTemplate","Value":{"@xsi:type":"xsd:string","#text":"focus_number"}},
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"CustomizationPoints"}},
       {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
@@ -769,7 +780,7 @@ end
       {"Name":"DisplaySign"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
-      {"Name":"FrameName","Value":{"@xsi:type":"xsd:string","#text":"fielddark"}},
+      {"Name":"FrameName","Value":{"@xsi:type":"xsd:string","#text":"fielddark_grey"}},
       {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"GMEditOnly"},
       {"Name":"GMVisibleOnly"},
@@ -792,7 +803,7 @@ end
       {"Name":"NoDrop"},
       {"Name":"NoKeyEdit"},
       {"Name":"PrevTabTarget"},
-      {"Name":"ReadOnly"},
+      {"Name":"ReadOnly","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"RelativeMargin"},
       {"Name":"RelativeStacking"},
       {"Name":"ScriptFile"},

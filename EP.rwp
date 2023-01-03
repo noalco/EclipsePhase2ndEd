@@ -52,81 +52,86 @@
   <Folders>
     <ID>4</ID>
     <ParentFolderID>1</ParentFolderID>
-    <Folder>charsheet_inventory</Folder>
+    <Folder>charsheet_combat</Folder>
   </Folders>
   <Folders>
     <ID>5</ID>
     <ParentFolderID>1</ParentFolderID>
-    <Folder>charsheet_main</Folder>
+    <Folder>charsheet_inventory</Folder>
   </Folders>
   <Folders>
     <ID>6</ID>
     <ParentFolderID>1</ParentFolderID>
-    <Folder>scripts</Folder>
+    <Folder>charsheet_main</Folder>
   </Folders>
   <Folders>
     <ID>7</ID>
-    <ParentFolderID>0</ParentFolderID>
-    <Folder>CombatTracker</Folder>
+    <ParentFolderID>1</ParentFolderID>
+    <Folder>scripts</Folder>
   </Folders>
   <Folders>
     <ID>8</ID>
     <ParentFolderID>0</ParentFolderID>
-    <Folder>graphics</Folder>
+    <Folder>CombatTracker</Folder>
   </Folders>
   <Folders>
     <ID>9</ID>
-    <ParentFolderID>8</ParentFolderID>
-    <Folder>buttons</Folder>
+    <ParentFolderID>0</ParentFolderID>
+    <Folder>graphics</Folder>
   </Folders>
   <Folders>
     <ID>10</ID>
-    <ParentFolderID>8</ParentFolderID>
-    <Folder>controls</Folder>
+    <ParentFolderID>9</ParentFolderID>
+    <Folder>buttons</Folder>
   </Folders>
   <Folders>
     <ID>11</ID>
-    <ParentFolderID>8</ParentFolderID>
-    <Folder>fonts</Folder>
+    <ParentFolderID>9</ParentFolderID>
+    <Folder>controls</Folder>
   </Folders>
   <Folders>
     <ID>12</ID>
-    <ParentFolderID>8</ParentFolderID>
-    <Folder>frames</Folder>
+    <ParentFolderID>9</ParentFolderID>
+    <Folder>fonts</Folder>
   </Folders>
   <Folders>
     <ID>13</ID>
-    <ParentFolderID>8</ParentFolderID>
-    <Folder>icons</Folder>
+    <ParentFolderID>9</ParentFolderID>
+    <Folder>frames</Folder>
   </Folders>
   <Folders>
     <ID>14</ID>
-    <ParentFolderID>8</ParentFolderID>
-    <Folder>sidebar</Folder>
+    <ParentFolderID>9</ParentFolderID>
+    <Folder>icons</Folder>
   </Folders>
   <Folders>
     <ID>15</ID>
-    <ParentFolderID>8</ParentFolderID>
-    <Folder>tabs</Folder>
+    <ParentFolderID>9</ParentFolderID>
+    <Folder>sidebar</Folder>
   </Folders>
   <Folders>
     <ID>16</ID>
-    <ParentFolderID>0</ParentFolderID>
-    <Folder>NPC</Folder>
+    <ParentFolderID>9</ParentFolderID>
+    <Folder>tabs</Folder>
   </Folders>
   <Folders>
     <ID>17</ID>
     <ParentFolderID>0</ParentFolderID>
-    <Folder>Scripts</Folder>
+    <Folder>NPC</Folder>
   </Folders>
   <Folders>
     <ID>18</ID>
     <ParentFolderID>0</ParentFolderID>
-    <Folder>Sidebars</Folder>
+    <Folder>Scripts</Folder>
   </Folders>
   <Folders>
     <ID>19</ID>
-    <ParentFolderID>18</ParentFolderID>
+    <ParentFolderID>0</ParentFolderID>
+    <Folder>Sidebars</Folder>
+  </Folders>
+  <Folders>
+    <ID>20</ID>
+    <ParentFolderID>19</ParentFolderID>
     <Folder>Scripts</Folder>
   </Folders>
 </DocumentElement>
@@ -138,31 +143,31 @@
   </Windows>
   <Windows>
     <Name>BackgroundBase</Name>
-    <FolderID>18</FolderID>
+    <FolderID>19</FolderID>
   </Windows>
   <Windows>
     <Name>BackgroundSidebarWindow</Name>
-    <FolderID>18</FolderID>
+    <FolderID>19</FolderID>
   </Windows>
   <Windows>
     <Name>BackgroundWindow</Name>
-    <FolderID>5</FolderID>
+    <FolderID>6</FolderID>
   </Windows>
   <Windows>
     <Name>CareerBase</Name>
-    <FolderID>18</FolderID>
+    <FolderID>19</FolderID>
   </Windows>
   <Windows>
     <Name>CareerSidebarWindow</Name>
-    <FolderID>18</FolderID>
+    <FolderID>19</FolderID>
   </Windows>
   <Windows>
     <Name>CareerWindow</Name>
-    <FolderID>5</FolderID>
+    <FolderID>6</FolderID>
   </Windows>
   <Windows>
     <Name>char_combat</Name>
-    <FolderID>1</FolderID>
+    <FolderID>4</FolderID>
   </Windows>
   <Windows>
     <Name>charsheet</Name>
@@ -174,15 +179,15 @@
   </Windows>
   <Windows>
     <Name>charsheet_combat</Name>
-    <FolderID>1</FolderID>
-  </Windows>
-  <Windows>
-    <Name>charsheet_inventory</Name>
     <FolderID>4</FolderID>
   </Windows>
   <Windows>
-    <Name>charsheet_main</Name>
+    <Name>charsheet_inventory</Name>
     <FolderID>5</FolderID>
+  </Windows>
+  <Windows>
+    <Name>charsheet_main</Name>
+    <FolderID>6</FolderID>
   </Windows>
   <Windows>
     <Name>charsheet_notes</Name>
@@ -190,51 +195,51 @@
   </Windows>
   <Windows>
     <Name>client_ct_entry</Name>
-    <FolderID>7</FolderID>
+    <FolderID>8</FolderID>
   </Windows>
   <Windows>
     <Name>combattracker_client</Name>
-    <FolderID>7</FolderID>
+    <FolderID>8</FolderID>
   </Windows>
   <Windows>
     <Name>combattracker_host</Name>
-    <FolderID>7</FolderID>
+    <FolderID>8</FolderID>
   </Windows>
   <Windows>
     <Name>ct_entry</Name>
-    <FolderID>7</FolderID>
+    <FolderID>8</FolderID>
   </Windows>
   <Windows>
     <Name>EgoTraitsDetailsWindow</Name>
-    <FolderID>5</FolderID>
+    <FolderID>6</FolderID>
   </Windows>
   <Windows>
     <Name>FiringModeWindow</Name>
-    <FolderID>4</FolderID>
+    <FolderID>5</FolderID>
   </Windows>
   <Windows>
     <Name>InnerPoolsValuesWindow</Name>
-    <FolderID>5</FolderID>
+    <FolderID>6</FolderID>
   </Windows>
   <Windows>
     <Name>InterestBase</Name>
-    <FolderID>18</FolderID>
+    <FolderID>19</FolderID>
   </Windows>
   <Windows>
     <Name>InterestSidebarWindow</Name>
-    <FolderID>18</FolderID>
+    <FolderID>19</FolderID>
   </Windows>
   <Windows>
     <Name>InterestWindow</Name>
-    <FolderID>5</FolderID>
+    <FolderID>6</FolderID>
   </Windows>
   <Windows>
     <Name>item</Name>
-    <FolderID>4</FolderID>
+    <FolderID>5</FolderID>
   </Windows>
   <Windows>
     <Name>item_main</Name>
-    <FolderID>4</FolderID>
+    <FolderID>5</FolderID>
   </Windows>
   <Windows>
     <Name>KnowSkillBase</Name>
@@ -242,31 +247,31 @@
   </Windows>
   <Windows>
     <Name>MorphDataDetaisWindow</Name>
-    <FolderID>5</FolderID>
+    <FolderID>6</FolderID>
   </Windows>
   <Windows>
     <Name>MorphDataWindow</Name>
-    <FolderID>5</FolderID>
+    <FolderID>6</FolderID>
   </Windows>
   <Windows>
     <Name>MorphTraitsDetailsWindow</Name>
-    <FolderID>5</FolderID>
+    <FolderID>6</FolderID>
   </Windows>
   <Windows>
     <Name>MorphWareDetailsWindow</Name>
-    <FolderID>5</FolderID>
+    <FolderID>6</FolderID>
   </Windows>
   <Windows>
     <Name>npc_main</Name>
-    <FolderID>16</FolderID>
+    <FolderID>17</FolderID>
   </Windows>
   <Windows>
     <Name>PoolsWindow</Name>
-    <FolderID>5</FolderID>
+    <FolderID>6</FolderID>
   </Windows>
   <Windows>
     <Name>SkillBase</Name>
-    <FolderID>5</FolderID>
+    <FolderID>6</FolderID>
   </Windows>
   <Windows>
     <Name>Templates</Name>
@@ -274,23 +279,23 @@
   </Windows>
   <Windows>
     <Name>TraitBase</Name>
-    <FolderID>5</FolderID>
+    <FolderID>6</FolderID>
   </Windows>
   <Windows>
     <Name>TraitWindow</Name>
-    <FolderID>5</FolderID>
+    <FolderID>6</FolderID>
   </Windows>
   <Windows>
     <Name>WareBase</Name>
-    <FolderID>5</FolderID>
+    <FolderID>6</FolderID>
   </Windows>
   <Windows>
     <Name>wareItemWindow</Name>
-    <FolderID>4</FolderID>
+    <FolderID>5</FolderID>
   </Windows>
   <Windows>
     <Name>WareWindow</Name>
-    <FolderID>5</FolderID>
+    <FolderID>6</FolderID>
   </Windows>
 </DocumentElement>
 
@@ -349,7 +354,17 @@
 ]}}</Definition>
     <LUACode>function updateWindow()
 --	ActiveSkills = {["Athletics"] = {sApt="SOM", nAptMult=1, sType="Physical", bHasField=false},
-	local tSkill=DataCommon.ActiveSkills[name.getValue()];
+	local sSkillName=name.getValue();
+	if sSkillName=="Melee" or sSkillName=="Guns" then
+		local sNodeChar=Tools.getCharNodePath(getDatabaseNode());
+		local sWindowPath=getDatabaseNode().getPath();
+		if sSkillName=="Melee" and DB.getValue(sNodeChar..".Paths.MeleeSkillPath")~=sWindowPath then
+			DB.setValue(sNodeChar..".Paths.MeleeSkillPath", "string", sWindowPath);
+		elseif sSkillName=="Guns" and DB.getValue(sNodeChar..".Paths.GunsSkillPath")~=sWindowPath then
+			DB.setValue(sNodeChar..".Paths.GunsSkillPath", "string", sWindowPath);
+		end
+	end
+	local tSkill=DataCommon.ActiveSkills[sSkillName];
 	if tSkill then
 --		Aptitudes = {["COG"] = {sPath=".Aptitudes.Checks.Cognition", sPool="Insight"},
 		local tAptitude=DataCommon.Aptitudes[tSkill.sApt];
@@ -390,9 +405,10 @@ function FindSkillWithField(sSkillType, sSkill, sField)
 end
 
 function UpdateBonus()
-	Background.setValue(FindSkillWithField("Background", name.getValue(), Field.getValue()));
-	Career.setValue(FindSkillWithField("Career", name.getValue(), Field.getValue()));
-	Interest.setValue(FindSkillWithField("Interest", name.getValue(), Field.getValue()));
+	local sSkillName=name.getValue();
+	Background.setValue(FindSkillWithField("Background", sSkillName, Field.getValue()));
+	Career.setValue(FindSkillWithField("Career", sSkillName, Field.getValue()));
+	Interest.setValue(FindSkillWithField("Interest", sSkillName, Field.getValue()));
 end
 
 function GetRollMessage()
@@ -635,7 +651,7 @@ end</LUACode>
       {"Name":"DisplaySign"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
-      {"Name":"FrameName","Value":{"@xsi:type":"xsd:string","#text":"fielddark"}},
+      {"Name":"FrameName","Value":{"@xsi:type":"xsd:string","#text":"fielddark_grey"}},
       {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"GMEditOnly"},
       {"Name":"GMVisibleOnly"},
@@ -658,7 +674,7 @@ end</LUACode>
       {"Name":"NoDrop"},
       {"Name":"NoKeyEdit"},
       {"Name":"PrevTabTarget"},
-      {"Name":"ReadOnly"},
+      {"Name":"ReadOnly","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"RelativeMargin"},
       {"Name":"RelativeStacking"},
       {"Name":"ScriptFile"},
@@ -678,13 +694,13 @@ end</LUACode>
 	end
 end
 
-function onInit()
-	if window.name.getValue()=="Fray/2 (vs. ranged attacks)" then
-		setReadOnly(true);
-		setFrame("fielddark_grey");
-	end
-end
-</LUACode>
+--function onInit()
+--	if window.name.getValue()=="Fray/2 (vs. ranged attacks)" then
+--		setReadOnly(true);
+--		setFrame("fielddark_grey");
+--	end
+--end
+--</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -784,7 +800,7 @@ end
       {"Name":"DisplaySign"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
-      {"Name":"FrameName","Value":{"@xsi:type":"xsd:string","#text":"fielddark"}},
+      {"Name":"FrameName","Value":{"@xsi:type":"xsd:string","#text":"fielddark_grey"}},
       {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"GMEditOnly"},
       {"Name":"GMVisibleOnly"},
@@ -807,7 +823,7 @@ end
       {"Name":"NoDrop"},
       {"Name":"NoKeyEdit"},
       {"Name":"PrevTabTarget"},
-      {"Name":"ReadOnly"},
+      {"Name":"ReadOnly","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"RelativeMargin"},
       {"Name":"RelativeStacking"},
       {"Name":"ScriptFile"},
@@ -844,7 +860,7 @@ end
     <ControlClass>FGNumberField</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"top","AnchorTo":"top","Parent":"AptitudeBonus"}}},
-      {"Name":"AdvancedTemplate"},
+      {"Name":"AdvancedTemplate","Value":{"@xsi:type":"xsd:string","#text":"focus_number"}},
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"CustomizationPoints"}},
       {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
@@ -1065,7 +1081,7 @@ end
       {"Name":"DisplaySign"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
-      {"Name":"FrameName","Value":{"@xsi:type":"xsd:string","#text":"fielddark"}},
+      {"Name":"FrameName","Value":{"@xsi:type":"xsd:string","#text":"fielddark_grey"}},
       {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"GMEditOnly"},
       {"Name":"GMVisibleOnly"},
@@ -1088,7 +1104,7 @@ end
       {"Name":"NoDrop"},
       {"Name":"NoKeyEdit"},
       {"Name":"PrevTabTarget"},
-      {"Name":"ReadOnly"},
+      {"Name":"ReadOnly","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"RelativeMargin"},
       {"Name":"RelativeStacking"},
       {"Name":"ScriptFile"},
@@ -5466,7 +5482,7 @@ end</LUACode>
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"495"}},
       {"Name":"Disabled"},
-      {"Name":"FastInit"},
+      {"Name":"FastInit","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"FrameName"},
       {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"GMEditOnly"},
@@ -5699,7 +5715,7 @@ end</LUACode>
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"495"}},
       {"Name":"Disabled"},
-      {"Name":"FastInit"},
+      {"Name":"FastInit","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"FrameName","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string","#text":"0,20,0,20"}},
       {"Name":"GMEditOnly"},
@@ -5903,7 +5919,7 @@ end</LUACode>
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"495"}},
       {"Name":"Disabled"},
-      {"Name":"FastInit"},
+      {"Name":"FastInit","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"FrameName"},
       {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"GMEditOnly"},
@@ -6063,7 +6079,7 @@ end</LUACode>
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"495"}},
       {"Name":"Disabled"},
-      {"Name":"FastInit"},
+      {"Name":"FastInit","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"FrameName"},
       {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"GMEditOnly"},
@@ -6179,7 +6195,7 @@ end</LUACode>
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"495"}},
       {"Name":"Disabled"},
-      {"Name":"FastInit"},
+      {"Name":"FastInit","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"FrameName","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string","#text":"0,20,0,20"}},
       {"Name":"GMEditOnly"},
@@ -7044,6 +7060,68 @@ end
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_abilities</WindowName>
+    <ControlName>GunsSkillPath</ControlName>
+    <ZIndex>25</ZIndex>
+    <ControlClass>FGStringField</ControlClass>
+    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
+      {"Name":"AdvancedTemplate"},
+      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"CanGrowVert"},
+      {"Name":"Center"},
+      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"GunsSkillPath"}},
+      {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
+      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
+      {"Name":"DefaultText","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"DelayKeyUpdate","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
+      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"30"}},
+      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
+      {"Name":"Disabled"},
+      {"Name":"EmptyText"},
+      {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"FrameName"},
+      {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"GMEditOnly"},
+      {"Name":"GMVisibleOnly"},
+      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"HoverCursor"},
+      {"Name":"InheritSizePosition"},
+      {"Name":"InsertBefore"},
+      {"Name":"Invisible","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"LineOffset","Value":{"@xsi:type":"xsd:int","#text":"2"}},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
+      {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
+      {"Name":"MultilineSpacing"},
+      {"Name":"NextTabTarget"},
+      {"Name":"NoDrag","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"NoDragselect","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"NoDrop","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"PrevTabTarget"},
+      {"Name":"ReadOnly"},
+      {"Name":"RelativeMargin"},
+      {"Name":"RelativeStacking"},
+      {"Name":"ScriptFile"},
+      {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":".Paths.GunsSkillPath"}},
+      {"Name":"StackVertWith"},
+      {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
+      {"Name":"Tooltip"},
+      {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"560"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"0"}}
+]}}</Definition>
+    <LUACode />
+    <GroupIndex>0</GroupIndex>
+    <Template />
+  </WindowControls>
+  <WindowControls>
+    <WindowName>charsheet_abilities</WindowName>
     <ControlName>IconControl1</ControlName>
     <ZIndex>1</ZIndex>
     <ControlClass>FGIconControl</ControlClass>
@@ -7792,6 +7870,68 @@ end
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_abilities</WindowName>
+    <ControlName>MeleeSkillPath</ControlName>
+    <ZIndex>24</ZIndex>
+    <ControlClass>FGStringField</ControlClass>
+    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
+      {"Name":"AdvancedTemplate"},
+      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"CanGrowVert"},
+      {"Name":"Center"},
+      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"MeleeSkillPath"}},
+      {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
+      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
+      {"Name":"DefaultText","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"DelayKeyUpdate","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
+      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"30"}},
+      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
+      {"Name":"Disabled"},
+      {"Name":"EmptyText"},
+      {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"FrameName"},
+      {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"GMEditOnly"},
+      {"Name":"GMVisibleOnly"},
+      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"HoverCursor"},
+      {"Name":"InheritSizePosition"},
+      {"Name":"InsertBefore"},
+      {"Name":"Invisible","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"LineOffset","Value":{"@xsi:type":"xsd:int","#text":"2"}},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
+      {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
+      {"Name":"MultilineSpacing"},
+      {"Name":"NextTabTarget"},
+      {"Name":"NoDrag","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"NoDragselect","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"NoDrop","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"PrevTabTarget"},
+      {"Name":"ReadOnly"},
+      {"Name":"RelativeMargin"},
+      {"Name":"RelativeStacking"},
+      {"Name":"ScriptFile"},
+      {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":".Paths.MeleeSkillPath"}},
+      {"Name":"StackVertWith"},
+      {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
+      {"Name":"Tooltip"},
+      {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"519"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"0"}}
+]}}</Definition>
+    <LUACode />
+    <GroupIndex>0</GroupIndex>
+    <Template />
+  </WindowControls>
+  <WindowControls>
+    <WindowName>charsheet_abilities</WindowName>
     <ControlName>ScrollBar1</ControlName>
     <ZIndex>23</ZIndex>
     <ControlClass>FGScrollBar</ControlClass>
@@ -8514,6 +8654,156 @@ end
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"50"}}
 ]}}</Definition>
     <LUACode />
+    <GroupIndex>0</GroupIndex>
+    <Template />
+  </WindowControls>
+  <WindowControls>
+    <WindowName>charsheet_combat</WindowName>
+    <ControlName>NumberField1</ControlName>
+    <ZIndex>13</ZIndex>
+    <ControlClass>FGNumberField</ControlClass>
+    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
+      {"Name":"AdvancedTemplate"},
+      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"NumberField1"}},
+      {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
+      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
+      {"Name":"DefaultValue"},
+      {"Name":"DelayKeyUpdate"},
+      {"Name":"DescriptionText"},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"30"}},
+      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"60"}},
+      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
+      {"Name":"Disabled"},
+      {"Name":"DisplaySign"},
+      {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"FrameName","Value":{"@xsi:type":"xsd:string","#text":"fielddark"}},
+      {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"GMEditOnly"},
+      {"Name":"GMVisibleOnly"},
+      {"Name":"HideOnValue"},
+      {"Name":"HideRollWidget"},
+      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"HoverCursor"},
+      {"Name":"InheritSizePosition"},
+      {"Name":"InsertBefore"},
+      {"Name":"Invisible"},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
+      {"Name":"MaxValue"},
+      {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
+      {"Name":"MinValue"},
+      {"Name":"NextTabTarget"},
+      {"Name":"NoDrag"},
+      {"Name":"NoDrop"},
+      {"Name":"NoKeyEdit"},
+      {"Name":"PrevTabTarget"},
+      {"Name":"ReadOnly"},
+      {"Name":"RelativeMargin"},
+      {"Name":"RelativeStacking"},
+      {"Name":"ScriptFile"},
+      {"Name":"Source"},
+      {"Name":"StackVertWith"},
+      {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
+      {"Name":"Tooltip"},
+      {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"27"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"44"}}
+]}}</Definition>
+    <LUACode>function Update()
+	sSkillPath=DB.getValue(Tools.getCharNodePath(getDatabaseNode())..".Paths.MeleeSkillPath", "");
+	if sSkillPath~="" then setValue(DB.getValue(sSkillPath..".Total", 0)); end;
+end
+
+function onInit()
+	sSkillPath=DB.getValue(Tools.getCharNodePath(getDatabaseNode())..".Paths.MeleeSkillPath", "");
+	if sSkillPath~="" then
+		DB.addHandler(sSkillPath, "onChildUpdate", Update);
+		Update();
+	end
+end
+</LUACode>
+    <GroupIndex>0</GroupIndex>
+    <Template />
+  </WindowControls>
+  <WindowControls>
+    <WindowName>charsheet_combat</WindowName>
+    <ControlName>NumberField2</ControlName>
+    <ZIndex>14</ZIndex>
+    <ControlClass>FGNumberField</ControlClass>
+    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
+      {"Name":"AdvancedTemplate"},
+      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"NumberField2"}},
+      {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
+      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
+      {"Name":"DefaultValue"},
+      {"Name":"DelayKeyUpdate"},
+      {"Name":"DescriptionText"},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"30"}},
+      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"60"}},
+      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
+      {"Name":"Disabled"},
+      {"Name":"DisplaySign"},
+      {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"FrameName","Value":{"@xsi:type":"xsd:string","#text":"fielddark"}},
+      {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"GMEditOnly"},
+      {"Name":"GMVisibleOnly"},
+      {"Name":"HideOnValue"},
+      {"Name":"HideRollWidget"},
+      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"HoverCursor"},
+      {"Name":"InheritSizePosition"},
+      {"Name":"InsertBefore"},
+      {"Name":"Invisible"},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
+      {"Name":"MaxValue"},
+      {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
+      {"Name":"MinValue"},
+      {"Name":"NextTabTarget"},
+      {"Name":"NoDrag"},
+      {"Name":"NoDrop"},
+      {"Name":"NoKeyEdit"},
+      {"Name":"PrevTabTarget"},
+      {"Name":"ReadOnly"},
+      {"Name":"RelativeMargin"},
+      {"Name":"RelativeStacking"},
+      {"Name":"ScriptFile"},
+      {"Name":"Source"},
+      {"Name":"StackVertWith"},
+      {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
+      {"Name":"Tooltip"},
+      {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"102"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"48"}}
+]}}</Definition>
+    <LUACode>function Update()
+	sSkillPath=DB.getValue(Tools.getCharNodePath(getDatabaseNode())..".Paths.GunsSkillPath", "");
+	if sSkillPath~="" then setValue(DB.getValue(sSkillPath..".Total", 0)); end;
+end
+
+function onInit()
+	sSkillPath=DB.getValue(Tools.getCharNodePath(getDatabaseNode())..".Paths.GunsSkillPath", "");
+	if sSkillPath~="" then
+		DB.addHandler(sSkillPath, "onChildUpdate", Update);
+		Update();
+	end
+end
+</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -9567,7 +9857,7 @@ end
   <WindowControls>
     <WindowName>charsheet_inventory</WindowName>
     <ControlName>LabelNumLayers</ControlName>
-    <ZIndex>23</ZIndex>
+    <ZIndex>21</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -24616,7 +24906,7 @@ end
       {"Name":"DisplaySign"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
-      {"Name":"FrameName","Value":{"@xsi:type":"xsd:string","#text":"fielddark"}},
+      {"Name":"FrameName","Value":{"@xsi:type":"xsd:string","#text":"fielddark_grey"}},
       {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"GMEditOnly"},
       {"Name":"GMVisibleOnly"},
@@ -24639,7 +24929,7 @@ end
       {"Name":"NoDrop"},
       {"Name":"NoKeyEdit"},
       {"Name":"PrevTabTarget"},
-      {"Name":"ReadOnly"},
+      {"Name":"ReadOnly","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"RelativeMargin"},
       {"Name":"RelativeStacking"},
       {"Name":"ScriptFile"},
@@ -24757,7 +25047,7 @@ end
       {"Name":"DisplaySign"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
-      {"Name":"FrameName","Value":{"@xsi:type":"xsd:string","#text":"fielddark"}},
+      {"Name":"FrameName","Value":{"@xsi:type":"xsd:string","#text":"fielddark_grey"}},
       {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"GMEditOnly"},
       {"Name":"GMVisibleOnly"},
@@ -24780,7 +25070,7 @@ end
       {"Name":"NoDrop"},
       {"Name":"NoKeyEdit"},
       {"Name":"PrevTabTarget"},
-      {"Name":"ReadOnly"},
+      {"Name":"ReadOnly","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"RelativeMargin"},
       {"Name":"RelativeStacking"},
       {"Name":"ScriptFile"},
@@ -24807,7 +25097,7 @@ end
     <ControlClass>FGNumberField</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"top","AnchorTo":"top","Parent":"AptitudeBonus"}}},
-      {"Name":"AdvancedTemplate"},
+      {"Name":"AdvancedTemplate","Value":{"@xsi:type":"xsd:string","#text":"focus_number"}},
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"CustomizationPoints"}},
       {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
@@ -24873,7 +25163,7 @@ end
     <ControlClass>FGNumberField</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"top","AnchorTo":"top","Parent":"AptitudeBonus"}}},
-      {"Name":"AdvancedTemplate"},
+      {"Name":"AdvancedTemplate","Value":{"@xsi:type":"xsd:string","#text":"focus_number"}},
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"Faction"}},
       {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
@@ -25065,7 +25355,7 @@ end
       {"Name":"DisplaySign"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
-      {"Name":"FrameName","Value":{"@xsi:type":"xsd:string","#text":"fielddark"}},
+      {"Name":"FrameName","Value":{"@xsi:type":"xsd:string","#text":"fielddark_grey"}},
       {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"GMEditOnly"},
       {"Name":"GMVisibleOnly"},
@@ -25088,7 +25378,7 @@ end
       {"Name":"NoDrop"},
       {"Name":"NoKeyEdit"},
       {"Name":"PrevTabTarget"},
-      {"Name":"ReadOnly"},
+      {"Name":"ReadOnly","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"RelativeMargin"},
       {"Name":"RelativeStacking"},
       {"Name":"ScriptFile"},
@@ -33003,7 +33293,7 @@ end
       {"Name":"HideRollWidget"},
       {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"HoverCursor"},
-      {"Name":"InheritSizePosition"},
+      {"Name":"InheritSizePosition","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"InsertBefore"},
       {"Name":"Invisible"},
       {"Name":"MaximumHeight"},
@@ -36401,7 +36691,7 @@ end</LUACode>
 <DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
   <Scripts>
     <ScriptName>CharManager</ScriptName>
-    <FolderID>6</FolderID>
+    <FolderID>7</FolderID>
     <Script>function onInit()
 	ItemManager.setCustomCharAdd(onCharItemAdd);
 	ItemManager.setCustomCharRemove(onCharItemDelete);
@@ -36419,7 +36709,7 @@ end</Script>
   </Scripts>
   <Scripts>
     <ScriptName>DataCommon</ScriptName>
-    <FolderID>17</FolderID>
+    <FolderID>18</FolderID>
     <Script>ActiveSkills = {
 	["Athletics"] = {sApt="SOM", nAptMult=1, sType="Physical", bHasField=false},
 	["Deceive"] = {sApt="SAV", nAptMult=1, sType="Social", bHasField=false},
@@ -36474,6 +36764,8 @@ function onInit()
 	DB.addHandler(Tools.getCharNodePath(nNode)..".Interest.SkillList", "onChildUpdate", onInterestSkillListUpdate);
 	onAptitudeUpdate();
 	onBackgroundSkillListUpdate();
+	onCareerSkillListUpdate();
+	onInterestSkillListUpdate();
 	constructDefaultSkills();
 	if newfocus then
 		sFocus = newfocus[1];
@@ -36510,6 +36802,11 @@ function constructDefaultSkills()
 					w.Type.setStringValue(t.sType);
 					w.AptMult.setValue(t.nAptMult);
 					matches = { w };
+					if k=="Melee" then
+						DB.setValue(Tools.getCharNodePath(w.getDatabaseNode())..".Paths.MeleeSkillPath", "string", w.getDatabaseNode().getPath());
+					elseif k=="Guns" then
+						DB.setValue(Tools.getCharNodePath(w.getDatabaseNode())..".Paths.GunsSkillPath", "string", w.getDatabaseNode().getPath());
+					end
 				end
 			end
 		end
@@ -36590,7 +36887,7 @@ function SkillListUpdate(sSkillType)
 	local sSkillName;
 	for _,nodeSkill in pairs(DB.getChildren(Tools.getCharNodePath(getDatabaseNode()).."."..sSkillType..".SkillList")) do
 		sSkillName=DB.getValue(nodeSkill, "Name", "");
-		if sSkillName~="" then
+		if sSkillName~="" and sSkillName~="Know" then
 			tSkills[sSkillName]={};
 			tSkills[sSkillName].Score=DB.getValue(nodeSkill, "Score", 0);
 			tSkills[sSkillName].bHasField=DataCommon.ActiveSkills[sSkillName].bHasField;
@@ -36635,7 +36932,13 @@ local sFocus = "name";
 function onInit()
 	nNode=getDatabaseNode()
 	DB.addHandler(Tools.getCharNodePath(nNode)..".Aptitudes.Checks", "onChildUpdate", onAptitudeUpdate);
+	DB.addHandler(Tools.getCharNodePath(nNode)..".Background.SkillList", "onChildUpdate", onBackgroundSkillListUpdate);
+	DB.addHandler(Tools.getCharNodePath(nNode)..".Career.SkillList", "onChildUpdate", onCareerSkillListUpdate);
+	DB.addHandler(Tools.getCharNodePath(nNode)..".Interest.SkillList", "onChildUpdate", onInterestSkillListUpdate);
 	onAptitudeUpdate();
+	onBackgroundSkillListUpdate();
+	onCareerSkillListUpdate();
+	onInterestSkillListUpdate();
 	if newfocus then
 		sFocus = newfocus[1];
 	end
@@ -36671,13 +36974,46 @@ function onAptitudeUpdate()
 		w.updateWindow();
 	end
 end
+
+function onBackgroundSkillListUpdate()
+	SkillListUpdate("Background");
+end
+
+function onCareerSkillListUpdate()
+	SkillListUpdate("Career");
+end
+
+function onInterestSkillListUpdate()
+	SkillListUpdate("Interest");
+end
+
+function SkillListUpdate(sSkillType)
+	local tSkills={}
+	local sSkillName;
+	local sField;
+	for _,nodeSkill in pairs(DB.getChildren(Tools.getCharNodePath(getDatabaseNode()).."."..sSkillType..".SkillList")) do
+		sSkillName=DB.getValue(nodeSkill, "Name", "");
+		if sSkillName~="" and sSkillName=="Know" then
+			sField=DB.getValue(nodeSkill, "Field", ""):lower();
+			tSkills[sField]=DB.getValue(nodeSkill, "Score", 0);
+		end
+	end
+	for _,w in pairs(getWindows()) do
+		sField=w.name.getValue():lower();
+		if tSkills[sField] then
+			w[sSkillType].setValue(tSkills[sField]);
+		else
+			w[sSkillType].setValue(0);
+		end
+	end
+end
 </Script>
     <RegisterScript>false</RegisterScript>
     <Encoding />
   </Scripts>
   <Scripts>
     <ScriptName>RollHandlers</ScriptName>
-    <FolderID>17</FolderID>
+    <FolderID>18</FolderID>
     <Script>
 function AttackHandler(rSource, rTarget, rRoll)
 
@@ -36723,7 +37059,7 @@ end</Script>
   </Scripts>
   <Scripts>
     <ScriptName>Sidebars</ScriptName>
-    <FolderID>19</FolderID>
+    <FolderID>20</FolderID>
     <Script>function onInit()
 	aRecordOverrides = {
 		["backgrounds"] = {
@@ -36768,7 +37104,7 @@ end</Script>
   </Scripts>
   <Scripts>
     <ScriptName>Tools</ScriptName>
-    <FolderID>17</FolderID>
+    <FolderID>18</FolderID>
     <Script>function RoundNumber(nNumber)
 	return nNumber % 1 &gt;= 0.5 and math.ceil(nNumber) or math.floor(nNumber);
 end
@@ -36811,7 +37147,7 @@ end</Script>
 <DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
   <XMLFiles>
     <XmlName>sidebars_strings</XmlName>
-    <FolderID>18</FolderID>
+    <FolderID>19</FolderID>
     <XML>&lt;?xml version="1.0" encoding="iso-8859-1"?&gt;
 &lt;root&gt;
 	&lt;!-- Sidebar names --&gt;
@@ -36828,7 +37164,7 @@ end</Script>
 <DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
   <Frames>
     <FrameName>EPgroupbox</FrameName>
-    <FolderID>12</FolderID>
+    <FolderID>13</FolderID>
     <ImageFile>graphics\frames\EPgroupbox.png</ImageFile>
     <Definition>10,20,10,20</Definition>
     <TopLeft />
@@ -36845,7 +37181,7 @@ end</Script>
   </Frames>
   <Frames>
     <FrameName>EPgroupbox2</FrameName>
-    <FolderID>12</FolderID>
+    <FolderID>13</FolderID>
     <ImageFile>graphics\frames\EPgroupbox2.png</ImageFile>
     <Definition>12,12,12,12</Definition>
     <TopLeft />
@@ -36862,7 +37198,7 @@ end</Script>
   </Frames>
   <Frames>
     <FrameName>EPutilitybox</FrameName>
-    <FolderID>12</FolderID>
+    <FolderID>13</FolderID>
     <ImageFile>graphics\frames\EPutilitybox.png</ImageFile>
     <Definition>20,20,30,20</Definition>
     <TopLeft />
@@ -36879,7 +37215,7 @@ end</Script>
   </Frames>
   <Frames>
     <FrameName>EPutilitybox2</FrameName>
-    <FolderID>12</FolderID>
+    <FolderID>13</FolderID>
     <ImageFile>graphics\frames\EPutilitybox2.png</ImageFile>
     <Definition>20,20,20,20</Definition>
     <TopLeft />
@@ -36896,7 +37232,7 @@ end</Script>
   </Frames>
   <Frames>
     <FrameName>EPutilitybox3</FrameName>
-    <FolderID>12</FolderID>
+    <FolderID>13</FolderID>
     <ImageFile>graphics\frames\EPutilitybox3.png</ImageFile>
     <Definition>40,20,20,20</Definition>
     <TopLeft />
@@ -36913,7 +37249,7 @@ end</Script>
   </Frames>
   <Frames>
     <FrameName>EPutilitybox3_separator</FrameName>
-    <FolderID>12</FolderID>
+    <FolderID>13</FolderID>
     <ImageFile>graphics\frames\EPutilitybox3_separator.png</ImageFile>
     <Definition>40,0,10,0</Definition>
     <TopLeft />
@@ -36930,7 +37266,7 @@ end</Script>
   </Frames>
   <Frames>
     <FrameName>fielddark</FrameName>
-    <FolderID>12</FolderID>
+    <FolderID>13</FolderID>
     <ImageFile>graphics\frames\fielddark.png</ImageFile>
     <Definition>12,12,12,12</Definition>
     <TopLeft />
@@ -36947,7 +37283,7 @@ end</Script>
   </Frames>
   <Frames>
     <FrameName>fielddark_grey</FrameName>
-    <FolderID>12</FolderID>
+    <FolderID>13</FolderID>
     <ImageFile>graphics\frames\fielddark_grey.png</ImageFile>
     <Definition>12,12,12,12</Definition>
     <TopLeft />
@@ -36964,7 +37300,7 @@ end</Script>
   </Frames>
   <Frames>
     <FrameName>pools</FrameName>
-    <FolderID>12</FolderID>
+    <FolderID>13</FolderID>
     <ImageFile>graphics\frames\pools.png</ImageFile>
     <Definition>0,0,0,0</Definition>
     <TopLeft />
@@ -36981,7 +37317,7 @@ end</Script>
   </Frames>
   <Frames>
     <FrameName>scrollbar_base</FrameName>
-    <FolderID>10</FolderID>
+    <FolderID>11</FolderID>
     <ImageFile>graphics\frames\scrollbar.png</ImageFile>
     <Definition>0,0,0,0</Definition>
     <TopLeft />
@@ -36998,7 +37334,7 @@ end</Script>
   </Frames>
   <Frames>
     <FrameName>scrollbutton_normal</FrameName>
-    <FolderID>10</FolderID>
+    <FolderID>11</FolderID>
     <ImageFile>graphics\frames\scrollbutton_normal.png</ImageFile>
     <Definition>0,0,0,0</Definition>
     <TopLeft />
@@ -37015,7 +37351,7 @@ end</Script>
   </Frames>
   <Frames>
     <FrameName>tabs</FrameName>
-    <FolderID>10</FolderID>
+    <FolderID>11</FolderID>
     <ImageFile>graphics\controls\tabs.png</ImageFile>
     <Definition>0,0,0,0</Definition>
     <TopLeft>0,0,18,73</TopLeft>
@@ -37032,7 +37368,7 @@ end</Script>
   </Frames>
   <Frames>
     <FrameName>tabs_h</FrameName>
-    <FolderID>10</FolderID>
+    <FolderID>11</FolderID>
     <ImageFile>graphics\controls\tabs_h.png</ImageFile>
     <Definition>0,0,0,0</Definition>
     <TopLeft>0,0,75,18</TopLeft>
@@ -37052,137 +37388,137 @@ end</Script>
 <DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
   <Icons>
     <IconName>charlist_base</IconName>
-    <FolderID>10</FolderID>
+    <FolderID>11</FolderID>
     <IconFile>graphics\controls\portrait.png</IconFile>
   </Icons>
   <Icons>
     <IconName>Checbox_square_off</IconName>
-    <FolderID>9</FolderID>
+    <FolderID>10</FolderID>
     <IconFile>graphics\buttons\Checbox_cuadrado_off.png</IconFile>
   </Icons>
   <Icons>
     <IconName>Checbox_square_on</IconName>
-    <FolderID>9</FolderID>
+    <FolderID>10</FolderID>
     <IconFile>graphics\buttons\Checbox_cuadrado_on.png</IconFile>
   </Icons>
   <Icons>
     <IconName>details</IconName>
-    <FolderID>9</FolderID>
+    <FolderID>10</FolderID>
     <IconFile>graphics\buttons\details.png</IconFile>
   </Icons>
   <Icons>
     <IconName>details_down</IconName>
-    <FolderID>9</FolderID>
+    <FolderID>10</FolderID>
     <IconFile>graphics\buttons\details_down.png</IconFile>
   </Icons>
   <Icons>
     <IconName>EgoTraitIcon</IconName>
-    <FolderID>13</FolderID>
+    <FolderID>14</FolderID>
     <IconFile>graphics\icons\EgoTraitIcon.png</IconFile>
   </Icons>
   <Icons>
     <IconName>Flex</IconName>
-    <FolderID>13</FolderID>
+    <FolderID>14</FolderID>
     <IconFile>graphics\icons\Flex.png</IconFile>
   </Icons>
   <Icons>
     <IconName>indicator_expand</IconName>
-    <FolderID>9</FolderID>
+    <FolderID>10</FolderID>
     <IconFile>graphics\buttons\indicator_expand.png</IconFile>
   </Icons>
   <Icons>
     <IconName>indicator_expand_down</IconName>
-    <FolderID>9</FolderID>
+    <FolderID>10</FolderID>
     <IconFile>graphics\buttons\indicator_expand_down.png</IconFile>
   </Icons>
   <Icons>
     <IconName>Insight</IconName>
-    <FolderID>13</FolderID>
+    <FolderID>14</FolderID>
     <IconFile>graphics\icons\Insight.png</IconFile>
   </Icons>
   <Icons>
     <IconName>MorphTraitIcon</IconName>
-    <FolderID>13</FolderID>
+    <FolderID>14</FolderID>
     <IconFile>graphics\icons\MorphTraitIcon.png</IconFile>
   </Icons>
   <Icons>
     <IconName>Moxie</IconName>
-    <FolderID>13</FolderID>
+    <FolderID>14</FolderID>
     <IconFile>graphics\icons\Moxie.png</IconFile>
   </Icons>
   <Icons>
     <IconName>sidebar_icon_recodrtype_interest</IconName>
-    <FolderID>14</FolderID>
+    <FolderID>15</FolderID>
     <IconFile>graphics\sidebar\sidebar_icon_recodrtype_interest.png</IconFile>
   </Icons>
   <Icons>
     <IconName>sidebar_icon_recordtype_backgrounds</IconName>
-    <FolderID>14</FolderID>
+    <FolderID>15</FolderID>
     <IconFile>graphics\sidebar\sidebar_icon_recordtype_backgrounds.png</IconFile>
   </Icons>
   <Icons>
     <IconName>sidebar_icon_recordtype_careers</IconName>
-    <FolderID>14</FolderID>
+    <FolderID>15</FolderID>
     <IconFile>graphics\sidebar\sidebar_icon_recordtype_careers.png</IconFile>
   </Icons>
   <Icons>
     <IconName>SkillAdd</IconName>
-    <FolderID>9</FolderID>
+    <FolderID>10</FolderID>
     <IconFile>graphics\buttons\SkillAdd.png</IconFile>
   </Icons>
   <Icons>
     <IconName>SkillAdd_down</IconName>
-    <FolderID>9</FolderID>
+    <FolderID>10</FolderID>
     <IconFile>graphics\buttons\SkillAdd_down.png</IconFile>
   </Icons>
   <Icons>
     <IconName>tab_combat</IconName>
-    <FolderID>15</FolderID>
+    <FolderID>16</FolderID>
     <IconFile>graphics\tabs\tab_combat.png</IconFile>
   </Icons>
   <Icons>
     <IconName>tab_inventory</IconName>
-    <FolderID>15</FolderID>
+    <FolderID>16</FolderID>
     <IconFile>graphics\tabs\tab_inventory.png</IconFile>
   </Icons>
   <Icons>
     <IconName>tab_main</IconName>
-    <FolderID>15</FolderID>
+    <FolderID>16</FolderID>
     <IconFile>graphics\tabs\tab_main.png</IconFile>
   </Icons>
   <Icons>
     <IconName>tab_notes</IconName>
-    <FolderID>15</FolderID>
+    <FolderID>16</FolderID>
     <IconFile>graphics\tabs\tab_notes.png</IconFile>
   </Icons>
   <Icons>
     <IconName>tab_skills</IconName>
-    <FolderID>15</FolderID>
+    <FolderID>16</FolderID>
     <IconFile>graphics\tabs\tab_skills.png</IconFile>
   </Icons>
   <Icons>
     <IconName>tab_spells</IconName>
-    <FolderID>15</FolderID>
+    <FolderID>16</FolderID>
     <IconFile>graphics\tabs\tab_spells.png</IconFile>
   </Icons>
   <Icons>
     <IconName>tabtop</IconName>
-    <FolderID>10</FolderID>
+    <FolderID>11</FolderID>
     <IconFile>graphics\controls\tabtop.png</IconFile>
   </Icons>
   <Icons>
     <IconName>tabtop_h</IconName>
-    <FolderID>10</FolderID>
+    <FolderID>11</FolderID>
     <IconFile>graphics\controls\tabtop_h.png</IconFile>
   </Icons>
   <Icons>
     <IconName>Vigor</IconName>
-    <FolderID>13</FolderID>
+    <FolderID>14</FolderID>
     <IconFile>graphics\icons\Vigor.png</IconFile>
   </Icons>
   <Icons>
     <IconName>window_resize_white</IconName>
-    <FolderID>13</FolderID>
+    <FolderID>14</FolderID>
     <IconFile>graphics\icons\window_resize_white.png</IconFile>
   </Icons>
 </DocumentElement>
@@ -37190,7 +37526,7 @@ end</Script>
 <DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
   <Fonts>
     <FontName>AddSkillButtonsFont</FontName>
-    <FolderID>11</FolderID>
+    <FolderID>12</FolderID>
     <FontFile>graphics/fonts/Noto_Sans/NotoSans-Regular.ttf</FontFile>
     <FontFamilyName>Noto Sans</FontFamilyName>
     <FontSize>13</FontSize>

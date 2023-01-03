@@ -16,6 +16,8 @@ function onInit()
 	DB.addHandler(Tools.getCharNodePath(nNode)..".Interest.SkillList", "onChildUpdate", onInterestSkillListUpdate);
 	onAptitudeUpdate();
 	onBackgroundSkillListUpdate();
+	onCareerSkillListUpdate();
+	onInterestSkillListUpdate();
 	constructDefaultSkills();
 	if newfocus then
 		sFocus = newfocus[1];
@@ -52,6 +54,11 @@ function constructDefaultSkills()
 					w.Type.setStringValue(t.sType);
 					w.AptMult.setValue(t.nAptMult);
 					matches = { w };
+					if k=="Melee" then
+						DB.setValue(Tools.getCharNodePath(w.getDatabaseNode())..".Paths.MeleeSkillPath", "string", w.getDatabaseNode().getPath());
+					elseif k=="Guns" then
+						DB.setValue(Tools.getCharNodePath(w.getDatabaseNode())..".Paths.GunsSkillPath", "string", w.getDatabaseNode().getPath());
+					end
 				end
 			end
 		end
@@ -132,7 +139,7 @@ function SkillListUpdate(sSkillType)
 	local sSkillName;
 	for _,nodeSkill in pairs(DB.getChildren(Tools.getCharNodePath(getDatabaseNode()).."."..sSkillType..".SkillList")) do
 		sSkillName=DB.getValue(nodeSkill, "Name", "");
-		if sSkillName~="" then
+		if sSkillName~="" and sSkillName~="Know" then
 			tSkills[sSkillName]={};
 			tSkills[sSkillName].Score=DB.getValue(nodeSkill, "Score", 0);
 			tSkills[sSkillName].bHasField=DataCommon.ActiveSkills[sSkillName].bHasField;

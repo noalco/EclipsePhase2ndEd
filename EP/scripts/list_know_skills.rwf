@@ -11,7 +11,13 @@ local sFocus = "name";
 function onInit()
 	nNode=getDatabaseNode()
 	DB.addHandler(Tools.getCharNodePath(nNode)..".Aptitudes.Checks", "onChildUpdate", onAptitudeUpdate);
+	DB.addHandler(Tools.getCharNodePath(nNode)..".Background.SkillList", "onChildUpdate", onBackgroundSkillListUpdate);
+	DB.addHandler(Tools.getCharNodePath(nNode)..".Career.SkillList", "onChildUpdate", onCareerSkillListUpdate);
+	DB.addHandler(Tools.getCharNodePath(nNode)..".Interest.SkillList", "onChildUpdate", onInterestSkillListUpdate);
 	onAptitudeUpdate();
+	onBackgroundSkillListUpdate();
+	onCareerSkillListUpdate();
+	onInterestSkillListUpdate();
 	if newfocus then
 		sFocus = newfocus[1];
 	end
@@ -45,6 +51,39 @@ end
 function onAptitudeUpdate()
 	for _,w in pairs(getWindows()) do
 		w.updateWindow();
+	end
+end
+
+function onBackgroundSkillListUpdate()
+	SkillListUpdate("Background");
+end
+
+function onCareerSkillListUpdate()
+	SkillListUpdate("Career");
+end
+
+function onInterestSkillListUpdate()
+	SkillListUpdate("Interest");
+end
+
+function SkillListUpdate(sSkillType)
+	local tSkills={}
+	local sSkillName;
+	local sField;
+	for _,nodeSkill in pairs(DB.getChildren(Tools.getCharNodePath(getDatabaseNode()).."."..sSkillType..".SkillList")) do
+		sSkillName=DB.getValue(nodeSkill, "Name", "");
+		if sSkillName~="" and sSkillName=="Know" then
+			sField=DB.getValue(nodeSkill, "Field", ""):lower();
+			tSkills[sField]=DB.getValue(nodeSkill, "Score", 0);
+		end
+	end
+	for _,w in pairs(getWindows()) do
+		sField=w.name.getValue():lower();
+		if tSkills[sField] then
+			w[sSkillType].setValue(tSkills[sField]);
+		else
+			w[sSkillType].setValue(0);
+		end
 	end
 end
 </Script>
