@@ -700,11 +700,7 @@ end
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"0"}}
 ]}}</Definition>
     <LUACode>function GetRollMessage()
-	local sMessage=name.getValue();
-	if Field.getValue()~="" then
-		sMessage=sMessage..": "..Field.getValue();
-	end
-	return sMessage;
+	return "Know: "..name.getValue();
 end
 
 function GetRollSpecializationMessage()

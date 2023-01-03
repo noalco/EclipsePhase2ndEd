@@ -35,7 +35,8 @@ function getCharNodePath(Node)
 		return Node.getPath():match("(charsheet%.id%-%d*)");
 	else return "";
 	end
-end</Script>
+end
+</Script>
     <RegisterScript>true</RegisterScript>
     <Encoding />
   </Scripts>

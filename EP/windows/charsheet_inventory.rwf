@@ -165,10 +165,7 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"115"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"33"}}
 ]}}</Definition>
-    <LUACode>--function onValueChanged()
---	window.UpdateMultiLayerArmorPenalties();
---end
---</LUACode>
+    <LUACode />
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -500,10 +497,7 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"159"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"33"}}
 ]}}</Definition>
-    <LUACode>--function onValueChanged()
---	window.UpdateMultiLayerArmorPenalties();
---end
---</LUACode>
+    <LUACode />
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -1158,10 +1152,7 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"384"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"33"}}
 ]}}</Definition>
-    <LUACode>--function onValueChanged()
---	window.UpdateMultiLayerArmorPenalties();
---end
---</LUACode>
+    <LUACode />
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>

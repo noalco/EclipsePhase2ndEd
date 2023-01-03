@@ -2,8 +2,7 @@
   <Scripts>
     <ScriptName>RollHandlers</ScriptName>
     <FolderID>18</FolderID>
-    <Script>
-function AttackHandler(rSource, rTarget, rRoll)
+    <Script>function AttackHandler(rSource, rTarget, rRoll)
 
     local rMessage = ActionsManager.createActionMessage(rSource, rRoll);
     rMessage.text = rMessage.text .. "[ATTACK]";
@@ -29,19 +28,57 @@ function AttackHandler(rSource, rTarget, rRoll)
 
 end
 
-
 function InitHandler(rSource, rTarget, rRoll)
 
     local rMessage = ActionsManager.createActionMessage(rSource, rRoll);
     Comm.deliverChatMessage(rMessage);    
 
     if (rSource) then
-        local nTotal = ActionsManager.total(rRoll) + rRoll.nBonuses;
+        local nTotal = ActionsManager.total(rRoll);
         rCreature = DB.findNode(rSource.sCreatureNode);
         rCreature.getChild("initresult").setValue(nTotal);
     end
 
-end</Script>
+end
+
+function RollResultFrom0to99(rRoll)
+--	{ s'nBonuses' = s'0', 
+--	s'aDice' = { 
+--		#1 = { 
+--			s'value' = #67, 
+--			s'type' = s'd100', 
+--			s'result' = #67 }, 
+--		s'expr' = s'1d100', 
+--		s'total' = #67 }, 
+--	s'nMod' = #0, 
+--	s'sType' = s'CognitionCheckRollAction', 
+--	s'nTotal' = #67, 
+--	s'bSecret' = bFALSE, 
+--	s'sDesc' = s'[Cognition vs 90]' }
+
+	rRoll.aDice[1].value=rRoll.aDice[1].value%100;
+	rRoll.aDice[1].result=rRoll.aDice[1].result%100;
+	rRoll.aDice.total=rRoll.aDice.total%100;
+	rRoll.nTotal=rRoll.nTotal%100;
+	return rRoll;
+end
+
+function AptitudeCheckHandler(rSource, rTarget, rRoll)
+	rRoll=RollResultFrom0to99(rRoll)
+	local nMod=rRoll.nMod;
+	rRoll.nMod=0;
+    local rMessage = ActionsManager.createActionMessage(rSource, rRoll);
+	local nTarget=tonumber(rMessage.text:match(".-(%d+)"));
+	if nMod~=0 then rMessage.text=rMessage.text:gsub("vs "..nTarget, "vs "..nTarget+nMod); end
+	nTarget=nTarget+nMod;
+    Comm.deliverChatMessage(rMessage);
+
+	local nTotal = ActionsManager.total(rRoll);
+	rMessage = ChatManager.createBaseMessage();
+	rMessage.text=RollChecks.RollCheck(nTotal, nTarget);
+	Comm.deliverChatMessage(rMessage);
+end
+</Script>
     <RegisterScript>true</RegisterScript>
     <Encoding />
   </Scripts>
