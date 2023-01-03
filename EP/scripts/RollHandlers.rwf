@@ -71,11 +71,11 @@ function AptitudeCheckHandler(rSource, rTarget, rRoll)
 	local nTarget=tonumber(rMessage.text:match(".-(%d+)"));
 	if nMod~=0 then rMessage.text=rMessage.text:gsub("vs "..nTarget, "vs "..nTarget+nMod); end
 	nTarget=nTarget+nMod;
-    Comm.deliverChatMessage(rMessage);
+--    Comm.deliverChatMessage(rMessage);
 
 	local nTotal = ActionsManager.total(rRoll);
-	rMessage = ChatManager.createBaseMessage();
-	rMessage.text=RollChecks.RollCheck(nTotal, nTarget);
+--	rMessage = ChatManager.createBaseMessage();
+	rMessage.text=rMessage.text.." ["..RollChecks.RollCheck(nTotal, nTarget):upper().."]";
 	Comm.deliverChatMessage(rMessage);
 end
 </Script>
