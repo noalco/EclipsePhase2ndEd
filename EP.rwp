@@ -14114,8 +14114,41 @@ end
 	end
 end
 
-function ParseTraits(sRecord)
-	Debug.chat(DB.getValue(sRecord..".Morph.Traits"));
+function ParseTraits()
+	local sNodeChar=Tools.getCharNodePath(getDatabaseNode());
+	local sTraits=DB.getValue(sNodeChar..".Morph.Traits", "");
+	if sTraits=="" then return; end
+	sTraits=sTraits:gsub("\n", " ");
+	while sTraits:match("  ") do sTraits=sTraits:gsub("  ", " "); end
+	local aTraits,_ = StringManager.split(sTraits, ",", true);
+	local NewTraitNode;
+	local sTraitName;
+	local nLevel;
+	local sLevelField;
+	local TraitListNode=DB.findNode(sNodeChar..".Morph.TraitList");
+	if TraitListNode then
+		for i=1,#aTraits do
+			if aTraits[i]:match("%(") then
+				sTraitName=aTraits[i]:match("(.*)%(");
+				nLevel=aTraits[i]:lower():match("level (%d*)")
+				if nLevel then nLevel=tonumber(nLevel); end
+				sLevelField="TraitLevel";
+			else
+				sTraitName=aTraits[i];
+				nLevel=nil;
+				sLevelField=nil;
+			end
+			while sTraitName:sub(-1)==" " do sTraitName=sTraitName:sub(1, -2); end
+			NewTraitNode=Tools.SearchRecord(sTraitName, "traits", sLevelField, nLevel);
+			local w=TraitListNode.createChild();
+			if NewTraitNode and NewTraitNode~="" then
+				DB.copyNode(NewTraitNode, w);
+			else
+				DB.setValue(w, "name", "string", sTraitName);
+				DB.setValue(w, "IsMorph", "number", 1);
+			end
+		end
+	end
 end
 </LUACode>
     <GroupIndex>0</GroupIndex>
@@ -37881,69 +37914,6 @@ end
   </WindowControls>
   <WindowControls>
     <WindowName>TraitWindow</WindowName>
-    <ControlName>GP</ControlName>
-    <ZIndex>4</ZIndex>
-    <ControlClass>FGNumberField</ControlClass>
-    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
-      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
-      {"Name":"AdvancedTemplate","Value":{"@xsi:type":"xsd:string","#text":"focus_number"}},
-      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
-      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"GP"}},
-      {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
-      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
-      {"Name":"DefaultValue"},
-      {"Name":"DelayKeyUpdate"},
-      {"Name":"DescriptionText"},
-      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"30"}},
-      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
-      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"50"}},
-      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
-      {"Name":"Disabled"},
-      {"Name":"DisplaySign"},
-      {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
-      {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
-      {"Name":"FrameName","Value":{"@xsi:type":"xsd:string","#text":"fielddark"}},
-      {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
-      {"Name":"GMEditOnly"},
-      {"Name":"GMVisibleOnly"},
-      {"Name":"HideOnValue"},
-      {"Name":"HideRollWidget"},
-      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"1"}},
-      {"Name":"HoverCursor"},
-      {"Name":"InheritSizePosition"},
-      {"Name":"InsertBefore"},
-      {"Name":"Invisible"},
-      {"Name":"MaximumHeight"},
-      {"Name":"MaximumWidth"},
-      {"Name":"MaxValue"},
-      {"Name":"Merge"},
-      {"Name":"MinimumHeight"},
-      {"Name":"MinimumWidth"},
-      {"Name":"MinValue"},
-      {"Name":"NextTabTarget"},
-      {"Name":"NoDrag"},
-      {"Name":"NoDrop"},
-      {"Name":"NoKeyEdit"},
-      {"Name":"PrevTabTarget"},
-      {"Name":"ReadOnly"},
-      {"Name":"RelativeMargin"},
-      {"Name":"RelativeStacking"},
-      {"Name":"ScriptFile"},
-      {"Name":"Source"},
-      {"Name":"StackVertWith"},
-      {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
-      {"Name":"Tooltip"},
-      {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
-      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"244"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"44"}}
-]}}</Definition>
-    <LUACode />
-    <GroupIndex>0</GroupIndex>
-    <Template />
-  </WindowControls>
-  <WindowControls>
-    <WindowName>TraitWindow</WindowName>
     <ControlName>IsEgo</ControlName>
     <ZIndex>11</ZIndex>
     <ControlClass>FGCheckbox</ControlClass>
@@ -38904,6 +38874,69 @@ end
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"2"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"276"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"107"}}
+]}}</Definition>
+    <LUACode />
+    <GroupIndex>0</GroupIndex>
+    <Template />
+  </WindowControls>
+  <WindowControls>
+    <WindowName>TraitWindow</WindowName>
+    <ControlName>TraitLevel</ControlName>
+    <ZIndex>4</ZIndex>
+    <ControlClass>FGNumberField</ControlClass>
+    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
+      {"Name":"AdvancedTemplate","Value":{"@xsi:type":"xsd:string","#text":"focus_number"}},
+      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"TraitLevel"}},
+      {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
+      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
+      {"Name":"DefaultValue"},
+      {"Name":"DelayKeyUpdate"},
+      {"Name":"DescriptionText"},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"30"}},
+      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"50"}},
+      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
+      {"Name":"Disabled"},
+      {"Name":"DisplaySign"},
+      {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"FrameName","Value":{"@xsi:type":"xsd:string","#text":"fielddark"}},
+      {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"GMEditOnly"},
+      {"Name":"GMVisibleOnly"},
+      {"Name":"HideOnValue"},
+      {"Name":"HideRollWidget"},
+      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"1"}},
+      {"Name":"HoverCursor"},
+      {"Name":"InheritSizePosition"},
+      {"Name":"InsertBefore"},
+      {"Name":"Invisible"},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
+      {"Name":"MaxValue"},
+      {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
+      {"Name":"MinValue"},
+      {"Name":"NextTabTarget"},
+      {"Name":"NoDrag"},
+      {"Name":"NoDrop"},
+      {"Name":"NoKeyEdit"},
+      {"Name":"PrevTabTarget"},
+      {"Name":"ReadOnly"},
+      {"Name":"RelativeMargin"},
+      {"Name":"RelativeStacking"},
+      {"Name":"ScriptFile"},
+      {"Name":"Source"},
+      {"Name":"StackVertWith"},
+      {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
+      {"Name":"Tooltip"},
+      {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"244"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"44"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
@@ -41183,20 +41216,22 @@ function getCharNodePath(Node)
 end
 
 function SearchRecord(sRecordName, sReference, sExtraField, ExtraFieldValue)
+--	Debug.chat(sRecordName, sReference, sExtraField, ExtraFieldValue)
 	local sRecordNodeName;
 	if sRecordName and sRecordName~="" and sReference and sReference~="" then
 		sRecordName=sRecordName:lower();
-		sRecordName=sRecordName:gsub("%.", "");
+		sRecordName=sRecordName:gsub("%-", " ");
 		
 		-- Local search
 		if DB.getChild(".reference."..sReference) then
 			for _,rReferenceNode in pairs(DB.getChild(".reference."..sReference).getChildren()) do
 				sRecordNodeName=DB.getValue(rReferenceNode, "name", ""):lower();
-				if sRecordNodeName==sRecordName then
+				sRecordNodeName=sRecordNodeName:gsub("%-", " ");
+				if sRecordNodeName:match(sRecordName) then
 					if sExtraField and ExtraFieldValue and sExtraField~="" then
-						if DB.getValue(rReferenceNode, sExtraField)==ExtraFieldValue then return DB.getPath(rReferenceNode); end
+						if DB.getValue(rReferenceNode, sExtraField)==ExtraFieldValue then return rReferenceNode; end
 					else
-						return DB.getPath(rReferenceNode);
+						return rReferenceNode;
 					end
 				end
 			end
@@ -41205,13 +41240,16 @@ function SearchRecord(sRecordName, sReference, sExtraField, ExtraFieldValue)
 		-- Module search
 		for sModule,rModule in pairs(ModuleManager.getAllModuleInfo()) do
 			if rModule.loaded and DB.getChild(".reference."..sReference.."@"..sModule) then
-				for _,rReferenceNode in pairs(DB.getChild(".reference.hechizos@"..sModule).getChildren()) do
+				for _,rReferenceNode in pairs(DB.getChild(".reference."..sReference.."@"..sModule).getChildren()) do
 					sRecordNodeName=DB.getValue(rReferenceNode, "name", ""):lower();
-					if sRecordNodeName==sRecordName then
+					sRecordNodeName=sRecordNodeName:gsub("%-", " ");
+					Debug.chat(rReferenceNode, sRecordNodeName:match(sRecordName), sRecordName, sRecordNodeName)
+					if sRecordNodeName:match(sRecordName) then
 						if sExtraField and ExtraFieldValue and sExtraField~="" then
-							if DB.getValue(rReferenceNode, sExtraField)==ExtraFieldValue then return DB.getPath(rReferenceNode); end
+							Debug.chat(rReferenceNode, sExtraField, ExtraFieldValue, DB.getValue(rReferenceNode, sExtraField))
+							if DB.getValue(rReferenceNode, sExtraField)==ExtraFieldValue then return rReferenceNode; end
 						else
-							return DB.getPath(rReferenceNode);
+							return rReferenceNode;
 						end
 					end
 				end

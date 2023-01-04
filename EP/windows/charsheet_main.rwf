@@ -3447,8 +3447,41 @@ end
 	end
 end
 
-function ParseTraits(sRecord)
-	Debug.chat(DB.getValue(sRecord..".Morph.Traits"));
+function ParseTraits()
+	local sNodeChar=Tools.getCharNodePath(getDatabaseNode());
+	local sTraits=DB.getValue(sNodeChar..".Morph.Traits", "");
+	if sTraits=="" then return; end
+	sTraits=sTraits:gsub("\n", " ");
+	while sTraits:match("  ") do sTraits=sTraits:gsub("  ", " "); end
+	local aTraits,_ = StringManager.split(sTraits, ",", true);
+	local NewTraitNode;
+	local sTraitName;
+	local nLevel;
+	local sLevelField;
+	local TraitListNode=DB.findNode(sNodeChar..".Morph.TraitList");
+	if TraitListNode then
+		for i=1,#aTraits do
+			if aTraits[i]:match("%(") then
+				sTraitName=aTraits[i]:match("(.*)%(");
+				nLevel=aTraits[i]:lower():match("level (%d*)")
+				if nLevel then nLevel=tonumber(nLevel); end
+				sLevelField="TraitLevel";
+			else
+				sTraitName=aTraits[i];
+				nLevel=nil;
+				sLevelField=nil;
+			end
+			while sTraitName:sub(-1)==" " do sTraitName=sTraitName:sub(1, -2); end
+			NewTraitNode=Tools.SearchRecord(sTraitName, "traits", sLevelField, nLevel);
+			local w=TraitListNode.createChild();
+			if NewTraitNode and NewTraitNode~="" then
+				DB.copyNode(NewTraitNode, w);
+			else
+				DB.setValue(w, "name", "string", sTraitName);
+				DB.setValue(w, "IsMorph", "number", 1);
+			end
+		end
+	end
 end
 </LUACode>
     <GroupIndex>0</GroupIndex>
