@@ -29,7 +29,7 @@
 			sSidebarCategory = "character",
 		},
 		["item"] = {
-			aDataMap = {"reference.items", "item"},
+			aDataMap = {"reference.items"},
 			aCustomFilters = {
 				["Gear Type"] = { sField = "Type" },
 				["GP Cost"] = { sField = "GP" },

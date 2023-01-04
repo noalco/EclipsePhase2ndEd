@@ -43,6 +43,7 @@ function SearchRecord(sRecordName, sReference, sExtraField, ExtraFieldValue)
 	if sRecordName and sRecordName~="" and sReference and sReference~="" then
 		sRecordName=sRecordName:lower();
 		sRecordName=sRecordName:gsub("%-", " ");
+		sRecordName=sRecordName:gsub("%+", " ");
 		
 		-- Local search
 		dataNode=DB.getChild(".reference."..sReference);

@@ -3241,7 +3241,7 @@ end</LUACode>
       {"Name":"AdvancedTemplate"},
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"ButtonOffset"},
-      {"Name":"ComboItems","Value":{"@xsi:type":"ArrayOfLabelValue","LabelValue":[{"Label":"Melee Weapon","Value":"Melee Weapon"},{"Label":"Ranged Weapon","Value":"Ranged Weapon"},{"Label":"Kinetic Ammo","Value":"Kinetic Ammo"},{"Label":"Micromissil/Minigrenade","Value":"Micromissil/Minigrenade"},{"Label":"Weapon Accesory","Value":"Weapon Accesory"},{"Label":"Armor","Value":"Armor"},{"Label":"Armor Mod","Value":"Armor Mod"},{"Label":"Healing/Repair","Value":"Healing/Repair"},{"Label":"Augmentation","Value":"Augmentation"},{"Label":"Everyday Tech","Value":"Everyday Tech"},{"Label":"Service","Value":"Service"}]}},
+      {"Name":"ComboItems","Value":{"@xsi:type":"ArrayOfLabelValue","LabelValue":[{"Label":"Miscelaneous","Value":"Miscelaneous"},{"Label":"Melee Weapon","Value":"Melee Weapon"},{"Label":"Ranged Weapon","Value":"Ranged Weapon"},{"Label":"Kinetic Ammo","Value":"Kinetic Ammo"},{"Label":"Micromissil/Minigrenade","Value":"Micromissil/Minigrenade"},{"Label":"Weapon Accesory","Value":"Weapon Accesory"},{"Label":"Armor","Value":"Armor"},{"Label":"Armor Mod","Value":"Armor Mod"},{"Label":"Healing/Repair","Value":"Healing/Repair"},{"Label":"Augmentation","Value":"Augmentation"},{"Label":"Everyday Tech","Value":"Everyday Tech"},{"Label":"Service","Value":"Service"}]}},
       {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"Type"}},
       {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
       {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
@@ -3286,7 +3286,7 @@ end</LUACode>
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"0"}}
 ]}}</Definition>
     <LUACode>function onInit()
-	if getValue()=="" then setListValue("Melee Weapon"); end
+	if getValue()=="" then setListValue("Miscelaneous"); end
 end
 
 function onValueChanged()

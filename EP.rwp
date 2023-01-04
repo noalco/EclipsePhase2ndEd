@@ -12431,62 +12431,6 @@ end
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
-    <ControlName>Label5</ControlName>
-    <ZIndex>72</ZIndex>
-    <ControlClass>FGLabel</ControlClass>
-    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
-      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
-      {"Name":"AdvancedTemplate","Value":{"@xsi:type":"xsd:string","#text":"label"}},
-      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
-      {"Name":"CanGrowVert"},
-      {"Name":"Center"},
-      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"Label5"}},
-      {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
-      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
-      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
-      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
-      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"83"}},
-      {"Name":"Disabled"},
-      {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
-      {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
-      {"Name":"FrameName"},
-      {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
-      {"Name":"GMVisibleOnly"},
-      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"HoverCursor"},
-      {"Name":"InheritSizePosition"},
-      {"Name":"InsertBefore"},
-      {"Name":"Invisible"},
-      {"Name":"LabelCaption","Value":{"@xsi:type":"xsd:string","#text":"Ware"}},
-      {"Name":"MaximumHeight"},
-      {"Name":"MaximumWidth"},
-      {"Name":"Merge"},
-      {"Name":"MinimumHeight"},
-      {"Name":"MinimumWidth"},
-      {"Name":"MultilineSpacing"},
-      {"Name":"NextTabTarget"},
-      {"Name":"PrevTabTarget"},
-      {"Name":"RelativeMargin"},
-      {"Name":"RelativeStacking"},
-      {"Name":"ScriptFile"},
-      {"Name":"StackVertWith"},
-      {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
-      {"Name":"TextUnderlined"},
-      {"Name":"Tooltip"},
-      {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
-      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"221"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"332"}}
-]}}</Definition>
-    <LUACode>function onDrop(x, y, dragdata)
-	window.MorphLink.onDrop(x, y, dragdata)
-end
-</LUACode>
-    <GroupIndex>0</GroupIndex>
-    <Template />
-  </WindowControls>
-  <WindowControls>
-    <WindowName>charsheet_main</WindowName>
     <ControlName>Label6</ControlName>
     <ZIndex>76</ZIndex>
     <ControlClass>FGLabel</ControlClass>
@@ -13379,7 +13323,7 @@ end
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"390"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"222"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"332"}}
 ]}}</Definition>
     <LUACode>function onDrop(x, y, dragdata)
@@ -14104,12 +14048,13 @@ end
     <LUACode>function onDrop(x, y, dragdata)
 	local sClass,sRecord = dragdata.getShortcutData();
 	if sClass=="MorphDataSidebarWindow" or sClass=="MorphDataWindow" then
-		local Node=getDatabaseNode().getParent();
-		if sRecord~=Node.getPath() then
-			DB.deleteChildren(Node.getChild("TraitList"));
-			DB.deleteChildren(Node.getChild("WareList"));
+		local Node=DB.getParent(getDatabaseNode());
+		if sRecord~=DB.getPath(Node) then
+			DB.deleteChildren(DB.getChild(Node, "TraitList"));
+--			DB.deleteChildren(Node.getChild("WareList"));
 			DB.copyNode(sRecord, Node);
-			ParseTraits(sRecord);
+			ParseTraits();
+			ParseWear();
 		end
 	end
 end
@@ -14140,7 +14085,7 @@ function ParseTraits()
 			end
 			while sTraitName:sub(-1)==" " do sTraitName=sTraitName:sub(1, -2); end
 			NewTraitNode=Tools.SearchRecord(sTraitName, "traits", sLevelField, nLevel);
-			local w=TraitListNode.createChild();
+			local w=DB.createChild(TraitListNode);
 			if NewTraitNode and NewTraitNode~="" then
 				DB.copyNode(NewTraitNode, w);
 			else
@@ -14150,7 +14095,32 @@ function ParseTraits()
 		end
 	end
 end
-</LUACode>
+
+function ParseWear()
+	local sNodeChar=Tools.getCharNodePath(getDatabaseNode());
+	local sWears=DB.getValue(sNodeChar..".Morph.Ware", "");
+	if sWears=="" then return; end
+	sWears=sWears:gsub("\n", " ");
+	while sWears:match("  ") do sWears=sWears:gsub("  ", " "); end
+	local aWears,_ = StringManager.split(sWears, ",", true);
+	local NewItemNode;
+	local sWareName;
+	local InventoryNode=DB.findNode(sNodeChar..".inventorylist");
+	for i=1,#aWears do
+		if aWears[i]:lower():match("armor") then sWareName=aWears[i]:lower():match("(.*) armor");
+		else sWareName=aWears[i];
+		end
+		while sWareName:sub(-1)==" " do sWareName=sWareName:sub(1, -2); end
+		NewItemNode=Tools.SearchRecord(sWareName, "items");
+		local w=DB.createChild(InventoryNode);
+		if NewItemNode and NewItemNode~="" then
+			DB.copyNode(NewItemNode, w);
+		else
+			DB.setValue(w, "name", "string", sWareName);
+		end
+		DB.setValue(w, "count", "number", 1);
+	end
+end</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -14272,7 +14242,7 @@ end
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"368"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"199"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"332"}}
 ]}}</Definition>
     <LUACode>function onDrop(x, y, dragdata)
@@ -14339,69 +14309,6 @@ end
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"365"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"268"}}
-]}}</Definition>
-    <LUACode>function onDrop(x, y, dragdata)
-	window.MorphLink.onDrop(x, y, dragdata)
-end
-</LUACode>
-    <GroupIndex>0</GroupIndex>
-    <Template />
-  </WindowControls>
-  <WindowControls>
-    <WindowName>charsheet_main</WindowName>
-    <ControlName>MorphWareDetailsButton</ControlName>
-    <ZIndex>73</ZIndex>
-    <ControlClass>FGButton</ControlClass>
-    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
-      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
-      {"Name":"AdvancedTemplate","Value":{"@xsi:type":"xsd:string","#text":"WindowButtonTemplate"}},
-      {"Name":"AllowDoubleClick"},
-      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
-      {"Name":"ButtonCaption","Value":{"@xsi:type":"xsd:string"}},
-      {"Name":"ButtonField"},
-      {"Name":"ButtonStateList","Value":{"@xsi:type":"ArrayOfButtonStateDefinition"}},
-      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"MorphWareDetailsButton"}},
-      {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
-      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty","CustomProperty":{"PropertyName":"class","PropertyValue":"MorphWareDetailsWindow","PropertyAttributes":null}}},
-      {"Name":"DefaultValue"},
-      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
-      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
-      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"20"}},
-      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
-      {"Name":"Disabled"},
-      {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
-      {"Name":"FontName","Value":{"@xsi:type":"xsd:string","#text":"button-white"}},
-      {"Name":"FrameName","Value":{"@xsi:type":"xsd:string"}},
-      {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
-      {"Name":"GMEditOnly"},
-      {"Name":"GMVisibleOnly"},
-      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"HoverCursor"},
-      {"Name":"HoverIconName"},
-      {"Name":"InheritSizePosition"},
-      {"Name":"InsertBefore"},
-      {"Name":"Invisible"},
-      {"Name":"MaximumHeight"},
-      {"Name":"MaximumWidth"},
-      {"Name":"Merge"},
-      {"Name":"MinimumHeight"},
-      {"Name":"MinimumWidth"},
-      {"Name":"NextTabTarget"},
-      {"Name":"NormalIconName","Value":{"@xsi:type":"xsd:string"}},
-      {"Name":"PressedIconName"},
-      {"Name":"PrevTabTarget"},
-      {"Name":"ReadOnly"},
-      {"Name":"RelativeMargin"},
-      {"Name":"RelativeStacking"},
-      {"Name":"ScriptFile"},
-      {"Name":"Source"},
-      {"Name":"StackVertWith"},
-      {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
-      {"Name":"Tooltip"},
-      {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
-      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"199"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"332"}}
 ]}}</Definition>
     <LUACode>function onDrop(x, y, dragdata)
 	window.MorphLink.onDrop(x, y, dragdata)
@@ -25154,7 +25061,7 @@ end</LUACode>
       {"Name":"AdvancedTemplate"},
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"ButtonOffset"},
-      {"Name":"ComboItems","Value":{"@xsi:type":"ArrayOfLabelValue","LabelValue":[{"Label":"Melee Weapon","Value":"Melee Weapon"},{"Label":"Ranged Weapon","Value":"Ranged Weapon"},{"Label":"Kinetic Ammo","Value":"Kinetic Ammo"},{"Label":"Micromissil/Minigrenade","Value":"Micromissil/Minigrenade"},{"Label":"Weapon Accesory","Value":"Weapon Accesory"},{"Label":"Armor","Value":"Armor"},{"Label":"Armor Mod","Value":"Armor Mod"},{"Label":"Healing/Repair","Value":"Healing/Repair"},{"Label":"Augmentation","Value":"Augmentation"},{"Label":"Everyday Tech","Value":"Everyday Tech"},{"Label":"Service","Value":"Service"}]}},
+      {"Name":"ComboItems","Value":{"@xsi:type":"ArrayOfLabelValue","LabelValue":[{"Label":"Miscelaneous","Value":"Miscelaneous"},{"Label":"Melee Weapon","Value":"Melee Weapon"},{"Label":"Ranged Weapon","Value":"Ranged Weapon"},{"Label":"Kinetic Ammo","Value":"Kinetic Ammo"},{"Label":"Micromissil/Minigrenade","Value":"Micromissil/Minigrenade"},{"Label":"Weapon Accesory","Value":"Weapon Accesory"},{"Label":"Armor","Value":"Armor"},{"Label":"Armor Mod","Value":"Armor Mod"},{"Label":"Healing/Repair","Value":"Healing/Repair"},{"Label":"Augmentation","Value":"Augmentation"},{"Label":"Everyday Tech","Value":"Everyday Tech"},{"Label":"Service","Value":"Service"}]}},
       {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"Type"}},
       {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
       {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
@@ -25199,7 +25106,7 @@ end</LUACode>
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"0"}}
 ]}}</Definition>
     <LUACode>function onInit()
-	if getValue()=="" then setListValue("Melee Weapon"); end
+	if getValue()=="" then setListValue("Miscelaneous"); end
 end
 
 function onValueChanged()
@@ -41146,7 +41053,7 @@ end
 			sSidebarCategory = "character",
 		},
 		["item"] = {
-			aDataMap = {"reference.items", "item"},
+			aDataMap = {"reference.items"},
 			aCustomFilters = {
 				["Gear Type"] = { sField = "Type" },
 				["GP Cost"] = { sField = "GP" },
@@ -41221,6 +41128,7 @@ function SearchRecord(sRecordName, sReference, sExtraField, ExtraFieldValue)
 	if sRecordName and sRecordName~="" and sReference and sReference~="" then
 		sRecordName=sRecordName:lower();
 		sRecordName=sRecordName:gsub("%-", " ");
+		sRecordName=sRecordName:gsub("%+", " ");
 		
 		-- Local search
 		dataNode=DB.getChild(".reference."..sReference);
