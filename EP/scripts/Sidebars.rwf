@@ -1,7 +1,7 @@
 <DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
   <Scripts>
     <ScriptName>Sidebars</ScriptName>
-    <FolderID>20</FolderID>
+    <FolderID>21</FolderID>
     <Script>function onInit()
 	aRecordOverrides = {
 		["backgrounds"] = {
@@ -34,6 +34,22 @@
 				["Gear Type"] = { sField = "Type" },
 				["GP Cost"] = { sField = "GP" },
 			},
+		},
+		["traits"] = {
+			bExport=true,
+			aDataMap = {"reference.traits"},
+			sListDisplayClass = "TraitBaseSidebar",
+			sRecordDisplayClass ="TraitWindow",
+			sEditMode = "play",
+			sSidebarCategory = "character",
+		},
+		["morphs"] = {
+			bExport=true,
+			aDataMap = {"reference.morphs"},
+			sListDisplayClass = "MorphBase",
+			sRecordDisplayClass ="MorphDataSidebarWindow",
+			sEditMode = "play",
+			sSidebarCategory = "character",
 		},
 	}
 	

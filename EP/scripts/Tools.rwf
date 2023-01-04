@@ -1,7 +1,7 @@
 <DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
   <Scripts>
     <ScriptName>Tools</ScriptName>
-    <FolderID>18</FolderID>
+    <FolderID>19</FolderID>
     <Script>function RoundNumber(nNumber)
 	return nNumber % 1 &gt;= 0.5 and math.ceil(nNumber) or math.floor(nNumber);
 end
@@ -36,7 +36,45 @@ function getCharNodePath(Node)
 	else return "";
 	end
 end
-</Script>
+
+function SearchRecord(sRecordName, sReference, sExtraField, ExtraFieldValue)
+	local sRecordNodeName;
+	if sRecordName and sRecordName~="" and sReference and sReference~="" then
+		sRecordName=sRecordName:lower();
+		sRecordName=sRecordName:gsub("%.", "");
+		
+		-- Local search
+		if DB.getChild(".reference."..sReference) then
+			for _,rReferenceNode in pairs(DB.getChild(".reference."..sReference).getChildren()) do
+				sRecordNodeName=DB.getValue(rReferenceNode, "name", ""):lower();
+				if sRecordNodeName==sRecordName then
+					if sExtraField and ExtraFieldValue and sExtraField~="" then
+						if DB.getValue(rReferenceNode, sExtraField)==ExtraFieldValue then return DB.getPath(rReferenceNode); end
+					else
+						return DB.getPath(rReferenceNode);
+					end
+				end
+			end
+		end
+
+		-- Module search
+		for sModule,rModule in pairs(ModuleManager.getAllModuleInfo()) do
+			if rModule.loaded and DB.getChild(".reference."..sReference.."@"..sModule) then
+				for _,rReferenceNode in pairs(DB.getChild(".reference.hechizos@"..sModule).getChildren()) do
+					sRecordNodeName=DB.getValue(rReferenceNode, "name", ""):lower();
+					if sRecordNodeName==sRecordName then
+						if sExtraField and ExtraFieldValue and sExtraField~="" then
+							if DB.getValue(rReferenceNode, sExtraField)==ExtraFieldValue then return DB.getPath(rReferenceNode); end
+						else
+							return DB.getPath(rReferenceNode);
+						end
+					end
+				end
+			end;
+		end
+	end
+	return "";
+end</Script>
     <RegisterScript>true</RegisterScript>
     <Encoding />
   </Scripts>
