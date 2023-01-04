@@ -2,18 +2,18 @@
   <Scripts>
     <ScriptName>CharManager</ScriptName>
     <FolderID>8</FolderID>
-    <Script>function onInit()
-	ItemManager.setCustomCharAdd(onCharItemAdd);
-	ItemManager.setCustomCharRemove(onCharItemDelete);
-end
-
-function onCharItemAdd(nodeItem)
-	Debug.chat("onCharItemAdd", nodeItem);
-end
-
-function onCharItemDelete(nodeItem)
-	Debug.chat("onCharItemDelete", nodeItem);
-end</Script>
+    <Script>--function onInit()
+--	ItemManager.setCustomCharAdd(onCharItemAdd);
+--	ItemManager.setCustomCharRemove(onCharItemDelete);
+--end
+--
+--function onCharItemAdd(nodeItem)
+--	Debug.chat("onCharItemAdd", nodeItem);
+--end
+--
+--function onCharItemDelete(nodeItem)
+--	Debug.chat("onCharItemDelete", nodeItem);
+--end</Script>
     <RegisterScript>false</RegisterScript>
     <Encoding />
   </Scripts>

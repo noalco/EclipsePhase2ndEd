@@ -68,8 +68,9 @@ function CheckHandler(rSource, rTarget, rRoll)
 	local nMod=rRoll.nMod;
 	rRoll.nMod=0;
     local rMessage = ActionsManager.createActionMessage(rSource, rRoll);
+    Debug.chat(rMessage.text)
 	local nTarget=tonumber(rMessage.text:match("%(vs (%d+)%)"));
-	if nMod~=0 then rMessage.text=rMessage.text:gsub("vs "..nTarget, "vs "..nTarget+nMod); end
+	if nMod~=0 then rMessage.text=rMessage.text:gsub("vs "..nTarget, "vs "..math.max(0,nTarget+nMod)); end
 	nTarget=nTarget+nMod;
 --    Comm.deliverChatMessage(rMessage);
 

@@ -1464,7 +1464,7 @@ end</LUACode>
       {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"30"}},
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"45"}},
-      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"1d100","DiceRollDescription":"[SKILL SPECIALIZATION] {@window.GetRollSpecializationMessage()} (vs {self})","DiceRollType":"SkillSpecializationCheck","UseModStack":"true","ResetModStack":"true","SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":"true","ResultHandlerFunction":"RollHandlers.CheckHandler","AdditionalInfo":null}},
+      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"1d100","DiceRollDescription":"[SKILL SPECIALIZATION] {@window.GetRollSpecializationMessage()} (vs {@self.getCheckValue()..\")\"..sMessage}","DiceRollType":"SkillSpecializationCheck","UseModStack":"true","ResetModStack":"true","SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":"true","ResultHandlerFunction":"RollHandlers.CheckHandler","AdditionalInfo":null}},
       {"Name":"Disabled"},
       {"Name":"DisplaySign"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
@@ -1513,7 +1513,17 @@ function onInit()
 	Update();
 	super.onInit();
 end
-</LUACode>
+
+function getCheckValue()
+	local nPhAP=DB.getValue(Tools.getCharNodePath(getDatabaseNode())..".Armor.PhAP", 0);
+	if window.Type.getStringValue()=="Physical" and nPhAP&lt;0 then
+		sMessage=" [Multi-layer armor Penalty: "..nPhAP.."]";
+		return getValue()+nPhAP;
+	else
+		sMessage="";
+		return getValue();
+	end
+end</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -1535,7 +1545,7 @@ end
       {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"30"}},
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"45"}},
-      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"1d100","DiceRollDescription":"[SKILL] {@window.GetRollMessage()} (vs {self})","DiceRollType":"SkillCheck","UseModStack":"true","ResetModStack":"true","SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":"true","ResultHandlerFunction":"RollHandlers.CheckHandler","AdditionalInfo":null}},
+      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"1d100","DiceRollDescription":"[SKILL] {@window.GetRollMessage()} (vs {@self.getCheckValue()..\")\"..sMessage}","DiceRollType":"SkillCheck","UseModStack":"true","ResetModStack":"true","SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":"true","ResultHandlerFunction":"RollHandlers.CheckHandler","AdditionalInfo":null}},
       {"Name":"Disabled"},
       {"Name":"DisplaySign"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
@@ -1576,7 +1586,9 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"396"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"0"}}
 ]}}</Definition>
-    <LUACode>function Update()
+    <LUACode>sMessage="";
+
+function Update()
 	if window.name.getValue()~="Fray/2 (vs. ranged attacks)" then
 		setValue(window.AptitudeBonus.getValue()*window.AptMult.getValue()+window.Background.getValue()+window.Career.getValue()+window.Interest.getValue()+window.CustomizationPoints.getValue());
 	else
@@ -1592,7 +1604,17 @@ end
 function onValueChanged()
 	window.SpecializationTotal.Update()
 end
-</LUACode>
+
+function getCheckValue()
+	local nPhAP=DB.getValue(Tools.getCharNodePath(getDatabaseNode())..".Armor.PhAP", 0);
+	if window.Type.getStringValue()=="Physical" and nPhAP&lt;0 then
+		sMessage=" [Multi-layer armor Penalty: "..nPhAP.."]";
+		return math.max(0, getValue()+nPhAP);
+	else
+		sMessage="";
+		return getValue();
+	end
+end</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
