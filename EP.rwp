@@ -40730,12 +40730,12 @@ end</Script>
 }
 
 Aptitudes = {
-	["COG"] = {sPath=".Aptitudes.Checks.CognitionCheck", sPool="Insight"},
-	["INT"] = {sPath=".Aptitudes.Checks.IntuitionCheck", sPool="Insight"},
-	["REF"] = {sPath=".Aptitudes.Checks.ReflexesCheck", sPool="Vigor"},
-	["SAV"] = {sPath=".Aptitudes.Checks.SavvyCheck", sPool="Moxie"},
-	["SOM"] = {sPath=".Aptitudes.Checks.SomaticsCheck", sPool="Vigor"},
-	["WIL"] = {sPath=".Aptitudes.Checks.WillpowerCheck", sPool="Moxie"},
+	["COG"] = {sPath=".Aptitudes.Scores.Cognition", sPool="Insight"},
+	["INT"] = {sPath=".Aptitudes.Scores.Intuition", sPool="Insight"},
+	["REF"] = {sPath=".Aptitudes.Scores.Reflexes", sPool="Vigor"},
+	["SAV"] = {sPath=".Aptitudes.Scores.Savvy", sPool="Moxie"},
+	["SOM"] = {sPath=".Aptitudes.Scores.Somatics", sPool="Vigor"},
+	["WIL"] = {sPath=".Aptitudes.Scores.Willpower", sPool="Moxie"},
 }
 </Script>
     <RegisterScript>true</RegisterScript>
@@ -41216,15 +41216,16 @@ function getCharNodePath(Node)
 end
 
 function SearchRecord(sRecordName, sReference, sExtraField, ExtraFieldValue)
---	Debug.chat(sRecordName, sReference, sExtraField, ExtraFieldValue)
 	local sRecordNodeName;
+	local dataNode;
 	if sRecordName and sRecordName~="" and sReference and sReference~="" then
 		sRecordName=sRecordName:lower();
 		sRecordName=sRecordName:gsub("%-", " ");
 		
 		-- Local search
-		if DB.getChild(".reference."..sReference) then
-			for _,rReferenceNode in pairs(DB.getChild(".reference."..sReference).getChildren()) do
+		dataNode=DB.getChild(".reference."..sReference);
+		if dataNode then
+			for _,rReferenceNode in pairs(DB.getChildren(dataNode)) do
 				sRecordNodeName=DB.getValue(rReferenceNode, "name", ""):lower();
 				sRecordNodeName=sRecordNodeName:gsub("%-", " ");
 				if sRecordNodeName:match(sRecordName) then
@@ -41239,14 +41240,13 @@ function SearchRecord(sRecordName, sReference, sExtraField, ExtraFieldValue)
 
 		-- Module search
 		for sModule,rModule in pairs(ModuleManager.getAllModuleInfo()) do
-			if rModule.loaded and DB.getChild(".reference."..sReference.."@"..sModule) then
-				for _,rReferenceNode in pairs(DB.getChild(".reference."..sReference.."@"..sModule).getChildren()) do
+			dataNode=DB.getChild(".reference."..sReference.."@"..sModule)
+			if rModule.loaded and dataNode then
+				for _,rReferenceNode in pairs(DB.getChildren(dataNode)) do
 					sRecordNodeName=DB.getValue(rReferenceNode, "name", ""):lower();
 					sRecordNodeName=sRecordNodeName:gsub("%-", " ");
-					Debug.chat(rReferenceNode, sRecordNodeName:match(sRecordName), sRecordName, sRecordNodeName)
 					if sRecordNodeName:match(sRecordName) then
 						if sExtraField and ExtraFieldValue and sExtraField~="" then
-							Debug.chat(rReferenceNode, sExtraField, ExtraFieldValue, DB.getValue(rReferenceNode, sExtraField))
 							if DB.getValue(rReferenceNode, sExtraField)==ExtraFieldValue then return rReferenceNode; end
 						else
 							return rReferenceNode;

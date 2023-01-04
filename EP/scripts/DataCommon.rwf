@@ -28,12 +28,12 @@
 }
 
 Aptitudes = {
-	["COG"] = {sPath=".Aptitudes.Checks.CognitionCheck", sPool="Insight"},
-	["INT"] = {sPath=".Aptitudes.Checks.IntuitionCheck", sPool="Insight"},
-	["REF"] = {sPath=".Aptitudes.Checks.ReflexesCheck", sPool="Vigor"},
-	["SAV"] = {sPath=".Aptitudes.Checks.SavvyCheck", sPool="Moxie"},
-	["SOM"] = {sPath=".Aptitudes.Checks.SomaticsCheck", sPool="Vigor"},
-	["WIL"] = {sPath=".Aptitudes.Checks.WillpowerCheck", sPool="Moxie"},
+	["COG"] = {sPath=".Aptitudes.Scores.Cognition", sPool="Insight"},
+	["INT"] = {sPath=".Aptitudes.Scores.Intuition", sPool="Insight"},
+	["REF"] = {sPath=".Aptitudes.Scores.Reflexes", sPool="Vigor"},
+	["SAV"] = {sPath=".Aptitudes.Scores.Savvy", sPool="Moxie"},
+	["SOM"] = {sPath=".Aptitudes.Scores.Somatics", sPool="Vigor"},
+	["WIL"] = {sPath=".Aptitudes.Scores.Willpower", sPool="Moxie"},
 }
 </Script>
     <RegisterScript>true</RegisterScript>
