@@ -10,7 +10,7 @@ local sFocus = "name";
 
 function onInit()
 	nNode=getDatabaseNode()
-	DB.addHandler(Tools.getCharNodePath(nNode)..".Aptitudes.Checks", "onChildUpdate", onAptitudeUpdate);
+	DB.addHandler(Tools.getCharNodePath(nNode)..".Aptitudes.Scores", "onChildUpdate", onAptitudeUpdate);
 	DB.addHandler(Tools.getCharNodePath(nNode)..".Background.SkillList", "onChildUpdate", onBackgroundSkillListUpdate);
 	DB.addHandler(Tools.getCharNodePath(nNode)..".Career.SkillList", "onChildUpdate", onCareerSkillListUpdate);
 	DB.addHandler(Tools.getCharNodePath(nNode)..".Interest.SkillList", "onChildUpdate", onInterestSkillListUpdate);
