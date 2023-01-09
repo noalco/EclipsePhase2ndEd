@@ -1,7 +1,7 @@
 <DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
   <Scripts>
     <ScriptName>CharManager</ScriptName>
-    <FolderID>8</FolderID>
+    <FolderID>9</FolderID>
     <Script>--function onInit()
 --	ItemManager.setCustomCharAdd(onCharItemAdd);
 --	ItemManager.setCustomCharRemove(onCharItemDelete);
