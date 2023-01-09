@@ -2350,7 +2350,7 @@
   <WindowControls>
     <WindowName>FakeIdBase</WindowName>
     <ControlName>idelete</ControlName>
-    <ZIndex>70</ZIndex>
+    <ZIndex>68</ZIndex>
     <ControlClass>FGButton</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -3057,7 +3057,7 @@
   <WindowControls>
     <WindowName>FakeIdBase</WindowName>
     <ControlName>Label9</ControlName>
-    <ZIndex>69</ZIndex>
+    <ZIndex>67</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -3173,7 +3173,7 @@
   <WindowControls>
     <WindowName>FakeIdBase</WindowName>
     <ControlName>name</ControlName>
-    <ZIndex>67</ZIndex>
+    <ZIndex>66</ZIndex>
     <ControlClass>FGStringField</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
