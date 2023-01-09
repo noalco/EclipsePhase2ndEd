@@ -1,6 +1,6 @@
 <DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
   <WindowControls>
-    <WindowName>ReputationWindow</WindowName>
+    <WindowName>FakeIdBase</WindowName>
     <ControlName>AtMaj</ControlName>
     <ZIndex>8</ZIndex>
     <ControlClass>FGCheckbox</ControlClass>
@@ -38,21 +38,21 @@
       {"Name":"RelativeMargin"},
       {"Name":"RelativeStacking"},
       {"Name":"ScriptFile"},
-      {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":".Reputation.At.Maj"}},
+      {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":".At.Maj"}},
       {"Name":"StackVertWith"},
       {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"98"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"43"}}
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"221"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"78"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>ReputationWindow</WindowName>
+    <WindowName>FakeIdBase</WindowName>
     <ControlName>AtMin</ControlName>
     <ZIndex>4</ZIndex>
     <ControlClass>FGCounterList</ControlClass>
@@ -68,8 +68,8 @@
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"54"}},
       {"Name":"Disabled"},
-      {"Name":"FieldCurrent","Value":{"@xsi:type":"xsd:string","#text":"Reputation.At.MinCurrent"}},
-      {"Name":"FieldMax","Value":{"@xsi:type":"xsd:string","#text":"Reputation.MinMax"}},
+      {"Name":"FieldCurrent","Value":{"@xsi:type":"xsd:string","#text":"At.MinCurrent"}},
+      {"Name":"FieldMax","Value":{"@xsi:type":"xsd:string","#text":"MinMax"}},
       {"Name":"FrameName"},
       {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"GMEditOnly"},
@@ -93,22 +93,22 @@
       {"Name":"RelativeMargin"},
       {"Name":"RelativeStacking"},
       {"Name":"ScriptFile"},
-      {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":".Reputation.At.Min"}},
+      {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":".At.Min"}},
       {"Name":"Spacing","Value":{"@xsi:type":"xsd:int","#text":"19"}},
       {"Name":"StackVertWith"},
       {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"19"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"43"}}
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"142"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"78"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>ReputationWindow</WindowName>
+    <WindowName>FakeIdBase</WindowName>
     <ControlName>AtMinCurrent</ControlName>
     <ZIndex>6</ZIndex>
     <ControlClass>FGNumberField</ControlClass>
@@ -157,7 +157,7 @@
       {"Name":"RelativeMargin"},
       {"Name":"RelativeStacking"},
       {"Name":"ScriptFile"},
-      {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":".Reputation.At.MinCurrent"}},
+      {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":".At.MinCurrent"}},
       {"Name":"StackVertWith"},
       {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
       {"Name":"Tooltip"},
@@ -171,7 +171,7 @@
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>ReputationWindow</WindowName>
+    <WindowName>FakeIdBase</WindowName>
     <ControlName>AtMod</ControlName>
     <ZIndex>7</ZIndex>
     <ControlClass>FGCheckbox</ControlClass>
@@ -209,21 +209,21 @@
       {"Name":"RelativeMargin"},
       {"Name":"RelativeStacking"},
       {"Name":"ScriptFile"},
-      {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":".Reputation.At.Mod"}},
+      {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":".At.Mod"}},
       {"Name":"StackVertWith"},
       {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"77"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"43"}}
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"200"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"78"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>ReputationWindow</WindowName>
+    <WindowName>FakeIdBase</WindowName>
     <ControlName>CMaj</ControlName>
     <ZIndex>16</ZIndex>
     <ControlClass>FGCheckbox</ControlClass>
@@ -261,21 +261,21 @@
       {"Name":"RelativeMargin"},
       {"Name":"RelativeStacking"},
       {"Name":"ScriptFile"},
-      {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":".Reputation.C.Maj"}},
+      {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":".C.Maj"}},
       {"Name":"StackVertWith"},
       {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"217"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"43"}}
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"342"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"78"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>ReputationWindow</WindowName>
+    <WindowName>FakeIdBase</WindowName>
     <ControlName>CMin</ControlName>
     <ZIndex>14</ZIndex>
     <ControlClass>FGCounterList</ControlClass>
@@ -291,8 +291,8 @@
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"54"}},
       {"Name":"Disabled"},
-      {"Name":"FieldCurrent","Value":{"@xsi:type":"xsd:string","#text":"Reputation.C.MinCurrent"}},
-      {"Name":"FieldMax","Value":{"@xsi:type":"xsd:string","#text":"Reputation.MinMax"}},
+      {"Name":"FieldCurrent","Value":{"@xsi:type":"xsd:string","#text":"C.MinCurrent"}},
+      {"Name":"FieldMax","Value":{"@xsi:type":"xsd:string","#text":"MinMax"}},
       {"Name":"FrameName"},
       {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"GMEditOnly"},
@@ -316,22 +316,22 @@
       {"Name":"RelativeMargin"},
       {"Name":"RelativeStacking"},
       {"Name":"ScriptFile"},
-      {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":".Reputation.C.Min"}},
+      {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":".C.Min"}},
       {"Name":"Spacing","Value":{"@xsi:type":"xsd:int","#text":"19"}},
       {"Name":"StackVertWith"},
       {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"138"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"43"}}
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"263"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"78"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>ReputationWindow</WindowName>
+    <WindowName>FakeIdBase</WindowName>
     <ControlName>CMinCurrent</ControlName>
     <ZIndex>60</ZIndex>
     <ControlClass>FGNumberField</ControlClass>
@@ -380,7 +380,7 @@
       {"Name":"RelativeMargin"},
       {"Name":"RelativeStacking"},
       {"Name":"ScriptFile"},
-      {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":".Reputation.C.MinCurrent"}},
+      {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":".C.MinCurrent"}},
       {"Name":"StackVertWith"},
       {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
       {"Name":"Tooltip"},
@@ -394,7 +394,7 @@
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>ReputationWindow</WindowName>
+    <WindowName>FakeIdBase</WindowName>
     <ControlName>CMod</ControlName>
     <ZIndex>15</ZIndex>
     <ControlClass>FGCheckbox</ControlClass>
@@ -432,21 +432,77 @@
       {"Name":"RelativeMargin"},
       {"Name":"RelativeStacking"},
       {"Name":"ScriptFile"},
-      {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":".Reputation.C.Mod"}},
+      {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":".C.Mod"}},
       {"Name":"StackVertWith"},
       {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"196"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"43"}}
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"321"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"78"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>ReputationWindow</WindowName>
+    <WindowName>FakeIdBase</WindowName>
+    <ControlName>FakeIdBase</ControlName>
+    <ZIndex>0</ZIndex>
+    <ControlClass>FGWindow</ControlClass>
+    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AllowResize"},
+      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"BottomMargin","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"Comments"},
+      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"FakeIdBase"}},
+      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
+      {"Name":"DataSource"},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"160"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"485"}},
+      {"Name":"Disabled"},
+      {"Name":"Dynamic"},
+      {"Name":"FrameName","Value":{"@xsi:type":"xsd:string","#text":"EPgroupbox"}},
+      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"HostControl"},
+      {"Name":"HoverCursor"},
+      {"Name":"InheritSizePosition"},
+      {"Name":"Invisible"},
+      {"Name":"Locked"},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
+      {"Name":"MergeWindow"},
+      {"Name":"MinimizedIcon"},
+      {"Name":"MinimumHeight","Value":{"@xsi:type":"xsd:int","#text":"160"}},
+      {"Name":"MinimumWidth"},
+      {"Name":"NoClose"},
+      {"Name":"NoDelete"},
+      {"Name":"NoMove"},
+      {"Name":"Panel"},
+      {"Name":"PanelModeClient"},
+      {"Name":"PanelModeHost"},
+      {"Name":"PanelModeLocal"},
+      {"Name":"PlayerControl"},
+      {"Name":"Resize","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"RightMargin","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"ScriptFile"},
+      {"Name":"Sharable"},
+      {"Name":"ShareAs"},
+      {"Name":"SoftClose"},
+      {"Name":"Tooltip"},
+      {"Name":"TooltipField"},
+      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"WindowMargins","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"WindowTitle"},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"0"}}
+]}}</Definition>
+    <LUACode />
+    <GroupIndex>0</GroupIndex>
+    <Template />
+  </WindowControls>
+  <WindowControls>
+    <WindowName>FakeIdBase</WindowName>
     <ControlName>FMaj</ControlName>
     <ZIndex>24</ZIndex>
     <ControlClass>FGCheckbox</ControlClass>
@@ -484,21 +540,21 @@
       {"Name":"RelativeMargin"},
       {"Name":"RelativeStacking"},
       {"Name":"ScriptFile"},
-      {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":".Reputation.F.Maj"}},
+      {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":".F.Maj"}},
       {"Name":"StackVertWith"},
       {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"339"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"43"}}
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"464"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"78"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>ReputationWindow</WindowName>
+    <WindowName>FakeIdBase</WindowName>
     <ControlName>FMin</ControlName>
     <ZIndex>22</ZIndex>
     <ControlClass>FGCounterList</ControlClass>
@@ -514,8 +570,8 @@
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"54"}},
       {"Name":"Disabled"},
-      {"Name":"FieldCurrent","Value":{"@xsi:type":"xsd:string","#text":"Reputation.F.MinCurrent"}},
-      {"Name":"FieldMax","Value":{"@xsi:type":"xsd:string","#text":"Reputation.MinMax"}},
+      {"Name":"FieldCurrent","Value":{"@xsi:type":"xsd:string","#text":"F.MinCurrent"}},
+      {"Name":"FieldMax","Value":{"@xsi:type":"xsd:string","#text":"MinMax"}},
       {"Name":"FrameName"},
       {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"GMEditOnly"},
@@ -539,22 +595,22 @@
       {"Name":"RelativeMargin"},
       {"Name":"RelativeStacking"},
       {"Name":"ScriptFile"},
-      {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":".Reputation.F.Min"}},
+      {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":".F.Min"}},
       {"Name":"Spacing","Value":{"@xsi:type":"xsd:int","#text":"19"}},
       {"Name":"StackVertWith"},
       {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"259"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"43"}}
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"384"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"78"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>ReputationWindow</WindowName>
+    <WindowName>FakeIdBase</WindowName>
     <ControlName>FMinCurrent</ControlName>
     <ZIndex>61</ZIndex>
     <ControlClass>FGNumberField</ControlClass>
@@ -603,7 +659,7 @@
       {"Name":"RelativeMargin"},
       {"Name":"RelativeStacking"},
       {"Name":"ScriptFile"},
-      {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":".Reputation.F.MinCurrent"}},
+      {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":".F.MinCurrent"}},
       {"Name":"StackVertWith"},
       {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
       {"Name":"Tooltip"},
@@ -617,7 +673,7 @@
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>ReputationWindow</WindowName>
+    <WindowName>FakeIdBase</WindowName>
     <ControlName>FMod</ControlName>
     <ZIndex>23</ZIndex>
     <ControlClass>FGCheckbox</ControlClass>
@@ -655,21 +711,21 @@
       {"Name":"RelativeMargin"},
       {"Name":"RelativeStacking"},
       {"Name":"ScriptFile"},
-      {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":".Reputation.F.Mod"}},
+      {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":".F.Mod"}},
       {"Name":"StackVertWith"},
       {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"318"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"43"}}
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"443"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"78"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>ReputationWindow</WindowName>
+    <WindowName>FakeIdBase</WindowName>
     <ControlName>GMaj</ControlName>
     <ZIndex>32</ZIndex>
     <ControlClass>FGCheckbox</ControlClass>
@@ -707,21 +763,21 @@
       {"Name":"RelativeMargin"},
       {"Name":"RelativeStacking"},
       {"Name":"ScriptFile"},
-      {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":".Reputation.G.Maj"}},
+      {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":".G.Maj"}},
       {"Name":"StackVertWith"},
       {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"98"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"87"}}
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"102"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"122"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>ReputationWindow</WindowName>
+    <WindowName>FakeIdBase</WindowName>
     <ControlName>GMin</ControlName>
     <ZIndex>30</ZIndex>
     <ControlClass>FGCounterList</ControlClass>
@@ -737,8 +793,8 @@
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"54"}},
       {"Name":"Disabled"},
-      {"Name":"FieldCurrent","Value":{"@xsi:type":"xsd:string","#text":"Reputation.G.MinCurrent"}},
-      {"Name":"FieldMax","Value":{"@xsi:type":"xsd:string","#text":"Reputation.MinMax"}},
+      {"Name":"FieldCurrent","Value":{"@xsi:type":"xsd:string","#text":"G.MinCurrent"}},
+      {"Name":"FieldMax","Value":{"@xsi:type":"xsd:string","#text":"MinMax"}},
       {"Name":"FrameName"},
       {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"GMEditOnly"},
@@ -762,22 +818,22 @@
       {"Name":"RelativeMargin"},
       {"Name":"RelativeStacking"},
       {"Name":"ScriptFile"},
-      {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":".Reputation.G.Min"}},
+      {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":".G.Min"}},
       {"Name":"Spacing","Value":{"@xsi:type":"xsd:int","#text":"19"}},
       {"Name":"StackVertWith"},
       {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"19"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"87"}}
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"23"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"122"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>ReputationWindow</WindowName>
+    <WindowName>FakeIdBase</WindowName>
     <ControlName>GMinCurrent</ControlName>
     <ZIndex>62</ZIndex>
     <ControlClass>FGNumberField</ControlClass>
@@ -826,7 +882,7 @@
       {"Name":"RelativeMargin"},
       {"Name":"RelativeStacking"},
       {"Name":"ScriptFile"},
-      {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":".Reputation.G.MinCurrent"}},
+      {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":".G.MinCurrent"}},
       {"Name":"StackVertWith"},
       {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
       {"Name":"Tooltip"},
@@ -840,7 +896,7 @@
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>ReputationWindow</WindowName>
+    <WindowName>FakeIdBase</WindowName>
     <ControlName>GMod</ControlName>
     <ZIndex>31</ZIndex>
     <ControlClass>FGCheckbox</ControlClass>
@@ -878,21 +934,21 @@
       {"Name":"RelativeMargin"},
       {"Name":"RelativeStacking"},
       {"Name":"ScriptFile"},
-      {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":".Reputation.G.Mod"}},
+      {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":".G.Mod"}},
       {"Name":"StackVertWith"},
       {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"77"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"87"}}
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"81"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"122"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>ReputationWindow</WindowName>
+    <WindowName>FakeIdBase</WindowName>
     <ControlName>IconControl1</ControlName>
     <ZIndex>3</ZIndex>
     <ControlClass>FGIconControl</ControlClass>
@@ -934,15 +990,15 @@
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"43"}}
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"123"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"78"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>ReputationWindow</WindowName>
+    <WindowName>FakeIdBase</WindowName>
     <ControlName>IconControl10</ControlName>
     <ZIndex>25</ZIndex>
     <ControlClass>FGIconControl</ControlClass>
@@ -984,15 +1040,15 @@
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"256"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"41"}}
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"381"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"76"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>ReputationWindow</WindowName>
+    <WindowName>FakeIdBase</WindowName>
     <ControlName>IconControl11</ControlName>
     <ZIndex>26</ZIndex>
     <ControlClass>FGIconControl</ControlClass>
@@ -1034,15 +1090,15 @@
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"315"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"41"}}
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"440"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"76"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>ReputationWindow</WindowName>
+    <WindowName>FakeIdBase</WindowName>
     <ControlName>IconControl12</ControlName>
     <ZIndex>27</ZIndex>
     <ControlClass>FGIconControl</ControlClass>
@@ -1084,15 +1140,15 @@
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"336"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"41"}}
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"461"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"76"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>ReputationWindow</WindowName>
+    <WindowName>FakeIdBase</WindowName>
     <ControlName>IconControl13</ControlName>
     <ZIndex>29</ZIndex>
     <ControlClass>FGIconControl</ControlClass>
@@ -1134,15 +1190,15 @@
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"87"}}
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"4"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"122"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>ReputationWindow</WindowName>
+    <WindowName>FakeIdBase</WindowName>
     <ControlName>IconControl14</ControlName>
     <ZIndex>33</ZIndex>
     <ControlClass>FGIconControl</ControlClass>
@@ -1184,15 +1240,15 @@
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"17"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"85"}}
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"21"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"120"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>ReputationWindow</WindowName>
+    <WindowName>FakeIdBase</WindowName>
     <ControlName>IconControl15</ControlName>
     <ZIndex>34</ZIndex>
     <ControlClass>FGIconControl</ControlClass>
@@ -1234,15 +1290,15 @@
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"75"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"85"}}
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"79"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"120"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>ReputationWindow</WindowName>
+    <WindowName>FakeIdBase</WindowName>
     <ControlName>IconControl16</ControlName>
     <ZIndex>35</ZIndex>
     <ControlClass>FGIconControl</ControlClass>
@@ -1284,15 +1340,15 @@
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"95"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"85"}}
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"99"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"120"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>ReputationWindow</WindowName>
+    <WindowName>FakeIdBase</WindowName>
     <ControlName>IconControl17</ControlName>
     <ZIndex>37</ZIndex>
     <ControlClass>FGIconControl</ControlClass>
@@ -1334,15 +1390,15 @@
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"119"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"87"}}
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"123"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"122"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>ReputationWindow</WindowName>
+    <WindowName>FakeIdBase</WindowName>
     <ControlName>IconControl18</ControlName>
     <ZIndex>41</ZIndex>
     <ControlClass>FGIconControl</ControlClass>
@@ -1384,15 +1440,15 @@
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"136"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"85"}}
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"140"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"120"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>ReputationWindow</WindowName>
+    <WindowName>FakeIdBase</WindowName>
     <ControlName>IconControl19</ControlName>
     <ZIndex>42</ZIndex>
     <ControlClass>FGIconControl</ControlClass>
@@ -1434,15 +1490,15 @@
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"194"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"85"}}
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"198"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"120"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>ReputationWindow</WindowName>
+    <WindowName>FakeIdBase</WindowName>
     <ControlName>IconControl2</ControlName>
     <ZIndex>9</ZIndex>
     <ControlClass>FGIconControl</ControlClass>
@@ -1484,15 +1540,15 @@
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"17"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"41"}}
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"140"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"76"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>ReputationWindow</WindowName>
+    <WindowName>FakeIdBase</WindowName>
     <ControlName>IconControl20</ControlName>
     <ZIndex>43</ZIndex>
     <ControlClass>FGIconControl</ControlClass>
@@ -1534,15 +1590,15 @@
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"214"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"85"}}
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"218"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"120"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>ReputationWindow</WindowName>
+    <WindowName>FakeIdBase</WindowName>
     <ControlName>IconControl21</ControlName>
     <ZIndex>45</ZIndex>
     <ControlClass>FGIconControl</ControlClass>
@@ -1584,15 +1640,15 @@
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"238"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"87"}}
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"242"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"122"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>ReputationWindow</WindowName>
+    <WindowName>FakeIdBase</WindowName>
     <ControlName>IconControl22</ControlName>
     <ZIndex>49</ZIndex>
     <ControlClass>FGIconControl</ControlClass>
@@ -1634,15 +1690,15 @@
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"256"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"85"}}
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"260"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"120"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>ReputationWindow</WindowName>
+    <WindowName>FakeIdBase</WindowName>
     <ControlName>IconControl23</ControlName>
     <ZIndex>50</ZIndex>
     <ControlClass>FGIconControl</ControlClass>
@@ -1684,15 +1740,15 @@
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"315"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"85"}}
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"319"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"120"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>ReputationWindow</WindowName>
+    <WindowName>FakeIdBase</WindowName>
     <ControlName>IconControl24</ControlName>
     <ZIndex>51</ZIndex>
     <ControlClass>FGIconControl</ControlClass>
@@ -1734,15 +1790,15 @@
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"336"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"85"}}
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"339"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"120"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>ReputationWindow</WindowName>
+    <WindowName>FakeIdBase</WindowName>
     <ControlName>IconControl25</ControlName>
     <ZIndex>53</ZIndex>
     <ControlClass>FGIconControl</ControlClass>
@@ -1784,15 +1840,15 @@
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"360"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"87"}}
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"364"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"122"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>ReputationWindow</WindowName>
+    <WindowName>FakeIdBase</WindowName>
     <ControlName>IconControl26</ControlName>
     <ZIndex>57</ZIndex>
     <ControlClass>FGIconControl</ControlClass>
@@ -1834,15 +1890,15 @@
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"378"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"85"}}
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"381"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"120"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>ReputationWindow</WindowName>
+    <WindowName>FakeIdBase</WindowName>
     <ControlName>IconControl27</ControlName>
     <ZIndex>58</ZIndex>
     <ControlClass>FGIconControl</ControlClass>
@@ -1884,15 +1940,15 @@
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"437"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"85"}}
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"440"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"120"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>ReputationWindow</WindowName>
+    <WindowName>FakeIdBase</WindowName>
     <ControlName>IconControl28</ControlName>
     <ZIndex>59</ZIndex>
     <ControlClass>FGIconControl</ControlClass>
@@ -1934,15 +1990,15 @@
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"459"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"85"}}
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"462"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"120"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>ReputationWindow</WindowName>
+    <WindowName>FakeIdBase</WindowName>
     <ControlName>IconControl3</ControlName>
     <ZIndex>10</ZIndex>
     <ControlClass>FGIconControl</ControlClass>
@@ -1984,15 +2040,15 @@
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"75"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"41"}}
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"198"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"76"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>ReputationWindow</WindowName>
+    <WindowName>FakeIdBase</WindowName>
     <ControlName>IconControl4</ControlName>
     <ZIndex>11</ZIndex>
     <ControlClass>FGIconControl</ControlClass>
@@ -2034,15 +2090,15 @@
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"95"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"41"}}
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"218"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"76"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>ReputationWindow</WindowName>
+    <WindowName>FakeIdBase</WindowName>
     <ControlName>IconControl5</ControlName>
     <ZIndex>13</ZIndex>
     <ControlClass>FGIconControl</ControlClass>
@@ -2084,15 +2140,15 @@
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"119"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"43"}}
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"242"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"78"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>ReputationWindow</WindowName>
+    <WindowName>FakeIdBase</WindowName>
     <ControlName>IconControl6</ControlName>
     <ZIndex>17</ZIndex>
     <ControlClass>FGIconControl</ControlClass>
@@ -2134,15 +2190,15 @@
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"136"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"41"}}
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"260"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"76"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>ReputationWindow</WindowName>
+    <WindowName>FakeIdBase</WindowName>
     <ControlName>IconControl7</ControlName>
     <ZIndex>18</ZIndex>
     <ControlClass>FGIconControl</ControlClass>
@@ -2184,15 +2240,15 @@
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"194"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"41"}}
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"319"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"76"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>ReputationWindow</WindowName>
+    <WindowName>FakeIdBase</WindowName>
     <ControlName>IconControl8</ControlName>
     <ZIndex>19</ZIndex>
     <ControlClass>FGIconControl</ControlClass>
@@ -2234,15 +2290,15 @@
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"214"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"41"}}
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"339"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"76"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>ReputationWindow</WindowName>
+    <WindowName>FakeIdBase</WindowName>
     <ControlName>IconControl9</ControlName>
     <ZIndex>21</ZIndex>
     <ControlClass>FGIconControl</ControlClass>
@@ -2284,15 +2340,75 @@
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"238"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"43"}}
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"363"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"78"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>ReputationWindow</WindowName>
+    <WindowName>FakeIdBase</WindowName>
+    <ControlName>idelete</ControlName>
+    <ZIndex>70</ZIndex>
+    <ControlClass>FGButton</ControlClass>
+    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
+      {"Name":"AdvancedTemplate","Value":{"@xsi:type":"xsd:string","#text":"button_idelete"}},
+      {"Name":"AllowDoubleClick"},
+      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"ButtonCaption","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"ButtonField"},
+      {"Name":"ButtonStateList","Value":{"@xsi:type":"ArrayOfButtonStateDefinition"}},
+      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"idelete"}},
+      {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
+      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
+      {"Name":"DefaultValue"},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
+      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"20"}},
+      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
+      {"Name":"Disabled"},
+      {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"FontName","Value":{"@xsi:type":"xsd:string","#text":"button-white"}},
+      {"Name":"FrameName","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"GMEditOnly"},
+      {"Name":"GMVisibleOnly"},
+      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"1"}},
+      {"Name":"HoverCursor"},
+      {"Name":"HoverIconName"},
+      {"Name":"InheritSizePosition"},
+      {"Name":"InsertBefore"},
+      {"Name":"Invisible"},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
+      {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
+      {"Name":"NextTabTarget"},
+      {"Name":"NormalIconName","Value":{"@xsi:type":"xsd:string","#text":"button_delete"}},
+      {"Name":"PressedIconName"},
+      {"Name":"PrevTabTarget"},
+      {"Name":"ReadOnly"},
+      {"Name":"RelativeMargin"},
+      {"Name":"RelativeStacking"},
+      {"Name":"ScriptFile"},
+      {"Name":"Source"},
+      {"Name":"StackVertWith"},
+      {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
+      {"Name":"Tooltip"},
+      {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"462"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"18"}}
+]}}</Definition>
+    <LUACode />
+    <GroupIndex>0</GroupIndex>
+    <Template />
+  </WindowControls>
+  <WindowControls>
+    <WindowName>FakeIdBase</WindowName>
     <ControlName>IMaj</ControlName>
     <ZIndex>40</ZIndex>
     <ControlClass>FGCheckbox</ControlClass>
@@ -2330,21 +2446,21 @@
       {"Name":"RelativeMargin"},
       {"Name":"RelativeStacking"},
       {"Name":"ScriptFile"},
-      {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":".Reputation.I.Maj"}},
+      {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":".I.Maj"}},
       {"Name":"StackVertWith"},
       {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"217"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"87"}}
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"221"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"122"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>ReputationWindow</WindowName>
+    <WindowName>FakeIdBase</WindowName>
     <ControlName>IMin</ControlName>
     <ZIndex>38</ZIndex>
     <ControlClass>FGCounterList</ControlClass>
@@ -2360,8 +2476,8 @@
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"54"}},
       {"Name":"Disabled"},
-      {"Name":"FieldCurrent","Value":{"@xsi:type":"xsd:string","#text":"Reputation.I.MinCurrent"}},
-      {"Name":"FieldMax","Value":{"@xsi:type":"xsd:string","#text":"Reputation.MinMax"}},
+      {"Name":"FieldCurrent","Value":{"@xsi:type":"xsd:string","#text":"I.MinCurrent"}},
+      {"Name":"FieldMax","Value":{"@xsi:type":"xsd:string","#text":"MinMax"}},
       {"Name":"FrameName"},
       {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"GMEditOnly"},
@@ -2385,22 +2501,22 @@
       {"Name":"RelativeMargin"},
       {"Name":"RelativeStacking"},
       {"Name":"ScriptFile"},
-      {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":".Reputation.I.Min"}},
+      {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":".I.Min"}},
       {"Name":"Spacing","Value":{"@xsi:type":"xsd:int","#text":"19"}},
       {"Name":"StackVertWith"},
       {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"138"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"87"}}
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"142"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"122"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>ReputationWindow</WindowName>
+    <WindowName>FakeIdBase</WindowName>
     <ControlName>IMinCurrent</ControlName>
     <ZIndex>63</ZIndex>
     <ControlClass>FGNumberField</ControlClass>
@@ -2449,7 +2565,7 @@
       {"Name":"RelativeMargin"},
       {"Name":"RelativeStacking"},
       {"Name":"ScriptFile"},
-      {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":".Reputation.I.MinCurrent"}},
+      {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":".I.MinCurrent"}},
       {"Name":"StackVertWith"},
       {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
       {"Name":"Tooltip"},
@@ -2463,7 +2579,7 @@
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>ReputationWindow</WindowName>
+    <WindowName>FakeIdBase</WindowName>
     <ControlName>IMod</ControlName>
     <ZIndex>39</ZIndex>
     <ControlClass>FGCheckbox</ControlClass>
@@ -2501,21 +2617,21 @@
       {"Name":"RelativeMargin"},
       {"Name":"RelativeStacking"},
       {"Name":"ScriptFile"},
-      {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":".Reputation.I.Mod"}},
+      {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":".I.Mod"}},
       {"Name":"StackVertWith"},
       {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"196"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"87"}}
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"200"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"122"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>ReputationWindow</WindowName>
+    <WindowName>FakeIdBase</WindowName>
     <ControlName>Label1</ControlName>
     <ZIndex>2</ZIndex>
     <ControlClass>FGLabel</ControlClass>
@@ -2560,15 +2676,15 @@
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"22"}}
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"123"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"57"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>ReputationWindow</WindowName>
+    <WindowName>FakeIdBase</WindowName>
     <ControlName>Label2</ControlName>
     <ZIndex>1</ZIndex>
     <ControlClass>FGLabel</ControlClass>
@@ -2613,15 +2729,15 @@
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"0"}}
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"4"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"57"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>ReputationWindow</WindowName>
+    <WindowName>FakeIdBase</WindowName>
     <ControlName>Label3</ControlName>
     <ZIndex>12</ZIndex>
     <ControlClass>FGLabel</ControlClass>
@@ -2666,15 +2782,15 @@
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"119"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"22"}}
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"242"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"57"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>ReputationWindow</WindowName>
+    <WindowName>FakeIdBase</WindowName>
     <ControlName>Label4</ControlName>
     <ZIndex>20</ZIndex>
     <ControlClass>FGLabel</ControlClass>
@@ -2719,15 +2835,15 @@
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"237"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"22"}}
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"360"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"57"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>ReputationWindow</WindowName>
+    <WindowName>FakeIdBase</WindowName>
     <ControlName>Label5</ControlName>
     <ZIndex>28</ZIndex>
     <ControlClass>FGLabel</ControlClass>
@@ -2772,15 +2888,15 @@
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"66"}}
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"4"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"101"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>ReputationWindow</WindowName>
+    <WindowName>FakeIdBase</WindowName>
     <ControlName>Label6</ControlName>
     <ZIndex>36</ZIndex>
     <ControlClass>FGLabel</ControlClass>
@@ -2825,15 +2941,15 @@
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"119"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"66"}}
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"123"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"101"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>ReputationWindow</WindowName>
+    <WindowName>FakeIdBase</WindowName>
     <ControlName>Label7</ControlName>
     <ZIndex>44</ZIndex>
     <ControlClass>FGLabel</ControlClass>
@@ -2878,15 +2994,15 @@
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"238"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"66"}}
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"242"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"101"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>ReputationWindow</WindowName>
+    <WindowName>FakeIdBase</WindowName>
     <ControlName>Label8</ControlName>
     <ZIndex>52</ZIndex>
     <ControlClass>FGLabel</ControlClass>
@@ -2931,34 +3047,34 @@
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"360"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"66"}}
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"364"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"101"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>ReputationWindow</WindowName>
+    <WindowName>FakeIdBase</WindowName>
     <ControlName>Label9</ControlName>
-    <ZIndex>66</ZIndex>
+    <ZIndex>69</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
-      {"Name":"AdvancedTemplate"},
+      {"Name":"AdvancedTemplate","Value":{"@xsi:type":"xsd:string","#text":"label"}},
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"CanGrowVert"},
-      {"Name":"Center","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"Center"},
       {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"Label9"}},
       {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
       {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
-      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"48"}},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
-      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"111"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"100"}},
       {"Name":"Disabled"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
-      {"Name":"FontName","Value":{"@xsi:type":"xsd:string","#text":"small_label"}},
-      {"Name":"FrameName","Value":{"@xsi:type":"xsd:string","#text":"border"}},
+      {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"FrameName"},
       {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"GMVisibleOnly"},
       {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
@@ -2966,13 +3082,13 @@
       {"Name":"InheritSizePosition"},
       {"Name":"InsertBefore"},
       {"Name":"Invisible"},
-      {"Name":"LabelCaption","Value":{"@xsi:type":"xsd:string","#text":"3 MIN FAVORS/WEEK\\n1 MOD FAVOR/WEEK\\n1 MAJ FAVOR/STORY ARC"}},
+      {"Name":"LabelCaption","Value":{"@xsi:type":"xsd:string","#text":"NAME"}},
       {"Name":"MaximumHeight"},
       {"Name":"MaximumWidth"},
       {"Name":"Merge"},
       {"Name":"MinimumHeight"},
       {"Name":"MinimumWidth"},
-      {"Name":"MultilineSpacing","Value":{"@xsi:type":"xsd:int","#text":"17"}},
+      {"Name":"MultilineSpacing"},
       {"Name":"NextTabTarget"},
       {"Name":"PrevTabTarget"},
       {"Name":"RelativeMargin"},
@@ -2984,15 +3100,15 @@
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"363"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"6"}}
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"4"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"37"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>ReputationWindow</WindowName>
+    <WindowName>FakeIdBase</WindowName>
     <ControlName>MinMax</ControlName>
     <ZIndex>5</ZIndex>
     <ControlClass>FGNumberField</ControlClass>
@@ -3041,7 +3157,7 @@
       {"Name":"RelativeMargin"},
       {"Name":"RelativeStacking"},
       {"Name":"ScriptFile"},
-      {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":".Reputation.MinMax"}},
+      {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":".MinMax"}},
       {"Name":"StackVertWith"},
       {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
       {"Name":"Tooltip"},
@@ -3055,63 +3171,69 @@
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>ReputationWindow</WindowName>
-    <ControlName>ReputationWindow</ControlName>
-    <ZIndex>0</ZIndex>
-    <ControlClass>FGWindow</ControlClass>
+    <WindowName>FakeIdBase</WindowName>
+    <ControlName>name</ControlName>
+    <ZIndex>67</ZIndex>
+    <ControlClass>FGStringField</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
-      {"Name":"AllowResize"},
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
+      {"Name":"AdvancedTemplate"},
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
-      {"Name":"BottomMargin","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"Comments"},
-      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"ReputationWindow"}},
+      {"Name":"CanGrowVert"},
+      {"Name":"Center"},
+      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"name"}},
+      {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
       {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
-      {"Name":"DataSource"},
-      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"110"}},
-      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"480"}},
+      {"Name":"DefaultText","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"DelayKeyUpdate","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
+      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"454"}},
+      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
       {"Name":"Disabled"},
-      {"Name":"Dynamic"},
+      {"Name":"EmptyText"},
+      {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"FrameName"},
-      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"HostControl"},
+      {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"GMEditOnly"},
+      {"Name":"GMVisibleOnly"},
+      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"2"}},
       {"Name":"HoverCursor"},
       {"Name":"InheritSizePosition"},
+      {"Name":"InsertBefore"},
       {"Name":"Invisible"},
-      {"Name":"Locked"},
+      {"Name":"LineOffset","Value":{"@xsi:type":"xsd:int","#text":"2"}},
       {"Name":"MaximumHeight"},
       {"Name":"MaximumWidth"},
-      {"Name":"MergeWindow"},
-      {"Name":"MinimizedIcon"},
+      {"Name":"Merge"},
       {"Name":"MinimumHeight"},
       {"Name":"MinimumWidth"},
-      {"Name":"NoClose"},
-      {"Name":"NoDelete"},
-      {"Name":"NoMove"},
-      {"Name":"Panel"},
-      {"Name":"PanelModeClient"},
-      {"Name":"PanelModeHost"},
-      {"Name":"PanelModeLocal"},
-      {"Name":"PlayerControl"},
-      {"Name":"Resize","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"RightMargin","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"MultilineSpacing"},
+      {"Name":"NextTabTarget"},
+      {"Name":"NoDrag","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"NoDragselect","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"NoDrop","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"PrevTabTarget"},
+      {"Name":"ReadOnly"},
+      {"Name":"RelativeMargin"},
+      {"Name":"RelativeStacking"},
       {"Name":"ScriptFile"},
-      {"Name":"Sharable"},
-      {"Name":"ShareAs"},
-      {"Name":"SoftClose"},
+      {"Name":"Source","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"StackVertWith"},
+      {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
       {"Name":"Tooltip"},
-      {"Name":"TooltipField"},
+      {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"WindowMargins","Value":{"@xsi:type":"xsd:string"}},
-      {"Name":"WindowTitle"},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"0"}}
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"4"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"18"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>ReputationWindow</WindowName>
+    <WindowName>FakeIdBase</WindowName>
     <ControlName>RMaj</ControlName>
     <ZIndex>48</ZIndex>
     <ControlClass>FGCheckbox</ControlClass>
@@ -3149,21 +3271,21 @@
       {"Name":"RelativeMargin"},
       {"Name":"RelativeStacking"},
       {"Name":"ScriptFile"},
-      {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":".Reputation.R.Maj"}},
+      {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":".R.Maj"}},
       {"Name":"StackVertWith"},
       {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"339"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"87"}}
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"342"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"122"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>ReputationWindow</WindowName>
+    <WindowName>FakeIdBase</WindowName>
     <ControlName>RMin</ControlName>
     <ZIndex>46</ZIndex>
     <ControlClass>FGCounterList</ControlClass>
@@ -3179,8 +3301,8 @@
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"54"}},
       {"Name":"Disabled"},
-      {"Name":"FieldCurrent","Value":{"@xsi:type":"xsd:string","#text":"Reputation.R.MinCurrent"}},
-      {"Name":"FieldMax","Value":{"@xsi:type":"xsd:string","#text":"Reputation.MinMax"}},
+      {"Name":"FieldCurrent","Value":{"@xsi:type":"xsd:string","#text":"R.MinCurrent"}},
+      {"Name":"FieldMax","Value":{"@xsi:type":"xsd:string","#text":"MinMax"}},
       {"Name":"FrameName"},
       {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"GMEditOnly"},
@@ -3204,22 +3326,22 @@
       {"Name":"RelativeMargin"},
       {"Name":"RelativeStacking"},
       {"Name":"ScriptFile"},
-      {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":".Reputation.R.Min"}},
+      {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":".R.Min"}},
       {"Name":"Spacing","Value":{"@xsi:type":"xsd:int","#text":"19"}},
       {"Name":"StackVertWith"},
       {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"259"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"87"}}
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"263"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"122"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>ReputationWindow</WindowName>
+    <WindowName>FakeIdBase</WindowName>
     <ControlName>RMinCurrent</ControlName>
     <ZIndex>64</ZIndex>
     <ControlClass>FGNumberField</ControlClass>
@@ -3268,7 +3390,7 @@
       {"Name":"RelativeMargin"},
       {"Name":"RelativeStacking"},
       {"Name":"ScriptFile"},
-      {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":".Reputation.R.MinCurrent"}},
+      {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":".R.MinCurrent"}},
       {"Name":"StackVertWith"},
       {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
       {"Name":"Tooltip"},
@@ -3282,7 +3404,7 @@
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>ReputationWindow</WindowName>
+    <WindowName>FakeIdBase</WindowName>
     <ControlName>RMod</ControlName>
     <ZIndex>47</ZIndex>
     <ControlClass>FGCheckbox</ControlClass>
@@ -3320,21 +3442,21 @@
       {"Name":"RelativeMargin"},
       {"Name":"RelativeStacking"},
       {"Name":"ScriptFile"},
-      {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":".Reputation.R.Mod"}},
+      {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":".R.Mod"}},
       {"Name":"StackVertWith"},
       {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"318"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"87"}}
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"321"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"122"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>ReputationWindow</WindowName>
+    <WindowName>FakeIdBase</WindowName>
     <ControlName>XMaj</ControlName>
     <ZIndex>56</ZIndex>
     <ControlClass>FGCheckbox</ControlClass>
@@ -3372,21 +3494,21 @@
       {"Name":"RelativeMargin"},
       {"Name":"RelativeStacking"},
       {"Name":"ScriptFile"},
-      {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":".Reputation.X.Maj"}},
+      {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":".X.Maj"}},
       {"Name":"StackVertWith"},
       {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"462"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"87"}}
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"465"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"122"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>ReputationWindow</WindowName>
+    <WindowName>FakeIdBase</WindowName>
     <ControlName>XMin</ControlName>
     <ZIndex>54</ZIndex>
     <ControlClass>FGCounterList</ControlClass>
@@ -3402,8 +3524,8 @@
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"54"}},
       {"Name":"Disabled"},
-      {"Name":"FieldCurrent","Value":{"@xsi:type":"xsd:string","#text":"Reputation.X.MinCurrent"}},
-      {"Name":"FieldMax","Value":{"@xsi:type":"xsd:string","#text":"Reputation.MinMax"}},
+      {"Name":"FieldCurrent","Value":{"@xsi:type":"xsd:string","#text":"X.MinCurrent"}},
+      {"Name":"FieldMax","Value":{"@xsi:type":"xsd:string","#text":"MinMax"}},
       {"Name":"FrameName"},
       {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"GMEditOnly"},
@@ -3427,22 +3549,22 @@
       {"Name":"RelativeMargin"},
       {"Name":"RelativeStacking"},
       {"Name":"ScriptFile"},
-      {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":".Reputation.X.Min"}},
+      {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":".X.Min"}},
       {"Name":"Spacing","Value":{"@xsi:type":"xsd:int","#text":"19"}},
       {"Name":"StackVertWith"},
       {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"381"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"87"}}
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"384"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"122"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>ReputationWindow</WindowName>
+    <WindowName>FakeIdBase</WindowName>
     <ControlName>XMinCurrent</ControlName>
     <ZIndex>65</ZIndex>
     <ControlClass>FGNumberField</ControlClass>
@@ -3491,7 +3613,7 @@
       {"Name":"RelativeMargin"},
       {"Name":"RelativeStacking"},
       {"Name":"ScriptFile"},
-      {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":".Reputation.X.MinCurrent"}},
+      {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":".X.MinCurrent"}},
       {"Name":"StackVertWith"},
       {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
       {"Name":"Tooltip"},
@@ -3505,7 +3627,7 @@
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>ReputationWindow</WindowName>
+    <WindowName>FakeIdBase</WindowName>
     <ControlName>XMod</ControlName>
     <ZIndex>55</ZIndex>
     <ControlClass>FGCheckbox</ControlClass>
@@ -3543,14 +3665,14 @@
       {"Name":"RelativeMargin"},
       {"Name":"RelativeStacking"},
       {"Name":"ScriptFile"},
-      {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":".Reputation.X.Mod"}},
+      {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":".X.Mod"}},
       {"Name":"StackVertWith"},
       {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"441"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"87"}}
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"444"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"122"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
