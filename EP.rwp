@@ -6596,7 +6596,7 @@ end</LUACode>
       {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
-      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"2"}},
       {"Name":"WindowListChildDefinition","Value":{"@xsi:type":"ArrayOfChildDefinition"}},
       {"Name":"WindowListClassName","Value":{"@xsi:type":"xsd:string","#text":"ActiveSkillBase"}},
       {"Name":"WindowListFilterBy","Value":{"@xsi:type":"FilterByDefinition","FilterSourceType":"Control","FilterOnSourceType":"Control"}},
@@ -6855,7 +6855,7 @@ end
       {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
-      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"1"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"435"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"438"}}
 ]}}</Definition>
@@ -7167,7 +7167,7 @@ end
       {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
-      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"2"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"2"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"0"}}
 ]}}</Definition>
@@ -7217,7 +7217,7 @@ end
       {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
-      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"1"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"2"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"423"}}
 ]}}</Definition>
@@ -7276,7 +7276,7 @@ end
       {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
-      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"2"}},
+      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"1"}},
       {"Name":"WindowListChildDefinition","Value":{"@xsi:type":"ArrayOfChildDefinition"}},
       {"Name":"WindowListClassName","Value":{"@xsi:type":"xsd:string","#text":"KnowSkillBase"}},
       {"Name":"WindowListFilterBy","Value":{"@xsi:type":"FilterByDefinition","FilterSourceType":"Control","FilterOnSourceType":"Control"}},
@@ -7332,7 +7332,7 @@ end
       {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
-      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"1"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"456"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"438"}}
 ]}}</Definition>
@@ -7441,7 +7441,7 @@ end
       {"Name":"TextUnderlined"},
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
-      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"1"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"407"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"458"}}
 ]}}</Definition>
@@ -7759,7 +7759,7 @@ end
       {"Name":"TextUnderlined"},
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
-      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"1"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"2"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"438"}}
 ]}}</Definition>
@@ -7812,7 +7812,7 @@ end
       {"Name":"TextUnderlined"},
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
-      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"1"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"10"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"458"}}
 ]}}</Definition>
@@ -7865,7 +7865,7 @@ end
       {"Name":"TextUnderlined"},
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
-      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"1"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"284"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"458"}}
 ]}}</Definition>
@@ -7979,7 +7979,7 @@ end
       {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
-      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"1"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"465"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"477"}}
 ]}}</Definition>
@@ -8031,7 +8031,7 @@ end
       {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
-      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"2"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"465"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"51"}}
 ]}}</Definition>
@@ -38219,8 +38219,8 @@ end
     <LUACode>function onClickRelease(button, x, y)
 	if getValue()==0 then
 		local sPronoun="";
-		if DB.getValue(window.getDatabaseNode(), "gender", ""):lower():match("male") then sPronoun="his";
-		elseif DB.getValue(window.getDatabaseNode(), "gender", ""):lower():match("female") then sPronoun="her";
+		if DB.getValue(window.getDatabaseNode(), "Notes.Gender", ""):lower():match("female") then sPronoun="her";
+		elseif DB.getValue(window.getDatabaseNode(), "Notes.Gender", ""):lower():match("male") then sPronoun="his";
 		else sPronoun="its";
 		end
 		window.InsightSpent.setValue(0);
@@ -46850,7 +46850,6 @@ function CheckHandler(rSource, rTarget, rRoll)
 	local nMod=rRoll.nMod;
 	rRoll.nMod=0;
     local rMessage = ActionsManager.createActionMessage(rSource, rRoll);
-    Debug.chat(rMessage.text)
 	local nTarget=tonumber(rMessage.text:match("%(vs (%d+)%)"));
 	if nMod~=0 then rMessage.text=rMessage.text:gsub("vs "..nTarget, "vs "..math.max(0,nTarget+nMod)); end
 	nTarget=nTarget+nMod;

@@ -1255,8 +1255,8 @@ end
     <LUACode>function onClickRelease(button, x, y)
 	if getValue()==0 then
 		local sPronoun="";
-		if DB.getValue(window.getDatabaseNode(), "gender", ""):lower():match("male") then sPronoun="his";
-		elseif DB.getValue(window.getDatabaseNode(), "gender", ""):lower():match("female") then sPronoun="her";
+		if DB.getValue(window.getDatabaseNode(), "Notes.Gender", ""):lower():match("female") then sPronoun="her";
+		elseif DB.getValue(window.getDatabaseNode(), "Notes.Gender", ""):lower():match("male") then sPronoun="his";
 		else sPronoun="its";
 		end
 		window.InsightSpent.setValue(0);
