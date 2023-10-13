@@ -51,6 +51,12 @@
 			sEditMode = "play",
 			sSidebarCategory = "character",
 		},
+		["vehicle"] = {
+			bExport=true,
+			aDataMap = {"reference.vehicles"},
+			sListDisplayClass = "BotVehicleBase",
+			sRecordDisplayClass ="BotVehicleSidebarWindow",
+		},
 	}
 	
 	
