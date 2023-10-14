@@ -149,7 +149,7 @@ end</LUACode>
       {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"ArmorUsed"}},
       {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
       {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
-      {"Name":"DefaultLabel","Value":{"@xsi:type":"xsd:string","#text":"-"}},
+      {"Name":"DefaultLabel","Value":{"@xsi:type":"xsd:string","#text":"Kinetic"}},
       {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"30"}},
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"100"}},
@@ -183,14 +183,23 @@ end</LUACode>
       {"Name":"StackVertWith"},
       {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
       {"Name":"StringCyclerAlign","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"StringCyclerItems","Value":{"@xsi:type":"ArrayOfLabelValue","LabelValue":[{"Label":"Kinetic","Value":"Kinetic"},{"Label":"Energy","Value":"Energy"}]}},
+      {"Name":"StringCyclerItems","Value":{"@xsi:type":"ArrayOfLabelValue","LabelValue":{"Label":"Energy","Value":"Energy"}}},
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"92"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"425"}}
 ]}}</Definition>
-    <LUACode>function update(bReadOnly)
+    <LUACode>function update(parameter)
+	if type(parameter)=="boolean" then 
+		return Visibility(parameter);
+	--bReadOnly~=true and bReadOnly~=false then
+	else
+		super.update(parameter);
+	end
+end
+
+function Visibility(bReadOnly)
 	setReadOnly(bReadOnly);
 	local bVisible=window.Type.isWeapon();
 	setVisible(bVisible);
