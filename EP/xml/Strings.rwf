@@ -1,0 +1,22 @@
+<DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
+  <XMLFiles>
+    <XmlName>Strings</XmlName>
+    <FolderID>0</FolderID>
+    <XML>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;root&gt;
+	&lt;!-- Languages --&gt;
+	&lt;string name="language_value_common"&gt;Common&lt;/string&gt;
+	&lt;string name="language_value_arabic"&gt;Arabic&lt;/string&gt;
+	&lt;string name="language_value_cantonese"&gt;Cantonese&lt;/string&gt;
+	&lt;string name="language_value_english"&gt;English&lt;/string&gt;
+	&lt;string name="language_value_french"&gt;French&lt;/string&gt;
+	&lt;string name="language_value_hindi"&gt;Hindi&lt;/string&gt;
+	&lt;string name="language_value_japanese"&gt;Japanese&lt;/string&gt;
+	&lt;string name="language_value_mandarin"&gt;Mandarin&lt;/string&gt;
+	&lt;string name="language_value_portuguese"&gt;Portuguese&lt;/string&gt;
+	&lt;string name="language_value_russian"&gt;Russian&lt;/string&gt;
+	&lt;string name="language_value_skandinaviska"&gt;Skandinaviska&lt;/string&gt;
+	&lt;string name="language_value_spanish"&gt;Spanish&lt;/string&gt;
+&lt;/root&gt;</XML>
+  </XMLFiles>
+</DocumentElement>

@@ -1,0 +1,44 @@
+<DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
+  <Scripts>
+    <ScriptName>ManagerGameSystem_EP2ed</ScriptName>
+    <FolderID>20</FolderID>
+    <Script>function onInit()	
+	-- Languages
+	GameSystem.languages = {
+		-- Standard languages
+		[Interface.getString("language_value_common")] = "",
+		[Interface.getString("language_value_arabic")] = "",
+		[Interface.getString("language_value_cantonese")] = "",
+		[Interface.getString("language_value_english")] = "",
+		[Interface.getString("language_value_french")] = "",
+		[Interface.getString("language_value_hindi")] = "",
+		[Interface.getString("language_value_japanese")] = "",
+		[Interface.getString("language_value_mandarin")] = "",
+		[Interface.getString("language_value_portuguese")] = "",
+		[Interface.getString("language_value_russian")] = "",
+		[Interface.getString("language_value_skandinaviska")] = "",
+		[Interface.getString("language_value_spanish")] = "",
+	}
+--	languagefonts = {
+--		[Interface.getString("language_value_celestial")] = "Celestial",
+--		[Interface.getString("language_value_draconic")] = "Draconic",
+--		[Interface.getString("language_value_dwarvish")] = "Dwarven",
+--		[Interface.getString("language_value_elvish")] = "Elven",
+--		[Interface.getString("language_value_infernal")] = "Infernal",
+--		[Interface.getString("language_value_primordial")] = "Primordial",
+--	}
+	if Session.IsHost then
+		DB.setPublic(DB.createNode(LanguageManager.CAMPAIGN_LANGUAGE_LIST), true);
+		if DB.getChildCount(LanguageManager.CAMPAIGN_LANGUAGE_LIST) == 0 then
+			LanguageManager.populateCampaignLanguages();
+		end
+		
+		LanguageManager.addCampaignLanguageHandlers();
+		LanguageManager.refreshCampaignLanguages();
+	end
+end
+</Script>
+    <RegisterScript>true</RegisterScript>
+    <Encoding />
+  </Scripts>
+</DocumentElement>

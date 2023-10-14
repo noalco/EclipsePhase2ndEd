@@ -80,7 +80,9 @@ function SearchRecord(sRecordName, sReference, sExtraField, ExtraFieldValue)
 		end
 	end
 	return "";
-end</Script>
+end
+
+</Script>
     <RegisterScript>true</RegisterScript>
     <Encoding />
   </Scripts>
