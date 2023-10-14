@@ -15368,6 +15368,7 @@ end
 ]}}</Definition>
     <LUACode>function onDrop(x, y, dragdata)
 	window.CopyLink(dragdata, "Background", getDatabaseNode().getParent());
+	setValue("BackgroundWindow", "");
 end
 </LUACode>
     <GroupIndex>0</GroupIndex>
@@ -15559,6 +15560,7 @@ end
 ]}}</Definition>
     <LUACode>function onDrop(x, y, dragdata)
 	window.CopyLink(dragdata, "Career", getDatabaseNode().getParent());
+	setValue("CareerWindow", "");
 end
 </LUACode>
     <GroupIndex>0</GroupIndex>
@@ -15624,7 +15626,6 @@ end
 		if sRecord~=DB.getPath(Node) then
 			DB.deleteChildren(DB.getChild(Node, "SkillList"));
 			DB.copyNode(sRecord, Node);
-			setValue(sNodeType, "");
 		end
 	end
 end
@@ -16102,7 +16103,12 @@ end</LUACode>
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"361"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"72"}}
 ]}}</Definition>
-    <LUACode />
+    <LUACode>function onDrop(x, y, dragdata)
+	window.BackgroundLink.onDrop(x, y, dragdata);
+	window.CareerLink.onDrop(x, y, dragdata);
+	window.InterestLink.onDrop(x, y, dragdata);
+end
+</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -16647,6 +16653,7 @@ end
 ]}}</Definition>
     <LUACode>function onDrop(x, y, dragdata)
 	window.CopyLink(dragdata, "Interest", getDatabaseNode().getParent());
+	setValue("InterestWindow", "");
 end
 </LUACode>
     <GroupIndex>0</GroupIndex>
@@ -17220,7 +17227,12 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"218"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"46"}}
 ]}}</Definition>
-    <LUACode />
+    <LUACode>function onDrop(x, y, dragdata)
+	window.BackgroundLink.onDrop(x, y, dragdata);
+	window.CareerLink.onDrop(x, y, dragdata);
+	window.InterestLink.onDrop(x, y, dragdata);
+end
+</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -17274,7 +17286,12 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"361"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"44"}}
 ]}}</Definition>
-    <LUACode />
+    <LUACode>function onDrop(x, y, dragdata)
+	window.BackgroundLink.onDrop(x, y, dragdata);
+	window.CareerLink.onDrop(x, y, dragdata);
+	window.InterestLink.onDrop(x, y, dragdata);
+end
+</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -17598,7 +17615,12 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"361"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"91"}}
 ]}}</Definition>
-    <LUACode />
+    <LUACode>function onDrop(x, y, dragdata)
+	window.BackgroundLink.onDrop(x, y, dragdata);
+	window.CareerLink.onDrop(x, y, dragdata);
+	window.InterestLink.onDrop(x, y, dragdata);
+end
+</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -17760,7 +17782,12 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"218"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"93"}}
 ]}}</Definition>
-    <LUACode />
+    <LUACode>function onDrop(x, y, dragdata)
+	window.BackgroundLink.onDrop(x, y, dragdata);
+	window.CareerLink.onDrop(x, y, dragdata);
+	window.InterestLink.onDrop(x, y, dragdata);
+end
+</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -18660,10 +18687,11 @@ end
 	local sClass,sRecord = dragdata.getShortcutData();
 	if sClass=="MorphDataSidebarWindow" or sClass=="MorphDataWindow" then
 		local Node=DB.getParent(getDatabaseNode());
-		if sRecord~=DB.getPath(Node) then
+		Debug.chat(sRecord, DB.getPath(getDatabaseNode()))
+		if sRecord~=DB.getPath(window.getDatabaseNode()) then
 			DB.deleteChildren(DB.getChild(Node, "TraitList"));
---			DB.deleteChildren(Node.getChild("WareList"));
 			DB.copyNode(sRecord, Node);
+			setValue("MorphDataWindow", "");
 			ParseTraits();
 			ParseWear();
 		end
@@ -19112,7 +19140,12 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"189"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"0"}}
 ]}}</Definition>
-    <LUACode />
+    <LUACode>function onDrop(x, y, dragdata)
+	window.BackgroundLink.onDrop(x, y, dragdata);
+	window.CareerLink.onDrop(x, y, dragdata);
+	window.InterestLink.onDrop(x, y, dragdata);
+end
+</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
