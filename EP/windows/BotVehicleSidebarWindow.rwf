@@ -521,7 +521,17 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"130"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"83"}}
 ]}}</Definition>
-    <LUACode />
+    <LUACode>function onValueChanged()
+	window.FlexSpent.setMaxValue(getValue());
+	if window.FlexSpent.getValue()&gt;getValue() then
+		window.FlexSpent.setValue(getValue());
+	end
+end
+
+function onInit()
+	onValueChanged()
+end
+</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -1825,7 +1835,17 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"21"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"83"}}
 ]}}</Definition>
-    <LUACode />
+    <LUACode>function onValueChanged()
+	window.VigorSpent.setMaxValue(getValue());
+	if window.VigorSpent.getValue()&gt;getValue() then
+		window.VigorSpent.setValue(getValue());
+	end
+end
+
+function onInit()
+	onValueChanged()
+end
+</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>

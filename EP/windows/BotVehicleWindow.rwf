@@ -441,7 +441,7 @@ end</LUACode>
       {"Name":"RelativeMargin"},
       {"Name":"RelativeStacking"},
       {"Name":"ScriptFile"},
-      {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":".Notes.BotVehicle.Flex.FlexSpent"}},
+      {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":".Notes.BotVehicle.FlexSpent"}},
       {"Name":"StackVertWith"},
       {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
       {"Name":"Tooltip","Value":{"@xsi:type":"xsd:string","#text":"Double-click to spend a Flex point"}},
@@ -512,7 +512,7 @@ end
       {"Name":"RelativeMargin"},
       {"Name":"RelativeStacking"},
       {"Name":"ScriptFile"},
-      {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":".Notes.BotVehicle.Flex.FlexTotal"}},
+      {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":".Notes.BotVehicle.FlexTotal"}},
       {"Name":"StackVertWith"},
       {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
       {"Name":"Tooltip"},
@@ -521,7 +521,17 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"130"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"83"}}
 ]}}</Definition>
-    <LUACode />
+    <LUACode>function onValueChanged()
+	window.FlexSpent.setMaxValue(getValue());
+	if window.FlexSpent.getValue()&gt;getValue() then
+		window.FlexSpent.setValue(getValue());
+	end
+end
+
+function onInit()
+	onValueChanged()
+end
+</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -1745,7 +1755,7 @@ end
       {"Name":"RelativeMargin"},
       {"Name":"RelativeStacking"},
       {"Name":"ScriptFile"},
-      {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":".Notes.BotVehicle.Vigor.VigorSpent"}},
+      {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":".Notes.BotVehicle.VigorSpent"}},
       {"Name":"StackVertWith"},
       {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
       {"Name":"Tooltip","Value":{"@xsi:type":"xsd:string","#text":"Double-click to spend a Vigor point"}},
@@ -1816,7 +1826,7 @@ end
       {"Name":"RelativeMargin"},
       {"Name":"RelativeStacking"},
       {"Name":"ScriptFile"},
-      {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":".Notes.BotVehicle.Vigor.VigorTotal"}},
+      {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":".Notes.BotVehicle.VigorTotal"}},
       {"Name":"StackVertWith"},
       {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
       {"Name":"Tooltip"},
@@ -1825,7 +1835,17 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"21"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"83"}}
 ]}}</Definition>
-    <LUACode />
+    <LUACode>function onValueChanged()
+	window.VigorSpent.setMaxValue(getValue());
+	if window.VigorSpent.getValue()&gt;getValue() then
+		window.VigorSpent.setValue(getValue());
+	end
+end
+
+function onInit()
+	onValueChanged()
+end
+</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -2009,7 +2029,7 @@ end
       {"Name":"RelativeMargin"},
       {"Name":"RelativeStacking"},
       {"Name":"ScriptFile"},
-      {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":".Notes.BotVehicle.WoundsTaken"}},
+      {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":".Notes.BotVehicle.WoundThreshold"}},
       {"Name":"StackVertWith"},
       {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
       {"Name":"Tooltip","Value":{"@xsi:type":"xsd:string"}},

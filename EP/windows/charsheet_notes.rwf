@@ -432,7 +432,15 @@ end</LUACode>
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"252"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"60"}}
 ]}}</Definition>
-    <LUACode />
+    <LUACode>function onDrop(x, y, dragdata)
+	local sClass,sRecord = dragdata.getShortcutData();
+	Debug.chat(sRecord, DB.getPath(window.getDatabaseNode())..".Notes.BotVehicle")
+	if (sClass=="BotVehicleSidebarWindow" or sClass=="BotVehicleWindow") and sRecord~=DB.getPath(window.getDatabaseNode()) and sRecord~="" then
+		DB.copyNode(sRecord, DB.getPath(window.getDatabaseNode())..".Notes.BotVehicle");
+		setValue("BotVehicleWindow", "");
+	end
+end
+</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -1684,7 +1692,10 @@ end</LUACode>
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"274"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"60"}}
 ]}}</Definition>
-    <LUACode />
+    <LUACode>function onDrop(x, y, dragdata)
+	window.BotVehicleLink.onDrop(x, y, dragdata);
+end
+</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
