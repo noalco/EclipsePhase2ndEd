@@ -17,6 +17,9 @@
 	&lt;string name="language_value_russian"&gt;Russian&lt;/string&gt;
 	&lt;string name="language_value_skandinaviska"&gt;Skandinaviska&lt;/string&gt;
 	&lt;string name="language_value_spanish"&gt;Spanish&lt;/string&gt;
+
+	&lt;string name="language_value_chinese"&gt;Chinese&lt;/string&gt;
+
 &lt;/root&gt;</XML>
   </XMLFiles>
 </DocumentElement>

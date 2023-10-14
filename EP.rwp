@@ -60440,29 +60440,28 @@ end
     <FolderID>20</FolderID>
     <Script>function onInit()	
 	-- Languages
+	GameSystem.languagefonts = {
+		[Interface.getString("language_value_arabic")] = "Arabic",
+--		[Interface.getString("language_value_chinese")] = "Chinese",
+		[Interface.getString("language_value_hindi")] = "Hindi",
+--		[Interface.getString("language_value_russian")] = "Dwarven",
+		[Interface.getString("language_value_skandinaviska")] = "Skandinaviska",
+	}
 	GameSystem.languages = {
 		-- Standard languages
 		[Interface.getString("language_value_common")] = "",
-		[Interface.getString("language_value_arabic")] = "",
+		[Interface.getString("language_value_arabic")] = GameSystem.languagefonts[Interface.getString("language_value_arabic")]; -- "Arabic",
 		[Interface.getString("language_value_cantonese")] = "",
 		[Interface.getString("language_value_english")] = "",
 		[Interface.getString("language_value_french")] = "",
-		[Interface.getString("language_value_hindi")] = "",
+		[Interface.getString("language_value_hindi")] = GameSystem.languagefonts[Interface.getString("language_value_hindi")]; -- "Hindi",
 		[Interface.getString("language_value_japanese")] = "",
 		[Interface.getString("language_value_mandarin")] = "",
 		[Interface.getString("language_value_portuguese")] = "",
 		[Interface.getString("language_value_russian")] = "",
-		[Interface.getString("language_value_skandinaviska")] = "",
+		[Interface.getString("language_value_skandinaviska")] = GameSystem.languagefonts[Interface.getString("language_value_skandinaviska")]; -- "Skandinaviska",
 		[Interface.getString("language_value_spanish")] = "",
 	}
---	languagefonts = {
---		[Interface.getString("language_value_celestial")] = "Celestial",
---		[Interface.getString("language_value_draconic")] = "Draconic",
---		[Interface.getString("language_value_dwarvish")] = "Dwarven",
---		[Interface.getString("language_value_elvish")] = "Elven",
---		[Interface.getString("language_value_infernal")] = "Infernal",
---		[Interface.getString("language_value_primordial")] = "Primordial",
---	}
 	if Session.IsHost then
 		DB.setPublic(DB.createNode(LanguageManager.CAMPAIGN_LANGUAGE_LIST), true);
 		if DB.getChildCount(LanguageManager.CAMPAIGN_LANGUAGE_LIST) == 0 then
@@ -60832,6 +60831,9 @@ end</Script>
 	&lt;string name="language_value_russian"&gt;Russian&lt;/string&gt;
 	&lt;string name="language_value_skandinaviska"&gt;Skandinaviska&lt;/string&gt;
 	&lt;string name="language_value_spanish"&gt;Spanish&lt;/string&gt;
+
+	&lt;string name="language_value_chinese"&gt;Chinese&lt;/string&gt;
+
 &lt;/root&gt;</XML>
   </XMLFiles>
 </DocumentElement>
@@ -61248,6 +61250,36 @@ end</Script>
     <FontFamilyName>Noto Sans</FontFamilyName>
     <FontSize>13</FontSize>
     <FontColor>255;255;255;255</FontColor>
+    <ShadowOffset />
+    <ShadowColor>0;0;0;0</ShadowColor>
+  </Fonts>
+  <Fonts>
+    <FontName>Arabic</FontName>
+    <FolderID>14</FolderID>
+    <FontFile>graphics\fonts\AcehDarusalam.ttf</FontFile>
+    <FontFamilyName>Aceh Darusalam</FontFamilyName>
+    <FontSize>60</FontSize>
+    <FontColor>0;0;0;0</FontColor>
+    <ShadowOffset />
+    <ShadowColor>0;0;0;0</ShadowColor>
+  </Fonts>
+  <Fonts>
+    <FontName>Hindi</FontName>
+    <FolderID>14</FolderID>
+    <FontFile>graphics\fonts\KRDEV010.TTF</FontFile>
+    <FontFamilyName>Kruti Dev 010</FontFamilyName>
+    <FontSize>60</FontSize>
+    <FontColor>0;0;0;0</FontColor>
+    <ShadowOffset />
+    <ShadowColor>0;0;0;0</ShadowColor>
+  </Fonts>
+  <Fonts>
+    <FontName>Skandinaviska</FontName>
+    <FolderID>14</FolderID>
+    <FontFile>graphics\fonts\runic regular.ttf</FontFile>
+    <FontFamilyName>Runic</FontFamilyName>
+    <FontSize>60</FontSize>
+    <FontColor>0;0;0;0</FontColor>
     <ShadowOffset />
     <ShadowColor>0;0;0;0</ShadowColor>
   </Fonts>
