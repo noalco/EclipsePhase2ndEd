@@ -58,6 +58,10 @@ function constructDefaultSkills()
 						DB.setValue(Tools.getCharNodePath(w.getDatabaseNode())..".Paths.MeleeSkillPath", "string", w.getDatabaseNode().getPath());
 					elseif k=="Guns" then
 						DB.setValue(Tools.getCharNodePath(w.getDatabaseNode())..".Paths.GunsSkillPath", "string", w.getDatabaseNode().getPath());
+					elseif k=="Fray" then
+						DB.setValue(Tools.getCharNodePath(w.getDatabaseNode())..".Paths.FraySkillPath", "string", w.getDatabaseNode().getPath());
+					elseif k=="Fray/2 (vs. ranged attacks)" then
+						DB.setValue(Tools.getCharNodePath(w.getDatabaseNode())..".Paths.Fray2SkillPath", "string", w.getDatabaseNode().getPath());
 					end
 				end
 			end
