@@ -74,10 +74,9 @@ function NewCharinvOnDrop(x, y, dragdata)
 		local sType=DB.getValue(sRecord..".Type", "");
 		if sType=="Melee Weapon" or sType=="Ranged Weapon" or sType=="Micromissil/Minigrenade" then
 			local NewCombatNode=DB.createChild(DB.getPath(getDatabaseNode(), "combatlist"));
-			Debug.chat(NewCombatNode)
 			if NewCombatNode then
 				DB.copyNode(sRecord, NewCombatNode);
-				DB.setValue(NewCombatNode, "link", "windowreference", "item", "");
+				DB.setValue(NewCombatNode, "link", "windowreference", "item_combat", "");
 			end
 		end
 	end
