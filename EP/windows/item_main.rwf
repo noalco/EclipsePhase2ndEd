@@ -332,7 +332,7 @@ end</LUACode>
       {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":".Weapon.AttackSkill"}},
       {"Name":"StackVertWith"},
       {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
-      {"Name":"Tooltip"},
+      {"Name":"Tooltip","Value":{"@xsi:type":"xsd:string","#text":"For Exotic Skills, use \"Exotic Skill: exotic skill name\" format (exmple: Exotic Skill: Monowire Garrote)"}},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"92"}},
@@ -343,7 +343,7 @@ end</LUACode>
 	local bReadOnlyState;
 	if sType=="melee" then
 		bReadOnlyState=false;
-	elseif sType=="beam" or sType=="spray" then
+	elseif sType=="beam" or sType=="spray" or sType=="micromissil/minigrenade" then
 		bReadOnlyState=true;
 	elseif sType=="thrown" then
 		bReadOnlyState=false;
@@ -354,7 +354,7 @@ end</LUACode>
 	end
 	
 	setReadOnly(bReadOnly or bReadOnlyState);
-	local bVisible=not (bReadOnly and getValue()=="") and (window.Type.isMeleeWeapon() or window.Type.isRangedWeapon());
+	local bVisible=not (bReadOnly and getValue()=="") and window.Type.isWeapon();
 	setVisible(bVisible);
 	window.LabelAttackSkill.setVisible(bVisible);
 end
@@ -364,7 +364,7 @@ function UpdateAttackSkill()
 	if sType=="melee" then
 		setValue("Melee");
 		setReadOnly(false);
-	elseif sType=="beam" or sType=="spray" then
+	elseif sType=="beam" or sType=="spray" or sType=="micromissil/minigrenade" then
 		setValue("Guns");
 		setReadOnly(true);
 	elseif sType=="thrown" then
@@ -4087,6 +4087,9 @@ end</LUACode>
 		elseif sRangedType=="Weapon System" then
 			setValue("system");
 		end
+		window.AttackSkill.UpdateAttackSkill();
+	elseif sTypeValue=="Micromissil/Minigrenade" then
+		setValue("micromissil/minigrenade");
 		window.AttackSkill.UpdateAttackSkill();
 	end
 end
