@@ -53,12 +53,35 @@
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"0"}}
 ]}}</Definition>
-    <LUACode>function onInit()
+    <LUACode>local list_charinvOriginalOnDrop;
+function onInit()
 	ItemAutomation();
 	local charNode=Tools.getCharNodePath(getDatabaseNode());
 	DB.addHandler(charNode..".Morph.Durability", "onUpdate", UpdateMultiLayerArmorPenalties);
 	DB.addHandler(charNode..".Aptitudes.Scores.Somatics", "onUpdate", UpdateMultiLayerArmorPenalties);
 	DB.addHandler(charNode..".inventorylist", "onChildUpdate", ItemAutomation);
+	list_charinvOriginalOnDrop=inventorylist.onDrop;
+	inventorylist.onDrop=NewCharinvOnDrop;
+end
+
+function NewCharinvOnDrop(x, y, dragdata)
+	local nNumItemsPrev=inventorylist.getWindowCount();
+	local r=list_charinvOriginalOnDrop(x, y, dragdata);
+	local nNumItemsPost=inventorylist.getWindowCount();
+	local sClass,sRecord = dragdata.getShortcutData();
+	
+	if r and sClass=="item" and nNumItemsPost&gt;nNumItemsPrev then
+		local sType=DB.getValue(sRecord..".Type", "");
+		if sType=="Melee Weapon" or sType=="Ranged Weapon" or sType=="Micromissil/Minigrenade" then
+			local NewCombatNode=DB.createChild(DB.getPath(getDatabaseNode(), "combatlist"));
+			Debug.chat(NewCombatNode)
+			if NewCombatNode then
+				DB.copyNode(sRecord, NewCombatNode);
+				DB.setValue(NewCombatNode, "link", "windowreference", "item", "");
+			end
+		end
+	end
+	return r;
 end
 
 function ItemAutomation()
@@ -388,7 +411,7 @@ end
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"436"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"423"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"87"}}
 ]}}</Definition>
     <LUACode />
@@ -441,7 +464,7 @@ end
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"461"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"444"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"87"}}
 ]}}</Definition>
     <LUACode />
