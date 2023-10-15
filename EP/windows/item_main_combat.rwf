@@ -767,14 +767,7 @@ end</LUACode>
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"10"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"177"}}
 ]}}</Definition>
-    <LUACode>function update()
-	local bVisible=window.Type.isWeapon() or
-				   window.Type.isKineticAmmo() and (window.DamageValueMod.isVisible() or window.Quantity.isVisible()) or
-				   window.Type.isArmor() or
-				   window.Type.isArmorMod() or
-				   window.Type.isHealingRepair() and (window.DamageHealingRate.isVisible() or window.WoundHealingRate.isVisible() or window.EffectDuration.isVisible())
-	setVisible(bVisible);
-end</LUACode>
+    <LUACode />
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -910,7 +903,6 @@ function update()
 			c.update(bReadOnly)
 		end
 	end
-	Divider.update();
 end
 </LUACode>
     <GroupIndex>0</GroupIndex>
@@ -1518,7 +1510,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>item_main_combat</WindowName>
     <ControlName>LabelQuantity</ControlName>
-    <ZIndex>46</ZIndex>
+    <ZIndex>44</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"top","AnchorTo":"bottom","Parent":"topAnchor"}}},
@@ -2008,7 +2000,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>item_main_combat</WindowName>
     <ControlName>Quantity</ControlName>
-    <ZIndex>47</ZIndex>
+    <ZIndex>45</ZIndex>
     <ControlClass>FGNumberField</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"top","AnchorTo":"top","Parent":"LabelQuantity"}}},
@@ -2748,7 +2740,7 @@ end</LUACode>
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"0"}}
 ]}}</Definition>
     <LUACode>function onInit()
-	if getValue()=="" then setListValue("Miscelaneous"); end
+	if getValue()=="" then setListValue("Melee Weapon"); end
 end
 
 function onValueChanged()
