@@ -35026,7 +35026,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>item_combat</WindowName>
     <ControlName>IconControl1</ControlName>
-    <ZIndex>7</ZIndex>
+    <ZIndex>5</ZIndex>
     <ControlClass>FGIconControl</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -35198,7 +35198,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>item_combat</WindowName>
     <ControlName>locked</ControlName>
-    <ZIndex>10</ZIndex>
+    <ZIndex>8</ZIndex>
     <ControlClass>FGButton</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -35260,7 +35260,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>item_combat</WindowName>
     <ControlName>main</ControlName>
-    <ZIndex>8</ZIndex>
+    <ZIndex>6</ZIndex>
     <ControlClass>FGSubWindow</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"Activate","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
@@ -35430,7 +35430,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>item_combat</WindowName>
     <ControlName>ScrollBar1</ControlName>
-    <ZIndex>9</ZIndex>
+    <ZIndex>7</ZIndex>
     <ControlClass>FGScrollBar</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -35814,7 +35814,7 @@ end</LUACode>
       {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":".Weapon.AttackSkill"}},
       {"Name":"StackVertWith"},
       {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
-      {"Name":"Tooltip","Value":{"@xsi:type":"xsd:string","#text":"For Exotic Skills, use the \"Exotic Skill: exotic skill name\" format (exmple: Exotic Skill: Monowire Garrote)"}},
+      {"Name":"Tooltip","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"92"}},
@@ -35825,7 +35825,7 @@ end</LUACode>
 	local bReadOnlyState;
 	if sType=="melee" then
 		bReadOnlyState=false;
-	elseif sType=="beam" or sType=="spray" or sType=="micromissile/minigrenade" then
+	elseif sType=="beam" or sType=="spray" or sType=="micromissile/minigrenade" or sType=="seeker" then
 		bReadOnlyState=true;
 	elseif sType=="thrown" then
 		bReadOnlyState=false;
@@ -35834,7 +35834,7 @@ end</LUACode>
 	else
 		bReadOnlyState=false;
 	end
-	
+				
 	setReadOnly(bReadOnly or bReadOnlyState);
 	local bVisible=not (bReadOnly and getValue()=="") and window.Type.isWeapon();
 	setVisible(bVisible);
@@ -35846,7 +35846,7 @@ function UpdateAttackSkill()
 	if sType=="melee" then
 		setValue("Melee");
 		setReadOnly(false);
-	elseif sType=="beam" or sType=="spray" or sType=="micromissile/minigrenade" then
+	elseif sType=="beam" or sType=="spray" or sType=="micromissile/minigrenade" or sType=="seeker" then
 		setValue("Guns");
 		setReadOnly(true);
 	elseif sType=="thrown" then
@@ -35859,6 +35859,22 @@ function UpdateAttackSkill()
 		setValue("");
 		setReadOnly(false);
 	end
+	UpdateToolTip();
+end
+
+function UpdateToolTip()
+	local sType=window.WeaponType.getValue();	
+	local sToolTip="";
+	if sType=="melee" then
+		sToolTip=Interface.getString("weapon_type_tooltip");
+	elseif sType=="thrown" then
+		sToolTip=Interface.getString("weapon_type_tooltip");
+	end
+	setTooltipText(sToolTip);
+end
+
+function onInit()
+	UpdateToolTip()
 end
 
 -- 	Attack skills:
@@ -38830,7 +38846,7 @@ end</LUACode>
       {"Name":"AdvancedTemplate"},
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"ButtonOffset"},
-      {"Name":"ComboItems","Value":{"@xsi:type":"ArrayOfLabelValue","LabelValue":[{"Label":"Beam Weapon","Value":"Beam Weapon"},{"Label":"Spray Weapon","Value":"Spray Weapon"},{"Label":"Thrown Weapon","Value":"Thrown Weapon"},{"Label":"Weapon System","Value":"Weapon System"}]}},
+      {"Name":"ComboItems","Value":{"@xsi:type":"ArrayOfLabelValue","LabelValue":[{"Label":"Beam Weapon","Value":"Beam Weapon"},{"Label":"Spray Weapon","Value":"Spray Weapon"},{"Label":"Thrown Weapon","Value":"Thrown Weapon"},{"Label":"Weapon System","Value":"Weapon System"},{"Label":"Seeker Weapon","Value":"Seeker Weapon"}]}},
       {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"RangedWeaponType"}},
       {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
       {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
@@ -39634,6 +39650,8 @@ end</LUACode>
 			setValue("thrown");
 		elseif sRangedType=="Weapon System" then
 			setValue("system");
+		elseif sRangedType=="Seeker Weapon" then
+			setValue("seeker");
 		end
 		window.AttackSkill.UpdateAttackSkill();
 	elseif sTypeValue=="Micromissile/Minigrenade" then
@@ -40059,7 +40077,7 @@ end</LUACode>
 	local bReadOnlyState;
 	if sType=="melee" then
 		bReadOnlyState=false;
-	elseif sType=="beam" or sType=="spray" or sType=="micromissile/minigrenade" then
+	elseif sType=="beam" or sType=="spray" or sType=="micromissile/minigrenade" or sType=="seeker" then
 		bReadOnlyState=true;
 	elseif sType=="thrown" then
 		bReadOnlyState=false;
@@ -40080,7 +40098,7 @@ function UpdateAttackSkill()
 	if sType=="melee" then
 		setValue("Melee");
 		setReadOnly(false);
-	elseif sType=="beam" or sType=="spray" or sType=="micromissile/minigrenade" then
+	elseif sType=="beam" or sType=="spray" or sType=="micromissile/minigrenade" or sType=="seeker" then
 		setValue("Guns");
 		setReadOnly(true);
 	elseif sType=="thrown" then
@@ -40093,6 +40111,22 @@ function UpdateAttackSkill()
 		setValue("");
 		setReadOnly(false);
 	end
+	UpdateToolTip();
+end
+
+function UpdateToolTip()
+	local sType=window.WeaponType.getValue();	
+	local sToolTip="";
+	if sType=="melee" then
+		sToolTip=Interface.getString("weapon_type_tooltip");
+	elseif sType=="thrown" then
+		sToolTip=Interface.getString("weapon_type_tooltip");
+	end
+	setTooltipText(sToolTip);
+end
+
+function onInit()
+	UpdateToolTip();
 end
 
 -- 	Attack skills:
@@ -40107,7 +40141,8 @@ end
 --				Exotic skill
 --			Weapon Systems
 --				Interface
---	(*) standard skill</LUACode>
+--	(*) standard skill
+</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -42008,7 +42043,7 @@ end</LUACode>
       {"Name":"AdvancedTemplate"},
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"ButtonOffset"},
-      {"Name":"ComboItems","Value":{"@xsi:type":"ArrayOfLabelValue","LabelValue":[{"Label":"Beam Weapon","Value":"Beam Weapon"},{"Label":"Spray Weapon","Value":"Spray Weapon"},{"Label":"Thrown Weapon","Value":"Thrown Weapon"},{"Label":"Weapon System","Value":"Weapon System"}]}},
+      {"Name":"ComboItems","Value":{"@xsi:type":"ArrayOfLabelValue","LabelValue":[{"Label":"Beam Weapon","Value":"Beam Weapon"},{"Label":"Spray Weapon","Value":"Spray Weapon"},{"Label":"Thrown Weapon","Value":"Thrown Weapon"},{"Label":"Weapon System","Value":"Weapon System"},{"Label":"Seeker Weapon","Value":"Seeker Weapon"}]}},
       {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"RangedWeaponType"}},
       {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
       {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
@@ -42716,6 +42751,8 @@ end</LUACode>
 			setValue("thrown");
 		elseif sRangedType=="Weapon System" then
 			setValue("system");
+		elseif sRangedType=="Seeker Weapon" then
+			setValue("seeker");
 		end
 		window.AttackSkill.UpdateAttackSkill();
 	elseif sTypeValue=="Micromissile/Minigrenade" then
@@ -67217,6 +67254,8 @@ end</Script>
 
 	&lt;string name="language_value_chinese"&gt;Chinese&lt;/string&gt;
 
+	&lt;string name="weapon_type_tooltip"&gt;For Exotic Skills, use the "Exotic Skill: exotic skill name" format (example: Exotic Skill: Monowire Garrote)&lt;/string&gt;
+	
 &lt;/root&gt;</XML>
   </XMLFiles>
 </DocumentElement>

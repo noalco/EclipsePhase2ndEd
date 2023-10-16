@@ -20,6 +20,8 @@
 
 	&lt;string name="language_value_chinese"&gt;Chinese&lt;/string&gt;
 
+	&lt;string name="weapon_type_tooltip"&gt;For Exotic Skills, use the "Exotic Skill: exotic skill name" format (example: Exotic Skill: Monowire Garrote)&lt;/string&gt;
+	
 &lt;/root&gt;</XML>
   </XMLFiles>
 </DocumentElement>

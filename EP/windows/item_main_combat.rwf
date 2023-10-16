@@ -343,7 +343,7 @@ end</LUACode>
 	local bReadOnlyState;
 	if sType=="melee" then
 		bReadOnlyState=false;
-	elseif sType=="beam" or sType=="spray" or sType=="micromissile/minigrenade" then
+	elseif sType=="beam" or sType=="spray" or sType=="micromissile/minigrenade" or sType=="seeker" then
 		bReadOnlyState=true;
 	elseif sType=="thrown" then
 		bReadOnlyState=false;
@@ -364,7 +364,7 @@ function UpdateAttackSkill()
 	if sType=="melee" then
 		setValue("Melee");
 		setReadOnly(false);
-	elseif sType=="beam" or sType=="spray" or sType=="micromissile/minigrenade" then
+	elseif sType=="beam" or sType=="spray" or sType=="micromissile/minigrenade" or sType=="seeker" then
 		setValue("Guns");
 		setReadOnly(true);
 	elseif sType=="thrown" then
@@ -377,6 +377,22 @@ function UpdateAttackSkill()
 		setValue("");
 		setReadOnly(false);
 	end
+	UpdateToolTip();
+end
+
+function UpdateToolTip()
+	local sType=window.WeaponType.getValue();	
+	local sToolTip="";
+	if sType=="melee" then
+		sToolTip=Interface.getString("weapon_type_tooltip");
+	elseif sType=="thrown" then
+		sToolTip=Interface.getString("weapon_type_tooltip");
+	end
+	setTooltipText(sToolTip);
+end
+
+function onInit()
+	UpdateToolTip();
 end
 
 -- 	Attack skills:
@@ -391,7 +407,8 @@ end
 --				Exotic skill
 --			Weapon Systems
 --				Interface
---	(*) standard skill</LUACode>
+--	(*) standard skill
+</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -2292,7 +2309,7 @@ end</LUACode>
       {"Name":"AdvancedTemplate"},
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"ButtonOffset"},
-      {"Name":"ComboItems","Value":{"@xsi:type":"ArrayOfLabelValue","LabelValue":[{"Label":"Beam Weapon","Value":"Beam Weapon"},{"Label":"Spray Weapon","Value":"Spray Weapon"},{"Label":"Thrown Weapon","Value":"Thrown Weapon"},{"Label":"Weapon System","Value":"Weapon System"}]}},
+      {"Name":"ComboItems","Value":{"@xsi:type":"ArrayOfLabelValue","LabelValue":[{"Label":"Beam Weapon","Value":"Beam Weapon"},{"Label":"Spray Weapon","Value":"Spray Weapon"},{"Label":"Thrown Weapon","Value":"Thrown Weapon"},{"Label":"Weapon System","Value":"Weapon System"},{"Label":"Seeker Weapon","Value":"Seeker Weapon"}]}},
       {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"RangedWeaponType"}},
       {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
       {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
@@ -3000,6 +3017,8 @@ end</LUACode>
 			setValue("thrown");
 		elseif sRangedType=="Weapon System" then
 			setValue("system");
+		elseif sRangedType=="Seeker Weapon" then
+			setValue("seeker");
 		end
 		window.AttackSkill.UpdateAttackSkill();
 	elseif sTypeValue=="Micromissile/Minigrenade" then
