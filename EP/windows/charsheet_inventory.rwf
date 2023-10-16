@@ -72,7 +72,7 @@ function NewCharinvOnDrop(x, y, dragdata)
 	
 	if r and sClass=="item" and nNumItemsPost&gt;nNumItemsPrev then
 		local sType=DB.getValue(sRecord..".Type", "");
-		if sType=="Melee Weapon" or sType=="Ranged Weapon" or sType=="Micromissil/Minigrenade" then
+		if sType=="Melee Weapon" or sType=="Ranged Weapon" or sType=="Micromissile/Minigrenade" then
 			local NewCombatNode=DB.createChild(DB.getPath(getDatabaseNode(), "combatlist"));
 			if NewCombatNode then
 				DB.copyNode(sRecord, NewCombatNode);

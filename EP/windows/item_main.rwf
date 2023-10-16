@@ -141,7 +141,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>item_main</WindowName>
     <ControlName>AreaEffect</ControlName>
-    <ZIndex>44</ZIndex>
+    <ZIndex>45</ZIndex>
     <ControlClass>FGStringField</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"top","AnchorTo":"top","Parent":"LabelAreaEffect"}}},
@@ -219,7 +219,7 @@ end</LUACode>
       {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"ArmorUsed"}},
       {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
       {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
-      {"Name":"DefaultLabel","Value":{"@xsi:type":"xsd:string","#text":"Kinetic"}},
+      {"Name":"DefaultLabel","Value":{"@xsi:type":"xsd:string","#text":"-"}},
       {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"30"}},
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"100"}},
@@ -253,7 +253,7 @@ end</LUACode>
       {"Name":"StackVertWith"},
       {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
       {"Name":"StringCyclerAlign","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"StringCyclerItems","Value":{"@xsi:type":"ArrayOfLabelValue","LabelValue":{"Label":"Energy","Value":"Energy"}}},
+      {"Name":"StringCyclerItems","Value":{"@xsi:type":"ArrayOfLabelValue","LabelValue":[{"Label":"Kinetic","Value":"Kinetic"},{"Label":"Energy","Value":"Energy"}]}},
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
@@ -332,7 +332,7 @@ end</LUACode>
       {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":".Weapon.AttackSkill"}},
       {"Name":"StackVertWith"},
       {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
-      {"Name":"Tooltip","Value":{"@xsi:type":"xsd:string","#text":"For Exotic Skills, use \"Exotic Skill: exotic skill name\" format (exmple: Exotic Skill: Monowire Garrote)"}},
+      {"Name":"Tooltip","Value":{"@xsi:type":"xsd:string","#text":"For Exotic Skills, use the \"Exotic Skill: exotic skill name\" format (exmple: Exotic Skill: Monowire Garrote)"}},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"92"}},
@@ -343,7 +343,7 @@ end</LUACode>
 	local bReadOnlyState;
 	if sType=="melee" then
 		bReadOnlyState=false;
-	elseif sType=="beam" or sType=="spray" or sType=="micromissil/minigrenade" then
+	elseif sType=="beam" or sType=="spray" or sType=="micromissile/minigrenade" then
 		bReadOnlyState=true;
 	elseif sType=="thrown" then
 		bReadOnlyState=false;
@@ -364,7 +364,7 @@ function UpdateAttackSkill()
 	if sType=="melee" then
 		setValue("Melee");
 		setReadOnly(false);
-	elseif sType=="beam" or sType=="spray" or sType=="micromissil/minigrenade" then
+	elseif sType=="beam" or sType=="spray" or sType=="micromissile/minigrenade" then
 		setValue("Guns");
 		setReadOnly(true);
 	elseif sType=="thrown" then
@@ -597,7 +597,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>item_main</WindowName>
     <ControlName>DamageHealingRate</ControlName>
-    <ZIndex>57</ZIndex>
+    <ZIndex>58</ZIndex>
     <ControlClass>FGStringField</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"top","AnchorTo":"top","Parent":"LabelDamageHealingRate"}}},
@@ -666,7 +666,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>item_main</WindowName>
     <ControlName>DamagePlus</ControlName>
-    <ZIndex>64</ZIndex>
+    <ZIndex>65</ZIndex>
     <ControlClass>FGNumberField</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"top","AnchorTo":"top","Parent":"LabelDamage"}}},
@@ -987,7 +987,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>item_main</WindowName>
     <ControlName>EffectDuration</ControlName>
-    <ZIndex>61</ZIndex>
+    <ZIndex>62</ZIndex>
     <ControlClass>FGStringField</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"top","AnchorTo":"top","Parent":"LabelEffectDuration"}}},
@@ -1056,7 +1056,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>item_main</WindowName>
     <ControlName>EnergyAV</ControlName>
-    <ZIndex>51</ZIndex>
+    <ZIndex>52</ZIndex>
     <ControlClass>FGNumberField</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"top","AnchorTo":"top","Parent":"LabelArmorValue"}}},
@@ -1301,7 +1301,7 @@ end
   <WindowControls>
     <WindowName>item_main</WindowName>
     <ControlName>KineticAV</ControlName>
-    <ZIndex>53</ZIndex>
+    <ZIndex>54</ZIndex>
     <ControlClass>FGNumberField</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"top","AnchorTo":"top","Parent":"LabelArmorValue"}}},
@@ -1426,7 +1426,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>item_main</WindowName>
     <ControlName>LabelAmmo2</ControlName>
-    <ZIndex>63</ZIndex>
+    <ZIndex>64</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"top","AnchorTo":"top","Parent":"LabelAmmo"}}},
@@ -1480,7 +1480,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>item_main</WindowName>
     <ControlName>LabelAreaEffect</ControlName>
-    <ZIndex>43</ZIndex>
+    <ZIndex>44</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"top","AnchorTo":"bottom","Parent":"topAnchor"}}},
@@ -1588,7 +1588,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>item_main</WindowName>
     <ControlName>LabelArmorValue</ControlName>
-    <ZIndex>49</ZIndex>
+    <ZIndex>50</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"top","AnchorTo":"bottom","Parent":"topAnchor"}}},
@@ -1915,7 +1915,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>item_main</WindowName>
     <ControlName>LabelDamageHealingRate</ControlName>
-    <ZIndex>56</ZIndex>
+    <ZIndex>57</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"top","AnchorTo":"bottom","Parent":"topAnchor"}}},
@@ -2131,7 +2131,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>item_main</WindowName>
     <ControlName>LabelEffectDuration</ControlName>
-    <ZIndex>60</ZIndex>
+    <ZIndex>61</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"top","AnchorTo":"bottom","Parent":"topAnchor"}}},
@@ -2185,7 +2185,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>item_main</WindowName>
     <ControlName>LabelEnergy</ControlName>
-    <ZIndex>50</ZIndex>
+    <ZIndex>51</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"top","AnchorTo":"bottom","Parent":"LabelArmorValue"}}},
@@ -2298,7 +2298,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>item_main</WindowName>
     <ControlName>LabelKinetic</ControlName>
-    <ZIndex>52</ZIndex>
+    <ZIndex>53</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"top","AnchorTo":"bottom","Parent":"LabelArmorValue"}}},
@@ -2352,7 +2352,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>item_main</WindowName>
     <ControlName>LabelNoAdditionalArmorLayer</ControlName>
-    <ZIndex>55</ZIndex>
+    <ZIndex>56</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"top","AnchorTo":"top","Parent":"NoAdditionalArmorLayer"}}},
@@ -2406,7 +2406,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>item_main</WindowName>
     <ControlName>LabelQuantity</ControlName>
-    <ZIndex>47</ZIndex>
+    <ZIndex>48</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"top","AnchorTo":"bottom","Parent":"topAnchor"}}},
@@ -2460,7 +2460,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>item_main</WindowName>
     <ControlName>LabelRadius</ControlName>
-    <ZIndex>45</ZIndex>
+    <ZIndex>46</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"top","AnchorTo":"bottom","Parent":"topAnchor"}}},
@@ -2950,7 +2950,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>item_main</WindowName>
     <ControlName>LabelWoundHealingRate</ControlName>
-    <ZIndex>58</ZIndex>
+    <ZIndex>59</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"top","AnchorTo":"bottom","Parent":"topAnchor"}}},
@@ -3004,7 +3004,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>item_main</WindowName>
     <ControlName>NoAdditionalArmorLayer</ControlName>
-    <ZIndex>54</ZIndex>
+    <ZIndex>55</ZIndex>
     <ControlClass>FGCheckbox</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"top","AnchorTo":"bottom","Parent":"topAnchor"}}},
@@ -3064,7 +3064,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>item_main</WindowName>
     <ControlName>Quantity</ControlName>
-    <ZIndex>48</ZIndex>
+    <ZIndex>49</ZIndex>
     <ControlClass>FGNumberField</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"top","AnchorTo":"top","Parent":"LabelQuantity"}}},
@@ -3103,7 +3103,7 @@ end</LUACode>
       {"Name":"Merge"},
       {"Name":"MinimumHeight"},
       {"Name":"MinimumWidth"},
-      {"Name":"MinValue","Value":{"@xsi:type":"xsd:decimal","#text":"1"}},
+      {"Name":"MinValue","Value":{"@xsi:type":"xsd:decimal","#text":"0"}},
       {"Name":"NextTabTarget"},
       {"Name":"NoDrag"},
       {"Name":"NoDrop"},
@@ -3135,7 +3135,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>item_main</WindowName>
     <ControlName>Radius</ControlName>
-    <ZIndex>46</ZIndex>
+    <ZIndex>47</ZIndex>
     <ControlClass>FGStringField</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"top","AnchorTo":"top","Parent":"LabelRadius"}}},
@@ -3264,11 +3264,77 @@ end</LUACode>
 ]}}</Definition>
     <LUACode>function update(bReadOnly)
 	setReadOnly(bReadOnly);
+	window.RangeDesc.setReadOnly(bReadOnly);
 	local bVisible=not (bReadOnly and getValue()==0) and window.Type.isRangedWeapon();
+	local bVisible2=not (bReadOnly and window.RangeDesc.getValue()=="") and window.Type.isRangedWeapon();
 	setVisible(bVisible);
-	window.LabelRange.setVisible(bVisible);
-	return bVisible;
+	window.RangeDesc.setVisible(bVisible2);
+	window.LabelRange.setVisible(bVisible or bVisible2);
+	return bVisible or bVisible2;
 end</LUACode>
+    <GroupIndex>0</GroupIndex>
+    <Template />
+  </WindowControls>
+  <WindowControls>
+    <WindowName>item_main</WindowName>
+    <ControlName>RangeDesc</ControlName>
+    <ZIndex>43</ZIndex>
+    <ControlClass>FGStringField</ControlClass>
+    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"top","AnchorTo":"top","Parent":"LabelRange"}}},
+      {"Name":"AdvancedTemplate"},
+      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"Center"},
+      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"RangeDesc"}},
+      {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
+      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
+      {"Name":"DefaultText","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"DelayKeyUpdate","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"30"}},
+      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"160"}},
+      {"Name":"DevelopmentComments"},
+      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
+      {"Name":"Disabled"},
+      {"Name":"DynamicSize"},
+      {"Name":"EmptyText","Value":{"@xsi:type":"xsd:string","#text":"« Range Desc. »"}},
+      {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"FrameName","Value":{"@xsi:type":"xsd:string","#text":"fielddark"}},
+      {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string","#text":"8,0,8,0"}},
+      {"Name":"GMEditOnly"},
+      {"Name":"GMVisibleOnly"},
+      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"2"}},
+      {"Name":"HoverCursor"},
+      {"Name":"InheritSizePosition"},
+      {"Name":"InsertBefore"},
+      {"Name":"Invisible"},
+      {"Name":"LineOffset"},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
+      {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
+      {"Name":"MultilineSpacing"},
+      {"Name":"NextTabTarget"},
+      {"Name":"NoDrag","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"NoDragselect","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"NoDrop","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"PrevTabTarget"},
+      {"Name":"ReadOnly"},
+      {"Name":"RelativeMargin","Value":{"@xsi:type":"xsd:int","#text":"-5"}},
+      {"Name":"RelativeStacking"},
+      {"Name":"ScriptFile"},
+      {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":".Weapon.RangeDesc"}},
+      {"Name":"StackVertWith"},
+      {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
+      {"Name":"Tooltip"},
+      {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"150"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"352"}}
+]}}</Definition>
+    <LUACode />
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -3825,7 +3891,7 @@ end</LUACode>
       {"Name":"AdvancedTemplate"},
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"ButtonOffset"},
-      {"Name":"ComboItems","Value":{"@xsi:type":"ArrayOfLabelValue","LabelValue":[{"Label":"Miscelaneous","Value":"Miscelaneous"},{"Label":"Melee Weapon","Value":"Melee Weapon"},{"Label":"Ranged Weapon","Value":"Ranged Weapon"},{"Label":"Kinetic Ammo","Value":"Kinetic Ammo"},{"Label":"Micromissil/Minigrenade","Value":"Micromissil/Minigrenade"},{"Label":"Weapon Accesory","Value":"Weapon Accesory"},{"Label":"Armor","Value":"Armor"},{"Label":"Armor Mod","Value":"Armor Mod"},{"Label":"Healing/Repair","Value":"Healing/Repair"},{"Label":"Augmentation","Value":"Augmentation"},{"Label":"Everyday Tech","Value":"Everyday Tech"},{"Label":"Service","Value":"Service"}]}},
+      {"Name":"ComboItems","Value":{"@xsi:type":"ArrayOfLabelValue","LabelValue":[{"Label":"Miscelaneous","Value":"Miscelaneous"},{"Label":"Melee Weapon","Value":"Melee Weapon"},{"Label":"Ranged Weapon","Value":"Ranged Weapon"},{"Label":"Kinetic Ammo","Value":"Kinetic Ammo"},{"Label":"Micromissile/Minigrenade","Value":"Micromissiel/Minigrenade"},{"Label":"Weapon Accesory","Value":"Weapon Accesory"},{"Label":"Armor","Value":"Armor"},{"Label":"Armor Mod","Value":"Armor Mod"},{"Label":"Healing/Repair","Value":"Healing/Repair"},{"Label":"Augmentation","Value":"Augmentation"},{"Label":"Everyday Tech","Value":"Everyday Tech"},{"Label":"Service","Value":"Service"}]}},
       {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"Type"}},
       {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
       {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
@@ -3897,7 +3963,7 @@ function isRangedWeapon()
 end
 
 function isMicromissilMinigrenade()
-	return getValue()=="Micromissil/Minigrenade";
+	return getValue()=="Micromissile/Minigrenade";
 end
 
 function isGroupable()
@@ -4015,7 +4081,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>item_main</WindowName>
     <ControlName>WeaponType</ControlName>
-    <ZIndex>62</ZIndex>
+    <ZIndex>63</ZIndex>
     <ControlClass>FGStringField</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -4088,8 +4154,8 @@ end</LUACode>
 			setValue("system");
 		end
 		window.AttackSkill.UpdateAttackSkill();
-	elseif sTypeValue=="Micromissil/Minigrenade" then
-		setValue("micromissil/minigrenade");
+	elseif sTypeValue=="Micromissile/Minigrenade" then
+		setValue("micromissile/minigrenade");
 		window.AttackSkill.UpdateAttackSkill();
 	end
 end
@@ -4101,7 +4167,7 @@ end
   <WindowControls>
     <WindowName>item_main</WindowName>
     <ControlName>WoundHealingRate</ControlName>
-    <ZIndex>59</ZIndex>
+    <ZIndex>60</ZIndex>
     <ControlClass>FGStringField</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"top","AnchorTo":"top","Parent":"LabelWoundHealingRate"}}},

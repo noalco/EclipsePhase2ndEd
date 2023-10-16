@@ -495,7 +495,7 @@ end
 	local sType=window.WeaponType.getValue();
 	if sType=="melee" then
 		setValue("Melee");
-	elseif sType=="beam" or sType=="spray" or sType=="micromissil/minigrenade" then
+	elseif sType=="beam" or sType=="spray" or sType=="micromissile/minigrenade" then
 		setValue("Guns");
 	elseif sType=="thrown" then
 		setValue("Athletics");
@@ -703,7 +703,7 @@ function UpdateValue()
 	if sDice~="" then
 		if DB.getValue(window.getDatabaseNode(), "ArmorUsed", "Kinetic")=="Energy" then
 			sDice=sDice.." (vs Energy)";
-		else
+		elseif DB.getValue(window.getDatabaseNode(), "ArmorUsed", "Kinetic")=="Kinetic" then
 			sDice=sDice.." (vs Kinetic)";
 		end
 	end
@@ -1467,7 +1467,7 @@ end</LUACode>
       {"Name":"GMVisibleOnly"},
       {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"1"}},
       {"Name":"HoverCursor"},
-      {"Name":"IconCyclerItems","Value":{"@xsi:type":"ArrayOfIconCyclerItem","IconCyclerItem":[{"Icon":"attack_melee","Value":"Melee Weapon","Tooltip":"Melee Weapon"},{"Icon":"attack_ranged","Value":"Ranged Weapon","Tooltip":"Ranged Weapon"},{"Icon":"attack_missile_granade","Value":"Micromissil/Minigrenade","Tooltip":"Micromissil/Minigrenade"}]}},
+      {"Name":"IconCyclerItems","Value":{"@xsi:type":"ArrayOfIconCyclerItem","IconCyclerItem":[{"Icon":"attack_melee","Value":"Melee Weapon","Tooltip":"Melee Weapon"},{"Icon":"attack_ranged","Value":"Ranged Weapon","Tooltip":"Ranged Weapon"},{"Icon":"attack_missile_granade","Value":"Micromissile/Minigrenade","Tooltip":"Micromissile/Minigrenade"}]}},
       {"Name":"InheritSizePosition"},
       {"Name":"InsertBefore"},
       {"Name":"Invisible"},
@@ -1591,8 +1591,8 @@ end
 			setValue("system");
 		end
 		window.AttackSkill.UpdateAttackSkill();
-	elseif sTypeValue=="Micromissil/Minigrenade" then
-		setValue("micromissil/minigrenade");
+	elseif sTypeValue=="Micromissile/Minigrenade" then
+		setValue("micromissile/minigrenade");
 		window.AttackSkill.UpdateAttackSkill();
 	end
 end
