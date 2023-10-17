@@ -215,6 +215,10 @@
     <FolderID>4</FolderID>
   </Windows>
   <Windows>
+    <Name>char_combat_subwindow</Name>
+    <FolderID>4</FolderID>
+  </Windows>
+  <Windows>
     <Name>charsheet</Name>
     <FolderID>1</FolderID>
   </Windows>
@@ -295,7 +299,7 @@
     <FolderID>5</FolderID>
   </Windows>
   <Windows>
-    <Name>item_combat</Name>
+    <Name>item_combat2</Name>
     <FolderID>4</FolderID>
   </Windows>
   <Windows>
@@ -303,7 +307,7 @@
     <FolderID>5</FolderID>
   </Windows>
   <Windows>
-    <Name>item_main_combat</Name>
+    <Name>item_main_combat2</Name>
     <FolderID>4</FolderID>
   </Windows>
   <Windows>
@@ -10099,45 +10103,52 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"250"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"7"}}
 ]}}</Definition>
-    <LUACode>function onInit()
-	DB.addHandler(DB.getPath(window.getDatabaseNode(), "Weapon.AttackSkill"), "onUpdate", UpdateSkill);
-	DB.addHandler(DB.getPath(window.windowlist.window.getDatabaseNode(), "Skills.ActiveSkillsList"), "onChildUpdate", UpdateSkill);
-	UpdateSkill()
+    <LUACode>local dataNode;
+local windowlistNode;
+
+function onInit()
+	dataNode=window.parentcontrol.window.getDatabaseNode();
+	windowlistNode=window.parentcontrol.window.windowlist.window.getDatabaseNode();
+	DB.addHandler(DB.getPath(dataNode, "Weapon.AttackSkill"), "onUpdate", UpdateSkill);
+	DB.addHandler(DB.getPath(windowlistNode, "Skills.ActiveSkillsList"), "onChildUpdate", UpdateSkill);
+	UpdateSkill();
 end
 
 function onClose()
-	DB.removeHandler(DB.getPath(window.getDatabaseNode(), "Weapon.AttackSkill"), "onUpdate", UpdateSkill);
-	DB.removeHandler(DB.getPath(window.windowlist.window.getDatabaseNode(), "Skills.ActiveSkillsList"), "onChildUpdate", UpdateSkill);
+	DB.removeHandler(DB.getPath(dataNode, "Weapon.AttackSkill"), "onUpdate", UpdateSkill);
+	DB.removeHandler(DB.getPath(windowlistNode, "Skills.ActiveSkillsList"), "onChildUpdate", UpdateSkill);
 end
 
 function UpdateSkill()
-	local sSkill=DB.getValue(window.getDatabaseNode(), "Weapon.AttackSkill", ""):lower();
-	local sField="";
-	if sSkill:match("exotic skill:") then
-		sField=sSkill:match("exotic skill:%s*(.*)")
-		sSkill="exotic skill";
-	end
---	DB.getChild(window.windowlist.window.getDatabaseNode(), "Skills.ActiveSkillsList")
-	for _,skillNode in pairs(DB.getChildren(window.windowlist.window.getDatabaseNode(), "Skills.ActiveSkillsList")) do
-		if DB.getValue(skillNode, "name", ""):lower()==sSkill then
-			if sSkill=="exotic skill" then
-				if DB.getValue(skillNode, "Field", ""):lower()==sField then
+	local sType=DB.getValue(dataNode, "Type", "Melee Weapon");	
+	if sType=="Melee Weapon" or sType=="Ranged Weapon" or sType=="Micromissile/Minigrenade" then
+		local sSkill=DB.getValue(dataNode, "Weapon.AttackSkill", ""):lower();
+		local sField="";
+		if sSkill:match("exotic skill:") then
+			sField=sSkill:match("exotic skill:%s*(.*)")
+			sSkill="exotic skill";
+		end
+		for _,skillNode in pairs(DB.getChildren(windowlistNode, "Skills.ActiveSkillsList")) do
+			if DB.getValue(skillNode, "name", ""):lower()==sSkill then
+				if sSkill=="exotic skill" then
+					if DB.getValue(skillNode, "Field", ""):lower()==sField then
+						setValue(DB.getValue(skillNode, "Total", 0));
+						sSkill=DB.getValue(dataNode, "Weapon.AttackSkill", "");
+						setTooltipText(sSkill);
+						window.Icond10_1.setTooltipText(sSkill);
+						window.Icond10_2.setTooltipText(sSkill);
+						window.AttackFrame.setTooltipText(sSkill);
+						return;
+					end
+				else
 					setValue(DB.getValue(skillNode, "Total", 0));
-					sSkill=DB.getValue(window.getDatabaseNode(), "Weapon.AttackSkill", "");
+					sSkill=DB.getValue(dataNode, "Weapon.AttackSkill", "");
 					setTooltipText(sSkill);
 					window.Icond10_1.setTooltipText(sSkill);
 					window.Icond10_2.setTooltipText(sSkill);
 					window.AttackFrame.setTooltipText(sSkill);
 					return;
 				end
-			else
-				setValue(DB.getValue(skillNode, "Total", 0));
-				sSkill=DB.getValue(window.getDatabaseNode(), "Weapon.AttackSkill", "");
-				setTooltipText(sSkill);
-				window.Icond10_1.setTooltipText(sSkill);
-				window.Icond10_2.setTooltipText(sSkill);
-				window.AttackFrame.setTooltipText(sSkill);
-				return;
 			end
 		end
 	end
@@ -10367,7 +10378,7 @@ end
       {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"char_combat"}},
       {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
       {"Name":"DataSource"},
-      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"99"}},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"90"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"446"}},
       {"Name":"DevelopmentComments"},
       {"Name":"Disabled"},
@@ -10544,12 +10555,16 @@ end
 end
 
 function UpdateValue()
-	local sDice=DiceManager.convertDiceToString(DB.getValue(window.getDatabaseNode(), "Weapon.DamageValue"), DB.getValue(window.getDatabaseNode(), "Weapon.DamagePlus"));
-	if sDice~="" then
-		if DB.getValue(window.getDatabaseNode(), "ArmorUsed", "Kinetic")=="Energy" then
-			sDice=sDice.." (vs Energy)";
-		elseif DB.getValue(window.getDatabaseNode(), "ArmorUsed", "Kinetic")=="Kinetic" then
-			sDice=sDice.." (vs Kinetic)";
+	local sType=DB.getValue(window.getDatabaseNode(), "Type", "Melee Weapon");
+	local sDice="";
+	if sType=="Melee Weapon" or sType=="Ranged Weapon" or sType=="Micromissile/Minigrenade" then
+		sDice=DiceManager.convertDiceToString(DB.getValue(window.getDatabaseNode(), "Weapon.DamageValue"), DB.getValue(window.getDatabaseNode(), "Weapon.DamagePlus"));
+		if sDice~="" then
+			if DB.getValue(window.getDatabaseNode(), "ArmorUsed", "Kinetic")=="Energy" then
+				sDice=sDice.." (vs Energy)";
+			elseif DB.getValue(window.getDatabaseNode(), "ArmorUsed", "Kinetic")=="Kinetic" then
+				sDice=sDice.." (vs Kinetic)";
+			end
 		end
 	end
 	setValue(sDice);
@@ -10685,7 +10700,7 @@ end
   <WindowControls>
     <WindowName>char_combat</WindowName>
     <ControlName>idelete</ControlName>
-    <ZIndex>10</ZIndex>
+    <ZIndex>25</ZIndex>
     <ControlClass>FGButton</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -10740,7 +10755,12 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"418"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"9"}}
 ]}}</Definition>
-    <LUACode />
+    <LUACode>function onInit()
+	if window.parentcontrol.window.windowlist.window.attacks_iedit then
+		setVisible(window.parentcontrol.window.windowlist.window.attacks_iedit.getValue()==1);
+	end
+end
+</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -10988,7 +11008,7 @@ end
       {"Name":"InsertBefore"},
       {"Name":"Invisible"},
       {"Name":"LinkFieldAllowDrop"},
-      {"Name":"LinkFieldClass","Value":{"@xsi:type":"xsd:string","#text":"item_combat"}},
+      {"Name":"LinkFieldClass","Value":{"@xsi:type":"xsd:string","#text":"item"}},
       {"Name":"LinkFieldDescriptionField"},
       {"Name":"LinkFieldRecordName"},
       {"Name":"LinkFieldSelfOnEmpty"},
@@ -11289,14 +11309,14 @@ end</LUACode>
   </WindowControls>
   <WindowControls>
     <WindowName>char_combat</WindowName>
-    <ControlName>Type</ControlName>
+    <ControlName>TypeIcon</ControlName>
     <ZIndex>2</ZIndex>
     <ControlClass>FGIconCycler</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
       {"Name":"AdvancedTemplate"},
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
-      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"Type"}},
+      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"TypeIcon"}},
       {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
       {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
       {"Name":"DefaultIcon"},
@@ -11339,8 +11359,20 @@ end</LUACode>
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"7"}}
 ]}}</Definition>
     <LUACode>function onValueChanged()
+	local sTypeIcon=DB.getValue(window.getDatabaseNode(), "TypeIcon", "Melee Weapon");
+	DB.setValue(window.getDatabaseNode(), "Type", "string", sTypeIcon);
+	DB.setValue(window.getDatabaseNode(), "Typevalue", "string", sTypeIcon);
+	UpdateVisibility();
+end
+
+function onInit()
+	super.onInit();
+	UpdateVisibility()
+end
+
+function UpdateVisibility()
 	window.WeaponType.UpdateWeaponType();
-	bIsRanged=DB.getValue(window.getDatabaseNode(), "Type", "Melee Weapon")=="Ranged Weapon";
+	bIsRanged=DB.getValue(window.getDatabaseNode(), "TypeIcon", "Melee Weapon")=="Ranged Weapon";
 	window.LabelAmmo.setVisible(bIsRanged);
 	window.Ammo.setVisible(bIsRanged);
 	window.LabelAmmo2.setVisible(bIsRanged);
@@ -11350,13 +11382,7 @@ end</LUACode>
 	window.StringFM.setVisible(bIsRanged);
 	window.LabelRange.setVisible(bIsRanged);
 	window.Range.setVisible(bIsRanged);
-end
-
-function onInit()
-	super.onInit();
-	onValueChanged();
-end
-</LUACode>
+end</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -11443,6 +11469,119 @@ end
 end
 
 </LUACode>
+    <GroupIndex>0</GroupIndex>
+    <Template />
+  </WindowControls>
+  <WindowControls>
+    <WindowName>char_combat_subwindow</WindowName>
+    <ControlName>Attack</ControlName>
+    <ZIndex>1</ZIndex>
+    <ControlClass>FGSubWindow</ControlClass>
+    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"Activate","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
+      {"Name":"AdvancedTemplate"},
+      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"Attack"}},
+      {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
+      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
+      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"446"}},
+      {"Name":"DevelopmentComments"},
+      {"Name":"Disabled"},
+      {"Name":"DynamicSize","Value":{"@xsi:type":"xsd:string","#text":"Dynamic Height"}},
+      {"Name":"FastInit","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"FrameName"},
+      {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"GMEditOnly"},
+      {"Name":"GMVisibleOnly"},
+      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"2"}},
+      {"Name":"HoverCursor"},
+      {"Name":"InheritSizePosition"},
+      {"Name":"InsertBefore"},
+      {"Name":"Invisible"},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
+      {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
+      {"Name":"NextTabTarget"},
+      {"Name":"NoScroll"},
+      {"Name":"PrevTabTarget"},
+      {"Name":"ReadOnly"},
+      {"Name":"RelativeMargin"},
+      {"Name":"RelativeStacking"},
+      {"Name":"ScriptFile"},
+      {"Name":"Source"},
+      {"Name":"StackVertWith"},
+      {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
+      {"Name":"SubWindowClassName","Value":{"@xsi:type":"xsd:string","#text":"char_combat"}},
+      {"Name":"Tooltip"},
+      {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"0"}}
+]}}</Definition>
+    <LUACode />
+    <GroupIndex>0</GroupIndex>
+    <Template />
+  </WindowControls>
+  <WindowControls>
+    <WindowName>char_combat_subwindow</WindowName>
+    <ControlName>char_combat_subwindow</ControlName>
+    <ZIndex>0</ZIndex>
+    <ControlClass>FGWindow</ControlClass>
+    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AllowResize"},
+      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"BottomMargin","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"Comments"},
+      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"char_combat_subwindow"}},
+      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
+      {"Name":"DataSource"},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"22"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"446"}},
+      {"Name":"DevelopmentComments"},
+      {"Name":"Disabled"},
+      {"Name":"Dynamic"},
+      {"Name":"DynamicSize","Value":{"@xsi:type":"xsd:string","#text":"Dynamic Height"}},
+      {"Name":"FrameName"},
+      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"2"}},
+      {"Name":"HostControl"},
+      {"Name":"HoverCursor"},
+      {"Name":"InheritSizePosition"},
+      {"Name":"Invisible"},
+      {"Name":"Locked"},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
+      {"Name":"MergeWindow"},
+      {"Name":"MinimizedIcon"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
+      {"Name":"NoClose"},
+      {"Name":"NoDelete"},
+      {"Name":"NoMove"},
+      {"Name":"Panel"},
+      {"Name":"PanelModeClient"},
+      {"Name":"PanelModeHost"},
+      {"Name":"PanelModeLocal"},
+      {"Name":"PlayerControl"},
+      {"Name":"Resize","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"RightMargin","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"ScriptFile"},
+      {"Name":"Sharable"},
+      {"Name":"ShareAs"},
+      {"Name":"SoftClose"},
+      {"Name":"Tooltip"},
+      {"Name":"TooltipField"},
+      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"WindowMargins"},
+      {"Name":"WindowTitle"},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"0"}}
+]}}</Definition>
+    <LUACode />
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -14041,15 +14180,15 @@ end
       {"Name":"AcceptDrop","Value":{"@xsi:type":"ArrayOfPropertyAcceptDrop"}},
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
       {"Name":"AdvancedTemplate","Value":{"@xsi:type":"xsd:string"}},
-      {"Name":"AllowCreate","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"AllowCreate"},
       {"Name":"AllowDelete","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"Columns","Value":{"@xsi:type":"PropertyColumns","ColumnWidth":{"@xsi:nil":"true"},"FillDown":{"@xsi:nil":"true"},"FillWidth":{"@xsi:nil":"true"}}},
       {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"attacks"}},
       {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
       {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
-      {"Name":"DataSource","Value":{"@xsi:type":"xsd:string","#text":".combatlist"}},
-      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"314"}},
+      {"Name":"DataSource","Value":{"@xsi:type":"xsd:string","#text":".inventorylist"}},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"290"}},
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"455"}},
       {"Name":"DevelopmentComments"},
@@ -14086,7 +14225,7 @@ end
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"2"}},
       {"Name":"WindowListChildDefinition","Value":{"@xsi:type":"ArrayOfChildDefinition"}},
-      {"Name":"WindowListClassName","Value":{"@xsi:type":"xsd:string","#text":"char_combat"}},
+      {"Name":"WindowListClassName","Value":{"@xsi:type":"xsd:string","#text":"char_combat_subwindow"}},
       {"Name":"WindowListFilterBy","Value":{"@xsi:type":"FilterByDefinition","FilterSourceType":"Control","FilterOnSourceType":"Control"}},
       {"Name":"WindowListSortBy","Value":{"@xsi:type":"ArrayOfSortByDefinition"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"12"}},
@@ -14099,7 +14238,7 @@ end
   <WindowControls>
     <WindowName>charsheet_combat</WindowName>
     <ControlName>attacks_iadd</ControlName>
-    <ZIndex>26</ZIndex>
+    <ZIndex>29</ZIndex>
     <ControlClass>FGButton</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -14131,15 +14270,15 @@ end
       {"Name":"HoverIconName"},
       {"Name":"InheritSizePosition"},
       {"Name":"InsertBefore"},
-      {"Name":"Invisible","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"Invisible"},
       {"Name":"MaximumHeight"},
       {"Name":"MaximumWidth"},
       {"Name":"Merge"},
       {"Name":"MinimumHeight"},
       {"Name":"MinimumWidth"},
       {"Name":"NextTabTarget"},
-      {"Name":"NormalIconName","Value":{"@xsi:type":"xsd:string","#text":"button_add"}},
-      {"Name":"PressedIconName","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"NormalIconName","Value":{"@xsi:type":"xsd:string","#text":"button_weapon"}},
+      {"Name":"PressedIconName","Value":{"@xsi:type":"xsd:string","#text":"button_weapon_down"}},
       {"Name":"PrevTabTarget"},
       {"Name":"ReadOnly"},
       {"Name":"RelativeMargin"},
@@ -14148,10 +14287,10 @@ end
       {"Name":"Source"},
       {"Name":"StackVertWith"},
       {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
-      {"Name":"Tooltip"},
+      {"Name":"Tooltip","Value":{"@xsi:type":"xsd:string","#text":"Add Ewapon"}},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"425"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"423"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"114"}}
 ]}}</Definition>
     <LUACode />
@@ -14161,7 +14300,7 @@ end
   <WindowControls>
     <WindowName>charsheet_combat</WindowName>
     <ControlName>attacks_iedit</ControlName>
-    <ZIndex>27</ZIndex>
+    <ZIndex>26</ZIndex>
     <ControlClass>FGButton</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -14217,8 +14356,10 @@ end
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"114"}}
 ]}}</Definition>
     <LUACode>function onValueChanged()
-	window.attacks_iadd.setVisible(getValue()==1);
-	super.onValueChanged();
+--	window.attacks_iadd.setVisible(getValue()==1);
+	for _,w in pairs(window.attacks.getWindows()) do
+		w.Attack.subwindow.idelete.setVisible(getValue()==1);
+	end
 end</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
@@ -14277,7 +14418,34 @@ end</LUACode>
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"0"}}
 ]}}</Definition>
-    <LUACode />
+    <LUACode>function onInit()
+	DB.addHandler(DB.getPath(getDatabaseNode(), "inventorylist.*.Type"), "onUpdate", UpdateCombatList);
+	
+	attacks.OldAddEntry=attacks.addEntry;
+	attacks.addEntry=NewAddEntry
+	
+	UpdateCombatList();
+end
+
+function onClose()
+	DB.removeHandler(DB.getPath(getDatabaseNode(), "inventorylist.*.Type"), "onUpdate", UpdateCombatList);
+end
+
+function UpdateCombatList()
+	local sType;
+	for _,w in pairs(attacks.getWindows()) do
+		sType=DB.getValue(w.getDatabaseNode(), "Type", "Melee Weapon");	
+		w.Attack.setVisible(sType=="Melee Weapon" or sType=="Ranged Weapon" or sType=="Micromissile/Minigrenade");
+	end
+end
+
+function NewAddEntry(bFocus)
+	local w=attacks.OldAddEntry(bFocus);
+	DB.setValue(w.getDatabaseNode(), "Type", "string", "Melee Weapon");
+	DB.setValue(w.getDatabaseNode(), "Typevalue", "string", "Melee Weapon");
+	DB.setValue(w.getDatabaseNode(), "count", "number", 1);
+	return w;
+end</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -15638,7 +15806,7 @@ end
       {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"ScrollBar1"}},
       {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
       {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
-      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"316"}},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"292"}},
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"20"}},
       {"Name":"DevelopmentComments"},
@@ -34962,7 +35130,7 @@ end</LUACode>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_combat</WindowName>
+    <WindowName>item_combat2</WindowName>
     <ControlName>button_close</ControlName>
     <ZIndex>1</ZIndex>
     <ControlClass>FGButton</ControlClass>
@@ -35024,7 +35192,7 @@ end</LUACode>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_combat</WindowName>
+    <WindowName>item_combat2</WindowName>
     <ControlName>IconControl1</ControlName>
     <ZIndex>5</ZIndex>
     <ControlClass>FGIconControl</ControlClass>
@@ -35076,8 +35244,8 @@ end</LUACode>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_combat</WindowName>
-    <ControlName>item_combat</ControlName>
+    <WindowName>item_combat2</WindowName>
+    <ControlName>item_combat2</ControlName>
     <ZIndex>0</ZIndex>
     <ControlClass>FGWindow</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
@@ -35085,7 +35253,7 @@ end</LUACode>
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"BottomMargin","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"Comments"},
-      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"item_combat"}},
+      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"item_combat2"}},
       {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
       {"Name":"DataSource"},
       {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"415"}},
@@ -35139,7 +35307,7 @@ end</LUACode>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_combat</WindowName>
+    <WindowName>item_combat2</WindowName>
     <ControlName>link</ControlName>
     <ZIndex>3</ZIndex>
     <ControlClass>FGLinkField</ControlClass>
@@ -35166,7 +35334,7 @@ end</LUACode>
       {"Name":"InsertBefore"},
       {"Name":"Invisible"},
       {"Name":"LinkFieldAllowDrop"},
-      {"Name":"LinkFieldClass","Value":{"@xsi:type":"xsd:string","#text":"item"}},
+      {"Name":"LinkFieldClass","Value":{"@xsi:type":"xsd:string","#text":"item_combat"}},
       {"Name":"LinkFieldDescriptionField"},
       {"Name":"LinkFieldRecordName"},
       {"Name":"LinkFieldSelfOnEmpty"},
@@ -35196,7 +35364,7 @@ end</LUACode>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_combat</WindowName>
+    <WindowName>item_combat2</WindowName>
     <ControlName>locked</ControlName>
     <ZIndex>8</ZIndex>
     <ControlClass>FGButton</ControlClass>
@@ -35258,7 +35426,7 @@ end</LUACode>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_combat</WindowName>
+    <WindowName>item_combat2</WindowName>
     <ControlName>main</ControlName>
     <ZIndex>6</ZIndex>
     <ControlClass>FGSubWindow</ControlClass>
@@ -35313,7 +35481,7 @@ end</LUACode>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_combat</WindowName>
+    <WindowName>item_combat2</WindowName>
     <ControlName>name</ControlName>
     <ZIndex>4</ZIndex>
     <ControlClass>FGStringField</ControlClass>
@@ -35376,7 +35544,7 @@ end</LUACode>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_combat</WindowName>
+    <WindowName>item_combat2</WindowName>
     <ControlName>resize</ControlName>
     <ZIndex>2</ZIndex>
     <ControlClass>FGIconControl</ControlClass>
@@ -35428,7 +35596,7 @@ end</LUACode>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_combat</WindowName>
+    <WindowName>item_combat2</WindowName>
     <ControlName>ScrollBar1</ControlName>
     <ZIndex>7</ZIndex>
     <ControlClass>FGScrollBar</ControlClass>
@@ -39436,7 +39604,9 @@ end</LUACode>
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"0"}}
 ]}}</Definition>
     <LUACode>function onInit()
-	if getValue()=="" then setListValue("Miscelaneous"); end
+	if getValue()=="" then
+		setListValue("Miscelaneous");
+	end
 end
 
 function onValueChanged()
@@ -39734,7 +39904,7 @@ end</LUACode>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_main_combat</WindowName>
+    <WindowName>item_main_combat2</WindowName>
     <ControlName>Ammo</ControlName>
     <ZIndex>33</ZIndex>
     <ControlClass>FGNumberField</ControlClass>
@@ -39808,7 +39978,7 @@ end</LUACode>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_main_combat</WindowName>
+    <WindowName>item_main_combat2</WindowName>
     <ControlName>Ammo2</ControlName>
     <ZIndex>34</ZIndex>
     <ControlClass>FGNumberField</ControlClass>
@@ -39873,7 +40043,7 @@ end</LUACode>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_main_combat</WindowName>
+    <WindowName>item_main_combat2</WindowName>
     <ControlName>AreaEffect</ControlName>
     <ZIndex>38</ZIndex>
     <ControlClass>FGStringField</ControlClass>
@@ -39942,7 +40112,7 @@ end</LUACode>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_main_combat</WindowName>
+    <WindowName>item_main_combat2</WindowName>
     <ControlName>ArmorUsed</ControlName>
     <ZIndex>22</ZIndex>
     <ControlClass>FGStringCycler</ControlClass>
@@ -40014,7 +40184,7 @@ end</LUACode>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_main_combat</WindowName>
+    <WindowName>item_main_combat2</WindowName>
     <ControlName>AttackSkill</ControlName>
     <ZIndex>28</ZIndex>
     <ControlClass>FGStringField</ControlClass>
@@ -40147,7 +40317,7 @@ end
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_main_combat</WindowName>
+    <WindowName>item_main_combat2</WindowName>
     <ControlName>Complexity</ControlName>
     <ZIndex>5</ZIndex>
     <ControlClass>FGComboBox</ControlClass>
@@ -40213,7 +40383,7 @@ end</LUACode>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_main_combat</WindowName>
+    <WindowName>item_main_combat2</WindowName>
     <ControlName>DamageAverage</ControlName>
     <ZIndex>20</ZIndex>
     <ControlClass>FGNumberField</ControlClass>
@@ -40278,7 +40448,7 @@ end</LUACode>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_main_combat</WindowName>
+    <WindowName>item_main_combat2</WindowName>
     <ControlName>DamagePlus</ControlName>
     <ZIndex>43</ZIndex>
     <ControlClass>FGNumberField</ControlClass>
@@ -40343,7 +40513,7 @@ end</LUACode>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_main_combat</WindowName>
+    <WindowName>item_main_combat2</WindowName>
     <ControlName>DamageValue</ControlName>
     <ZIndex>17</ZIndex>
     <ControlClass>FGDieField</ControlClass>
@@ -40414,7 +40584,7 @@ end
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_main_combat</WindowName>
+    <WindowName>item_main_combat2</WindowName>
     <ControlName>Description</ControlName>
     <ZIndex>14</ZIndex>
     <ControlClass>FGFormattedText</ControlClass>
@@ -40470,7 +40640,7 @@ end</LUACode>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_main_combat</WindowName>
+    <WindowName>item_main_combat2</WindowName>
     <ControlName>Divider</ControlName>
     <ZIndex>15</ZIndex>
     <ControlClass>FGCustomControl</ControlClass>
@@ -40523,7 +40693,7 @@ end</LUACode>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_main_combat</WindowName>
+    <WindowName>item_main_combat2</WindowName>
     <ControlName>FiringModeSubwindow</ControlName>
     <ZIndex>31</ZIndex>
     <ControlClass>FGSubWindow</ControlClass>
@@ -40580,8 +40750,8 @@ end</LUACode>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_main_combat</WindowName>
-    <ControlName>item_main_combat</ControlName>
+    <WindowName>item_main_combat2</WindowName>
+    <ControlName>item_main_combat2</ControlName>
     <ZIndex>0</ZIndex>
     <ControlClass>FGWindow</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
@@ -40589,7 +40759,7 @@ end</LUACode>
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"BottomMargin","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"Comments"},
-      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"item_main_combat"}},
+      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"item_main_combat2"}},
       {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
       {"Name":"DataSource"},
       {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"228"}},
@@ -40660,7 +40830,7 @@ end
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_main_combat</WindowName>
+    <WindowName>item_main_combat2</WindowName>
     <ControlName>LabelAmmo</ControlName>
     <ZIndex>32</ZIndex>
     <ControlClass>FGLabel</ControlClass>
@@ -40714,7 +40884,7 @@ end
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_main_combat</WindowName>
+    <WindowName>item_main_combat2</WindowName>
     <ControlName>LabelAmmo2</ControlName>
     <ZIndex>42</ZIndex>
     <ControlClass>FGLabel</ControlClass>
@@ -40768,7 +40938,7 @@ end
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_main_combat</WindowName>
+    <WindowName>item_main_combat2</WindowName>
     <ControlName>LabelAreaEffect</ControlName>
     <ZIndex>37</ZIndex>
     <ControlClass>FGLabel</ControlClass>
@@ -40822,7 +40992,7 @@ end
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_main_combat</WindowName>
+    <WindowName>item_main_combat2</WindowName>
     <ControlName>LabelArmorUsed</ControlName>
     <ZIndex>21</ZIndex>
     <ControlClass>FGLabel</ControlClass>
@@ -40876,7 +41046,7 @@ end
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_main_combat</WindowName>
+    <WindowName>item_main_combat2</WindowName>
     <ControlName>LabelAttackSkill</ControlName>
     <ZIndex>27</ZIndex>
     <ControlClass>FGLabel</ControlClass>
@@ -40930,7 +41100,7 @@ end
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_main_combat</WindowName>
+    <WindowName>item_main_combat2</WindowName>
     <ControlName>LabelAverage</ControlName>
     <ZIndex>19</ZIndex>
     <ControlClass>FGLabel</ControlClass>
@@ -40984,7 +41154,7 @@ end
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_main_combat</WindowName>
+    <WindowName>item_main_combat2</WindowName>
     <ControlName>LabelComplexity</ControlName>
     <ZIndex>4</ZIndex>
     <ControlClass>FGLabel</ControlClass>
@@ -41038,7 +41208,7 @@ end
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_main_combat</WindowName>
+    <WindowName>item_main_combat2</WindowName>
     <ControlName>LabelDamage</ControlName>
     <ZIndex>16</ZIndex>
     <ControlClass>FGLabel</ControlClass>
@@ -41092,7 +41262,7 @@ end
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_main_combat</WindowName>
+    <WindowName>item_main_combat2</WindowName>
     <ControlName>LabelDamagePlus</ControlName>
     <ZIndex>18</ZIndex>
     <ControlClass>FGLabel</ControlClass>
@@ -41146,7 +41316,7 @@ end
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_main_combat</WindowName>
+    <WindowName>item_main_combat2</WindowName>
     <ControlName>LabelDescription</ControlName>
     <ZIndex>13</ZIndex>
     <ControlClass>FGLabel</ControlClass>
@@ -41200,7 +41370,7 @@ end
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_main_combat</WindowName>
+    <WindowName>item_main_combat2</WindowName>
     <ControlName>LabelFM</ControlName>
     <ZIndex>29</ZIndex>
     <ControlClass>FGLabel</ControlClass>
@@ -41259,7 +41429,7 @@ end</LUACode>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_main_combat</WindowName>
+    <WindowName>item_main_combat2</WindowName>
     <ControlName>LabelQuantity</ControlName>
     <ZIndex>44</ZIndex>
     <ControlClass>FGLabel</ControlClass>
@@ -41313,7 +41483,7 @@ end</LUACode>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_main_combat</WindowName>
+    <WindowName>item_main_combat2</WindowName>
     <ControlName>LabelRadius</ControlName>
     <ZIndex>39</ZIndex>
     <ControlClass>FGLabel</ControlClass>
@@ -41367,7 +41537,7 @@ end</LUACode>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_main_combat</WindowName>
+    <WindowName>item_main_combat2</WindowName>
     <ControlName>LabelRange</ControlName>
     <ZIndex>35</ZIndex>
     <ControlClass>FGLabel</ControlClass>
@@ -41421,7 +41591,7 @@ end</LUACode>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_main_combat</WindowName>
+    <WindowName>item_main_combat2</WindowName>
     <ControlName>LabelRangedWeaponType</ControlName>
     <ZIndex>25</ZIndex>
     <ControlClass>FGLabel</ControlClass>
@@ -41475,7 +41645,7 @@ end</LUACode>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_main_combat</WindowName>
+    <WindowName>item_main_combat2</WindowName>
     <ControlName>LabelRestricted</ControlName>
     <ZIndex>7</ZIndex>
     <ControlClass>FGLabel</ControlClass>
@@ -41529,7 +41699,7 @@ end</LUACode>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_main_combat</WindowName>
+    <WindowName>item_main_combat2</WindowName>
     <ControlName>LabelSpecialization</ControlName>
     <ZIndex>23</ZIndex>
     <ControlClass>FGLabel</ControlClass>
@@ -41583,7 +41753,7 @@ end</LUACode>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_main_combat</WindowName>
+    <WindowName>item_main_combat2</WindowName>
     <ControlName>LabelTraitsNotes</ControlName>
     <ZIndex>8</ZIndex>
     <ControlClass>FGLabel</ControlClass>
@@ -41637,7 +41807,7 @@ end</LUACode>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_main_combat</WindowName>
+    <WindowName>item_main_combat2</WindowName>
     <ControlName>LabelType</ControlName>
     <ZIndex>2</ZIndex>
     <ControlClass>FGLabel</ControlClass>
@@ -41691,7 +41861,7 @@ end</LUACode>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_main_combat</WindowName>
+    <WindowName>item_main_combat2</WindowName>
     <ControlName>LabelWare</ControlName>
     <ZIndex>10</ZIndex>
     <ControlClass>FGLabel</ControlClass>
@@ -41749,7 +41919,7 @@ end</LUACode>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_main_combat</WindowName>
+    <WindowName>item_main_combat2</WindowName>
     <ControlName>Quantity</ControlName>
     <ZIndex>45</ZIndex>
     <ControlClass>FGNumberField</ControlClass>
@@ -41820,7 +41990,7 @@ end</LUACode>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_main_combat</WindowName>
+    <WindowName>item_main_combat2</WindowName>
     <ControlName>Radius</ControlName>
     <ZIndex>40</ZIndex>
     <ControlClass>FGStringField</ControlClass>
@@ -41889,7 +42059,7 @@ end</LUACode>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_main_combat</WindowName>
+    <WindowName>item_main_combat2</WindowName>
     <ControlName>Range</ControlName>
     <ZIndex>36</ZIndex>
     <ControlClass>FGNumberField</ControlClass>
@@ -41971,7 +42141,7 @@ end</LUACode>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_main_combat</WindowName>
+    <WindowName>item_main_combat2</WindowName>
     <ControlName>RangeDesc</ControlName>
     <ZIndex>46</ZIndex>
     <ControlClass>FGStringField</ControlClass>
@@ -42034,7 +42204,7 @@ end</LUACode>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_main_combat</WindowName>
+    <WindowName>item_main_combat2</WindowName>
     <ControlName>RangedWeaponType</ControlName>
     <ZIndex>26</ZIndex>
     <ControlClass>FGComboBox</ControlClass>
@@ -42108,7 +42278,7 @@ end
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_main_combat</WindowName>
+    <WindowName>item_main_combat2</WindowName>
     <ControlName>Restricted</ControlName>
     <ZIndex>6</ZIndex>
     <ControlClass>FGCheckbox</ControlClass>
@@ -42167,7 +42337,7 @@ end</LUACode>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_main_combat</WindowName>
+    <WindowName>item_main_combat2</WindowName>
     <ControlName>Specialization</ControlName>
     <ZIndex>24</ZIndex>
     <ControlClass>FGStringField</ControlClass>
@@ -42235,7 +42405,7 @@ end</LUACode>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_main_combat</WindowName>
+    <WindowName>item_main_combat2</WindowName>
     <ControlName>StringFM</ControlName>
     <ZIndex>30</ZIndex>
     <ControlClass>FGStringField</ControlClass>
@@ -42317,7 +42487,7 @@ end</LUACode>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_main_combat</WindowName>
+    <WindowName>item_main_combat2</WindowName>
     <ControlName>StringWare</ControlName>
     <ZIndex>11</ZIndex>
     <ControlClass>FGStringField</ControlClass>
@@ -42388,7 +42558,7 @@ end</LUACode>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_main_combat</WindowName>
+    <WindowName>item_main_combat2</WindowName>
     <ControlName>topAnchor</ControlName>
     <ZIndex>1</ZIndex>
     <ControlClass>FGCustomControl</ControlClass>
@@ -42441,7 +42611,7 @@ end</LUACode>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_main_combat</WindowName>
+    <WindowName>item_main_combat2</WindowName>
     <ControlName>TraitsNotes</ControlName>
     <ZIndex>9</ZIndex>
     <ControlClass>FGStringField</ControlClass>
@@ -42509,7 +42679,7 @@ end</LUACode>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_main_combat</WindowName>
+    <WindowName>item_main_combat2</WindowName>
     <ControlName>Type</ControlName>
     <ZIndex>3</ZIndex>
     <ControlClass>FGComboBox</ControlClass>
@@ -42621,7 +42791,7 @@ end
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_main_combat</WindowName>
+    <WindowName>item_main_combat2</WindowName>
     <ControlName>wareSubwindow</ControlName>
     <ZIndex>12</ZIndex>
     <ControlClass>FGSubWindow</ControlClass>
@@ -42678,7 +42848,7 @@ end</LUACode>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_main_combat</WindowName>
+    <WindowName>item_main_combat2</WindowName>
     <ControlName>WeaponType</ControlName>
     <ZIndex>41</ZIndex>
     <ControlClass>FGStringField</ControlClass>

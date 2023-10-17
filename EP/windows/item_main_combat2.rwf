@@ -1,6 +1,6 @@
 <DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
   <WindowControls>
-    <WindowName>item_main_combat</WindowName>
+    <WindowName>item_main_combat2</WindowName>
     <ControlName>Ammo</ControlName>
     <ZIndex>33</ZIndex>
     <ControlClass>FGNumberField</ControlClass>
@@ -74,7 +74,7 @@ end</LUACode>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_main_combat</WindowName>
+    <WindowName>item_main_combat2</WindowName>
     <ControlName>Ammo2</ControlName>
     <ZIndex>34</ZIndex>
     <ControlClass>FGNumberField</ControlClass>
@@ -139,7 +139,7 @@ end</LUACode>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_main_combat</WindowName>
+    <WindowName>item_main_combat2</WindowName>
     <ControlName>AreaEffect</ControlName>
     <ZIndex>38</ZIndex>
     <ControlClass>FGStringField</ControlClass>
@@ -208,7 +208,7 @@ end</LUACode>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_main_combat</WindowName>
+    <WindowName>item_main_combat2</WindowName>
     <ControlName>ArmorUsed</ControlName>
     <ZIndex>22</ZIndex>
     <ControlClass>FGStringCycler</ControlClass>
@@ -280,7 +280,7 @@ end</LUACode>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_main_combat</WindowName>
+    <WindowName>item_main_combat2</WindowName>
     <ControlName>AttackSkill</ControlName>
     <ZIndex>28</ZIndex>
     <ControlClass>FGStringField</ControlClass>
@@ -413,7 +413,7 @@ end
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_main_combat</WindowName>
+    <WindowName>item_main_combat2</WindowName>
     <ControlName>Complexity</ControlName>
     <ZIndex>5</ZIndex>
     <ControlClass>FGComboBox</ControlClass>
@@ -479,7 +479,7 @@ end</LUACode>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_main_combat</WindowName>
+    <WindowName>item_main_combat2</WindowName>
     <ControlName>DamageAverage</ControlName>
     <ZIndex>20</ZIndex>
     <ControlClass>FGNumberField</ControlClass>
@@ -544,7 +544,7 @@ end</LUACode>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_main_combat</WindowName>
+    <WindowName>item_main_combat2</WindowName>
     <ControlName>DamagePlus</ControlName>
     <ZIndex>43</ZIndex>
     <ControlClass>FGNumberField</ControlClass>
@@ -609,7 +609,7 @@ end</LUACode>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_main_combat</WindowName>
+    <WindowName>item_main_combat2</WindowName>
     <ControlName>DamageValue</ControlName>
     <ZIndex>17</ZIndex>
     <ControlClass>FGDieField</ControlClass>
@@ -680,7 +680,7 @@ end
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_main_combat</WindowName>
+    <WindowName>item_main_combat2</WindowName>
     <ControlName>Description</ControlName>
     <ZIndex>14</ZIndex>
     <ControlClass>FGFormattedText</ControlClass>
@@ -736,7 +736,7 @@ end</LUACode>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_main_combat</WindowName>
+    <WindowName>item_main_combat2</WindowName>
     <ControlName>Divider</ControlName>
     <ZIndex>15</ZIndex>
     <ControlClass>FGCustomControl</ControlClass>
@@ -789,7 +789,7 @@ end</LUACode>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_main_combat</WindowName>
+    <WindowName>item_main_combat2</WindowName>
     <ControlName>FiringModeSubwindow</ControlName>
     <ZIndex>31</ZIndex>
     <ControlClass>FGSubWindow</ControlClass>
@@ -846,8 +846,8 @@ end</LUACode>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_main_combat</WindowName>
-    <ControlName>item_main_combat</ControlName>
+    <WindowName>item_main_combat2</WindowName>
+    <ControlName>item_main_combat2</ControlName>
     <ZIndex>0</ZIndex>
     <ControlClass>FGWindow</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
@@ -855,7 +855,7 @@ end</LUACode>
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"BottomMargin","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"Comments"},
-      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"item_main_combat"}},
+      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"item_main_combat2"}},
       {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
       {"Name":"DataSource"},
       {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"228"}},
@@ -926,7 +926,7 @@ end
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_main_combat</WindowName>
+    <WindowName>item_main_combat2</WindowName>
     <ControlName>LabelAmmo</ControlName>
     <ZIndex>32</ZIndex>
     <ControlClass>FGLabel</ControlClass>
@@ -980,7 +980,7 @@ end
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_main_combat</WindowName>
+    <WindowName>item_main_combat2</WindowName>
     <ControlName>LabelAmmo2</ControlName>
     <ZIndex>42</ZIndex>
     <ControlClass>FGLabel</ControlClass>
@@ -1034,7 +1034,7 @@ end
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_main_combat</WindowName>
+    <WindowName>item_main_combat2</WindowName>
     <ControlName>LabelAreaEffect</ControlName>
     <ZIndex>37</ZIndex>
     <ControlClass>FGLabel</ControlClass>
@@ -1088,7 +1088,7 @@ end
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_main_combat</WindowName>
+    <WindowName>item_main_combat2</WindowName>
     <ControlName>LabelArmorUsed</ControlName>
     <ZIndex>21</ZIndex>
     <ControlClass>FGLabel</ControlClass>
@@ -1142,7 +1142,7 @@ end
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_main_combat</WindowName>
+    <WindowName>item_main_combat2</WindowName>
     <ControlName>LabelAttackSkill</ControlName>
     <ZIndex>27</ZIndex>
     <ControlClass>FGLabel</ControlClass>
@@ -1196,7 +1196,7 @@ end
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_main_combat</WindowName>
+    <WindowName>item_main_combat2</WindowName>
     <ControlName>LabelAverage</ControlName>
     <ZIndex>19</ZIndex>
     <ControlClass>FGLabel</ControlClass>
@@ -1250,7 +1250,7 @@ end
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_main_combat</WindowName>
+    <WindowName>item_main_combat2</WindowName>
     <ControlName>LabelComplexity</ControlName>
     <ZIndex>4</ZIndex>
     <ControlClass>FGLabel</ControlClass>
@@ -1304,7 +1304,7 @@ end
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_main_combat</WindowName>
+    <WindowName>item_main_combat2</WindowName>
     <ControlName>LabelDamage</ControlName>
     <ZIndex>16</ZIndex>
     <ControlClass>FGLabel</ControlClass>
@@ -1358,7 +1358,7 @@ end
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_main_combat</WindowName>
+    <WindowName>item_main_combat2</WindowName>
     <ControlName>LabelDamagePlus</ControlName>
     <ZIndex>18</ZIndex>
     <ControlClass>FGLabel</ControlClass>
@@ -1412,7 +1412,7 @@ end
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_main_combat</WindowName>
+    <WindowName>item_main_combat2</WindowName>
     <ControlName>LabelDescription</ControlName>
     <ZIndex>13</ZIndex>
     <ControlClass>FGLabel</ControlClass>
@@ -1466,7 +1466,7 @@ end
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_main_combat</WindowName>
+    <WindowName>item_main_combat2</WindowName>
     <ControlName>LabelFM</ControlName>
     <ZIndex>29</ZIndex>
     <ControlClass>FGLabel</ControlClass>
@@ -1525,7 +1525,7 @@ end</LUACode>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_main_combat</WindowName>
+    <WindowName>item_main_combat2</WindowName>
     <ControlName>LabelQuantity</ControlName>
     <ZIndex>44</ZIndex>
     <ControlClass>FGLabel</ControlClass>
@@ -1579,7 +1579,7 @@ end</LUACode>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_main_combat</WindowName>
+    <WindowName>item_main_combat2</WindowName>
     <ControlName>LabelRadius</ControlName>
     <ZIndex>39</ZIndex>
     <ControlClass>FGLabel</ControlClass>
@@ -1633,7 +1633,7 @@ end</LUACode>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_main_combat</WindowName>
+    <WindowName>item_main_combat2</WindowName>
     <ControlName>LabelRange</ControlName>
     <ZIndex>35</ZIndex>
     <ControlClass>FGLabel</ControlClass>
@@ -1687,7 +1687,7 @@ end</LUACode>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_main_combat</WindowName>
+    <WindowName>item_main_combat2</WindowName>
     <ControlName>LabelRangedWeaponType</ControlName>
     <ZIndex>25</ZIndex>
     <ControlClass>FGLabel</ControlClass>
@@ -1741,7 +1741,7 @@ end</LUACode>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_main_combat</WindowName>
+    <WindowName>item_main_combat2</WindowName>
     <ControlName>LabelRestricted</ControlName>
     <ZIndex>7</ZIndex>
     <ControlClass>FGLabel</ControlClass>
@@ -1795,7 +1795,7 @@ end</LUACode>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_main_combat</WindowName>
+    <WindowName>item_main_combat2</WindowName>
     <ControlName>LabelSpecialization</ControlName>
     <ZIndex>23</ZIndex>
     <ControlClass>FGLabel</ControlClass>
@@ -1849,7 +1849,7 @@ end</LUACode>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_main_combat</WindowName>
+    <WindowName>item_main_combat2</WindowName>
     <ControlName>LabelTraitsNotes</ControlName>
     <ZIndex>8</ZIndex>
     <ControlClass>FGLabel</ControlClass>
@@ -1903,7 +1903,7 @@ end</LUACode>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_main_combat</WindowName>
+    <WindowName>item_main_combat2</WindowName>
     <ControlName>LabelType</ControlName>
     <ZIndex>2</ZIndex>
     <ControlClass>FGLabel</ControlClass>
@@ -1957,7 +1957,7 @@ end</LUACode>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_main_combat</WindowName>
+    <WindowName>item_main_combat2</WindowName>
     <ControlName>LabelWare</ControlName>
     <ZIndex>10</ZIndex>
     <ControlClass>FGLabel</ControlClass>
@@ -2015,7 +2015,7 @@ end</LUACode>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_main_combat</WindowName>
+    <WindowName>item_main_combat2</WindowName>
     <ControlName>Quantity</ControlName>
     <ZIndex>45</ZIndex>
     <ControlClass>FGNumberField</ControlClass>
@@ -2086,7 +2086,7 @@ end</LUACode>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_main_combat</WindowName>
+    <WindowName>item_main_combat2</WindowName>
     <ControlName>Radius</ControlName>
     <ZIndex>40</ZIndex>
     <ControlClass>FGStringField</ControlClass>
@@ -2155,7 +2155,7 @@ end</LUACode>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_main_combat</WindowName>
+    <WindowName>item_main_combat2</WindowName>
     <ControlName>Range</ControlName>
     <ZIndex>36</ZIndex>
     <ControlClass>FGNumberField</ControlClass>
@@ -2237,7 +2237,7 @@ end</LUACode>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_main_combat</WindowName>
+    <WindowName>item_main_combat2</WindowName>
     <ControlName>RangeDesc</ControlName>
     <ZIndex>46</ZIndex>
     <ControlClass>FGStringField</ControlClass>
@@ -2300,7 +2300,7 @@ end</LUACode>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_main_combat</WindowName>
+    <WindowName>item_main_combat2</WindowName>
     <ControlName>RangedWeaponType</ControlName>
     <ZIndex>26</ZIndex>
     <ControlClass>FGComboBox</ControlClass>
@@ -2374,7 +2374,7 @@ end
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_main_combat</WindowName>
+    <WindowName>item_main_combat2</WindowName>
     <ControlName>Restricted</ControlName>
     <ZIndex>6</ZIndex>
     <ControlClass>FGCheckbox</ControlClass>
@@ -2433,7 +2433,7 @@ end</LUACode>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_main_combat</WindowName>
+    <WindowName>item_main_combat2</WindowName>
     <ControlName>Specialization</ControlName>
     <ZIndex>24</ZIndex>
     <ControlClass>FGStringField</ControlClass>
@@ -2501,7 +2501,7 @@ end</LUACode>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_main_combat</WindowName>
+    <WindowName>item_main_combat2</WindowName>
     <ControlName>StringFM</ControlName>
     <ZIndex>30</ZIndex>
     <ControlClass>FGStringField</ControlClass>
@@ -2583,7 +2583,7 @@ end</LUACode>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_main_combat</WindowName>
+    <WindowName>item_main_combat2</WindowName>
     <ControlName>StringWare</ControlName>
     <ZIndex>11</ZIndex>
     <ControlClass>FGStringField</ControlClass>
@@ -2654,7 +2654,7 @@ end</LUACode>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_main_combat</WindowName>
+    <WindowName>item_main_combat2</WindowName>
     <ControlName>topAnchor</ControlName>
     <ZIndex>1</ZIndex>
     <ControlClass>FGCustomControl</ControlClass>
@@ -2707,7 +2707,7 @@ end</LUACode>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_main_combat</WindowName>
+    <WindowName>item_main_combat2</WindowName>
     <ControlName>TraitsNotes</ControlName>
     <ZIndex>9</ZIndex>
     <ControlClass>FGStringField</ControlClass>
@@ -2775,7 +2775,7 @@ end</LUACode>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_main_combat</WindowName>
+    <WindowName>item_main_combat2</WindowName>
     <ControlName>Type</ControlName>
     <ZIndex>3</ZIndex>
     <ControlClass>FGComboBox</ControlClass>
@@ -2887,7 +2887,7 @@ end
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_main_combat</WindowName>
+    <WindowName>item_main_combat2</WindowName>
     <ControlName>wareSubwindow</ControlName>
     <ZIndex>12</ZIndex>
     <ControlClass>FGSubWindow</ControlClass>
@@ -2944,7 +2944,7 @@ end</LUACode>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_main_combat</WindowName>
+    <WindowName>item_main_combat2</WindowName>
     <ControlName>WeaponType</ControlName>
     <ZIndex>41</ZIndex>
     <ControlClass>FGStringField</ControlClass>

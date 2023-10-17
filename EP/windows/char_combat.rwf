@@ -254,45 +254,52 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"250"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"7"}}
 ]}}</Definition>
-    <LUACode>function onInit()
-	DB.addHandler(DB.getPath(window.getDatabaseNode(), "Weapon.AttackSkill"), "onUpdate", UpdateSkill);
-	DB.addHandler(DB.getPath(window.windowlist.window.getDatabaseNode(), "Skills.ActiveSkillsList"), "onChildUpdate", UpdateSkill);
-	UpdateSkill()
+    <LUACode>local dataNode;
+local windowlistNode;
+
+function onInit()
+	dataNode=window.parentcontrol.window.getDatabaseNode();
+	windowlistNode=window.parentcontrol.window.windowlist.window.getDatabaseNode();
+	DB.addHandler(DB.getPath(dataNode, "Weapon.AttackSkill"), "onUpdate", UpdateSkill);
+	DB.addHandler(DB.getPath(windowlistNode, "Skills.ActiveSkillsList"), "onChildUpdate", UpdateSkill);
+	UpdateSkill();
 end
 
 function onClose()
-	DB.removeHandler(DB.getPath(window.getDatabaseNode(), "Weapon.AttackSkill"), "onUpdate", UpdateSkill);
-	DB.removeHandler(DB.getPath(window.windowlist.window.getDatabaseNode(), "Skills.ActiveSkillsList"), "onChildUpdate", UpdateSkill);
+	DB.removeHandler(DB.getPath(dataNode, "Weapon.AttackSkill"), "onUpdate", UpdateSkill);
+	DB.removeHandler(DB.getPath(windowlistNode, "Skills.ActiveSkillsList"), "onChildUpdate", UpdateSkill);
 end
 
 function UpdateSkill()
-	local sSkill=DB.getValue(window.getDatabaseNode(), "Weapon.AttackSkill", ""):lower();
-	local sField="";
-	if sSkill:match("exotic skill:") then
-		sField=sSkill:match("exotic skill:%s*(.*)")
-		sSkill="exotic skill";
-	end
---	DB.getChild(window.windowlist.window.getDatabaseNode(), "Skills.ActiveSkillsList")
-	for _,skillNode in pairs(DB.getChildren(window.windowlist.window.getDatabaseNode(), "Skills.ActiveSkillsList")) do
-		if DB.getValue(skillNode, "name", ""):lower()==sSkill then
-			if sSkill=="exotic skill" then
-				if DB.getValue(skillNode, "Field", ""):lower()==sField then
+	local sType=DB.getValue(dataNode, "Type", "Melee Weapon");	
+	if sType=="Melee Weapon" or sType=="Ranged Weapon" or sType=="Micromissile/Minigrenade" then
+		local sSkill=DB.getValue(dataNode, "Weapon.AttackSkill", ""):lower();
+		local sField="";
+		if sSkill:match("exotic skill:") then
+			sField=sSkill:match("exotic skill:%s*(.*)")
+			sSkill="exotic skill";
+		end
+		for _,skillNode in pairs(DB.getChildren(windowlistNode, "Skills.ActiveSkillsList")) do
+			if DB.getValue(skillNode, "name", ""):lower()==sSkill then
+				if sSkill=="exotic skill" then
+					if DB.getValue(skillNode, "Field", ""):lower()==sField then
+						setValue(DB.getValue(skillNode, "Total", 0));
+						sSkill=DB.getValue(dataNode, "Weapon.AttackSkill", "");
+						setTooltipText(sSkill);
+						window.Icond10_1.setTooltipText(sSkill);
+						window.Icond10_2.setTooltipText(sSkill);
+						window.AttackFrame.setTooltipText(sSkill);
+						return;
+					end
+				else
 					setValue(DB.getValue(skillNode, "Total", 0));
-					sSkill=DB.getValue(window.getDatabaseNode(), "Weapon.AttackSkill", "");
+					sSkill=DB.getValue(dataNode, "Weapon.AttackSkill", "");
 					setTooltipText(sSkill);
 					window.Icond10_1.setTooltipText(sSkill);
 					window.Icond10_2.setTooltipText(sSkill);
 					window.AttackFrame.setTooltipText(sSkill);
 					return;
 				end
-			else
-				setValue(DB.getValue(skillNode, "Total", 0));
-				sSkill=DB.getValue(window.getDatabaseNode(), "Weapon.AttackSkill", "");
-				setTooltipText(sSkill);
-				window.Icond10_1.setTooltipText(sSkill);
-				window.Icond10_2.setTooltipText(sSkill);
-				window.AttackFrame.setTooltipText(sSkill);
-				return;
 			end
 		end
 	end
@@ -522,7 +529,7 @@ end
       {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"char_combat"}},
       {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
       {"Name":"DataSource"},
-      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"99"}},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"90"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"446"}},
       {"Name":"DevelopmentComments"},
       {"Name":"Disabled"},
@@ -699,12 +706,16 @@ end
 end
 
 function UpdateValue()
-	local sDice=DiceManager.convertDiceToString(DB.getValue(window.getDatabaseNode(), "Weapon.DamageValue"), DB.getValue(window.getDatabaseNode(), "Weapon.DamagePlus"));
-	if sDice~="" then
-		if DB.getValue(window.getDatabaseNode(), "ArmorUsed", "Kinetic")=="Energy" then
-			sDice=sDice.." (vs Energy)";
-		elseif DB.getValue(window.getDatabaseNode(), "ArmorUsed", "Kinetic")=="Kinetic" then
-			sDice=sDice.." (vs Kinetic)";
+	local sType=DB.getValue(window.getDatabaseNode(), "Type", "Melee Weapon");
+	local sDice="";
+	if sType=="Melee Weapon" or sType=="Ranged Weapon" or sType=="Micromissile/Minigrenade" then
+		sDice=DiceManager.convertDiceToString(DB.getValue(window.getDatabaseNode(), "Weapon.DamageValue"), DB.getValue(window.getDatabaseNode(), "Weapon.DamagePlus"));
+		if sDice~="" then
+			if DB.getValue(window.getDatabaseNode(), "ArmorUsed", "Kinetic")=="Energy" then
+				sDice=sDice.." (vs Energy)";
+			elseif DB.getValue(window.getDatabaseNode(), "ArmorUsed", "Kinetic")=="Kinetic" then
+				sDice=sDice.." (vs Kinetic)";
+			end
 		end
 	end
 	setValue(sDice);
@@ -840,7 +851,7 @@ end
   <WindowControls>
     <WindowName>char_combat</WindowName>
     <ControlName>idelete</ControlName>
-    <ZIndex>10</ZIndex>
+    <ZIndex>25</ZIndex>
     <ControlClass>FGButton</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -895,7 +906,12 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"418"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"9"}}
 ]}}</Definition>
-    <LUACode />
+    <LUACode>function onInit()
+	if window.parentcontrol.window.windowlist.window.attacks_iedit then
+		setVisible(window.parentcontrol.window.windowlist.window.attacks_iedit.getValue()==1);
+	end
+end
+</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -1143,7 +1159,7 @@ end
       {"Name":"InsertBefore"},
       {"Name":"Invisible"},
       {"Name":"LinkFieldAllowDrop"},
-      {"Name":"LinkFieldClass","Value":{"@xsi:type":"xsd:string","#text":"item_combat"}},
+      {"Name":"LinkFieldClass","Value":{"@xsi:type":"xsd:string","#text":"item"}},
       {"Name":"LinkFieldDescriptionField"},
       {"Name":"LinkFieldRecordName"},
       {"Name":"LinkFieldSelfOnEmpty"},
@@ -1444,14 +1460,14 @@ end</LUACode>
   </WindowControls>
   <WindowControls>
     <WindowName>char_combat</WindowName>
-    <ControlName>Type</ControlName>
+    <ControlName>TypeIcon</ControlName>
     <ZIndex>2</ZIndex>
     <ControlClass>FGIconCycler</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
       {"Name":"AdvancedTemplate"},
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
-      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"Type"}},
+      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"TypeIcon"}},
       {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
       {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
       {"Name":"DefaultIcon"},
@@ -1494,8 +1510,20 @@ end</LUACode>
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"7"}}
 ]}}</Definition>
     <LUACode>function onValueChanged()
+	local sTypeIcon=DB.getValue(window.getDatabaseNode(), "TypeIcon", "Melee Weapon");
+	DB.setValue(window.getDatabaseNode(), "Type", "string", sTypeIcon);
+	DB.setValue(window.getDatabaseNode(), "Typevalue", "string", sTypeIcon);
+	UpdateVisibility();
+end
+
+function onInit()
+	super.onInit();
+	UpdateVisibility()
+end
+
+function UpdateVisibility()
 	window.WeaponType.UpdateWeaponType();
-	bIsRanged=DB.getValue(window.getDatabaseNode(), "Type", "Melee Weapon")=="Ranged Weapon";
+	bIsRanged=DB.getValue(window.getDatabaseNode(), "TypeIcon", "Melee Weapon")=="Ranged Weapon";
 	window.LabelAmmo.setVisible(bIsRanged);
 	window.Ammo.setVisible(bIsRanged);
 	window.LabelAmmo2.setVisible(bIsRanged);
@@ -1505,13 +1533,7 @@ end</LUACode>
 	window.StringFM.setVisible(bIsRanged);
 	window.LabelRange.setVisible(bIsRanged);
 	window.Range.setVisible(bIsRanged);
-end
-
-function onInit()
-	super.onInit();
-	onValueChanged();
-end
-</LUACode>
+end</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>

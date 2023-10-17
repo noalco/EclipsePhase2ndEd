@@ -1,6 +1,6 @@
 <DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
   <WindowControls>
-    <WindowName>item_combat</WindowName>
+    <WindowName>item_combat2</WindowName>
     <ControlName>button_close</ControlName>
     <ZIndex>1</ZIndex>
     <ControlClass>FGButton</ControlClass>
@@ -62,7 +62,7 @@
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_combat</WindowName>
+    <WindowName>item_combat2</WindowName>
     <ControlName>IconControl1</ControlName>
     <ZIndex>5</ZIndex>
     <ControlClass>FGIconControl</ControlClass>
@@ -114,8 +114,8 @@
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_combat</WindowName>
-    <ControlName>item_combat</ControlName>
+    <WindowName>item_combat2</WindowName>
+    <ControlName>item_combat2</ControlName>
     <ZIndex>0</ZIndex>
     <ControlClass>FGWindow</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
@@ -123,7 +123,7 @@
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"BottomMargin","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"Comments"},
-      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"item_combat"}},
+      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"item_combat2"}},
       {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
       {"Name":"DataSource"},
       {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"415"}},
@@ -177,7 +177,7 @@ end</LUACode>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_combat</WindowName>
+    <WindowName>item_combat2</WindowName>
     <ControlName>link</ControlName>
     <ZIndex>3</ZIndex>
     <ControlClass>FGLinkField</ControlClass>
@@ -204,7 +204,7 @@ end</LUACode>
       {"Name":"InsertBefore"},
       {"Name":"Invisible"},
       {"Name":"LinkFieldAllowDrop"},
-      {"Name":"LinkFieldClass","Value":{"@xsi:type":"xsd:string","#text":"item"}},
+      {"Name":"LinkFieldClass","Value":{"@xsi:type":"xsd:string","#text":"item_combat"}},
       {"Name":"LinkFieldDescriptionField"},
       {"Name":"LinkFieldRecordName"},
       {"Name":"LinkFieldSelfOnEmpty"},
@@ -234,7 +234,7 @@ end</LUACode>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_combat</WindowName>
+    <WindowName>item_combat2</WindowName>
     <ControlName>locked</ControlName>
     <ZIndex>8</ZIndex>
     <ControlClass>FGButton</ControlClass>
@@ -296,7 +296,7 @@ end</LUACode>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_combat</WindowName>
+    <WindowName>item_combat2</WindowName>
     <ControlName>main</ControlName>
     <ZIndex>6</ZIndex>
     <ControlClass>FGSubWindow</ControlClass>
@@ -351,7 +351,7 @@ end</LUACode>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_combat</WindowName>
+    <WindowName>item_combat2</WindowName>
     <ControlName>name</ControlName>
     <ZIndex>4</ZIndex>
     <ControlClass>FGStringField</ControlClass>
@@ -414,7 +414,7 @@ end</LUACode>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_combat</WindowName>
+    <WindowName>item_combat2</WindowName>
     <ControlName>resize</ControlName>
     <ZIndex>2</ZIndex>
     <ControlClass>FGIconControl</ControlClass>
@@ -466,7 +466,7 @@ end</LUACode>
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>item_combat</WindowName>
+    <WindowName>item_combat2</WindowName>
     <ControlName>ScrollBar1</ControlName>
     <ZIndex>7</ZIndex>
     <ControlClass>FGScrollBar</ControlClass>

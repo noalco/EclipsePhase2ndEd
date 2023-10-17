@@ -8,15 +8,15 @@
       {"Name":"AcceptDrop","Value":{"@xsi:type":"ArrayOfPropertyAcceptDrop"}},
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
       {"Name":"AdvancedTemplate","Value":{"@xsi:type":"xsd:string"}},
-      {"Name":"AllowCreate","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"AllowCreate"},
       {"Name":"AllowDelete","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"Columns","Value":{"@xsi:type":"PropertyColumns","ColumnWidth":{"@xsi:nil":"true"},"FillDown":{"@xsi:nil":"true"},"FillWidth":{"@xsi:nil":"true"}}},
       {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"attacks"}},
       {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
       {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
-      {"Name":"DataSource","Value":{"@xsi:type":"xsd:string","#text":".combatlist"}},
-      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"314"}},
+      {"Name":"DataSource","Value":{"@xsi:type":"xsd:string","#text":".inventorylist"}},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"290"}},
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"455"}},
       {"Name":"DevelopmentComments"},
@@ -53,7 +53,7 @@
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"2"}},
       {"Name":"WindowListChildDefinition","Value":{"@xsi:type":"ArrayOfChildDefinition"}},
-      {"Name":"WindowListClassName","Value":{"@xsi:type":"xsd:string","#text":"char_combat"}},
+      {"Name":"WindowListClassName","Value":{"@xsi:type":"xsd:string","#text":"char_combat_subwindow"}},
       {"Name":"WindowListFilterBy","Value":{"@xsi:type":"FilterByDefinition","FilterSourceType":"Control","FilterOnSourceType":"Control"}},
       {"Name":"WindowListSortBy","Value":{"@xsi:type":"ArrayOfSortByDefinition"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"12"}},
@@ -66,7 +66,7 @@
   <WindowControls>
     <WindowName>charsheet_combat</WindowName>
     <ControlName>attacks_iadd</ControlName>
-    <ZIndex>26</ZIndex>
+    <ZIndex>29</ZIndex>
     <ControlClass>FGButton</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -98,15 +98,15 @@
       {"Name":"HoverIconName"},
       {"Name":"InheritSizePosition"},
       {"Name":"InsertBefore"},
-      {"Name":"Invisible","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"Invisible"},
       {"Name":"MaximumHeight"},
       {"Name":"MaximumWidth"},
       {"Name":"Merge"},
       {"Name":"MinimumHeight"},
       {"Name":"MinimumWidth"},
       {"Name":"NextTabTarget"},
-      {"Name":"NormalIconName","Value":{"@xsi:type":"xsd:string","#text":"button_add"}},
-      {"Name":"PressedIconName","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"NormalIconName","Value":{"@xsi:type":"xsd:string","#text":"button_weapon"}},
+      {"Name":"PressedIconName","Value":{"@xsi:type":"xsd:string","#text":"button_weapon_down"}},
       {"Name":"PrevTabTarget"},
       {"Name":"ReadOnly"},
       {"Name":"RelativeMargin"},
@@ -115,10 +115,10 @@
       {"Name":"Source"},
       {"Name":"StackVertWith"},
       {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
-      {"Name":"Tooltip"},
+      {"Name":"Tooltip","Value":{"@xsi:type":"xsd:string","#text":"Add Ewapon"}},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"425"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"423"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"114"}}
 ]}}</Definition>
     <LUACode />
@@ -128,7 +128,7 @@
   <WindowControls>
     <WindowName>charsheet_combat</WindowName>
     <ControlName>attacks_iedit</ControlName>
-    <ZIndex>27</ZIndex>
+    <ZIndex>26</ZIndex>
     <ControlClass>FGButton</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -184,8 +184,10 @@
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"114"}}
 ]}}</Definition>
     <LUACode>function onValueChanged()
-	window.attacks_iadd.setVisible(getValue()==1);
-	super.onValueChanged();
+--	window.attacks_iadd.setVisible(getValue()==1);
+	for _,w in pairs(window.attacks.getWindows()) do
+		w.Attack.subwindow.idelete.setVisible(getValue()==1);
+	end
 end</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
@@ -244,7 +246,34 @@ end</LUACode>
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"0"}}
 ]}}</Definition>
-    <LUACode />
+    <LUACode>function onInit()
+	DB.addHandler(DB.getPath(getDatabaseNode(), "inventorylist.*.Type"), "onUpdate", UpdateCombatList);
+	
+	attacks.OldAddEntry=attacks.addEntry;
+	attacks.addEntry=NewAddEntry
+	
+	UpdateCombatList();
+end
+
+function onClose()
+	DB.removeHandler(DB.getPath(getDatabaseNode(), "inventorylist.*.Type"), "onUpdate", UpdateCombatList);
+end
+
+function UpdateCombatList()
+	local sType;
+	for _,w in pairs(attacks.getWindows()) do
+		sType=DB.getValue(w.getDatabaseNode(), "Type", "Melee Weapon");	
+		w.Attack.setVisible(sType=="Melee Weapon" or sType=="Ranged Weapon" or sType=="Micromissile/Minigrenade");
+	end
+end
+
+function NewAddEntry(bFocus)
+	local w=attacks.OldAddEntry(bFocus);
+	DB.setValue(w.getDatabaseNode(), "Type", "string", "Melee Weapon");
+	DB.setValue(w.getDatabaseNode(), "Typevalue", "string", "Melee Weapon");
+	DB.setValue(w.getDatabaseNode(), "count", "number", 1);
+	return w;
+end</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -1605,7 +1634,7 @@ end
       {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"ScrollBar1"}},
       {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
       {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
-      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"316"}},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"292"}},
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"20"}},
       {"Name":"DevelopmentComments"},

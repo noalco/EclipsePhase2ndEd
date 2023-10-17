@@ -3954,7 +3954,9 @@ end</LUACode>
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"0"}}
 ]}}</Definition>
     <LUACode>function onInit()
-	if getValue()=="" then setListValue("Miscelaneous"); end
+	if getValue()=="" then
+		setListValue("Miscelaneous");
+	end
 end
 
 function onValueChanged()
