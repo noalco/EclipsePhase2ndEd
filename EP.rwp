@@ -16157,28 +16157,28 @@ function onInit()
 	DB.addHandler(charNode..".Morph.Durability", "onUpdate", UpdateMultiLayerArmorPenalties);
 	DB.addHandler(charNode..".Aptitudes.Scores.Somatics", "onUpdate", UpdateMultiLayerArmorPenalties);
 	DB.addHandler(charNode..".inventorylist", "onChildUpdate", ItemAutomation);
-	list_charinvOriginalOnDrop=inventorylist.onDrop;
-	inventorylist.onDrop=NewCharinvOnDrop;
+--	list_charinvOriginalOnDrop=inventorylist.onDrop;
+--	inventorylist.onDrop=NewCharinvOnDrop;
 end
 
-function NewCharinvOnDrop(x, y, dragdata)
-	local nNumItemsPrev=inventorylist.getWindowCount();
-	local r=list_charinvOriginalOnDrop(x, y, dragdata);
-	local nNumItemsPost=inventorylist.getWindowCount();
-	local sClass,sRecord = dragdata.getShortcutData();
-	
-	if r and sClass=="item" and nNumItemsPost&gt;nNumItemsPrev then
-		local sType=DB.getValue(sRecord..".Type", "");
-		if sType=="Melee Weapon" or sType=="Ranged Weapon" or sType=="Micromissile/Minigrenade" then
-			local NewCombatNode=DB.createChild(DB.getPath(getDatabaseNode(), "combatlist"));
-			if NewCombatNode then
-				DB.copyNode(sRecord, NewCombatNode);
-				DB.setValue(NewCombatNode, "link", "windowreference", "item_combat", "");
-			end
-		end
-	end
-	return r;
-end
+--function NewCharinvOnDrop(x, y, dragdata)
+--	local nNumItemsPrev=inventorylist.getWindowCount();
+--	local r=list_charinvOriginalOnDrop(x, y, dragdata);
+--	local nNumItemsPost=inventorylist.getWindowCount();
+--	local sClass,sRecord = dragdata.getShortcutData();
+--	
+--	if r and sClass=="item" and nNumItemsPost&gt;nNumItemsPrev then
+--		local sType=DB.getValue(sRecord..".Type", "");
+--		if sType=="Melee Weapon" or sType=="Ranged Weapon" or sType=="Micromissile/Minigrenade" then
+--			local NewCombatNode=DB.createChild(DB.getPath(getDatabaseNode(), "combatlist"));
+--			if NewCombatNode then
+--				DB.copyNode(sRecord, NewCombatNode);
+--				DB.setValue(NewCombatNode, "link", "windowreference", "item_combat", "");
+--			end
+--		end
+--	end
+--	return r;
+--end
 
 function ItemAutomation()
 	local nKineticAV=0;
