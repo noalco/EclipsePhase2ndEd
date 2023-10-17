@@ -212,7 +212,7 @@ end
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"25"}},
       {"Name":"DevelopmentComments"},
-      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
+      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"1d100","DiceRollDescription":"[ATTACK] {@window.AttackSkill.getValue()} (vs {@self.getValue()})","DiceRollType":"AttackCheck","UseModStack":"true","ResetModStack":"true","SecretRoll":{"@xsi:nil":"true"},"DragIcon":"action_attack","AllowDragDrop":"true","ResultHandlerFunction":"RollHandlers.CheckHandler","AdditionalInfo":null}},
       {"Name":"Disabled"},
       {"Name":"DisplaySign"},
       {"Name":"DynamicSize"},
@@ -313,14 +313,6 @@ end
 function onHover(bOnControl)
 	window.AttackShade.setVisible(bOnControl);
 end
-
---function onDoubleClick(x,y)
---	return window.onAttackAction();
---end			
---
---function onDragStart(button, x, y, draginfo)
---	return window.onAttackAction(draginfo);
---end
 </LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
@@ -377,13 +369,17 @@ end
 	window.AttackShade.setVisible(bOnControl);
 end
 
---function onDoubleClick(x,y)
---	return window.onAttackAction();
---end			
---
---function onDragStart(button, x, y, draginfo)
---	return window.onAttackAction(draginfo);
---end</LUACode>
+function onDoubleClick(x, y)
+	return window.AttackCheck.onDoubleClick(x, y);
+end
+
+function onDragStart(button, x, y, draginfo)
+	return window.AttackCheck.onDragStart(button, x, y, draginfo);
+end
+
+function action(dragInfo)
+	window.AttackCheck.action(dragInfo)
+end</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -726,7 +722,7 @@ end</LUACode>
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"130"}},
       {"Name":"DevelopmentComments"},
-      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
+      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"{@self.getValue()}","DiceRollDescription":"[DAMAGE] {@window.name.getValue()}","DiceRollType":"Damage","UseModStack":"true","ResetModStack":"true","SecretRoll":{"@xsi:nil":"true"},"DragIcon":"action_damage","AllowDragDrop":"true","AdditionalInfo":null}},
       {"Name":"Disabled"},
       {"Name":"DynamicSize","Value":{"@xsi:type":"xsd:string","#text":"Dynamic Height"}},
       {"Name":"EmptyText"},
@@ -784,7 +780,11 @@ function UpdateValue()
 			elseif DB.getValue(window.getDatabaseNode(), "ArmorUsed", "Kinetic")=="Kinetic" then
 				sDice=sDice.." (vs Kinetic)";
 			end
+		else
+			sDice="0";
 		end
+	else
+		sDice="0";
 	end
 	setValue(sDice);
 end
@@ -844,13 +844,17 @@ end
 	window.AttackShade.setVisible(bOnControl);
 end
 
---function onDoubleClick(x,y)
---	return window.onAttackAction();
---end			
---
---function onDragStart(button, x, y, draginfo)
---	return window.onAttackAction(draginfo);
---end</LUACode>
+function onDoubleClick(x, y)
+	return window.AttackCheck.onDoubleClick(x, y);
+end
+
+function onDragStart(button, x, y, draginfo)
+	return window.AttackCheck.onDragStart(button, x, y, draginfo);
+end
+
+function action(dragInfo)
+	window.AttackCheck.action(dragInfo)
+end</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -906,13 +910,17 @@ end
 	window.AttackShade.setVisible(bOnControl);
 end
 
---function onDoubleClick(x,y)
---	return window.onAttackAction();
---end			
---
---function onDragStart(button, x, y, draginfo)
---	return window.onAttackAction(draginfo);
---end</LUACode>
+function onDoubleClick(x, y)
+	return window.AttackCheck.onDoubleClick(x, y);
+end
+
+function onDragStart(button, x, y, draginfo)
+	return window.AttackCheck.onDragStart(button, x, y, draginfo);
+end
+
+function action(dragInfo)
+	window.AttackCheck.action(dragInfo)
+end</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
