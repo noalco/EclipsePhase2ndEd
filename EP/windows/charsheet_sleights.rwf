@@ -312,7 +312,7 @@ end
       {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":"InfectionRating.InfectionRatingBase"}},
       {"Name":"StackVertWith"},
       {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
-      {"Name":"Tooltip","Value":{"@xsi:type":"xsd:string","#text":"Psi trait level x 10"}},
+      {"Name":"Tooltip","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"9"}},
@@ -323,18 +323,19 @@ end
 end
 
 function onInit()
-	DB.addHandler(DB.getPath(window.getDatabaseNode(), "Morph.TraitList.*.name"), "onUpdate", UpdateValue);
-	DB.addHandler(DB.getPath(window.getDatabaseNode(), "Morph.TraitList.*.TraitLevel"), "onUpdate", UpdateValue);
+	DB.addHandler(DB.getPath(window.getDatabaseNode(), "Ego.TraitList.*.name"), "onUpdate", UpdateValue);
+	DB.addHandler(DB.getPath(window.getDatabaseNode(), "Ego.TraitList.*.TraitLevel"), "onUpdate", UpdateValue);
 	UpdateValue();
 end
 
 function UpdateValue()
-	for _,n in pairs(DB.getChildren(window.getDatabaseNode(), "Morph.TraitList")) do
+	for _,n in pairs(DB.getChildren(window.getDatabaseNode(), "Ego.TraitList")) do
 		if DB.getValue(n, "name", ""):lower()=="psi" then
 			setValue(10*DB.getValue(n, "TraitLevel", 1));
-			break;
+			return;
 		end
 	end
+	setValue(0);
 end</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
@@ -1421,7 +1422,7 @@ end
       {"Name":"StackVertWith"},
       {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
       {"Name":"TextUnderlined"},
-      {"Name":"Tooltip"},
+      {"Name":"Tooltip","Value":{"@xsi:type":"xsd:string","#text":"Psi trait level x 10"}},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"9"}},
@@ -1475,7 +1476,7 @@ end
       {"Name":"StackVertWith"},
       {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
       {"Name":"TextUnderlined"},
-      {"Name":"Tooltip"},
+      {"Name":"Tooltip","Value":{"@xsi:type":"xsd:string","#text":"Infection Rating Increment"}},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"52"}},
