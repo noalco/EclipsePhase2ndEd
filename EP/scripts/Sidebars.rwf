@@ -65,6 +65,14 @@
 			sEditMode = "play",
 			sSidebarCategory = "character",
 		},
+		["sleights"] = {
+			bExport=true,
+			aDataMap = {"reference.sleights"},
+			sListDisplayClass = "SleightSidebarBase",
+			sRecordDisplayClass ="SleightWindow",
+			sEditMode = "play",
+			sSidebarCategory = "character",
+		},
 	}
 	
 	
