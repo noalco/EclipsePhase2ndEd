@@ -14668,7 +14668,7 @@ end
     <ControlClass>FGNumberField</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
-      {"Name":"AdvancedTemplate"},
+      {"Name":"AdvancedTemplate","Value":{"@xsi:type":"xsd:string","#text":"focus_number"}},
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"InfectionRatingIncrease"}},
       {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
@@ -36115,18 +36115,7 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"223"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"254"}}
 ]}}</Definition>
-    <LUACode>function onValueChanged()
-	if #getValue()&gt;20 then
-		setTooltipText(getValue());
-	else
-		setTooltipText("");
-	end
-end
-
-function onInit()
-	onValueChanged();
-end
-</LUACode>
+    <LUACode />
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -36189,18 +36178,7 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"223"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"274"}}
 ]}}</Definition>
-    <LUACode>function onValueChanged()
-	if #getValue()&gt;20 then
-		setTooltipText(getValue());
-	else
-		setTooltipText("");
-	end
-end
-
-function onInit()
-	onValueChanged();
-end
-</LUACode>
+    <LUACode />
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -37771,18 +37749,7 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"223"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"254"}}
 ]}}</Definition>
-    <LUACode>function onValueChanged()
-	if #getValue()&gt;20 then
-		setTooltipText(getValue());
-	else
-		setTooltipText("");
-	end
-end
-
-function onInit()
-	onValueChanged();
-end
-</LUACode>
+    <LUACode />
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -37845,18 +37812,7 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"223"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"274"}}
 ]}}</Definition>
-    <LUACode>function onValueChanged()
-	if #getValue()&gt;20 then
-		setTooltipText(getValue());
-	else
-		setTooltipText("");
-	end
-end
-
-function onInit()
-	onValueChanged();
-end
-</LUACode>
+    <LUACode />
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -69279,7 +69235,7 @@ end
     <ControlClass>FGNumberField</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"right","AnchorTo":"left","Parent":"idelete"}}},
-      {"Name":"AdvancedTemplate"},
+      {"Name":"AdvancedTemplate","Value":{"@xsi:type":"xsd:string","#text":"focus_number"}},
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"InfectionMod"}},
       {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
@@ -69825,7 +69781,7 @@ end
     <ControlClass>FGNumberField</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
-      {"Name":"AdvancedTemplate"},
+      {"Name":"AdvancedTemplate","Value":{"@xsi:type":"xsd:string","#text":"focus_number"}},
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"InfectionMod"}},
       {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
