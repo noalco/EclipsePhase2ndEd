@@ -10,6 +10,7 @@
 	&lt;string name="library_recordtype_label_interest"&gt;Interest&lt;/string&gt;
 	&lt;string name="library_recordtype_label_traits"&gt;Traits&lt;/string&gt;
 	&lt;string name="library_recordtype_label_morphs"&gt;Morphs&lt;/string&gt;
+	&lt;string name="library_recordtype_label_substrains"&gt;Sub-Strains&lt;/string&gt;
 	&lt;!-- Sidebar categories --&gt;
 	&lt;string name="library_category_label_character"&gt;Character&lt;/string&gt;	
 &lt;/root&gt;      

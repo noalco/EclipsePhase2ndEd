@@ -1,6 +1,6 @@
 <DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
   <WindowControls>
-    <WindowName>SubStrainWindow</WindowName>
+    <WindowName>SubStrainSidebarWindow</WindowName>
     <ControlName>button_close</ControlName>
     <ZIndex>2</ZIndex>
     <ControlClass>FGButton</ControlClass>
@@ -62,7 +62,7 @@
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>SubStrainWindow</WindowName>
+    <WindowName>SubStrainSidebarWindow</WindowName>
     <ControlName>Description</ControlName>
     <ZIndex>4</ZIndex>
     <ControlClass>FGFormattedText</ControlClass>
@@ -99,7 +99,7 @@
       {"Name":"RelativeMargin"},
       {"Name":"RelativeStacking"},
       {"Name":"ScriptFile"},
-      {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":"SubStrain.Description"}},
+      {"Name":"Source","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"StackVertWith"},
       {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
       {"Name":"Tooltip"},
@@ -113,7 +113,7 @@
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>SubStrainWindow</WindowName>
+    <WindowName>SubStrainSidebarWindow</WindowName>
     <ControlName>FreeSleight</ControlName>
     <ZIndex>10</ZIndex>
     <ControlClass>FGStringField</ControlClass>
@@ -162,7 +162,7 @@
       {"Name":"RelativeMargin"},
       {"Name":"RelativeStacking"},
       {"Name":"ScriptFile"},
-      {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":"SubStrain.FreeSleight"}},
+      {"Name":"Source","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"StackVertWith"},
       {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
       {"Name":"Tooltip"},
@@ -176,7 +176,7 @@
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>SubStrainWindow</WindowName>
+    <WindowName>SubStrainSidebarWindow</WindowName>
     <ControlName>LabelDescriptiom</ControlName>
     <ZIndex>5</ZIndex>
     <ControlClass>FGLabel</ControlClass>
@@ -230,7 +230,7 @@
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>SubStrainWindow</WindowName>
+    <WindowName>SubStrainSidebarWindow</WindowName>
     <ControlName>LabelFreeSleight</ControlName>
     <ZIndex>9</ZIndex>
     <ControlClass>FGLabel</ControlClass>
@@ -284,7 +284,7 @@
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>SubStrainWindow</WindowName>
+    <WindowName>SubStrainSidebarWindow</WindowName>
     <ControlName>LabelNegativeTrait</ControlName>
     <ZIndex>7</ZIndex>
     <ControlClass>FGLabel</ControlClass>
@@ -338,7 +338,7 @@
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>SubStrainWindow</WindowName>
+    <WindowName>SubStrainSidebarWindow</WindowName>
     <ControlName>link</ControlName>
     <ZIndex>3</ZIndex>
     <ControlClass>FGLinkField</ControlClass>
@@ -395,7 +395,7 @@
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>SubStrainWindow</WindowName>
+    <WindowName>SubStrainSidebarWindow</WindowName>
     <ControlName>name</ControlName>
     <ZIndex>1</ZIndex>
     <ControlClass>FGStringField</ControlClass>
@@ -444,7 +444,7 @@
       {"Name":"RelativeMargin"},
       {"Name":"RelativeStacking"},
       {"Name":"ScriptFile"},
-      {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":"SubStrain.name"}},
+      {"Name":"Source","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"StackVertWith"},
       {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
       {"Name":"Tooltip"},
@@ -458,7 +458,7 @@
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>SubStrainWindow</WindowName>
+    <WindowName>SubStrainSidebarWindow</WindowName>
     <ControlName>NegativeTrait</ControlName>
     <ZIndex>8</ZIndex>
     <ControlClass>FGStringField</ControlClass>
@@ -507,7 +507,7 @@
       {"Name":"RelativeMargin"},
       {"Name":"RelativeStacking"},
       {"Name":"ScriptFile"},
-      {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":"SubStrain.NegativeTrait"}},
+      {"Name":"Source","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"StackVertWith"},
       {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
       {"Name":"Tooltip"},
@@ -521,7 +521,7 @@
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>SubStrainWindow</WindowName>
+    <WindowName>SubStrainSidebarWindow</WindowName>
     <ControlName>resize</ControlName>
     <ZIndex>11</ZIndex>
     <ControlClass>FGIconControl</ControlClass>
@@ -573,7 +573,7 @@
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>SubStrainWindow</WindowName>
+    <WindowName>SubStrainSidebarWindow</WindowName>
     <ControlName>ScrollBar1</ControlName>
     <ZIndex>13</ZIndex>
     <ControlClass>FGScrollBar</ControlClass>
@@ -627,7 +627,7 @@
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>SubStrainWindow</WindowName>
+    <WindowName>SubStrainSidebarWindow</WindowName>
     <ControlName>ScrollBarDescription</ControlName>
     <ZIndex>6</ZIndex>
     <ControlClass>FGScrollBar</ControlClass>
@@ -681,8 +681,8 @@
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>SubStrainWindow</WindowName>
-    <ControlName>SubStrainWindow</ControlName>
+    <WindowName>SubStrainSidebarWindow</WindowName>
+    <ControlName>SubStrainSidebarWindow</ControlName>
     <ZIndex>0</ZIndex>
     <ControlClass>FGWindow</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
@@ -690,7 +690,7 @@
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"BottomMargin","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"Comments"},
-      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"SubStrainWindow"}},
+      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"SubStrainSidebarWindow"}},
       {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
       {"Name":"DataSource"},
       {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"770"}},
@@ -729,7 +729,7 @@
       {"Name":"Tooltip"},
       {"Name":"TooltipField"},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"WindowMargins"},
+      {"Name":"WindowMargins","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"WindowTitle"},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"0"}}
@@ -739,7 +739,7 @@
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>SubStrainWindow</WindowName>
+    <WindowName>SubStrainSidebarWindow</WindowName>
     <ControlName>SubWindowInfluenceEffects</ControlName>
     <ZIndex>12</ZIndex>
     <ControlClass>FGSubWindow</ControlClass>
@@ -782,7 +782,7 @@
       {"Name":"Source"},
       {"Name":"StackVertWith","Value":{"@xsi:type":"xsd:string","#text":"LabelFreeSleight"}},
       {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
-      {"Name":"SubWindowClassName","Value":{"@xsi:type":"xsd:string","#text":"InfluenceEffectsWindow"}},
+      {"Name":"SubWindowClassName","Value":{"@xsi:type":"xsd:string","#text":"InfluenceEffectsSidebarWindow"}},
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"2"}},

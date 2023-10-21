@@ -1,6 +1,64 @@
 <DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
   <WindowControls>
-    <WindowName>WindowInfluenceEffects</WindowName>
+    <WindowName>InfluenceEffectsWindow</WindowName>
+    <ControlName>InfluenceEffectsWindow</ControlName>
+    <ZIndex>0</ZIndex>
+    <ControlClass>FGWindow</ControlClass>
+    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AllowResize"},
+      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"BottomMargin","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"Comments"},
+      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"InfluenceEffectsWindow"}},
+      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
+      {"Name":"DataSource"},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"312"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"572"}},
+      {"Name":"DevelopmentComments"},
+      {"Name":"Disabled"},
+      {"Name":"Dynamic"},
+      {"Name":"DynamicSize","Value":{"@xsi:type":"xsd:string","#text":"Dynamic Height"}},
+      {"Name":"FrameName","Value":{"@xsi:type":"xsd:string","#text":"EPgroupbox3"}},
+      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"HostControl"},
+      {"Name":"HoverCursor"},
+      {"Name":"InheritSizePosition"},
+      {"Name":"Invisible"},
+      {"Name":"Locked"},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
+      {"Name":"MergeWindow"},
+      {"Name":"MinimizedIcon"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
+      {"Name":"NoClose"},
+      {"Name":"NoDelete"},
+      {"Name":"NoMove"},
+      {"Name":"Panel"},
+      {"Name":"PanelModeClient"},
+      {"Name":"PanelModeHost"},
+      {"Name":"PanelModeLocal"},
+      {"Name":"PlayerControl"},
+      {"Name":"Resize","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"RightMargin","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"ScriptFile"},
+      {"Name":"Sharable"},
+      {"Name":"ShareAs"},
+      {"Name":"SoftClose"},
+      {"Name":"Tooltip"},
+      {"Name":"TooltipField"},
+      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"WindowMargins","Value":{"@xsi:type":"xsd:string","#text":"0,0,0,8"}},
+      {"Name":"WindowTitle"},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"0"}}
+]}}</Definition>
+    <LUACode />
+    <GroupIndex>0</GroupIndex>
+    <Template />
+  </WindowControls>
+  <WindowControls>
+    <WindowName>InfluenceEffectsWindow</WindowName>
     <ControlName>InfluenceEvent1</ControlName>
     <ZIndex>6</ZIndex>
     <ControlClass>FGStringField</ControlClass>
@@ -74,7 +132,7 @@ end
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>WindowInfluenceEffects</WindowName>
+    <WindowName>InfluenceEffectsWindow</WindowName>
     <ControlName>InfluenceEvent2</ControlName>
     <ZIndex>9</ZIndex>
     <ControlClass>FGStringField</ControlClass>
@@ -148,7 +206,7 @@ end
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>WindowInfluenceEffects</WindowName>
+    <WindowName>InfluenceEffectsWindow</WindowName>
     <ControlName>InfluenceEvent3</ControlName>
     <ZIndex>12</ZIndex>
     <ControlClass>FGStringField</ControlClass>
@@ -222,7 +280,7 @@ end
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>WindowInfluenceEffects</WindowName>
+    <WindowName>InfluenceEffectsWindow</WindowName>
     <ControlName>InfluenceEvent4</ControlName>
     <ZIndex>15</ZIndex>
     <ControlClass>FGStringField</ControlClass>
@@ -296,7 +354,7 @@ end
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>WindowInfluenceEffects</WindowName>
+    <WindowName>InfluenceEffectsWindow</WindowName>
     <ControlName>InfluenceEvent5</ControlName>
     <ZIndex>18</ZIndex>
     <ControlClass>FGStringField</ControlClass>
@@ -370,7 +428,7 @@ end
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>WindowInfluenceEffects</WindowName>
+    <WindowName>InfluenceEffectsWindow</WindowName>
     <ControlName>InfluenceEvent6</ControlName>
     <ZIndex>21</ZIndex>
     <ControlClass>FGStringField</ControlClass>
@@ -444,7 +502,7 @@ end
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>WindowInfluenceEffects</WindowName>
+    <WindowName>InfluenceEffectsWindow</WindowName>
     <ControlName>InfluenceEventDescription1</ControlName>
     <ZIndex>7</ZIndex>
     <ControlClass>FGFormattedText</ControlClass>
@@ -495,7 +553,7 @@ end
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>WindowInfluenceEffects</WindowName>
+    <WindowName>InfluenceEffectsWindow</WindowName>
     <ControlName>InfluenceEventDescription2</ControlName>
     <ZIndex>10</ZIndex>
     <ControlClass>FGFormattedText</ControlClass>
@@ -546,7 +604,7 @@ end
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>WindowInfluenceEffects</WindowName>
+    <WindowName>InfluenceEffectsWindow</WindowName>
     <ControlName>InfluenceEventDescription3</ControlName>
     <ZIndex>13</ZIndex>
     <ControlClass>FGFormattedText</ControlClass>
@@ -597,7 +655,7 @@ end
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>WindowInfluenceEffects</WindowName>
+    <WindowName>InfluenceEffectsWindow</WindowName>
     <ControlName>InfluenceEventDescription4</ControlName>
     <ZIndex>16</ZIndex>
     <ControlClass>FGFormattedText</ControlClass>
@@ -648,7 +706,7 @@ end
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>WindowInfluenceEffects</WindowName>
+    <WindowName>InfluenceEffectsWindow</WindowName>
     <ControlName>InfluenceEventDescription5</ControlName>
     <ZIndex>19</ZIndex>
     <ControlClass>FGFormattedText</ControlClass>
@@ -699,7 +757,7 @@ end
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>WindowInfluenceEffects</WindowName>
+    <WindowName>InfluenceEffectsWindow</WindowName>
     <ControlName>InfluenceEventDescription6</ControlName>
     <ZIndex>22</ZIndex>
     <ControlClass>FGFormattedText</ControlClass>
@@ -750,7 +808,7 @@ end
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>WindowInfluenceEffects</WindowName>
+    <WindowName>InfluenceEffectsWindow</WindowName>
     <ControlName>Label</ControlName>
     <ZIndex>2</ZIndex>
     <ControlClass>FGLabel</ControlClass>
@@ -804,7 +862,7 @@ end
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>WindowInfluenceEffects</WindowName>
+    <WindowName>InfluenceEffectsWindow</WindowName>
     <ControlName>LabelDescription</ControlName>
     <ZIndex>4</ZIndex>
     <ControlClass>FGLabel</ControlClass>
@@ -858,7 +916,7 @@ end
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>WindowInfluenceEffects</WindowName>
+    <WindowName>InfluenceEffectsWindow</WindowName>
     <ControlName>LabelInfluenceEffect</ControlName>
     <ZIndex>3</ZIndex>
     <ControlClass>FGLabel</ControlClass>
@@ -912,7 +970,7 @@ end
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>WindowInfluenceEffects</WindowName>
+    <WindowName>InfluenceEffectsWindow</WindowName>
     <ControlName>LabelInfluenceEffects</ControlName>
     <ZIndex>1</ZIndex>
     <ControlClass>FGLabel</ControlClass>
@@ -966,7 +1024,7 @@ end
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>WindowInfluenceEffects</WindowName>
+    <WindowName>InfluenceEffectsWindow</WindowName>
     <ControlName>LabelInfluenceEvent1</ControlName>
     <ZIndex>5</ZIndex>
     <ControlClass>FGLabel</ControlClass>
@@ -1020,7 +1078,7 @@ end
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>WindowInfluenceEffects</WindowName>
+    <WindowName>InfluenceEffectsWindow</WindowName>
     <ControlName>LabelInfluenceEvent2</ControlName>
     <ZIndex>8</ZIndex>
     <ControlClass>FGLabel</ControlClass>
@@ -1074,7 +1132,7 @@ end
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>WindowInfluenceEffects</WindowName>
+    <WindowName>InfluenceEffectsWindow</WindowName>
     <ControlName>LabelInfluenceEvent3</ControlName>
     <ZIndex>11</ZIndex>
     <ControlClass>FGLabel</ControlClass>
@@ -1128,7 +1186,7 @@ end
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>WindowInfluenceEffects</WindowName>
+    <WindowName>InfluenceEffectsWindow</WindowName>
     <ControlName>LabelInfluenceEvent4</ControlName>
     <ZIndex>14</ZIndex>
     <ControlClass>FGLabel</ControlClass>
@@ -1182,7 +1240,7 @@ end
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>WindowInfluenceEffects</WindowName>
+    <WindowName>InfluenceEffectsWindow</WindowName>
     <ControlName>LabelInfluenceEvent5</ControlName>
     <ZIndex>17</ZIndex>
     <ControlClass>FGLabel</ControlClass>
@@ -1236,7 +1294,7 @@ end
     <Template />
   </WindowControls>
   <WindowControls>
-    <WindowName>WindowInfluenceEffects</WindowName>
+    <WindowName>InfluenceEffectsWindow</WindowName>
     <ControlName>LabelInfluenceEvent6</ControlName>
     <ZIndex>20</ZIndex>
     <ControlClass>FGLabel</ControlClass>
@@ -1284,64 +1342,6 @@ end
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"12"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"204"}}
-]}}</Definition>
-    <LUACode />
-    <GroupIndex>0</GroupIndex>
-    <Template />
-  </WindowControls>
-  <WindowControls>
-    <WindowName>WindowInfluenceEffects</WindowName>
-    <ControlName>WindowInfluenceEffects</ControlName>
-    <ZIndex>0</ZIndex>
-    <ControlClass>FGWindow</ControlClass>
-    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
-      {"Name":"AllowResize"},
-      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
-      {"Name":"BottomMargin","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"Comments"},
-      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"WindowInfluenceEffects"}},
-      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
-      {"Name":"DataSource"},
-      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"312"}},
-      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"572"}},
-      {"Name":"DevelopmentComments"},
-      {"Name":"Disabled"},
-      {"Name":"Dynamic"},
-      {"Name":"DynamicSize","Value":{"@xsi:type":"xsd:string","#text":"Dynamic Height"}},
-      {"Name":"FrameName","Value":{"@xsi:type":"xsd:string","#text":"EPgroupbox3"}},
-      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"HostControl"},
-      {"Name":"HoverCursor"},
-      {"Name":"InheritSizePosition"},
-      {"Name":"Invisible"},
-      {"Name":"Locked"},
-      {"Name":"MaximumHeight"},
-      {"Name":"MaximumWidth"},
-      {"Name":"MergeWindow"},
-      {"Name":"MinimizedIcon"},
-      {"Name":"MinimumHeight"},
-      {"Name":"MinimumWidth"},
-      {"Name":"NoClose"},
-      {"Name":"NoDelete"},
-      {"Name":"NoMove"},
-      {"Name":"Panel"},
-      {"Name":"PanelModeClient"},
-      {"Name":"PanelModeHost"},
-      {"Name":"PanelModeLocal"},
-      {"Name":"PlayerControl"},
-      {"Name":"Resize","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"RightMargin","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"ScriptFile"},
-      {"Name":"Sharable"},
-      {"Name":"ShareAs"},
-      {"Name":"SoftClose"},
-      {"Name":"Tooltip"},
-      {"Name":"TooltipField"},
-      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"WindowMargins","Value":{"@xsi:type":"xsd:string","#text":"0,0,0,8"}},
-      {"Name":"WindowTitle"},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"0"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>

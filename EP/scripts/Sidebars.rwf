@@ -57,6 +57,14 @@
 			sListDisplayClass = "BotVehicleBase",
 			sRecordDisplayClass ="BotVehicleSidebarWindow",
 		},
+		["substrains"] = {
+			bExport=true,
+			aDataMap = {"reference.substrains"},
+			sListDisplayClass = "SubStrainBase",
+			sRecordDisplayClass ="SubStrainSidebarWindow",
+			sEditMode = "play",
+			sSidebarCategory = "character",
+		},
 	}
 	
 	
