@@ -232,7 +232,12 @@ function UpdateValue()
 		end
 	end
 	setValue(0);
-end</LUACode>
+end
+
+function onDrop(x, y, dragdata)
+	window.LinkSubStrain.onDrop(x, y, dragdata);
+end
+</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -465,6 +470,10 @@ function CheckInfectorTextHandler(rSource, rTarget, rRoll)
 	if bRollInfluenceEvent then
 		window.ButtonRollInfluenceEvent.onButtonPress();
 	end
+end
+
+function onDrop(x, y, dragdata)
+	window.LinkSubStrain.onDrop(x, y, dragdata);
 end
 </LUACode>
     <GroupIndex>0</GroupIndex>
@@ -898,7 +907,10 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"147"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"61"}}
 ]}}</Definition>
-    <LUACode />
+    <LUACode>function onDrop(x, y, dragdata)
+	window.LinkSubStrain.onDrop(x, y, dragdata);
+end
+</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -952,7 +964,10 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"147"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"81"}}
 ]}}</Definition>
-    <LUACode />
+    <LUACode>function onDrop(x, y, dragdata)
+	window.LinkSubStrain.onDrop(x, y, dragdata);
+end
+</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -1006,7 +1021,10 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"9"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"104"}}
 ]}}</Definition>
-    <LUACode />
+    <LUACode>function onDrop(x, y, dragdata)
+	window.LinkSubStrain.onDrop(x, y, dragdata);
+end
+</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -1600,7 +1618,10 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"8"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"18"}}
 ]}}</Definition>
-    <LUACode />
+    <LUACode>function onDrop(x, y, dragdata)
+	window.LinkSubStrain.onDrop(x, y, dragdata);
+end
+</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -1657,7 +1678,14 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"95"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"18"}}
 ]}}</Definition>
-    <LUACode />
+    <LUACode>function onDrop(x, y, dragdata)
+	local sClass,sRecord = dragdata.getShortcutData();
+	if (sClass=="SubStrainSidebarWindow" or sClass=="SubStrainWindow") and sRecord~=DB.getPath(window.getDatabaseNode()) and sRecord~="" then
+		DB.copyNode(sRecord, DB.getPath(window.getDatabaseNode())..".SubStrain");
+		setValue("SubStrainWindow", "");
+	end
+end
+</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -1761,7 +1789,10 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"0"}}
 ]}}</Definition>
-    <LUACode />
+    <LUACode>function onDrop(x, y, dragdata)
+	window.LinkSubStrain.onDrop(x, y, dragdata);
+end
+</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -1824,7 +1855,10 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"121"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"18"}}
 ]}}</Definition>
-    <LUACode />
+    <LUACode>function onDrop(x, y, dragdata)
+	window.LinkSubStrain.onDrop(x, y, dragdata);
+end
+</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>

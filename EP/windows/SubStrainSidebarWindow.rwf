@@ -365,7 +365,7 @@
       {"Name":"InsertBefore"},
       {"Name":"Invisible"},
       {"Name":"LinkFieldAllowDrop"},
-      {"Name":"LinkFieldClass","Value":{"@xsi:type":"xsd:string","#text":"SubStrainWindow"}},
+      {"Name":"LinkFieldClass","Value":{"@xsi:type":"xsd:string","#text":"SubStrainSidebarWindow"}},
       {"Name":"LinkFieldDescriptionField"},
       {"Name":"LinkFieldRecordName"},
       {"Name":"LinkFieldSelfOnEmpty"},
