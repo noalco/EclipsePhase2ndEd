@@ -1,7 +1,7 @@
 <DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
   <Scripts>
     <ScriptName>RollHandlers</ScriptName>
-    <FolderID>20</FolderID>
+    <FolderID>21</FolderID>
     <Script>function AttackHandler(rSource, rTarget, rRoll)
 
     local rMessage = ActionsManager.createActionMessage(rSource, rRoll);
@@ -69,7 +69,9 @@ function CheckHandler(rSource, rTarget, rRoll)
 	rRoll.nMod=0;
     local rMessage = ActionsManager.createActionMessage(rSource, rRoll);
 	local nTarget=tonumber(rMessage.text:match("%(vs (%d+)%)"));
-	if nMod~=0 then rMessage.text=rMessage.text:gsub("vs "..nTarget, "vs "..math.max(0,nTarget+nMod)); end
+	if nMod~=0 then
+		rMessage.text=rMessage.text:gsub("vs "..nTarget, "vs "..math.max(0,nTarget+nMod));
+	end
 	nTarget=nTarget+nMod;
 --    Comm.deliverChatMessage(rMessage);
 
@@ -77,6 +79,7 @@ function CheckHandler(rSource, rTarget, rRoll)
 --	rMessage = ChatManager.createBaseMessage();
 	rMessage.text=rMessage.text.." ["..RollChecks.RollCheck(nTotal, nTarget):upper().."]";
 	Comm.deliverChatMessage(rMessage);
+	return RollChecks.RollCheck(nTotal, nTarget):upper();
 end
 </Script>
     <RegisterScript>true</RegisterScript>
