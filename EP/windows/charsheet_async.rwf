@@ -75,7 +75,7 @@ end
 function InfluenceEventResult(rSource, rTarget, rRoll)
 	Comm.deliverChatMessage(ActionsManager.createActionMessage(rSource, rRoll));
 	local rMessage = ChatManager.createBaseMessage();
-	rMessage.text="EinfluenceEvent Result: ";
+	rMessage.text="Influence Event Result: ";
 	if rRoll.nTotal==1 then
 		rMessage.text=rMessage.text..window.InfluenceEvent1.getValue();
 	elseif rRoll.nTotal==2 then
