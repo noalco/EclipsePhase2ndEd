@@ -68557,7 +68557,7 @@ end
       {"Name":"RelativeMargin"},
       {"Name":"RelativeStacking"},
       {"Name":"ScriptFile"},
-      {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":"SubStrain.link"}},
+      {"Name":"Source","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"StackVertWith"},
       {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
       {"Name":"Tooltip"},
@@ -74732,7 +74732,7 @@ end</Script>
     <IconFile>graphics\sidebar\sidebar_icon_recordtype_traits.png</IconFile>
   </Icons>
   <Icons>
-    <IconName>sidebar_icon_recordtype_vehicles</IconName>
+    <IconName>sidebar_icon_recordtype_vehicle</IconName>
     <FolderID>18</FolderID>
     <IconFile>graphics\sidebar\sidebar_icon_spaceship_3.png</IconFile>
   </Icons>
