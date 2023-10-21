@@ -282,7 +282,7 @@ end
       {"Name":"DynamicSize"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
-      {"Name":"FrameName","Value":{"@xsi:type":"xsd:string","#text":"fielddark"}},
+      {"Name":"FrameName","Value":{"@xsi:type":"xsd:string","#text":"fielddark_grey"}},
       {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"GMEditOnly"},
       {"Name":"GMVisibleOnly"},
@@ -305,14 +305,14 @@ end
       {"Name":"NoDrop"},
       {"Name":"NoKeyEdit"},
       {"Name":"PrevTabTarget"},
-      {"Name":"ReadOnly"},
+      {"Name":"ReadOnly","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"RelativeMargin"},
       {"Name":"RelativeStacking"},
       {"Name":"ScriptFile"},
       {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":"InfectionRating.InfectionRatingBase"}},
       {"Name":"StackVertWith"},
       {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
-      {"Name":"Tooltip"},
+      {"Name":"Tooltip","Value":{"@xsi:type":"xsd:string","#text":"Psi trait level x 10"}},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"9"}},
@@ -321,7 +321,21 @@ end
     <LUACode>function onValueChanged()
 	window.InfectionRatingTotal.UpdateValue()
 end
-</LUACode>
+
+function onInit()
+	DB.addHandler(DB.getPath(window.getDatabaseNode(), "Morph.TraitList.*.name"), "onUpdate", UpdateValue);
+	DB.addHandler(DB.getPath(window.getDatabaseNode(), "Morph.TraitList.*.TraitLevel"), "onUpdate", UpdateValue);
+	UpdateValue();
+end
+
+function UpdateValue()
+	for _,n in pairs(DB.getChildren(window.getDatabaseNode(), "Morph.TraitList")) do
+		if DB.getValue(n, "name", ""):lower()=="psi" then
+			setValue(10*DB.getValue(n, "TraitLevel", 1));
+			break;
+		end
+	end
+end</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
