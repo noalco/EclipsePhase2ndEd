@@ -108,7 +108,7 @@ end
       {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"charsheet_async"}},
       {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
       {"Name":"DataSource"},
-      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"650"}},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"655"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"495"}},
       {"Name":"DevelopmentComments"},
       {"Name":"Disabled"},
@@ -1080,6 +1080,10 @@ end
 	UpdateValue();
 end
 
+function onClose()
+	DB.removeHandler(DB.getPath(window.getDatabaseNode(), "Aptitudes.Scores.Willpower"), "onUpdate", UpdateValue)
+end
+
 function UpdateValue()
 	setValue("Duration ("..Tools.RoundNumber(DB.getValue(window.getDatabaseNode(), "Aptitudes.Scores.Willpower", 5)/5)..")");
 end</LUACode>
@@ -2030,7 +2034,7 @@ end
       {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"PanelSleights"}},
       {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
       {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
-      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"315"}},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"322"}},
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"490"}},
       {"Name":"DevelopmentComments"},
@@ -2137,7 +2141,7 @@ end
       {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"ScrollBarSleightList"}},
       {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
       {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
-      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"237"}},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"244"}},
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"20"}},
       {"Name":"DevelopmentComments"},
@@ -2185,7 +2189,7 @@ end
     <ZIndex>41</ZIndex>
     <ControlClass>FGWindowList</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
-      {"Name":"AcceptDrop","Value":{"@xsi:type":"ArrayOfPropertyAcceptDrop"}},
+      {"Name":"AcceptDrop","Value":{"@xsi:type":"ArrayOfPropertyAcceptDrop","PropertyAcceptDrop":{"ClassName":"SleightWindow"}}},
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
       {"Name":"AdvancedTemplate"},
       {"Name":"AllowCreate","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
