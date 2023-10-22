@@ -67,109 +67,115 @@
   </Folders>
   <Folders>
     <ID>6</ID>
+    <ParentFolderID>5</ParentFolderID>
+    <Folder>antiguo item_combat</Folder>
+    <Exclude>true</Exclude>
+  </Folders>
+  <Folders>
+    <ID>7</ID>
     <ParentFolderID>1</ParentFolderID>
     <Folder>charsheet_inventory</Folder>
     <Exclude>false</Exclude>
   </Folders>
   <Folders>
-    <ID>7</ID>
+    <ID>8</ID>
     <ParentFolderID>1</ParentFolderID>
     <Folder>charsheet_main</Folder>
     <Exclude>false</Exclude>
   </Folders>
   <Folders>
-    <ID>8</ID>
-    <ParentFolderID>7</ParentFolderID>
-    <Folder>scripts</Folder>
-    <Exclude>false</Exclude>
-  </Folders>
-  <Folders>
     <ID>9</ID>
-    <ParentFolderID>1</ParentFolderID>
-    <Folder>charsheet_notes</Folder>
+    <ParentFolderID>8</ParentFolderID>
+    <Folder>scripts</Folder>
     <Exclude>false</Exclude>
   </Folders>
   <Folders>
     <ID>10</ID>
     <ParentFolderID>1</ParentFolderID>
-    <Folder>scripts</Folder>
+    <Folder>charsheet_notes</Folder>
     <Exclude>false</Exclude>
   </Folders>
   <Folders>
     <ID>11</ID>
-    <ParentFolderID>0</ParentFolderID>
-    <Folder>CombatTracker</Folder>
+    <ParentFolderID>1</ParentFolderID>
+    <Folder>scripts</Folder>
     <Exclude>false</Exclude>
   </Folders>
   <Folders>
     <ID>12</ID>
     <ParentFolderID>0</ParentFolderID>
-    <Folder>graphics</Folder>
+    <Folder>CombatTracker</Folder>
     <Exclude>false</Exclude>
   </Folders>
   <Folders>
     <ID>13</ID>
-    <ParentFolderID>12</ParentFolderID>
-    <Folder>buttons</Folder>
+    <ParentFolderID>0</ParentFolderID>
+    <Folder>graphics</Folder>
     <Exclude>false</Exclude>
   </Folders>
   <Folders>
     <ID>14</ID>
-    <ParentFolderID>12</ParentFolderID>
-    <Folder>controls</Folder>
+    <ParentFolderID>13</ParentFolderID>
+    <Folder>buttons</Folder>
     <Exclude>false</Exclude>
   </Folders>
   <Folders>
     <ID>15</ID>
-    <ParentFolderID>12</ParentFolderID>
-    <Folder>fonts</Folder>
+    <ParentFolderID>13</ParentFolderID>
+    <Folder>controls</Folder>
     <Exclude>false</Exclude>
   </Folders>
   <Folders>
     <ID>16</ID>
-    <ParentFolderID>12</ParentFolderID>
-    <Folder>frames</Folder>
+    <ParentFolderID>13</ParentFolderID>
+    <Folder>fonts</Folder>
     <Exclude>false</Exclude>
   </Folders>
   <Folders>
     <ID>17</ID>
-    <ParentFolderID>12</ParentFolderID>
-    <Folder>icons</Folder>
+    <ParentFolderID>13</ParentFolderID>
+    <Folder>frames</Folder>
     <Exclude>false</Exclude>
   </Folders>
   <Folders>
     <ID>18</ID>
-    <ParentFolderID>12</ParentFolderID>
-    <Folder>sidebar</Folder>
+    <ParentFolderID>13</ParentFolderID>
+    <Folder>icons</Folder>
     <Exclude>false</Exclude>
   </Folders>
   <Folders>
     <ID>19</ID>
-    <ParentFolderID>12</ParentFolderID>
-    <Folder>tabs</Folder>
+    <ParentFolderID>13</ParentFolderID>
+    <Folder>sidebar</Folder>
     <Exclude>false</Exclude>
   </Folders>
   <Folders>
     <ID>20</ID>
-    <ParentFolderID>0</ParentFolderID>
-    <Folder>NPC</Folder>
+    <ParentFolderID>13</ParentFolderID>
+    <Folder>tabs</Folder>
     <Exclude>false</Exclude>
   </Folders>
   <Folders>
     <ID>21</ID>
     <ParentFolderID>0</ParentFolderID>
-    <Folder>Scripts</Folder>
+    <Folder>NPC</Folder>
     <Exclude>false</Exclude>
   </Folders>
   <Folders>
     <ID>22</ID>
     <ParentFolderID>0</ParentFolderID>
-    <Folder>Sidebars</Folder>
+    <Folder>Scripts</Folder>
     <Exclude>false</Exclude>
   </Folders>
   <Folders>
     <ID>23</ID>
-    <ParentFolderID>22</ParentFolderID>
+    <ParentFolderID>0</ParentFolderID>
+    <Folder>Sidebars</Folder>
+    <Exclude>false</Exclude>
+  </Folders>
+  <Folders>
+    <ID>24</ID>
+    <ParentFolderID>23</ParentFolderID>
     <Folder>Scripts</Folder>
     <Exclude>false</Exclude>
   </Folders>
@@ -182,39 +188,39 @@
   </Windows>
   <Windows>
     <Name>BackgroundBase</Name>
-    <FolderID>22</FolderID>
+    <FolderID>23</FolderID>
   </Windows>
   <Windows>
     <Name>BackgroundSidebarWindow</Name>
-    <FolderID>22</FolderID>
+    <FolderID>23</FolderID>
   </Windows>
   <Windows>
     <Name>BackgroundWindow</Name>
-    <FolderID>7</FolderID>
+    <FolderID>8</FolderID>
   </Windows>
   <Windows>
     <Name>BotVehicleBase</Name>
-    <FolderID>22</FolderID>
+    <FolderID>23</FolderID>
   </Windows>
   <Windows>
     <Name>BotVehicleSidebarWindow</Name>
-    <FolderID>22</FolderID>
+    <FolderID>23</FolderID>
   </Windows>
   <Windows>
     <Name>BotVehicleWindow</Name>
-    <FolderID>9</FolderID>
+    <FolderID>10</FolderID>
   </Windows>
   <Windows>
     <Name>CareerBase</Name>
-    <FolderID>22</FolderID>
+    <FolderID>23</FolderID>
   </Windows>
   <Windows>
     <Name>CareerSidebarWindow</Name>
-    <FolderID>22</FolderID>
+    <FolderID>23</FolderID>
   </Windows>
   <Windows>
     <Name>CareerWindow</Name>
-    <FolderID>7</FolderID>
+    <FolderID>8</FolderID>
   </Windows>
   <Windows>
     <Name>char_combat</Name>
@@ -242,55 +248,55 @@
   </Windows>
   <Windows>
     <Name>charsheet_inventory</Name>
-    <FolderID>6</FolderID>
+    <FolderID>7</FolderID>
   </Windows>
   <Windows>
     <Name>charsheet_main</Name>
-    <FolderID>7</FolderID>
+    <FolderID>8</FolderID>
   </Windows>
   <Windows>
     <Name>charsheet_notes</Name>
-    <FolderID>9</FolderID>
+    <FolderID>10</FolderID>
   </Windows>
   <Windows>
     <Name>client_ct_entry</Name>
-    <FolderID>11</FolderID>
+    <FolderID>12</FolderID>
   </Windows>
   <Windows>
     <Name>combattracker_client</Name>
-    <FolderID>11</FolderID>
+    <FolderID>12</FolderID>
   </Windows>
   <Windows>
     <Name>combattracker_host</Name>
-    <FolderID>11</FolderID>
+    <FolderID>12</FolderID>
   </Windows>
   <Windows>
     <Name>ct_entry</Name>
-    <FolderID>11</FolderID>
+    <FolderID>12</FolderID>
   </Windows>
   <Windows>
     <Name>EgoTraitsDetailsWindow</Name>
-    <FolderID>7</FolderID>
+    <FolderID>8</FolderID>
   </Windows>
   <Windows>
     <Name>FakeIdBase</Name>
-    <FolderID>9</FolderID>
+    <FolderID>10</FolderID>
   </Windows>
   <Windows>
     <Name>FakeIdsWindow</Name>
-    <FolderID>9</FolderID>
+    <FolderID>10</FolderID>
   </Windows>
   <Windows>
     <Name>FiringModeWindow</Name>
-    <FolderID>6</FolderID>
+    <FolderID>7</FolderID>
   </Windows>
   <Windows>
     <Name>ForkBase</Name>
-    <FolderID>9</FolderID>
+    <FolderID>10</FolderID>
   </Windows>
   <Windows>
     <Name>InfluenceEffectsSidebarWindow</Name>
-    <FolderID>22</FolderID>
+    <FolderID>23</FolderID>
   </Windows>
   <Windows>
     <Name>InfluenceEffectsWindow</Name>
@@ -298,35 +304,35 @@
   </Windows>
   <Windows>
     <Name>InnerPoolsValuesWindow</Name>
-    <FolderID>7</FolderID>
+    <FolderID>8</FolderID>
   </Windows>
   <Windows>
     <Name>InterestBase</Name>
-    <FolderID>22</FolderID>
+    <FolderID>23</FolderID>
   </Windows>
   <Windows>
     <Name>InterestSidebarWindow</Name>
-    <FolderID>22</FolderID>
+    <FolderID>23</FolderID>
   </Windows>
   <Windows>
     <Name>InterestWindow</Name>
-    <FolderID>7</FolderID>
+    <FolderID>8</FolderID>
   </Windows>
   <Windows>
     <Name>item</Name>
-    <FolderID>6</FolderID>
+    <FolderID>7</FolderID>
   </Windows>
   <Windows>
     <Name>item_combat2</Name>
-    <FolderID>5</FolderID>
-  </Windows>
-  <Windows>
-    <Name>item_main</Name>
     <FolderID>6</FolderID>
   </Windows>
   <Windows>
+    <Name>item_main</Name>
+    <FolderID>7</FolderID>
+  </Windows>
+  <Windows>
     <Name>item_main_combat2</Name>
-    <FolderID>5</FolderID>
+    <FolderID>6</FolderID>
   </Windows>
   <Windows>
     <Name>KnowSkillBase</Name>
@@ -334,59 +340,59 @@
   </Windows>
   <Windows>
     <Name>MorphBase</Name>
-    <FolderID>22</FolderID>
+    <FolderID>23</FolderID>
   </Windows>
   <Windows>
     <Name>MorphDataDetaisSidebarWindow</Name>
-    <FolderID>22</FolderID>
+    <FolderID>23</FolderID>
   </Windows>
   <Windows>
     <Name>MorphDataDetaisWindow</Name>
-    <FolderID>7</FolderID>
+    <FolderID>8</FolderID>
   </Windows>
   <Windows>
     <Name>MorphDataSidebarWindow</Name>
-    <FolderID>22</FolderID>
+    <FolderID>23</FolderID>
   </Windows>
   <Windows>
     <Name>MorphDataWindow</Name>
-    <FolderID>7</FolderID>
+    <FolderID>8</FolderID>
   </Windows>
   <Windows>
     <Name>MorphTraitsDetailsWindow</Name>
-    <FolderID>7</FolderID>
+    <FolderID>8</FolderID>
   </Windows>
   <Windows>
     <Name>MorphWareDetailsWindow</Name>
-    <FolderID>7</FolderID>
+    <FolderID>8</FolderID>
   </Windows>
   <Windows>
     <Name>MotivationsLanguagesWindow</Name>
-    <FolderID>9</FolderID>
+    <FolderID>10</FolderID>
   </Windows>
   <Windows>
     <Name>MuseSkillBase</Name>
-    <FolderID>9</FolderID>
+    <FolderID>10</FolderID>
   </Windows>
   <Windows>
     <Name>MuseWindow</Name>
-    <FolderID>9</FolderID>
+    <FolderID>10</FolderID>
   </Windows>
   <Windows>
     <Name>npc_main</Name>
-    <FolderID>20</FolderID>
+    <FolderID>21</FolderID>
   </Windows>
   <Windows>
     <Name>PoolsWindow</Name>
-    <FolderID>7</FolderID>
+    <FolderID>8</FolderID>
   </Windows>
   <Windows>
     <Name>ReputationWindow</Name>
-    <FolderID>9</FolderID>
+    <FolderID>10</FolderID>
   </Windows>
   <Windows>
     <Name>SkillBase</Name>
-    <FolderID>7</FolderID>
+    <FolderID>8</FolderID>
   </Windows>
   <Windows>
     <Name>SleightBase</Name>
@@ -394,7 +400,7 @@
   </Windows>
   <Windows>
     <Name>SleightSidebarBase</Name>
-    <FolderID>22</FolderID>
+    <FolderID>23</FolderID>
   </Windows>
   <Windows>
     <Name>SleightWindow</Name>
@@ -402,11 +408,11 @@
   </Windows>
   <Windows>
     <Name>SubStrainBase</Name>
-    <FolderID>22</FolderID>
+    <FolderID>23</FolderID>
   </Windows>
   <Windows>
     <Name>SubStrainSidebarWindow</Name>
-    <FolderID>22</FolderID>
+    <FolderID>23</FolderID>
   </Windows>
   <Windows>
     <Name>SubStrainWindow</Name>
@@ -418,27 +424,27 @@
   </Windows>
   <Windows>
     <Name>TraitBase</Name>
-    <FolderID>7</FolderID>
+    <FolderID>8</FolderID>
   </Windows>
   <Windows>
     <Name>TraitBaseSidebar</Name>
-    <FolderID>22</FolderID>
+    <FolderID>23</FolderID>
   </Windows>
   <Windows>
     <Name>TraitWindow</Name>
-    <FolderID>7</FolderID>
+    <FolderID>8</FolderID>
   </Windows>
   <Windows>
     <Name>WareBase</Name>
-    <FolderID>7</FolderID>
+    <FolderID>8</FolderID>
   </Windows>
   <Windows>
     <Name>wareItemWindow</Name>
-    <FolderID>6</FolderID>
+    <FolderID>7</FolderID>
   </Windows>
   <Windows>
     <Name>WareWindow</Name>
-    <FolderID>7</FolderID>
+    <FolderID>8</FolderID>
   </Windows>
 </DocumentElement>
 
@@ -69132,7 +69138,7 @@ end
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"20"}},
       {"Name":"DevelopmentComments"},
-      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
+      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"1d100","DiceRollDescription":"[CAST SLEIGHT] Psi (vs {@self.getPsiTargetValue()})","DiceRollType":"cast_sleight","UseModStack":{"@xsi:nil":"true"},"ResetModStack":"true","SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":"true","ResultHandlerFunction":"self.CastSleightHandler","AdditionalInfo":null}},
       {"Name":"Disabled"},
       {"Name":"DynamicSize"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
@@ -69169,10 +69175,19 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"176"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"5"}}
 ]}}</Definition>
-    <LUACode>function onButtonPress()
-	window.windowlist.window.InfectionRatingIncrease.setValue(window.windowlist.window.InfectionRatingIncrease.getValue()+window.InfectionMod.getValue());
+    <LUACode>function getPsiTargetValue()
+	for _,n in pairs(DB.getChildren(window.windowlist.window.getDatabaseNode(), "Skills.ActiveSkillsList")) do
+		if DB.getValue(n, "name", "")=="Psi" then
+			return DB.getValue(n, "Total", 0);
+		end
+	end
+	return 0;
 end
-</LUACode>
+
+function CastSleightHandler(rSource, rTarget, rRoll)
+	RollHandlers.CheckHandler(rSource, rTarget, rRoll);
+	window.windowlist.window.InfectionRatingIncrease.setValue(window.windowlist.window.InfectionRatingIncrease.getValue()+window.InfectionMod.getValue());
+end</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -76614,7 +76629,7 @@ end</LUACode>
 <DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
   <Scripts>
     <ScriptName>CharManager</ScriptName>
-    <FolderID>10</FolderID>
+    <FolderID>11</FolderID>
     <Script>--function onInit()
 --	ItemManager.setCustomCharAdd(onCharItemAdd);
 --	ItemManager.setCustomCharRemove(onCharItemDelete);
@@ -76632,7 +76647,7 @@ end</LUACode>
   </Scripts>
   <Scripts>
     <ScriptName>DataCommon</ScriptName>
-    <FolderID>21</FolderID>
+    <FolderID>22</FolderID>
     <Script>ActiveSkills = {
 	["Athletics"] = {sApt="SOM", nAptMult=1, sType="Physical", bHasField=false},
 	["Deceive"] = {sApt="SAV", nAptMult=1, sType="Social", bHasField=false},
@@ -76940,7 +76955,7 @@ end
   </Scripts>
   <Scripts>
     <ScriptName>ManagerGameSystem_EP2ed</ScriptName>
-    <FolderID>21</FolderID>
+    <FolderID>22</FolderID>
     <Script>function onInit()	
 	-- Languages
 	GameSystem.languagefonts = {
@@ -76981,7 +76996,7 @@ end
   </Scripts>
   <Scripts>
     <ScriptName>RollChecks</ScriptName>
-    <FolderID>21</FolderID>
+    <FolderID>22</FolderID>
     <Script>function isDouble(nRoll)
 	local nUnid=nRoll % 10;
 	local nDec=(nRoll-nUnid)/10;
@@ -77009,7 +77024,7 @@ end</Script>
   </Scripts>
   <Scripts>
     <ScriptName>RollHandlers</ScriptName>
-    <FolderID>21</FolderID>
+    <FolderID>22</FolderID>
     <Script>function AttackHandler(rSource, rTarget, rRoll)
 
     local rMessage = ActionsManager.createActionMessage(rSource, rRoll);
@@ -77095,7 +77110,7 @@ end
   </Scripts>
   <Scripts>
     <ScriptName>Sidebars</ScriptName>
-    <FolderID>23</FolderID>
+    <FolderID>24</FolderID>
     <Script>function onInit()
 	aRecordOverrides = {
 		["backgrounds"] = {
@@ -77178,7 +77193,7 @@ end</Script>
   </Scripts>
   <Scripts>
     <ScriptName>Tools</ScriptName>
-    <FolderID>21</FolderID>
+    <FolderID>22</FolderID>
     <Script>function RoundNumber(nNumber)
 	return nNumber % 1 &gt;= 0.5 and math.ceil(nNumber) or math.floor(nNumber);
 end
@@ -77265,7 +77280,7 @@ end
   </Scripts>
   <Scripts>
     <ScriptName>traits_list_text</ScriptName>
-    <FolderID>8</FolderID>
+    <FolderID>9</FolderID>
     <Script>-- 
 -- Please see the license.html file included with this distribution for 
 -- attribution and copyright information.
@@ -77321,7 +77336,7 @@ end</Script>
 <DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
   <XMLFiles>
     <XmlName>sidebars_strings</XmlName>
-    <FolderID>22</FolderID>
+    <FolderID>23</FolderID>
     <XML>&lt;?xml version="1.0" encoding="iso-8859-1"?&gt;
 &lt;root&gt;
 	&lt;!-- Sidebar names --&gt;
@@ -77367,7 +77382,7 @@ end</Script>
 <DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
   <Frames>
     <FrameName>EPgroupbox</FrameName>
-    <FolderID>16</FolderID>
+    <FolderID>17</FolderID>
     <ImageFile>graphics\frames\EPgroupbox.png</ImageFile>
     <Definition>10,20,10,20</Definition>
     <TopLeft />
@@ -77384,7 +77399,7 @@ end</Script>
   </Frames>
   <Frames>
     <FrameName>EPgroupbox2</FrameName>
-    <FolderID>16</FolderID>
+    <FolderID>17</FolderID>
     <ImageFile>graphics\frames\EPgroupbox2.png</ImageFile>
     <Definition>12,12,12,12</Definition>
     <TopLeft />
@@ -77401,7 +77416,7 @@ end</Script>
   </Frames>
   <Frames>
     <FrameName>EPgroupbox3</FrameName>
-    <FolderID>16</FolderID>
+    <FolderID>17</FolderID>
     <ImageFile>graphics\frames\EPgroupbox3.png</ImageFile>
     <Definition>15,15,15,15</Definition>
     <TopLeft />
@@ -77418,7 +77433,7 @@ end</Script>
   </Frames>
   <Frames>
     <FrameName>EPLine</FrameName>
-    <FolderID>16</FolderID>
+    <FolderID>17</FolderID>
     <ImageFile>graphics\frames\EPLine.png</ImageFile>
     <Definition>12,1,12,1</Definition>
     <TopLeft />
@@ -77435,7 +77450,7 @@ end</Script>
   </Frames>
   <Frames>
     <FrameName>EPutilitybox</FrameName>
-    <FolderID>16</FolderID>
+    <FolderID>17</FolderID>
     <ImageFile>graphics\frames\EPutilitybox.png</ImageFile>
     <Definition>20,20,30,20</Definition>
     <TopLeft />
@@ -77452,7 +77467,7 @@ end</Script>
   </Frames>
   <Frames>
     <FrameName>EPutilitybox2</FrameName>
-    <FolderID>16</FolderID>
+    <FolderID>17</FolderID>
     <ImageFile>graphics\frames\EPutilitybox2.png</ImageFile>
     <Definition>20,20,20,20</Definition>
     <TopLeft />
@@ -77469,7 +77484,7 @@ end</Script>
   </Frames>
   <Frames>
     <FrameName>EPutilitybox3</FrameName>
-    <FolderID>16</FolderID>
+    <FolderID>17</FolderID>
     <ImageFile>graphics\frames\EPutilitybox3.png</ImageFile>
     <Definition>40,20,20,20</Definition>
     <TopLeft />
@@ -77486,7 +77501,7 @@ end</Script>
   </Frames>
   <Frames>
     <FrameName>EPutilitybox3_separator</FrameName>
-    <FolderID>16</FolderID>
+    <FolderID>17</FolderID>
     <ImageFile>graphics\frames\EPutilitybox3_separator.png</ImageFile>
     <Definition>40,0,10,0</Definition>
     <TopLeft />
@@ -77503,7 +77518,7 @@ end</Script>
   </Frames>
   <Frames>
     <FrameName>fielddark</FrameName>
-    <FolderID>16</FolderID>
+    <FolderID>17</FolderID>
     <ImageFile>graphics\frames\fielddark.png</ImageFile>
     <Definition>12,12,12,12</Definition>
     <TopLeft />
@@ -77520,7 +77535,7 @@ end</Script>
   </Frames>
   <Frames>
     <FrameName>fielddark_grey</FrameName>
-    <FolderID>16</FolderID>
+    <FolderID>17</FolderID>
     <ImageFile>graphics\frames\fielddark_grey.png</ImageFile>
     <Definition>12,12,12,12</Definition>
     <TopLeft />
@@ -77537,7 +77552,7 @@ end</Script>
   </Frames>
   <Frames>
     <FrameName>InfectionRating</FrameName>
-    <FolderID>16</FolderID>
+    <FolderID>17</FolderID>
     <ImageFile>graphics\frames\InfectionRating.png</ImageFile>
     <Definition>0,0,0,0</Definition>
     <TopLeft />
@@ -77554,7 +77569,7 @@ end</Script>
   </Frames>
   <Frames>
     <FrameName>pools</FrameName>
-    <FolderID>16</FolderID>
+    <FolderID>17</FolderID>
     <ImageFile>graphics\frames\pools.png</ImageFile>
     <Definition>0,0,0,0</Definition>
     <TopLeft />
@@ -77571,7 +77586,7 @@ end</Script>
   </Frames>
   <Frames>
     <FrameName>scrollbar_base</FrameName>
-    <FolderID>14</FolderID>
+    <FolderID>15</FolderID>
     <ImageFile>graphics\frames\scrollbar.png</ImageFile>
     <Definition>0,0,0,0</Definition>
     <TopLeft />
@@ -77588,7 +77603,7 @@ end</Script>
   </Frames>
   <Frames>
     <FrameName>scrollbutton_normal</FrameName>
-    <FolderID>14</FolderID>
+    <FolderID>15</FolderID>
     <ImageFile>graphics\frames\scrollbutton_normal.png</ImageFile>
     <Definition>0,0,0,0</Definition>
     <TopLeft />
@@ -77605,7 +77620,7 @@ end</Script>
   </Frames>
   <Frames>
     <FrameName>tabs</FrameName>
-    <FolderID>14</FolderID>
+    <FolderID>15</FolderID>
     <ImageFile>graphics\controls\tabs.png</ImageFile>
     <Definition>0,0,0,0</Definition>
     <TopLeft>0,0,18,73</TopLeft>
@@ -77622,7 +77637,7 @@ end</Script>
   </Frames>
   <Frames>
     <FrameName>tabs_h</FrameName>
-    <FolderID>14</FolderID>
+    <FolderID>15</FolderID>
     <ImageFile>graphics\controls\tabs_h.png</ImageFile>
     <Definition>0,0,0,0</Definition>
     <TopLeft>0,0,75,18</TopLeft>
@@ -77639,7 +77654,7 @@ end</Script>
   </Frames>
   <Frames>
     <FrameName>vertical_line</FrameName>
-    <FolderID>16</FolderID>
+    <FolderID>17</FolderID>
     <ImageFile>graphics\frames\vertical_line.png</ImageFile>
     <Definition>0,0,0,0</Definition>
     <TopLeft />
@@ -77659,202 +77674,202 @@ end</Script>
 <DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
   <Icons>
     <IconName>attack_melee</IconName>
-    <FolderID>17</FolderID>
+    <FolderID>18</FolderID>
     <IconFile>graphics\icons\attack_melee.png</IconFile>
   </Icons>
   <Icons>
     <IconName>attack_missile_granade</IconName>
-    <FolderID>17</FolderID>
+    <FolderID>18</FolderID>
     <IconFile>graphics\icons\attack_missile_granade.png</IconFile>
   </Icons>
   <Icons>
     <IconName>attack_ranged</IconName>
-    <FolderID>17</FolderID>
+    <FolderID>18</FolderID>
     <IconFile>graphics\icons\attack_ranged.png</IconFile>
   </Icons>
   <Icons>
     <IconName>charlist_base</IconName>
-    <FolderID>14</FolderID>
+    <FolderID>15</FolderID>
     <IconFile>graphics\controls\portrait.png</IconFile>
   </Icons>
   <Icons>
     <IconName>Checbox_square_off</IconName>
-    <FolderID>13</FolderID>
+    <FolderID>14</FolderID>
     <IconFile>graphics\buttons\Checbox_square_off.png</IconFile>
   </Icons>
   <Icons>
     <IconName>Checbox_square_on</IconName>
-    <FolderID>13</FolderID>
+    <FolderID>14</FolderID>
     <IconFile>graphics\buttons\Checbox_square_on.png</IconFile>
   </Icons>
   <Icons>
     <IconName>Checbox_square_small_off</IconName>
-    <FolderID>13</FolderID>
+    <FolderID>14</FolderID>
     <IconFile>graphics\buttons\Checbox_square_small_off.png</IconFile>
   </Icons>
   <Icons>
     <IconName>Checbox_square_small_on</IconName>
-    <FolderID>13</FolderID>
+    <FolderID>14</FolderID>
     <IconFile>graphics\buttons\Checbox_square_small_on.png</IconFile>
   </Icons>
   <Icons>
     <IconName>Chi</IconName>
-    <FolderID>17</FolderID>
+    <FolderID>18</FolderID>
     <IconFile>graphics\frames\Chi.png</IconFile>
   </Icons>
   <Icons>
     <IconName>details</IconName>
-    <FolderID>13</FolderID>
+    <FolderID>14</FolderID>
     <IconFile>graphics\buttons\details.png</IconFile>
   </Icons>
   <Icons>
     <IconName>details_down</IconName>
-    <FolderID>13</FolderID>
+    <FolderID>14</FolderID>
     <IconFile>graphics\buttons\details_down.png</IconFile>
   </Icons>
   <Icons>
     <IconName>EgoTraitIcon</IconName>
-    <FolderID>17</FolderID>
+    <FolderID>18</FolderID>
     <IconFile>graphics\icons\EgoTraitIcon.png</IconFile>
   </Icons>
   <Icons>
     <IconName>Flex</IconName>
-    <FolderID>17</FolderID>
+    <FolderID>18</FolderID>
     <IconFile>graphics\icons\Flex.png</IconFile>
   </Icons>
   <Icons>
     <IconName>Gamma</IconName>
-    <FolderID>17</FolderID>
+    <FolderID>18</FolderID>
     <IconFile>graphics\frames\Gamma.png</IconFile>
   </Icons>
   <Icons>
     <IconName>indicator_expand</IconName>
-    <FolderID>13</FolderID>
+    <FolderID>14</FolderID>
     <IconFile>graphics\buttons\indicator_expand.png</IconFile>
   </Icons>
   <Icons>
     <IconName>indicator_expand_down</IconName>
-    <FolderID>13</FolderID>
+    <FolderID>14</FolderID>
     <IconFile>graphics\buttons\indicator_expand_down.png</IconFile>
   </Icons>
   <Icons>
     <IconName>inf</IconName>
-    <FolderID>17</FolderID>
+    <FolderID>18</FolderID>
     <IconFile>graphics\icons\inf.png</IconFile>
   </Icons>
   <Icons>
     <IconName>Insight</IconName>
-    <FolderID>17</FolderID>
+    <FolderID>18</FolderID>
     <IconFile>graphics\icons\Insight.png</IconFile>
   </Icons>
   <Icons>
     <IconName>MorphTraitIcon</IconName>
-    <FolderID>17</FolderID>
+    <FolderID>18</FolderID>
     <IconFile>graphics\icons\MorphTraitIcon.png</IconFile>
   </Icons>
   <Icons>
     <IconName>Moxie</IconName>
-    <FolderID>17</FolderID>
+    <FolderID>18</FolderID>
     <IconFile>graphics\icons\Moxie.png</IconFile>
   </Icons>
   <Icons>
     <IconName>sidebar_icon_recordtype_backgrounds</IconName>
-    <FolderID>18</FolderID>
+    <FolderID>19</FolderID>
     <IconFile>graphics\sidebar\sidebar_icon_recordtype_backgrounds.png</IconFile>
   </Icons>
   <Icons>
     <IconName>sidebar_icon_recordtype_careers</IconName>
-    <FolderID>18</FolderID>
+    <FolderID>19</FolderID>
     <IconFile>graphics\sidebar\sidebar_icon_recordtype_careers.png</IconFile>
   </Icons>
   <Icons>
     <IconName>sidebar_icon_recordtype_interest</IconName>
-    <FolderID>18</FolderID>
+    <FolderID>19</FolderID>
     <IconFile>graphics\sidebar\sidebar_icon_recordtype_interest.png</IconFile>
   </Icons>
   <Icons>
     <IconName>sidebar_icon_recordtype_morphs</IconName>
-    <FolderID>18</FolderID>
+    <FolderID>19</FolderID>
     <IconFile>graphics\sidebar\sidebar_icon_recordtype_morphs.png</IconFile>
   </Icons>
   <Icons>
     <IconName>sidebar_icon_recordtype_sleights</IconName>
-    <FolderID>18</FolderID>
+    <FolderID>19</FolderID>
     <IconFile>graphics\sidebar\sidebar_icon_fire.png</IconFile>
   </Icons>
   <Icons>
     <IconName>sidebar_icon_recordtype_substrains</IconName>
-    <FolderID>18</FolderID>
+    <FolderID>19</FolderID>
     <IconFile>graphics\sidebar\sidebar_icon_recordtype_substrains.png</IconFile>
   </Icons>
   <Icons>
     <IconName>sidebar_icon_recordtype_traits</IconName>
-    <FolderID>18</FolderID>
+    <FolderID>19</FolderID>
     <IconFile>graphics\sidebar\sidebar_icon_recordtype_traits.png</IconFile>
   </Icons>
   <Icons>
     <IconName>sidebar_icon_recordtype_vehicle</IconName>
-    <FolderID>18</FolderID>
+    <FolderID>19</FolderID>
     <IconFile>graphics\sidebar\sidebar_icon_spaceship_3.png</IconFile>
   </Icons>
   <Icons>
     <IconName>SkillAdd</IconName>
-    <FolderID>13</FolderID>
+    <FolderID>14</FolderID>
     <IconFile>graphics\buttons\SkillAdd.png</IconFile>
   </Icons>
   <Icons>
     <IconName>SkillAdd_down</IconName>
-    <FolderID>13</FolderID>
+    <FolderID>14</FolderID>
     <IconFile>graphics\buttons\SkillAdd_down.png</IconFile>
   </Icons>
   <Icons>
     <IconName>tab_async</IconName>
-    <FolderID>19</FolderID>
+    <FolderID>20</FolderID>
     <IconFile>graphics\tabs\tab_async.png</IconFile>
   </Icons>
   <Icons>
     <IconName>tab_combat</IconName>
-    <FolderID>19</FolderID>
+    <FolderID>20</FolderID>
     <IconFile>graphics\tabs\tab_combat.png</IconFile>
   </Icons>
   <Icons>
     <IconName>tab_inventory</IconName>
-    <FolderID>19</FolderID>
+    <FolderID>20</FolderID>
     <IconFile>graphics\tabs\tab_inventory.png</IconFile>
   </Icons>
   <Icons>
     <IconName>tab_main</IconName>
-    <FolderID>19</FolderID>
+    <FolderID>20</FolderID>
     <IconFile>graphics\tabs\tab_main.png</IconFile>
   </Icons>
   <Icons>
     <IconName>tab_notes</IconName>
-    <FolderID>19</FolderID>
+    <FolderID>20</FolderID>
     <IconFile>graphics\tabs\tab_notes.png</IconFile>
   </Icons>
   <Icons>
     <IconName>tab_skills</IconName>
-    <FolderID>19</FolderID>
+    <FolderID>20</FolderID>
     <IconFile>graphics\tabs\tab_skills.png</IconFile>
   </Icons>
   <Icons>
     <IconName>tabtop</IconName>
-    <FolderID>14</FolderID>
+    <FolderID>15</FolderID>
     <IconFile>graphics\controls\tabtop.png</IconFile>
   </Icons>
   <Icons>
     <IconName>tabtop_h</IconName>
-    <FolderID>14</FolderID>
+    <FolderID>15</FolderID>
     <IconFile>graphics\controls\tabtop_h.png</IconFile>
   </Icons>
   <Icons>
     <IconName>Vigor</IconName>
-    <FolderID>17</FolderID>
+    <FolderID>18</FolderID>
     <IconFile>graphics\icons\Vigor.png</IconFile>
   </Icons>
   <Icons>
     <IconName>window_resize_white</IconName>
-    <FolderID>17</FolderID>
+    <FolderID>18</FolderID>
     <IconFile>graphics\icons\window_resize_white.png</IconFile>
   </Icons>
 </DocumentElement>
@@ -77862,7 +77877,7 @@ end</Script>
 <DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
   <Fonts>
     <FontName>AddSkillButtonsFont</FontName>
-    <FolderID>15</FolderID>
+    <FolderID>16</FolderID>
     <FontFile>graphics/fonts/Noto_Sans/NotoSans-Regular.ttf</FontFile>
     <FontFamilyName>Noto Sans</FontFamilyName>
     <FontSize>13</FontSize>
@@ -77872,7 +77887,7 @@ end</Script>
   </Fonts>
   <Fonts>
     <FontName>Arabic</FontName>
-    <FolderID>15</FolderID>
+    <FolderID>16</FolderID>
     <FontFile>graphics\fonts\AcehDarusalam.ttf</FontFile>
     <FontFamilyName>Aceh Darusalam</FontFamilyName>
     <FontSize>60</FontSize>
@@ -77882,7 +77897,7 @@ end</Script>
   </Fonts>
   <Fonts>
     <FontName>Hindi</FontName>
-    <FolderID>15</FolderID>
+    <FolderID>16</FolderID>
     <FontFile>graphics\fonts\KRDEV010.TTF</FontFile>
     <FontFamilyName>Kruti Dev 010</FontFamilyName>
     <FontSize>60</FontSize>
@@ -77892,7 +77907,7 @@ end</Script>
   </Fonts>
   <Fonts>
     <FontName>Skandinaviska</FontName>
-    <FolderID>15</FolderID>
+    <FolderID>16</FolderID>
     <FontFile>graphics\fonts\runic regular.ttf</FontFile>
     <FontFamilyName>Runic</FontFamilyName>
     <FontSize>60</FontSize>
@@ -77902,7 +77917,7 @@ end</Script>
   </Fonts>
   <Fonts>
     <FontName>small_label</FontName>
-    <FolderID>15</FolderID>
+    <FolderID>16</FolderID>
     <FontFile>graphics/fonts/Noto_Sans/NotoSans-Regular.ttf</FontFile>
     <FontFamilyName>Noto Sans</FontFamilyName>
     <FontSize>12</FontSize>
@@ -77912,7 +77927,7 @@ end</Script>
   </Fonts>
   <Fonts>
     <FontName>small_label_grey</FontName>
-    <FolderID>15</FolderID>
+    <FolderID>16</FolderID>
     <FontFile>graphics/fonts/Noto_Sans/NotoSans-Regular.ttf</FontFile>
     <FontFamilyName>Noto Sans</FontFamilyName>
     <FontSize>12</FontSize>
