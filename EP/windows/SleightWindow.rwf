@@ -803,7 +803,7 @@ end</LUACode>
       {"Name":"Tooltip"},
       {"Name":"TooltipField"},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"WindowMargins"},
+      {"Name":"WindowMargins","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"WindowTitle"},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"0"}}
@@ -866,17 +866,17 @@ end</LUACode>
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"72"}}
 ]}}</Definition>
     <LUACode>function onValueChanged()
-	if getValue() == "Psi-chi" or getValue()=="-" then
+	if getValue() == "Psi-gamma" then
+		window.Action.setReadOnly(false);
+		window.Duration.setReadOnly(false);
+		window.InfectionMod.setReadOnly(false);
+	else
 		window.Action.setReadOnly(true);
 		window.Duration.setReadOnly(true);
 		window.InfectionMod.setReadOnly(true);
 		window.Action.setStringValue("Automatic");
 		window.Duration.setStringValue("Constant");
 		window.InfectionMod.setValue(0);
-	else
-		window.Action.setReadOnly(false);
-		window.Duration.setReadOnly(false);
-		window.InfectionMod.setReadOnly(false);
 	end
 end
 

@@ -69590,21 +69590,19 @@ end
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"4"}}
 ]}}</Definition>
     <LUACode>function onValueChanged()
-	if DB.getValue(window.getDatabaseNode(), "Type", "Psi-chi") == "Psi-chi" then
+	if DB.getValue(window.getDatabaseNode(), "Type", "Psi-chi") == "Psi-gamma" then
+		window.Action.setReadOnly(false);
+		window.Duration.setReadOnly(false);
+		window.InfectionMod.setReadOnly(false);
+		window.ButtonCast.setVisible(true);
+	else
 		window.Action.setReadOnly(true);
 		window.Duration.setReadOnly(true);
 		window.InfectionMod.setReadOnly(true);
 		window.Action.setStringValue("Automatic");
 		window.Duration.setStringValue("Constant");
 		window.InfectionMod.setValue(0);
-		window.TypeSymbol.setFrame("Psi");
 		window.ButtonCast.setVisible(false);
-	else
-		window.Action.setReadOnly(false);
-		window.Duration.setReadOnly(false);
-		window.InfectionMod.setReadOnly(false);
-		window.TypeSymbol.setFrame("Gamma");
-		window.ButtonCast.setVisible(true);
 	end
 end
 
@@ -70766,7 +70764,7 @@ end</LUACode>
       {"Name":"Tooltip"},
       {"Name":"TooltipField"},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"WindowMargins"},
+      {"Name":"WindowMargins","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"WindowTitle"},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"0"}}
@@ -70829,17 +70827,17 @@ end</LUACode>
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"72"}}
 ]}}</Definition>
     <LUACode>function onValueChanged()
-	if getValue() == "Psi-chi" or getValue()=="-" then
+	if getValue() == "Psi-gamma" then
+		window.Action.setReadOnly(false);
+		window.Duration.setReadOnly(false);
+		window.InfectionMod.setReadOnly(false);
+	else
 		window.Action.setReadOnly(true);
 		window.Duration.setReadOnly(true);
 		window.InfectionMod.setReadOnly(true);
 		window.Action.setStringValue("Automatic");
 		window.Duration.setStringValue("Constant");
 		window.InfectionMod.setValue(0);
-	else
-		window.Action.setReadOnly(false);
-		window.Duration.setReadOnly(false);
-		window.InfectionMod.setReadOnly(false);
 	end
 end
 
