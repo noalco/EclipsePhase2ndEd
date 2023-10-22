@@ -649,7 +649,6 @@ end
 
 function onInit()
 	super.onInit();
-	Debug.chat(window.name.getValue())
 	if window.name.getValue()=="Exotic Skill" then
 		setFrame("fielddark");
 	else
@@ -19386,12 +19385,14 @@ function ItemAutomation()
 	KineticAV.setValue(nKineticAV);
 	EnergyAV.setValue(nEnergyAV);
 	NumLayers.setValue(nLayers);
-	UpdateMultiLayerArmorPenalties()
+	UpdateMultiLayerArmorPenalties();
 end
 
 function UpdateMultiLayerArmorPenalties()
 	local nNumLayers=NumLayers.getValue()-1;
 	local nPenalty=0;
+	PhAP.setValue(0);
+	MRP.setValue("No Pen.");
 	if nNumLayers&gt;0 then
 		nPenalty=-20*nNumLayers;
 		local charNode=Tools.getCharNodePath(getDatabaseNode());
@@ -19402,11 +19403,10 @@ function UpdateMultiLayerArmorPenalties()
 			nPenalty=nPenalty-20;
 			MRP.setValue("Half");
 		end
-		if nMaxAV&gt;nDurability then MRP.setValue("No Mov."); end
+		if nMaxAV&gt;nDurability then
+			MRP.setValue("No Mov.");
+		end
 		PhAP.setValue(nPenalty);
-	else
-		PhAP.setValue(0);
-		MRP.setValue("No Pen.");
 	end
 end
 </LUACode>
