@@ -2,7 +2,7 @@
   <WindowControls>
     <WindowName>SleightBase</WindowName>
     <ControlName>Action</ControlName>
-    <ZIndex>8</ZIndex>
+    <ZIndex>6</ZIndex>
     <ControlClass>FGStringCycler</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"right","AnchorTo":"left","Parent":"Duration"}}},
@@ -59,7 +59,7 @@
   <WindowControls>
     <WindowName>SleightBase</WindowName>
     <ControlName>ButtonCast</ControlName>
-    <ZIndex>9</ZIndex>
+    <ZIndex>7</ZIndex>
     <ControlClass>FGButton</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"right","AnchorTo":"left","Parent":"Action"}}},
@@ -77,7 +77,7 @@
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"20"}},
       {"Name":"DevelopmentComments"},
-      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"1d100","DiceRollDescription":"[CAST SLEIGHT] Psi (vs {@self.getPsiTargetValue()})","DiceRollType":"cast_sleight","UseModStack":{"@xsi:nil":"true"},"ResetModStack":"true","SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":"true","ResultHandlerFunction":"self.CastSleightHandler","AdditionalInfo":null}},
+      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"1d100","DiceRollDescription":"[CAST SLEIGHT] Psi (vs {@self.getPsiTargetValue()}) {@self.sModMessage}","DiceRollType":"cast_sleight","UseModStack":"true","ResetModStack":"true","SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":"true","ResultHandlerFunction":"self.CastSleightHandler","AdditionalInfo":null}},
       {"Name":"Disabled"},
       {"Name":"DynamicSize"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
@@ -114,26 +114,62 @@
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"176"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"5"}}
 ]}}</Definition>
-    <LUACode>function getPsiTargetValue()
-	for _,n in pairs(DB.getChildren(window.windowlist.window.getDatabaseNode(), "Skills.ActiveSkillsList")) do
+    <LUACode>sModMessage="";
+
+function getPsiTargetValue()
+	sModMessage="";
+	local nPsiTarget=0;
+	local windowNode=window.windowlist.window;
+	for _,n in pairs(DB.getChildren(windowNode.getDatabaseNode(), "Skills.ActiveSkillsList")) do
 		if DB.getValue(n, "name", "")=="Psi" then
-			return DB.getValue(n, "Total", 0);
+			nPsiTarget=DB.getValue(n, "Total", 0);
+			break;
 		end
 	end
-	return 0;
+	local sRange=windowNode.SleightRange.getValue();
+	if sRange=="Point-Blank" then
+		nPsiTarget=nPsiTarget+10;
+		sModMessage=" [Point-Blank: +10]";
+	elseif sRange=="Close" then
+		if windowNode.ExtraDist.getValue()&gt;0 then
+			nPsiTarget=nPsiTarget-10*math.floor(windowNode.ExtraDist.getValue()/2);
+			sModMessage=" [Close: -"..10*math.floor(windowNode.ExtraDist.getValue()/2).."]";
+		end
+	else
+		nPsiTarget=nPsiTarget+20;
+		sModMessage=" [Touch: +20]";
+	end
+	
+	local sTargetType=windowNode.TargetType.getValue();
+	if sTargetType=="Cyberbrain" then
+		nPsiTarget=nPsiTarget-30;
+		sModMessage=sModMessage.."[Cyberbrain target: -30]";	
+	elseif sTargetType=="Partially sapient/uplifted animal" then
+		nPsiTarget=nPsiTarget-20;
+		sModMessage=sModMessage.."[Partially sapient/uplifted animal target: -20]";
+	elseif sTargetType=="Non-sapient animal" then
+		nPsiTarget=nPsiTarget-30;
+		sModMessage=sModMessage.."[Non-sapient animal target: -30]";
+	elseif sTargetType=="Factor/Alien" then
+		nPsiTarget=nPsiTarget-20;
+		sModMessage=sModMessage.."[Factor/Alien target: -20]";
+	end
+	
+	return nPsiTarget;
 end
 
 function CastSleightHandler(rSource, rTarget, rRoll)
 	RollHandlers.CheckHandler(rSource, rTarget, rRoll);
 	window.windowlist.window.InfectionRatingIncrease.setValue(window.windowlist.window.InfectionRatingIncrease.getValue()+window.InfectionMod.getValue());
-end</LUACode>
+end
+</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>SleightBase</WindowName>
     <ControlName>Duration</ControlName>
-    <ZIndex>7</ZIndex>
+    <ZIndex>5</ZIndex>
     <ControlClass>FGStringCycler</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"right","AnchorTo":"left","Parent":"InfectionMod"}}},
@@ -190,7 +226,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>SleightBase</WindowName>
     <ControlName>idelete</ControlName>
-    <ZIndex>5</ZIndex>
+    <ZIndex>3</ZIndex>
     <ControlClass>FGButton</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"right","AnchorTo":"right"}}},
@@ -252,7 +288,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>SleightBase</WindowName>
     <ControlName>InfectionMod</ControlName>
-    <ZIndex>6</ZIndex>
+    <ZIndex>4</ZIndex>
     <ControlClass>FGNumberField</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"right","AnchorTo":"left","Parent":"idelete"}}},
@@ -374,7 +410,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>SleightBase</WindowName>
     <ControlName>name</ControlName>
-    <ZIndex>10</ZIndex>
+    <ZIndex>8</ZIndex>
     <ControlClass>FGStringField</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"right","AnchorTo":"left","Parent":"ButtonCast"}}},
@@ -495,7 +531,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>SleightBase</WindowName>
     <ControlName>Type</ControlName>
-    <ZIndex>4</ZIndex>
+    <ZIndex>2</ZIndex>
     <ControlClass>FGIconCycler</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
