@@ -115,6 +115,10 @@ function addEntryWithField(bFocus, sSkill)
 		w.AptMult.setVisible(t.nAptMult&gt;1 or sSkill=="Exotic Skill");
 		w.AptMult.setReadOnly(sSkill~="Exotic Skill");
 		w.LabelX.setVisible(t.nAptMult&gt;1 or sSkill=="Exotic Skill");
+--		if sSkill=="Exotic Skill" then
+--			w.aptitude.setFrame("fieldark");
+--			w.AptMult.setFrame("fieldark");
+--		end
 		w.UpdateBonus();
 	end
 end

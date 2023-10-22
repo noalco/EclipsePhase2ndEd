@@ -151,7 +151,7 @@ end</LUACode>
       {"Name":"DynamicSize"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
-      {"Name":"FrameName","Value":{"@xsi:type":"xsd:string","#text":"fielddark"}},
+      {"Name":"FrameName","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string","#text":"0,0,0,0"}},
       {"Name":"GMEditOnly"},
       {"Name":"GMVisibleOnly"},
@@ -194,6 +194,16 @@ end</LUACode>
 	else
 		DB.setValue(window.getDatabaseNode(), "pool", "string", "");
 		window.AptitudeBonus.setValue(0);		
+	end
+end
+
+function onInit()
+	super.onInit();
+	Debug.chat(window.name.getValue())
+	if window.name.getValue()=="Exotic Skill" then
+		setFrame("fielddark");
+	else
+		setFrame("");
 	end
 end
 </LUACode>
@@ -293,7 +303,7 @@ end
       {"Name":"DynamicSize"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
-      {"Name":"FrameName","Value":{"@xsi:type":"xsd:string","#text":"fielddark"}},
+      {"Name":"FrameName","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"GMEditOnly"},
       {"Name":"GMVisibleOnly"},
@@ -331,7 +341,16 @@ end
 ]}}</Definition>
     <LUACode>function onValueChanged()
 	window.Total.Update();
-end</LUACode>
+end
+
+function onInit()
+	if window.name.getValue()=="Exotic Skill" then
+		setFrame("fielddark");
+	else
+		setFrame("");
+	end
+end
+</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -483,6 +502,10 @@ end
 	window.LabelInterest.setVisible(bVisible);
 	window.CustomizationPoints.setVisible(bVisible);
 	window.LabelCustomizationPoints.setVisible(bVisible);
+end
+
+function onInit()
+	setVisible(window.name.getValue()~="Fray/2 (vs. ranged attacks)");
 end
 </LUACode>
     <GroupIndex>0</GroupIndex>
@@ -1677,7 +1700,7 @@ end</LUACode>
       {"Name":"DynamicSize"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
-      {"Name":"FrameName","Value":{"@xsi:type":"xsd:string","#text":"fielddark"}},
+      {"Name":"FrameName","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string","#text":"0,0,0,0"}},
       {"Name":"GMEditOnly"},
       {"Name":"GMVisibleOnly"},
@@ -1709,7 +1732,16 @@ end</LUACode>
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"244"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"0"}}
 ]}}</Definition>
-    <LUACode />
+    <LUACode>function onInit()
+	super.onInit();
+	Debug.chat(window.name.getValue())
+	if window.name.getValue()=="Exotic Skill" then
+		setFrame("fielddark");
+	else
+		setFrame("");
+	end
+end
+</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
