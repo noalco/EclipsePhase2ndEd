@@ -1733,7 +1733,6 @@ end</LUACode>
 ]}}</Definition>
     <LUACode>function onInit()
 	super.onInit();
-	Debug.chat(window.name.getValue())
 	if window.name.getValue()=="Exotic Skill" then
 		setFrame("fielddark");
 	else

@@ -2183,7 +2183,6 @@ end</LUACode>
 ]}}</Definition>
     <LUACode>function onInit()
 	super.onInit();
-	Debug.chat(window.name.getValue())
 	if window.name.getValue()=="Exotic Skill" then
 		setFrame("fielddark");
 	else
@@ -10167,7 +10166,7 @@ end
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"25"}},
       {"Name":"DevelopmentComments"},
-      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"1d100","DiceRollDescription":"[ATTACK] {@window.AttackSkill.getValue()} (vs {@self.getValue()})","DiceRollType":"AttackCheck","UseModStack":"true","ResetModStack":"true","SecretRoll":{"@xsi:nil":"true"},"DragIcon":"action_attack","AllowDragDrop":"true","ResultHandlerFunction":"RollHandlers.CheckHandler","AdditionalInfo":null}},
+      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"1d100","DiceRollDescription":"[ATTACK] {@window.AttackSkill.getValue()} (vs {@self.getAttackSkillTarget()..\")\"..self.sPhAPMessage}","DiceRollType":"AttackCheck","UseModStack":"true","ResetModStack":"true","SecretRoll":{"@xsi:nil":"true"},"DragIcon":"action_attack","AllowDragDrop":"true","ResultHandlerFunction":"RollHandlers.CheckHandler","AdditionalInfo":null}},
       {"Name":"Disabled"},
       {"Name":"DisplaySign"},
       {"Name":"DynamicSize"},
@@ -10210,23 +10209,33 @@ end
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"7"}}
 ]}}</Definition>
     <LUACode>local dataNode;
-local windowlistNode;
+local charNode;
+sPhAPMessage="";
+local nPhAP=0;
 
 function onInit()
 	dataNode=window.parentcontrol.window.getDatabaseNode();
-	windowlistNode=window.parentcontrol.window.windowlist.window.getDatabaseNode();
+	charNode=window.parentcontrol.window.windowlist.window.getDatabaseNode();
 	DB.addHandler(DB.getPath(dataNode, "Weapon.AttackSkill"), "onUpdate", UpdateSkill);
-	DB.addHandler(DB.getPath(windowlistNode, "Skills.ActiveSkillsList"), "onChildUpdate", UpdateSkill);
+	DB.addHandler(DB.getPath(charNode, "Armor.PhAP"), "onUpdate", UpdateSkill);
+	DB.addHandler(DB.getPath(charNode, "Skills.ActiveSkillsList"), "onChildUpdate", UpdateSkill);
 	UpdateSkill();
 end
 
 function onClose()
 	DB.removeHandler(DB.getPath(dataNode, "Weapon.AttackSkill"), "onUpdate", UpdateSkill);
-	DB.removeHandler(DB.getPath(windowlistNode, "Skills.ActiveSkillsList"), "onChildUpdate", UpdateSkill);
+	DB.removeHandler(DB.getPath(charNode, "Armor.PhAP"), "onUpdate", UpdateSkill);
+	DB.removeHandler(DB.getPath(charNode, "Skills.ActiveSkillsList"), "onChildUpdate", UpdateSkill);
+end
+
+function getAttackSkillTarget()
+	return getValue()+nPhAP;
 end
 
 function UpdateSkill()
 	local sType=DB.getValue(dataNode, "Type", "Melee Weapon");	
+	sPhAPMessage="";
+	nPhAP=0;
 	if sType=="Melee Weapon" or sType=="Ranged Weapon" or sType=="Micromissile/Minigrenade" then
 		local sSkill=DB.getValue(dataNode, "Weapon.AttackSkill", ""):lower();
 		local sField="";
@@ -10234,7 +10243,7 @@ function UpdateSkill()
 			sField=sSkill:match("exotic skill:%s*(.*)")
 			sSkill="exotic skill";
 		end
-		for _,skillNode in pairs(DB.getChildren(windowlistNode, "Skills.ActiveSkillsList")) do
+		for _,skillNode in pairs(DB.getChildren(charNode, "Skills.ActiveSkillsList")) do
 			if DB.getValue(skillNode, "name", ""):lower()==sSkill then
 				if sSkill=="exotic skill" then
 					if DB.getValue(skillNode, "Field", ""):lower()==sField then
@@ -10244,6 +10253,10 @@ function UpdateSkill()
 						window.Icond10_1.setTooltipText(sSkill);
 						window.Icond10_2.setTooltipText(sSkill);
 						window.AttackFrame.setTooltipText(sSkill);
+						if DB.getValue(skillNode, "Type", "")=="Physical" then
+							nPhAP=DB.getValue(charNode, "Armor.PhAP", 0);
+							sPhAPMessage=" [Multi-layer armor Penalty: "..nPhAP.."]";
+						end
 						return;
 					end
 				else
@@ -11624,7 +11637,7 @@ end</LUACode>
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"805"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"816"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"2"}}
 ]}}</Definition>
     <LUACode>function UpdateWeaponType()
@@ -20240,7 +20253,7 @@ end
       {"Name":"StackVertWith"},
       {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
       {"Name":"TextUnderlined"},
-      {"Name":"Tooltip","Value":{"@xsi:type":"xsd:string","#text":"Movement rate penalty for using multy-layer armor"}},
+      {"Name":"Tooltip","Value":{"@xsi:type":"xsd:string","#text":"{multi_layer_armor_tooltip}"}},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"305"}},
@@ -77959,7 +77972,8 @@ end</Script>
 
 	&lt;!-- Tooltips --&gt;
 	&lt;string name="weapon_type_tooltip"&gt;For Exotic Skills, use the "Exotic Skill: exotic skill name" format (example: Exotic Skill: Monowire Garrote)&lt;/string&gt;
-	&lt;string name="extra_distance_tooltip"&gt;Extra distance beyong 10 meters (20 against Asyncs).&lt;/string&gt;
+	&lt;string name="extra_distance_tooltip"&gt;Extra distance beyong 10 meters (20 against Asyncs)&lt;/string&gt;
+	&lt;string name="extra_distance_tooltip"&gt;Movement rate penalty for using multi-layer armor&lt;/string&gt;
 &lt;/root&gt;</XML>
   </XMLFiles>
 </DocumentElement>
