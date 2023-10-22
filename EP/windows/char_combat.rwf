@@ -299,10 +299,10 @@ function UpdateSkill()
 						window.Icond10_1.setTooltipText(sSkill);
 						window.Icond10_2.setTooltipText(sSkill);
 						window.AttackFrame.setTooltipText(sSkill);
-						if DB.getValue(skillNode, "Type", "")=="Physical" then
-							nPhAP=DB.getValue(charNode, "Armor.PhAP", 0);
-							sPhAPMessage=" [Multi-layer armor Penalty: "..nPhAP.."]";
-						end
+--						if DB.getValue(skillNode, "Type", "")=="Physical" then
+--							nPhAP=DB.getValue(charNode, "Armor.PhAP", 0);
+--							sPhAPMessage=" [Multi-layer armor Penalty: "..nPhAP.."]";
+--						end
 						return;
 					end
 				else
@@ -1603,6 +1603,7 @@ end</LUACode>
 	local sTypeIcon=DB.getValue(window.getDatabaseNode(), "TypeIcon", "Melee Weapon");
 	DB.setValue(window.getDatabaseNode(), "Type", "string", sTypeIcon);
 	DB.setValue(window.getDatabaseNode(), "Typevalue", "string", sTypeIcon);
+	window.WeaponType.UpdateWeaponType();
 	UpdateVisibility();
 end
 
@@ -1612,7 +1613,6 @@ function onInit()
 end
 
 function UpdateVisibility()
-	window.WeaponType.UpdateWeaponType();
 	bIsRanged=DB.getValue(window.getDatabaseNode(), "TypeIcon", "Melee Weapon")=="Ranged Weapon";
 	window.LabelAmmo.setVisible(bIsRanged);
 	window.Ammo.setVisible(bIsRanged);

@@ -23,7 +23,8 @@
 	&lt;!-- Tooltips --&gt;
 	&lt;string name="weapon_type_tooltip"&gt;For Exotic Skills, use the "Exotic Skill: exotic skill name" format (example: Exotic Skill: Monowire Garrote)&lt;/string&gt;
 	&lt;string name="extra_distance_tooltip"&gt;Extra distance beyong 10 meters (20 against Asyncs)&lt;/string&gt;
-	&lt;string name="extra_distance_tooltip"&gt;Movement rate penalty for using multi-layer armor&lt;/string&gt;
+	&lt;string name="multi_layer_armor_tooltip"&gt;Movement rate penalty for using multi-layer armor&lt;/string&gt;
+	&lt;string name="skill_multi_layer_penalty_tooltip"&gt;Physical actions penalty for multi-layer armor&lt;/string&gt;
 &lt;/root&gt;</XML>
   </XMLFiles>
 </DocumentElement>
