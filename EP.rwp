@@ -18,8 +18,8 @@
     <LogoFile />
     <ImportRuleset>CoreRPG</ImportRuleset>
     <AdvancedDevelopment>true</AdvancedDevelopment>
-    <GeneratePath>F:\Juegos\Fantasy Grounds Unity\rulesets\Eclipse Phase 2nd Edition.pak</GeneratePath>
-    <UseAutoPath>false</UseAutoPath>
+    <GeneratePath />
+    <UseAutoPath>true</UseAutoPath>
     <AnnouncementFont />
     <AnnouncementIcon />
     <Announcement2 />
@@ -78433,7 +78433,7 @@ end</Script>
   <Icons>
     <IconName>button_link_down</IconName>
     <FolderID>14</FolderID>
-    <IconFile>graphics\buttons\button_link.png</IconFile>
+    <IconFile>graphics\buttons\button_link_down.png</IconFile>
   </Icons>
   <Icons>
     <IconName>charlist_base</IconName>
