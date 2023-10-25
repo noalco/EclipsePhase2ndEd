@@ -10343,6 +10343,7 @@ end
 ]}}</Definition>
     <LUACode>local dataNode;
 local charNode;
+-- estas dos están porque antes se usaban, ahora no, se pueden borrar pero hay que cambiar el Roll Description Text
 sPhAPMessage="";
 local nPhAP=0;
 
@@ -78423,6 +78424,16 @@ end</Script>
     <IconName>attack_ranged</IconName>
     <FolderID>18</FolderID>
     <IconFile>graphics\icons\attack_ranged.png</IconFile>
+  </Icons>
+  <Icons>
+    <IconName>button_link</IconName>
+    <FolderID>14</FolderID>
+    <IconFile>graphics\buttons\button_link.png</IconFile>
+  </Icons>
+  <Icons>
+    <IconName>button_link_down</IconName>
+    <FolderID>14</FolderID>
+    <IconFile>graphics\buttons\button_link.png</IconFile>
   </Icons>
   <Icons>
     <IconName>charlist_base</IconName>

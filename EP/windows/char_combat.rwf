@@ -256,6 +256,7 @@ end
 ]}}</Definition>
     <LUACode>local dataNode;
 local charNode;
+-- estas dos están porque antes se usaban, ahora no, se pueden borrar pero hay que cambiar el Roll Description Text
 sPhAPMessage="";
 local nPhAP=0;
 
