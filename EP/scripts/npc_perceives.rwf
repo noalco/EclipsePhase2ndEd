@@ -1,0 +1,156 @@
+<DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
+  <Scripts>
+    <ScriptName>npc_perceives</ScriptName>
+    <FolderID>22</FolderID>
+    <Script>local bParsed = false;
+local aComponents = {};
+
+-- The nDragMod and sDragLabel fields keep track of the entry under the cursor
+local sDragLabel = nil;
+local nDragMod = nil;
+local bDragging = false;
+local nSkillTarget=0;
+
+function onValueChanged()
+	parseComponents();
+end
+
+-- Reset selection when the cursor leaves the control
+function onHover(bOnControl)
+	if bDragging or bOnControl then
+		return;
+	end
+
+	if not bParsed then
+--		parseComponents();
+	end
+
+	sDragLabel = nil;
+	nDragMod = nil;
+	setSelectionPosition(0);
+end
+
+function parseComponents()
+	aComponents = {};
+	local sText;
+	local aSubStrings;
+	local aSubStringsStats;
+	local nNameDesp=0;
+	
+	local aClauses, aClauseStats = StringManager.split(getValue(), ",\r\n", true);
+	for i = 1, #aClauses do
+		if string.match(aClauses[i], "%d+") then
+			nSkillTarget = tonumber(string.match(aClauses[i], "(%d+)") or "0");
+			sDragLabel=string.match(aClauses[i], "%d+ (.*)") or "";
+			sDragLabel=StringManager.trim(StringManager.strip(sDragLabel));
+			table.insert(aComponents, {sLabel=sDragLabel, nSkillTarget=nSkillTarget, nStart=aClauseStats[i].startpos, nEnd=aClauseStats[i].endpos});
+		end
+	end
+		
+	bParsed = true;
+end
+
+-- Reset selection when the cursor leaves the control
+function onHover(bOnControl)
+	if bDragging or bOnControl then
+		return;
+	end
+
+	if not bParsed then
+		parseComponents();
+	end
+
+	sDragLabel = nil;
+	nDragMod = nil;
+	setSelectionPosition(0);
+end
+
+-- Hilight skill hovered on
+function onHoverUpdate(x, y)
+	if bDragging then
+		return;
+	end
+
+	if not bParsed then
+		parseComponents();
+	end
+	local nMouseIndex = getIndexAt(x, y);
+
+	for i = 1, #aComponents, 1 do
+		if aComponents[i].nStart &lt;= nMouseIndex and aComponents[i].nEnd &gt; nMouseIndex then
+			setCursorPosition(aComponents[i].nStart);
+			setSelectionPosition(aComponents[i].nEnd);
+			sDragLabel = aComponents[i].sLabel;
+			setHoverCursor("hand");
+			nSkillTarget=aComponents[i].nSkillTarget;
+			return;
+		end
+	end
+
+	nSkillTarget=0;
+	sDragLabel = nil;
+	nDragMod = nil;
+	setHoverCursor("arrow");
+end
+
+function action(dragInfo)
+	local sActionType="";
+	if sDragLabel then
+		if sDragLabel~="" then
+			sDragLabel=" "..sDragLabel;
+		end
+		DiceRollDescription = "[PERCEIVE]"..sDragLabel.." (vs "..nSkillTarget..")";
+		GameSystem.actions["SkillCheck"] = { bUseModStack = "true"}
+		sActionType="SkillCheck";
+		DiceRollString="1d100";
+		
+		DiceRollAdditionalInfo = {};
+		if onBeforeDiceRoll then if onBeforeDiceRoll() == false then return; end; end;
+		local windataref = window.getDatabaseNode();
+		if windataref == nil then windataref = window; end;
+		RulesetWizardDiceRoller.Roll(dragInfo, windataref, sActionType, DiceRollDescription, DiceRollString, getValue(), DiceRollAdditionalInfo);
+		ModifierStack.reset();
+		if onAfterDiceRoll then onAfterDiceRoll(); end;
+		return true;
+	end
+end
+
+function onDoubleClick(x, y)
+	bEsDobleClick=true;
+	action();
+	return true;
+end
+
+function onDragStart(button, x, y, draginfo)
+--	return action(draginfo);
+	action(draginfo);
+
+	bDragging = true;
+	setCursorPosition(0);
+	
+	return true;
+end
+
+function onDragEnd(draginfo)
+	bDragging = false;
+end
+
+-- Suppress default processing to support dragging
+function onClickDown(button, x, y)
+	return true;
+end
+
+-- On mouse click, set focus, set cursor position and clear selection
+function onClickRelease(button, x, y)
+	setFocus();
+	
+	local n = getIndexAt(x, y);
+	setSelectionPosition(n);
+	setCursorPosition(n);
+	
+	return true;
+end</Script>
+    <RegisterScript>false</RegisterScript>
+    <Encoding />
+  </Scripts>
+</DocumentElement>
