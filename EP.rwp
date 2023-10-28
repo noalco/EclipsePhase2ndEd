@@ -163,19 +163,25 @@
   </Folders>
   <Folders>
     <ID>22</ID>
-    <ParentFolderID>0</ParentFolderID>
-    <Folder>Scripts</Folder>
+    <ParentFolderID>21</ParentFolderID>
+    <Folder>scripts</Folder>
     <Exclude>false</Exclude>
   </Folders>
   <Folders>
     <ID>23</ID>
     <ParentFolderID>0</ParentFolderID>
-    <Folder>Sidebars</Folder>
+    <Folder>Scripts</Folder>
     <Exclude>false</Exclude>
   </Folders>
   <Folders>
     <ID>24</ID>
-    <ParentFolderID>23</ParentFolderID>
+    <ParentFolderID>0</ParentFolderID>
+    <Folder>Sidebars</Folder>
+    <Exclude>false</Exclude>
+  </Folders>
+  <Folders>
+    <ID>25</ID>
+    <ParentFolderID>24</ParentFolderID>
     <Folder>Scripts</Folder>
     <Exclude>false</Exclude>
   </Folders>
@@ -188,11 +194,11 @@
   </Windows>
   <Windows>
     <Name>BackgroundBase</Name>
-    <FolderID>23</FolderID>
+    <FolderID>24</FolderID>
   </Windows>
   <Windows>
     <Name>BackgroundSidebarWindow</Name>
-    <FolderID>23</FolderID>
+    <FolderID>24</FolderID>
   </Windows>
   <Windows>
     <Name>BackgroundWindow</Name>
@@ -200,11 +206,11 @@
   </Windows>
   <Windows>
     <Name>BotVehicleBase</Name>
-    <FolderID>23</FolderID>
+    <FolderID>24</FolderID>
   </Windows>
   <Windows>
     <Name>BotVehicleSidebarWindow</Name>
-    <FolderID>23</FolderID>
+    <FolderID>24</FolderID>
   </Windows>
   <Windows>
     <Name>BotVehicleWindow</Name>
@@ -212,11 +218,11 @@
   </Windows>
   <Windows>
     <Name>CareerBase</Name>
-    <FolderID>23</FolderID>
+    <FolderID>24</FolderID>
   </Windows>
   <Windows>
     <Name>CareerSidebarWindow</Name>
-    <FolderID>23</FolderID>
+    <FolderID>24</FolderID>
   </Windows>
   <Windows>
     <Name>CareerWindow</Name>
@@ -296,7 +302,7 @@
   </Windows>
   <Windows>
     <Name>InfluenceEffectsSidebarWindow</Name>
-    <FolderID>23</FolderID>
+    <FolderID>24</FolderID>
   </Windows>
   <Windows>
     <Name>InfluenceEffectsWindow</Name>
@@ -308,11 +314,11 @@
   </Windows>
   <Windows>
     <Name>InterestBase</Name>
-    <FolderID>23</FolderID>
+    <FolderID>24</FolderID>
   </Windows>
   <Windows>
     <Name>InterestSidebarWindow</Name>
-    <FolderID>23</FolderID>
+    <FolderID>24</FolderID>
   </Windows>
   <Windows>
     <Name>InterestWindow</Name>
@@ -340,11 +346,11 @@
   </Windows>
   <Windows>
     <Name>MorphBase</Name>
-    <FolderID>23</FolderID>
+    <FolderID>24</FolderID>
   </Windows>
   <Windows>
     <Name>MorphDataDetaisSidebarWindow</Name>
-    <FolderID>23</FolderID>
+    <FolderID>24</FolderID>
   </Windows>
   <Windows>
     <Name>MorphDataDetaisWindow</Name>
@@ -352,7 +358,7 @@
   </Windows>
   <Windows>
     <Name>MorphDataSidebarWindow</Name>
-    <FolderID>23</FolderID>
+    <FolderID>24</FolderID>
   </Windows>
   <Windows>
     <Name>MorphDataWindow</Name>
@@ -404,7 +410,7 @@
   </Windows>
   <Windows>
     <Name>SleightSidebarBase</Name>
-    <FolderID>23</FolderID>
+    <FolderID>24</FolderID>
   </Windows>
   <Windows>
     <Name>SleightWindow</Name>
@@ -412,11 +418,11 @@
   </Windows>
   <Windows>
     <Name>SubStrainBase</Name>
-    <FolderID>23</FolderID>
+    <FolderID>24</FolderID>
   </Windows>
   <Windows>
     <Name>SubStrainSidebarWindow</Name>
-    <FolderID>23</FolderID>
+    <FolderID>24</FolderID>
   </Windows>
   <Windows>
     <Name>SubStrainWindow</Name>
@@ -432,7 +438,7 @@
   </Windows>
   <Windows>
     <Name>TraitBaseSidebar</Name>
-    <FolderID>23</FolderID>
+    <FolderID>24</FolderID>
   </Windows>
   <Windows>
     <Name>TraitWindow</Name>
@@ -62441,7 +62447,7 @@ end
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"39"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"175"}}
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"180"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
@@ -63289,6 +63295,60 @@ end</LUACode>
   </WindowControls>
   <WindowControls>
     <WindowName>npc_main</WindowName>
+    <ControlName>LabelOffensiveAbilities</ControlName>
+    <ZIndex>33</ZIndex>
+    <ControlClass>FGLabel</ControlClass>
+    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
+      {"Name":"AdvancedTemplate"},
+      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"Center","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"LabelOffensiveAbilities"}},
+      {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
+      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
+      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"120"}},
+      {"Name":"DevelopmentComments"},
+      {"Name":"Disabled"},
+      {"Name":"DynamicSize"},
+      {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"FontName","Value":{"@xsi:type":"xsd:string","#text":"sheetlabel"}},
+      {"Name":"FrameName","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"GMVisibleOnly"},
+      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"HoverCursor"},
+      {"Name":"InheritSizePosition"},
+      {"Name":"InsertBefore"},
+      {"Name":"Invisible"},
+      {"Name":"LabelCaption","Value":{"@xsi:type":"xsd:string","#text":"Offensive Abilities"}},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
+      {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
+      {"Name":"MultilineSpacing"},
+      {"Name":"NextTabTarget"},
+      {"Name":"PrevTabTarget"},
+      {"Name":"RelativeMargin"},
+      {"Name":"RelativeStacking","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"ScriptFile"},
+      {"Name":"StackVertWith","Value":{"@xsi:type":"xsd:string","#text":"Sep2"}},
+      {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
+      {"Name":"TextUnderlined"},
+      {"Name":"Tooltip"},
+      {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"39"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"247"}}
+]}}</Definition>
+    <LUACode />
+    <GroupIndex>0</GroupIndex>
+    <Template />
+  </WindowControls>
+  <WindowControls>
+    <WindowName>npc_main</WindowName>
     <ControlName>LabelStressTest</ControlName>
     <ZIndex>9</ZIndex>
     <ControlClass>FGLabel</ControlClass>
@@ -63707,6 +63767,69 @@ end
   </WindowControls>
   <WindowControls>
     <WindowName>npc_main</WindowName>
+    <ControlName>OffensiveAbilities</ControlName>
+    <ZIndex>34</ZIndex>
+    <ControlClass>FGStringField</ControlClass>
+    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
+      {"Name":"AdvancedTemplate"},
+      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"Center"},
+      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"OffensiveAbilities"}},
+      {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
+      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
+      {"Name":"DefaultText","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"DelayKeyUpdate","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
+      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"350"}},
+      {"Name":"DevelopmentComments"},
+      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
+      {"Name":"Disabled"},
+      {"Name":"DynamicSize","Value":{"@xsi:type":"xsd:string","#text":"Dynamic Height"}},
+      {"Name":"EmptyText","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"FrameName","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string","#text":"12,8,12,8"}},
+      {"Name":"GMEditOnly"},
+      {"Name":"GMVisibleOnly"},
+      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"2"}},
+      {"Name":"HoverCursor"},
+      {"Name":"InheritSizePosition"},
+      {"Name":"InsertBefore"},
+      {"Name":"Invisible"},
+      {"Name":"LineOffset","Value":{"@xsi:type":"xsd:int","#text":"2"}},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
+      {"Name":"Merge"},
+      {"Name":"MinimumHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
+      {"Name":"MinimumWidth"},
+      {"Name":"MultilineSpacing","Value":{"@xsi:type":"xsd:int","#text":"18"}},
+      {"Name":"NextTabTarget"},
+      {"Name":"NoDrag","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"NoDragselect","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"NoDrop","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"PrevTabTarget"},
+      {"Name":"ReadOnly"},
+      {"Name":"RelativeMargin"},
+      {"Name":"RelativeStacking","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"ScriptFile","Value":{"@xsi:type":"xsd:string","#text":"NPC/scripts/npc_offensive_abilities.lua"}},
+      {"Name":"Source"},
+      {"Name":"StackVertWith","Value":{"@xsi:type":"xsd:string","#text":"LabelOffensiveAbilities"}},
+      {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
+      {"Name":"Tooltip"},
+      {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"39"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"266"}}
+]}}</Definition>
+    <LUACode />
+    <GroupIndex>0</GroupIndex>
+    <Template />
+  </WindowControls>
+  <WindowControls>
+    <WindowName>npc_main</WindowName>
     <ControlName>Sep1</ControlName>
     <ZIndex>14</ZIndex>
     <ControlClass>FGIconControl</ControlClass>
@@ -63803,7 +63926,59 @@ end
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"205"}}
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"210"}}
+]}}</Definition>
+    <LUACode />
+    <GroupIndex>0</GroupIndex>
+    <Template />
+  </WindowControls>
+  <WindowControls>
+    <WindowName>npc_main</WindowName>
+    <ControlName>Sep3</ControlName>
+    <ZIndex>35</ZIndex>
+    <ControlClass>FGIconControl</ControlClass>
+    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
+      {"Name":"AdvancedTemplate"},
+      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"Sep3"}},
+      {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
+      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"34"}},
+      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"394"}},
+      {"Name":"DevelopmentComments"},
+      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
+      {"Name":"Disabled"},
+      {"Name":"DynamicSize"},
+      {"Name":"FrameName","Value":{"@xsi:type":"xsd:string","#text":"EPutilitybox3_separator"}},
+      {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"GMEditOnly"},
+      {"Name":"GMVisibleOnly"},
+      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"2"}},
+      {"Name":"HoverCursor"},
+      {"Name":"IconName","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"InheritSizePosition"},
+      {"Name":"InsertBefore"},
+      {"Name":"Invisible"},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
+      {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
+      {"Name":"NextTabTarget"},
+      {"Name":"PrevTabTarget"},
+      {"Name":"ReadOnly"},
+      {"Name":"RelativeMargin"},
+      {"Name":"RelativeStacking","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"ScriptFile"},
+      {"Name":"StackVertWith","Value":{"@xsi:type":"xsd:string","#text":"OffensiveAbilities"}},
+      {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
+      {"Name":"Tooltip"},
+      {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"289"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
@@ -77503,7 +77678,7 @@ end</LUACode>
   </Scripts>
   <Scripts>
     <ScriptName>DataCommon</ScriptName>
-    <FolderID>22</FolderID>
+    <FolderID>23</FolderID>
     <Script>ActiveSkills = {
 	["Athletics"] = {sApt="SOM", nAptMult=1, sType="Physical", bHasField=false},
 	["Deceive"] = {sApt="SAV", nAptMult=1, sType="Social", bHasField=false},
@@ -77815,7 +77990,7 @@ end
   </Scripts>
   <Scripts>
     <ScriptName>ManagerGameSystem_EP2ed</ScriptName>
-    <FolderID>22</FolderID>
+    <FolderID>23</FolderID>
     <Script>function onInit()	
 	-- Languages
 	GameSystem.languagefonts = {
@@ -77855,8 +78030,235 @@ end
     <Encoding />
   </Scripts>
   <Scripts>
-    <ScriptName>RollChecks</ScriptName>
+    <ScriptName>npc_offensive_abilities</ScriptName>
     <FolderID>22</FolderID>
+    <Script>local bParsed = false;
+local aComponents = {};
+
+-- The nDragMod and sDragLabel fields keep track of the entry under the cursor
+local sDragLabel = nil;
+local nDragMod = nil;
+local bDragging = false;
+local nAttackTarget=0;
+local sDVRoll="";
+local sDVMod="";
+local sEffect="";
+
+ATTACK=1;
+DAMAGE=2;
+EFFECT=3;
+
+
+function onValueChanged()
+	parseComponents();
+end
+
+-- Reset selection when the cursor leaves the control
+function onHover(bOnControl)
+	if bDragging or bOnControl then
+		return;
+	end
+
+	if not bParsed then
+--		parseComponents();
+	end
+
+	sDragLabel = nil;
+	nDragMod = nil;
+	setSelectionPosition(0);
+end
+
+function parseComponents()
+	aComponents = {};
+	local sText;
+	local aSubStrings;
+	local aSubStringsStats;
+	local nNameDesp=0;
+	
+	local aClauses, aClauseStats = StringManager.split(getValue(), "\r\n", true);
+	for i = 1, #aClauses do
+		sDragLabel, sText = aClauses[i]:match("(.*):(.*)");
+		nNameDesp=(aClauses[i]:match("(.*:)") or ""):len();
+		sDragLabel=StringManager.trim(sDragLabel);
+		sText=StringManager.trim(sText);
+		if sDragLabel and sText then
+			aSubStrings, aSubStringsStats = StringManager.split(sText, ",", true);
+			GetFields(aClauseStats[i].startpos, aSubStrings, aSubStringsStats, nNameDesp);
+		end
+	end
+		
+	bParsed = true;
+end
+
+function GetFields(startpos, aSubStrings, aSubStringsStats, nNameDesp)
+	local nAttackTarget=0;
+	local sDVRoll="";
+	local sDVMod="";
+	if string.match(aSubStrings[1], "(%d+)") then
+		nAttackTarget = tonumber(string.match(aSubStrings[1], "(%d+)") or "0");
+		table.insert(aComponents, {sLabel=sDragLabel, nAttackTarget=nAttackTarget, nRollType=ATTACK, nStart=startpos+aSubStringsStats[1].startpos+nNameDesp, nEnd=startpos+aSubStringsStats[1].endpos+nNameDesp});--, aDVRoll
+		for i=2,#aSubStrings do
+			aSubStrings[i]=StringManager.strip(aSubStrings[i]);
+			if aSubStrings[i]:match("DV%s*%d+d%d+") then
+				sDVRoll=aSubStrings[i]:match("DV%s*(%d+d%d+)");
+				sDVMod=aSubStrings[i]:match("DV%s*%d+d%d+%s*([%+%-]%s*%d*)") or "";
+				table.insert(aComponents, {sLabel=sDragLabel, sDVRoll=sDVRoll, sDVMod=sDVMod, nRollType=DAMAGE, nStart=startpos+aSubStringsStats[i].startpos+nNameDesp, nEnd=startpos+aSubStringsStats[i].endpos+nNameDesp});
+			else
+				table.insert(aComponents, {sLabel=sDragLabel, sEffect=aSubStrings[i], nRollType=EFFECT, nStart=startpos+aSubStringsStats[i].startpos+nNameDesp, nEnd=startpos+aSubStringsStats[i].endpos+nNameDesp});
+			end
+		end
+--		Debug.chat(DiceManager.convertDiceStringToTerms(sDVRoll..sDVMod))
+	end
+end
+
+-- Reset selection when the cursor leaves the control
+function onHover(bOnControl)
+	if bDragging or bOnControl then
+		return;
+	end
+
+	if not bParsed then
+		parseComponents();
+	end
+
+	sDragLabel = nil;
+	nDragMod = nil;
+	setSelectionPosition(0);
+end
+
+-- Hilight skill hovered on
+function onHoverUpdate(x, y)
+	if bDragging then
+		return;
+	end
+
+	if not bParsed then
+		parseComponents();
+	end
+	local nMouseIndex = getIndexAt(x, y);
+
+	for i = 1, #aComponents, 1 do
+		if aComponents[i].nRollType == ATTACK then
+			if aComponents[i].nStart &lt;= nMouseIndex and aComponents[i].nEnd &gt; nMouseIndex then
+				setCursorPosition(aComponents[i].nStart);
+				setSelectionPosition(aComponents[i].nEnd);
+				sDragLabel = aComponents[i].sLabel;
+				setHoverCursor("hand");
+				isAttack=true;
+				isDamage=false;
+				isEffect=false;
+				nAttackTarget=aComponents[i].nAttackTarget;
+				return;
+			end
+		elseif aComponents[i].nRollType == DAMAGE then
+			if aComponents[i].nStart &lt;= nMouseIndex and aComponents[i].nEnd &gt; nMouseIndex then
+				setCursorPosition(aComponents[i].nStart);
+				setSelectionPosition(aComponents[i].nEnd);
+				sDragLabel = aComponents[i].sLabel;
+				setHoverCursor("hand");
+				isAttack=false;
+				isDamage=true;
+				isEffect=false;
+				sDVRoll=aComponents[i].sDVRoll;
+				sDVMod=aComponents[i].sDVMod;
+				return;
+			end
+		elseif aComponents[i].nRollType == EFFECT then
+			if aComponents[i].nStart &lt;= nMouseIndex and aComponents[i].nEnd &gt; nMouseIndex then
+				setCursorPosition(aComponents[i].nStart);
+				setSelectionPosition(aComponents[i].nEnd);
+				sDragLabel = aComponents[i].sLabel;
+				setHoverCursor("hand");
+				isAttack=false;
+				isDamage=false;
+				isEffect=true;
+				sEffect=aComponents[i].sEffect;
+				return;
+			end
+		end
+	end
+
+	nAttackTarget=0;
+	sDVRoll="";
+	sDVMod="";
+	sEffect="";
+	sDragLabel = nil;
+	nDragMod = nil;
+	setHoverCursor("arrow");
+end
+
+function action(dragInfo)
+	local sActionType="";
+	if sDragLabel then
+		if isAttack then
+			DiceRollDescription = "[ATTACK] "..sDragLabel.." (vs "..nAttackTarget..")";
+			GameSystem.actions["AttackCheck"] = { bUseModStack = "true", sIcon = "action_attack"}
+			sActionType="AttackCheck";
+			DiceRollString="1d100";
+		elseif isDamage then
+			DiceRollDescription = "[DAMAGE] "..sDragLabel;
+			GameSystem.actions["Damage"] = { bUseModStack = "true", sIcon = "action_damage"}
+			sActionType="Damage";
+			DiceRollString=sDVRoll..sDVMod;
+		elseif isEffect then
+			DiceRollDescription = "";
+			GameSystem.actions["Effect"] = { bUseModStack = "false", sIcon = ""}
+			sActionType="Effect";
+			DiceRollString="";
+		end
+		
+		DiceRollAdditionalInfo = {};
+		if onBeforeDiceRoll then if onBeforeDiceRoll() == false then return; end; end;
+		local windataref = window.getDatabaseNode();
+		if windataref == nil then windataref = window; end;
+		RulesetWizardDiceRoller.Roll(dragInfo, windataref, sActionType, DiceRollDescription, DiceRollString, getValue(), DiceRollAdditionalInfo);
+		ModifierStack.reset();
+		if onAfterDiceRoll then onAfterDiceRoll(); end;
+		return true;
+	end
+end
+
+function onDoubleClick(x, y)
+	bEsDobleClick=true;
+	action();
+	return true;
+end
+
+function onDragStart(button, x, y, draginfo)
+--	return action(draginfo);
+	action(draginfo);
+
+	bDragging = true;
+	setCursorPosition(0);
+	
+	return true;
+end
+
+function onDragEnd(draginfo)
+	bDragging = false;
+end
+
+-- Suppress default processing to support dragging
+function onClickDown(button, x, y)
+	return true;
+end
+
+-- On mouse click, set focus, set cursor position and clear selection
+function onClickRelease(button, x, y)
+	setFocus();
+	
+	local n = getIndexAt(x, y);
+	setSelectionPosition(n);
+	setCursorPosition(n);
+	
+	return true;
+end</Script>
+    <RegisterScript>false</RegisterScript>
+    <Encoding />
+  </Scripts>
+  <Scripts>
+    <ScriptName>RollChecks</ScriptName>
+    <FolderID>23</FolderID>
     <Script>function isDouble(nRoll)
 	local nUnid=nRoll % 10;
 	local nDec=(nRoll-nUnid)/10;
@@ -77884,9 +78286,8 @@ end</Script>
   </Scripts>
   <Scripts>
     <ScriptName>RollHandlers</ScriptName>
-    <FolderID>22</FolderID>
+    <FolderID>23</FolderID>
     <Script>function AttackHandler(rSource, rTarget, rRoll)
-
     local rMessage = ActionsManager.createActionMessage(rSource, rRoll);
     rMessage.text = rMessage.text .. "[ATTACK]";
     if rTarget then
@@ -77908,11 +78309,9 @@ end</Script>
         end
         Comm.deliverChatMessage(rMessageResult);    
     end
-
 end
 
 function InitHandler(rSource, rTarget, rRoll)
-
     local rMessage = ActionsManager.createActionMessage(rSource, rRoll);
     Comm.deliverChatMessage(rMessage);    
 
@@ -77921,7 +78320,6 @@ function InitHandler(rSource, rTarget, rRoll)
         rCreature = DB.findNode(rSource.sCreatureNode);
         rCreature.getChild("initresult").setValue(nTotal);
     end
-
 end
 
 function RollResultFrom0to99(rRoll)
@@ -77970,7 +78368,7 @@ end
   </Scripts>
   <Scripts>
     <ScriptName>Sidebars</ScriptName>
-    <FolderID>24</FolderID>
+    <FolderID>25</FolderID>
     <Script>function onInit()
 	aRecordOverrides = {
 		["backgrounds"] = {
@@ -78053,7 +78451,7 @@ end</Script>
   </Scripts>
   <Scripts>
     <ScriptName>Tools</ScriptName>
-    <FolderID>22</FolderID>
+    <FolderID>23</FolderID>
     <Script>function RoundNumber(nNumber)
 	return nNumber % 1 &gt;= 0.5 and math.ceil(nNumber) or math.floor(nNumber);
 end
@@ -78196,7 +78594,7 @@ end</Script>
 <DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
   <XMLFiles>
     <XmlName>sidebars_strings</XmlName>
-    <FolderID>23</FolderID>
+    <FolderID>24</FolderID>
     <XML>&lt;?xml version="1.0" encoding="iso-8859-1"?&gt;
 &lt;root&gt;
 	&lt;!-- Sidebar names --&gt;

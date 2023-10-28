@@ -1,9 +1,8 @@
 <DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
   <Scripts>
     <ScriptName>RollHandlers</ScriptName>
-    <FolderID>22</FolderID>
+    <FolderID>23</FolderID>
     <Script>function AttackHandler(rSource, rTarget, rRoll)
-
     local rMessage = ActionsManager.createActionMessage(rSource, rRoll);
     rMessage.text = rMessage.text .. "[ATTACK]";
     if rTarget then
@@ -25,11 +24,9 @@
         end
         Comm.deliverChatMessage(rMessageResult);    
     end
-
 end
 
 function InitHandler(rSource, rTarget, rRoll)
-
     local rMessage = ActionsManager.createActionMessage(rSource, rRoll);
     Comm.deliverChatMessage(rMessage);    
 
@@ -38,7 +35,6 @@ function InitHandler(rSource, rTarget, rRoll)
         rCreature = DB.findNode(rSource.sCreatureNode);
         rCreature.getChild("initresult").setValue(nTotal);
     end
-
 end
 
 function RollResultFrom0to99(rRoll)
