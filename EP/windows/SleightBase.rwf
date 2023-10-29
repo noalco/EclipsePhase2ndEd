@@ -454,7 +454,7 @@ end
       {"Name":"NoDrop","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
       {"Name":"PrevTabTarget"},
       {"Name":"ReadOnly"},
-      {"Name":"RelativeMargin"},
+      {"Name":"RelativeMargin","Value":{"@xsi:type":"xsd:int","#text":"5"}},
       {"Name":"RelativeStacking","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"ScriptFile"},
       {"Name":"Source"},

@@ -52,6 +52,16 @@ function parseComponents()
 				sDragLabel=StringManager.trim(StringManager.strip(sDragLabel));
 				table.insert(aComponents, {sLabel=sDragLabel, nSkillTarget=nSkillTarget, nStart=aClauseStats[i].startpos+aExpecializationStats[2].startpos-1, nEnd=aClauseStats[i].startpos+aExpecializationStats[2].endpos-1, bEsp=true});
 			end
+		elseif string.match(aClauses[i], ".* %d+ %(%d+%)") then
+			local aExpecialization, aExpecializationStats = StringManager.split(aClauses[i], "()", true);
+			if #aExpecialization==2 then
+				nSkillTarget = tonumber(string.match(aExpecialization[1], "(%d+)") or "0");
+				sDragLabel=string.match(aExpecialization[1], "(.*) %d+") or "";
+				sDragLabel=StringManager.trim(StringManager.strip(sDragLabel));
+				table.insert(aComponents, {sLabel=sDragLabel, nSkillTarget=nSkillTarget, nStart=aClauseStats[i].startpos+aExpecializationStats[1].startpos-1, nEnd=aClauseStats[i].startpos+aExpecializationStats[1].endpos-1});
+				nSkillTarget = tonumber(string.match(aExpecialization[2], "(%d+)") or "0");
+				table.insert(aComponents, {sLabel=sDragLabel, nSkillTarget=nSkillTarget, nStart=aClauseStats[i].startpos+aExpecializationStats[2].startpos-1, nEnd=aClauseStats[i].startpos+aExpecializationStats[2].endpos-1, bEsp=true});
+			end
 		elseif string.match(aClauses[i], ".* %d+") then
 			nSkillTarget = tonumber(string.match(aClauses[i], "(%d+)") or "0");
 			sDragLabel=string.match(aClauses[i], "(.*) %d+") or "";
