@@ -25,6 +25,7 @@
 	&lt;string name="extra_distance_tooltip"&gt;Extra distance beyong 10 meters (20 against Asyncs)&lt;/string&gt;
 	&lt;string name="multi_layer_armor_tooltip"&gt;Movement rate penalty for using multi-layer armor&lt;/string&gt;
 	&lt;string name="skill_multi_layer_penalty_tooltip"&gt;Physical actions penalty for multi-layer armor&lt;/string&gt;
+	&lt;string name="initiative_tooltip"&gt;Your Initiative stat is equal to (Intuition + Reflexes) ÷ 5&lt;/string&gt;
 &lt;/root&gt;</XML>
   </XMLFiles>
 </DocumentElement>
