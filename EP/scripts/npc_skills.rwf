@@ -40,7 +40,7 @@ function parseComponents()
 	
 	local aClauses, aClauseStats = StringManager.split(getValue(), ",\r\n", true);
 	for i = 1, #aClauses do
-		if string.match(aClauses[i], ".* %d+ %(.* %d+%)") then
+		if string.match(aClauses[i], ".* %d+%s*%(.* %d+%)") then -- Format: Skill X (specialization Y)
 			local aExpecialization, aExpecializationStats = StringManager.split(aClauses[i], "()", true);
 			if #aExpecialization==2 then
 				nSkillTarget = tonumber(string.match(aExpecialization[1], "(%d+)") or "0");
@@ -52,17 +52,21 @@ function parseComponents()
 				sDragLabel=StringManager.trim(StringManager.strip(sDragLabel));
 				table.insert(aComponents, {sLabel=sDragLabel, nSkillTarget=nSkillTarget, nStart=aClauseStats[i].startpos+aExpecializationStats[2].startpos-1, nEnd=aClauseStats[i].startpos+aExpecializationStats[2].endpos-1, bEsp=true});
 			end
-		elseif string.match(aClauses[i], ".* %d+ %(%d+%)") then
-			local aExpecialization, aExpecializationStats = StringManager.split(aClauses[i], "()", true);
-			if #aExpecialization==2 then
-				nSkillTarget = tonumber(string.match(aExpecialization[1], "(%d+)") or "0");
-				sDragLabel=string.match(aExpecialization[1], "(.*) %d+") or "";
-				sDragLabel=StringManager.trim(StringManager.strip(sDragLabel));
-				table.insert(aComponents, {sLabel=sDragLabel, nSkillTarget=nSkillTarget, nStart=aClauseStats[i].startpos+aExpecializationStats[1].startpos-1, nEnd=aClauseStats[i].startpos+aExpecializationStats[1].endpos-1});
-				nSkillTarget = tonumber(string.match(aExpecialization[2], "(%d+)") or "0");
-				table.insert(aComponents, {sLabel=sDragLabel, nSkillTarget=nSkillTarget, nStart=aClauseStats[i].startpos+aExpecializationStats[2].startpos-1, nEnd=aClauseStats[i].startpos+aExpecializationStats[2].endpos-1, bEsp=true});
+		elseif string.match(aClauses[i], ".* %d+%s*%(%d+%)") or string.match(aClauses[i], ".* %d+%s*%(%d+/%d+%)") then  -- Format: Skill X (Y) or Skill X (Y/Z)
+			local aBonifiedSkill, aBonifiedSkillStats = StringManager.split(aClauses[i], "()/", true);
+			sDragLabel=string.match(aBonifiedSkill[1], "(.*) %d+") or "";
+			sDragLabel=StringManager.trim(StringManager.strip(sDragLabel));
+			if #aBonifiedSkill==2 or #aBonifiedSkill==3 then
+				nSkillTarget = tonumber(string.match(aBonifiedSkill[1], "(%d+)") or "0");
+				table.insert(aComponents, {sLabel=sDragLabel, nSkillTarget=nSkillTarget, nStart=aClauseStats[i].startpos+aBonifiedSkillStats[1].startpos-1, nEnd=aClauseStats[i].startpos+aBonifiedSkillStats[1].endpos-1});
+				nSkillTarget = tonumber(string.match(aBonifiedSkill[2], "(%d+)") or "0");
+				table.insert(aComponents, {sLabel=sDragLabel, nSkillTarget=nSkillTarget, nStart=aClauseStats[i].startpos+aBonifiedSkillStats[2].startpos-1, nEnd=aClauseStats[i].startpos+aBonifiedSkillStats[2].endpos-1});
 			end
-		elseif string.match(aClauses[i], ".* %d+") then
+			if #aBonifiedSkill==3 then
+				nSkillTarget = tonumber(string.match(aBonifiedSkill[3], "(%d+)") or "0");
+				table.insert(aComponents, {sLabel=sDragLabel, nSkillTarget=nSkillTarget, nStart=aClauseStats[i].startpos+aBonifiedSkillStats[3].startpos-1, nEnd=aClauseStats[i].startpos+aBonifiedSkillStats[3].endpos-1});
+			end
+		elseif string.match(aClauses[i], ".* %d+") then -- Format: Skill X
 			nSkillTarget = tonumber(string.match(aClauses[i], "(%d+)") or "0");
 			sDragLabel=string.match(aClauses[i], "(.*) %d+") or "";
 			sDragLabel=StringManager.trim(StringManager.strip(sDragLabel));

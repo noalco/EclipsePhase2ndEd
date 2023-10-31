@@ -40,10 +40,10 @@ function parseComponents()
 	local aClauses, aClauseStats = StringManager.split(getValue(), ",\r\n", true);
 	for i = 1, #aClauses do
 		if string.match(aClauses[i], "%d+") then
-			if string.match(aClauses[i], "%d+%s%(%d+%)") then
+			if string.match(aClauses[i], "%d+%s*%(%d+%)") then
 				local aSubClauses, aSubClauseStats = StringManager.split(aClauses[i], "()", true);
 				nSkillTarget = tonumber(aSubClauses[1]) or "0";
-				sDragLabel=string.match(aClauses[i], "%d+%s%(%d+%)(.*)") or "";
+				sDragLabel=string.match(aClauses[i], "%d+%s*%(%d+%)(.*)") or "";
 				sDragLabel=StringManager.trim(StringManager.strip(sDragLabel));
 				table.insert(aComponents, {sLabel=sDragLabel, nSkillTarget=nSkillTarget, nStart=aClauseStats[i].startpos+aSubClauseStats[1].startpos-1, nEnd=aClauseStats[i].startpos+aSubClauseStats[1].endpos-1});
 				nSkillTarget = tonumber(string.match(aSubClauses[2], "(%d+)")) or "0";
