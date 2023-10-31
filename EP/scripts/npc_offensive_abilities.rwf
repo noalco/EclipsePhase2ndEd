@@ -187,7 +187,7 @@ function action(dragInfo)
 			DiceRollDescription = "[DAMAGE] "..sDragLabel;
 			if sVsArmor=="E" then
 				DiceRollDescription=DiceRollDescription.." vs Energy";
-			else --if sVsArmor=="K" then
+			elseif sVsArmor=="K" then
 				DiceRollDescription=DiceRollDescription.." vs Kinetic";
 			end
 			GameSystem.actions["Damage"] = { bUseModStack = "true", sIcon = "action_damage"}

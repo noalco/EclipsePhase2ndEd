@@ -727,7 +727,7 @@ end</LUACode>
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"130"}},
       {"Name":"DevelopmentComments"},
-      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"{@self.getValue()}","DiceRollDescription":"[DAMAGE] {@window.name.getValue()}","DiceRollType":"Damage","UseModStack":"true","ResetModStack":"true","SecretRoll":{"@xsi:nil":"true"},"DragIcon":"action_damage","AllowDragDrop":"true","AdditionalInfo":null}},
+      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"{@self.getValue()}","DiceRollDescription":"{@self.getDescriptionText()}","DiceRollType":"Damage","UseModStack":"true","ResetModStack":"true","SecretRoll":{"@xsi:nil":"true"},"DragIcon":"action_damage","AllowDragDrop":"true","AdditionalInfo":null}},
       {"Name":"Disabled"},
       {"Name":"DynamicSize","Value":{"@xsi:type":"xsd:string","#text":"Dynamic Height"}},
       {"Name":"EmptyText"},
@@ -780,9 +780,9 @@ function UpdateValue()
 	if sType=="Melee Weapon" or sType=="Ranged Weapon" or sType=="Micromissile/Minigrenade" then
 		sDice=DiceManager.convertDiceToString(DB.getValue(window.getDatabaseNode(), "Weapon.DamageValue"), DB.getValue(window.getDatabaseNode(), "Weapon.DamagePlus"));
 		if sDice~="" then
-			if DB.getValue(window.getDatabaseNode(), "ArmorUsed", "Kinetic")=="Energy" then
+			if DB.getValue(window.getDatabaseNode(), "ArmorUsed")=="Energy" then
 				sDice=sDice.." (vs Energy)";
-			elseif DB.getValue(window.getDatabaseNode(), "ArmorUsed", "Kinetic")=="Kinetic" then
+			elseif DB.getValue(window.getDatabaseNode(), "ArmorUsed")=="Kinetic" then
 				sDice=sDice.." (vs Kinetic)";
 			end
 		else
@@ -792,6 +792,16 @@ function UpdateValue()
 		sDice="0";
 	end
 	setValue(sDice);
+end
+
+function getDescriptionText()
+	local sMessage="[DAMAGE] "..window.name.getValue();
+	if DB.getValue(window.getDatabaseNode(), "ArmorUsed")=="Energy" then
+		sMessage=sMessage.." vs Energy";
+	elseif DB.getValue(window.getDatabaseNode(), "ArmorUsed")=="Kinetic" then
+		sMessage=sMessage.." vs Kinetic";
+	end
+	return sMessage;
 end
 </LUACode>
     <GroupIndex>0</GroupIndex>
