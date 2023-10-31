@@ -9,7 +9,6 @@
 function CombatHandler(rSource, rTarget, rRoll, sTypeResult)
     local sResult=CheckHandler(rSource, rTarget, rRoll);
 	local sTypeAttack="";
-	
     if rSource and rTarget and rSource.sCTNode and rTarget.sCTNode then
         if not combat.tAttacts[rSource.sCTNode] then
 			combat.tAttacts[rSource.sCTNode]={}
@@ -32,7 +31,6 @@ function CombatHandler(rSource, rTarget, rRoll, sTypeResult)
 end
 
 function AttackHandler(rSource, rTarget, rRoll)
-
 	CombatHandler(rSource, rTarget, rRoll, "Attack");
 end
 

@@ -31,6 +31,9 @@
 	&lt;!-- Combat --&gt;
 	&lt;string name="attack_miss"&gt;the attack misses&lt;/string&gt;
 	&lt;string name="attack_hit"&gt;the attack hits&lt;/string&gt;
+	&lt;string name="ranged_defence_roll_required"&gt;must defend against ranged attack&lt;/string&gt;
+	&lt;string name="melee_defence_roll_required"&gt;must defend against melee attack&lt;/string&gt;
+	&lt;string name="attack_possible_hit"&gt;posible hit&lt;/string&gt;
 &lt;/root&gt;</XML>
   </XMLFiles>
 </DocumentElement>

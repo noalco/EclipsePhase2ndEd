@@ -16,7 +16,7 @@ tResults = {
 }
 
 function ResolveCombat(rSource, rTarget, rRoll, sTypeAttack)
-	if rSource and rTarget and rSource.sCTNode and rTarget.sCTNode then
+	if rSource and rTarget and rSource.sCTNode and rTarget.sCTNode and rRoll and sTypeAttack then
 		local bAttacker=tAttacts[rSource.sCTNode] and tAttacts[rSource.sCTNode][rTarget.sCTNode] and tAttacts[rSource.sCTNode][rTarget.sCTNode][sTypeAttack] and tAttacts[rSource.sCTNode][rTarget.sCTNode][sTypeAttack].sAttackResult;
 		local bDefender=tAttacts[rSource.sCTNode] and tAttacts[rSource.sCTNode][rTarget.sCTNode] and tAttacts[rSource.sCTNode][rTarget.sCTNode][sTypeAttack] and tAttacts[rSource.sCTNode][rTarget.sCTNode][sTypeAttack].sDefenseResult;
 		local sAttackerName="";
@@ -58,6 +58,7 @@ function ResolveCombat(rSource, rTarget, rRoll, sTypeAttack)
 					rMessage.icon = "roll_attack_miss";
 					tAttacts[rSource.sCTNode][rTarget.sCTNode][sTypeAttack]={};
 				end
+				rMessage.text = rMessage.text.." ("..nAttackResult.." vs "..nDefenseResult..")"
 			else -- Attack failure
 				rMessage.text = sAttackerName.." vs "..sDefenderName..": "..Interface.getString("attack_miss");
 				rMessage.icon = "roll_attack_miss";
@@ -68,6 +69,10 @@ function ResolveCombat(rSource, rTarget, rRoll, sTypeAttack)
 			rMessage.text = sAttackerName.." vs "..sDefenderName..": "..Interface.getString("attack_miss");
 			rMessage.icon = "roll_attack_miss";
 			tAttacts[rSource.sCTNode][rTarget.sCTNode][sTypeAttack]={};
+			Comm.deliverChatMessage(rMessage);
+		elseif bAttacker and tResults[sAttackResult].nRange&gt;0 then -- Atacker success and there is no defender
+			rMessage.text = sAttackerName.." vs "..sDefenderName..": "..Interface.getString("attack_possible_hit")..". "..sDefenderName.." "..Interface.getString(sTypeAttack:lower().."_defence_roll_required").." (vs "..nAttackResult..")";
+			rMessage.icon = "roll_attack_possible_hit";
 			Comm.deliverChatMessage(rMessage);
 		end
 	end
