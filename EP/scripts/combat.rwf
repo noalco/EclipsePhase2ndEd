@@ -37,14 +37,13 @@ function ResolveCombat(rSource, rTarget, rRoll, sTypeAttack)
 		sDefenseResult=tAttacts[rSource.sCTNode][rTarget.sCTNode][sTypeAttack].sDefenseResult;
 		nDefenseResult=tAttacts[rSource.sCTNode][rTarget.sCTNode][sTypeAttack].nDefenseResult;
 		
-		if bAttacker and bDefender then
-			if tResults[sAttackResult].nRange&gt;0 then -- Atacker success
-				if tResults[sDefenseResult].nRange&lt;0 or -- Defender failure
-				-- Attacker and defender success
-				sAttackResult == "CRITICAL SUCCESS" and sDefenseResult ~= "CRITICAL SUCCESS" or -- Attacker critical success and defender non critical success
-				sAttackResult ~= "CRITICAL SUCCESS" and sDefenseResult ~= "CRITICAL SUCCESS" and nAttackResult&gt;nDefenseResult or -- Attacker and defencer non critical success and attaker roll &gt; defender roll
-				sAttackResult == "CRITICAL SUCCESS" and sDefenseResult == "CRITICAL SUCCESS" and nAttackResult&gt;nDefenseResult then -- Attacker and defencer critical success and attaker roll &gt; defender roll
-					-- Attacker wins
+		if bAttacker and bDefender then -- There are both attacker and defender
+			if tResults[sAttackResult].nRange&gt;0 then -- The atacker succeeds
+				if tResults[sDefenseResult].nRange&lt;0 or -- The defender fails
+				sAttackResult == "CRITICAL SUCCESS" and sDefenseResult ~= "CRITICAL SUCCESS" or -- The attacker succeeds with a critical success and the defender succeeds with a non critical success
+				sAttackResult ~= "CRITICAL SUCCESS" and sDefenseResult ~= "CRITICAL SUCCESS" and nAttackResult&gt;nDefenseResult or -- Both attacker and defencer succeed with non critical success and attaker roll &gt; defender roll
+				sAttackResult == "CRITICAL SUCCESS" and sDefenseResult == "CRITICAL SUCCESS" and nAttackResult&gt;nDefenseResult then -- Both attacker and defencer succeed with critical success and attaker roll &gt; defender roll
+					-- The attacker wins the opposed test
 					tAttacts[rSource.sCTNode][rTarget.sCTNode][sTypeAttack].bHit=true;
 					rMessage.text = sAttackerName.." vs "..sDefenderName..": "..Interface.getString("attack_hit");
 					if sAttackResult=="CRITICAL SUCCESS" then
@@ -53,24 +52,24 @@ function ResolveCombat(rSource, rTarget, rRoll, sTypeAttack)
 						rMessage.icon = "roll_attack_hit";
 					end				
 				else
-					-- Defender wins
+					-- The defender wins the opposed test
 					rMessage.text = sAttackerName.." vs "..sDefenderName..": "..Interface.getString("attack_miss");
 					rMessage.icon = "roll_attack_miss";
 					tAttacts[rSource.sCTNode][rTarget.sCTNode][sTypeAttack]={};
 				end
 				rMessage.text = rMessage.text.." ("..nAttackResult.." vs "..nDefenseResult..")"
-			else -- Attack failure
+			else -- The atacker fails
 				rMessage.text = sAttackerName.." vs "..sDefenderName..": "..Interface.getString("attack_miss");
 				rMessage.icon = "roll_attack_miss";
 				tAttacts[rSource.sCTNode][rTarget.sCTNode][sTypeAttack]={};
 			end
 			Comm.deliverChatMessage(rMessage);
-		elseif bAttacker and tResults[sAttackResult].nRange&lt;0 then -- Atacker failure and there is no defender
+		elseif bAttacker and tResults[sAttackResult].nRange&lt;0 then -- The atacker fails and there is no defence roll
 			rMessage.text = sAttackerName.." vs "..sDefenderName..": "..Interface.getString("attack_miss");
 			rMessage.icon = "roll_attack_miss";
 			tAttacts[rSource.sCTNode][rTarget.sCTNode][sTypeAttack]={};
 			Comm.deliverChatMessage(rMessage);
-		elseif bAttacker and tResults[sAttackResult].nRange&gt;0 then -- Atacker success and there is no defender
+		elseif bAttacker and tResults[sAttackResult].nRange&gt;0 then -- The atacker succeeds and there is no defence roll
 			rMessage.text = sAttackerName.." vs "..sDefenderName..": "..Interface.getString("attack_possible_hit")..". "..sDefenderName.." "..Interface.getString(sTypeAttack:lower().."_defence_roll_required").." (vs "..nAttackResult..")";
 			rMessage.icon = "roll_attack_possible_hit";
 			Comm.deliverChatMessage(rMessage);
