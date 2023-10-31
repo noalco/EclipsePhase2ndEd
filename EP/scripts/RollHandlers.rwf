@@ -6,27 +6,57 @@
 --        rMessageResult.text = rMessage.text;
 --        rCreature = DB.findNode(rTarget.sCTNode);
 
+OOB_ADD_ATTACK="OOB_ADD_ATTACK";
+
+function onInit()
+	OOBManager.registerOOBMsgHandler(OOB_ADD_ATTACK, OOBAddAttack);
+end
+
+function OOBAddAttack(msgOOB)
+	if Session.IsHost then
+		AddAttack(msgOOB.sSourceCTNode, msgOOB.sTargetCTNode, msgOOB.sTypeAttack, msgOOB.sTypeResult, msgOOB.sResult, msgOOB.nRollTotal);
+	end
+end
+
+function AddAttack(sSourceCTNode, sTargetCTNode, sTypeAttack, sTypeResult, sResult, nRollTotal)
+	if Session.IsHost and sSourceCTNode and sTargetCTNode and sTypeAttack and sTypeResult and sResult and nRollTotal then
+		if not combat.tAttacts[sSourceCTNode] then
+			combat.tAttacts[sSourceCTNode]={}
+		end
+		if not combat.tAttacts[sSourceCTNode][sTargetCTNode] then
+			combat.tAttacts[sSourceCTNode][sTargetCTNode]={}
+		end
+		if not combat.tAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack] then
+			combat.tAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack]={}
+		end
+		combat.tAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack]["s"..sTypeResult.."Result"]=sResult;
+		combat.tAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack]["n"..sTypeResult.."Result"]=nRollTotal;
+		combat.ResolveCombat(sSourceCTNode, sTargetCTNode, sTypeAttack);
+	end
+end
+
 function CombatHandler(rSource, rTarget, rRoll, sTypeResult)
     local sResult=CheckHandler(rSource, rTarget, rRoll);
 	local sTypeAttack="";
     if rSource and rTarget and rSource.sCTNode and rTarget.sCTNode then
-        if not combat.tAttacts[rSource.sCTNode] then
-			combat.tAttacts[rSource.sCTNode]={}
-		end
-        if not combat.tAttacts[rSource.sCTNode][rTarget.sCTNode] then
-			combat.tAttacts[rSource.sCTNode][rTarget.sCTNode]={}
-		end
         if rRoll.sDesc:match("MELEE") then
 			sTypeAttack="MELEE";
 		else
 			sTypeAttack="RANGED";
 		end
-		if not combat.tAttacts[rSource.sCTNode][rTarget.sCTNode][sTypeAttack] then
-			combat.tAttacts[rSource.sCTNode][rTarget.sCTNode][sTypeAttack]={}
+		if Session.IsHost then
+			AddAttack(rSource.sCTNode, rTarget.sCTNode, sTypeAttack, sTypeResult, sResult, ActionsManager.total(rRoll));
+		else
+			local msgOOB={};
+			msgOOB.type=OOB_ADD_ATTACK;
+			msgOOB.sSourceCTNode=rSource.sCTNode;
+			msgOOB.sTargetCTNode=rTarget.sCTNode;
+			msgOOB.sTypeAttack=sTypeAttack;
+			msgOOB.sTypeResult=sTypeResult
+			msgOOB.sResult=sResult;
+			msgOOB.nRollTotal=ActionsManager.total(rRoll);
+			Comm.deliverOOBMessage(msgOOB);
 		end
-		combat.tAttacts[rSource.sCTNode][rTarget.sCTNode][sTypeAttack]["s"..sTypeResult.."Result"]=sResult;
-		combat.tAttacts[rSource.sCTNode][rTarget.sCTNode][sTypeAttack]["n"..sTypeResult.."Result"]=ActionsManager.total(rRoll);
-		combat.ResolveCombat(rSource, rTarget, rRoll, sTypeAttack);
     end
 end
 
