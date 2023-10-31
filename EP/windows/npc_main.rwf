@@ -2661,6 +2661,10 @@ end
 	UpdateValue();
 end
 
+function onClose()
+	DB.removeHandler(DB.getPath(window.getDatabaseNode(), "Skills"), "onUpdate", UpdateValue);
+end
+
 function UpdateValue()
 	local sSkills=DB.getValue(window.getDatabaseNode(), "Skills", "");
 	setValue(sSkills:lower():match("melee%s(%d+)") or 0);
