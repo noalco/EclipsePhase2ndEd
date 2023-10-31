@@ -1,7 +1,7 @@
 <DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
   <Scripts>
     <ScriptName>npc_offensive_abilities</ScriptName>
-    <FolderID>22</FolderID>
+    <FolderID>23</FolderID>
     <Script>local bParsed = false;
 local aComponents = {};
 
@@ -13,6 +13,7 @@ local nAttackTarget=0;
 local sDVRoll="";
 local sDVMod="";
 local sEffect="";
+local bIsRange=false;
 
 ATTACK=1;
 DAMAGE=2;
@@ -47,26 +48,32 @@ function parseComponents()
 	
 	local aClauses, aClauseStats = StringManager.split(getValue(), "\r\n", true);
 	for i = 1, #aClauses do
+        if aClauses[i]:lower():match("range") then
+			bIsRange=true;
+		else
+			bIsRange=false;
+        end
+        
 		sDragLabel, sText = aClauses[i]:match("(.*):(.*)");
 		nNameDesp=(aClauses[i]:match("(.*:)") or ""):len();
 		sDragLabel=StringManager.trim(sDragLabel);
 		sText=StringManager.trim(sText);
 		if sDragLabel and sText then
 			aSubStrings, aSubStringsStats = StringManager.split(sText, ",", true);
-			GetFields(aClauseStats[i].startpos, aSubStrings, aSubStringsStats, nNameDesp);
+			GetFields(aClauseStats[i].startpos, aSubStrings, aSubStringsStats, nNameDesp, bIsRange);
 		end
 	end
 		
 	bParsed = true;
 end
 
-function GetFields(startpos, aSubStrings, aSubStringsStats, nNameDesp)
+function GetFields(startpos, aSubStrings, aSubStringsStats, nNameDesp, bIsRange)
 	local nAttackTarget=0;
 	local sDVRoll="";
 	local sDVMod="";
 	if string.match(aSubStrings[1], "(%d+)") then
 		nAttackTarget = tonumber(string.match(aSubStrings[1], "(%d+)") or "0");
-		table.insert(aComponents, {sLabel=sDragLabel, nAttackTarget=nAttackTarget, nRollType=ATTACK, nStart=startpos+aSubStringsStats[1].startpos+nNameDesp, nEnd=startpos+aSubStringsStats[1].endpos+nNameDesp});--, aDVRoll
+		table.insert(aComponents, {sLabel=sDragLabel, nAttackTarget=nAttackTarget, nRollType=ATTACK, nStart=startpos, nEnd=startpos+aSubStringsStats[1].endpos+nNameDesp, bIsRange=bIsRange});--, aDVRoll
 		for i=2,#aSubStrings do
 			aSubStrings[i]=StringManager.strip(aSubStrings[i]);
 			if aSubStrings[i]:match("DV%s*%d+d%d+") then
@@ -118,6 +125,7 @@ function onHoverUpdate(x, y)
 				isDamage=false;
 				isEffect=false;
 				nAttackTarget=aComponents[i].nAttackTarget;
+				bIsRange=aComponents[i].bIsRange;
 				return;
 			end
 		elseif aComponents[i].nRollType == DAMAGE then
@@ -154,6 +162,7 @@ function onHoverUpdate(x, y)
 	sEffect="";
 	sDragLabel = nil;
 	nDragMod = nil;
+	bIsRange=false;
 	setHoverCursor("arrow");
 end
 
@@ -161,9 +170,16 @@ function action(dragInfo)
 	local sActionType="";
 	if sDragLabel then
 		if isAttack then
-			DiceRollDescription = "[ATTACK] "..sDragLabel.." (vs "..nAttackTarget..")";
-			GameSystem.actions["AttackCheck"] = { bUseModStack = "true", sIcon = "action_attack"}
+			local sAttackType="";
+			if bIsRange then
+				sAttackType="RANGED";
+			else
+				sAttackType="MELEE";
+			end
+			DiceRollDescription = "["..sAttackType.." ATTACK] "..sDragLabel.." (vs "..nAttackTarget..")";
+			GameSystem.actions["AttackCheck"] = { bUseModStack = "true", sIcon = "action_attack", sTargeting = "each"}
 			sActionType="AttackCheck";
+			ActionsManager.registerResultHandler("AttackCheck", RollHandlers.AttackHandler);
 			DiceRollString="1d100";
 		elseif isDamage then
 			DiceRollDescription = "[DAMAGE] "..sDragLabel;

@@ -1,7 +1,7 @@
 <DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
   <Scripts>
     <ScriptName>npc_skills</ScriptName>
-    <FolderID>22</FolderID>
+    <FolderID>23</FolderID>
     <Script>local bParsed = false;
 local aComponents = {};
 

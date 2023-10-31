@@ -27,6 +27,10 @@
 	&lt;string name="skill_multi_layer_penalty_tooltip"&gt;Physical actions penalty for multi-layer armor&lt;/string&gt;
 	&lt;string name="initiative_tooltip"&gt;Your Initiative stat is equal to (Intuition + Reflexes) ÷ 5&lt;/string&gt;
 	&lt;string name="infection_base_tooltip"&gt;Your base Infection Rating equals your Psi trait level × 10&lt;/string&gt;
+	
+	&lt;!-- Combat --&gt;
+	&lt;string name="attack_miss"&gt;the attack misses&lt;/string&gt;
+	&lt;string name="attack_hit"&gt;the attack hits&lt;/string&gt;
 &lt;/root&gt;</XML>
   </XMLFiles>
 </DocumentElement>

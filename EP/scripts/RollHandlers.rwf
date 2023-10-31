@@ -1,29 +1,43 @@
 <DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
   <Scripts>
     <ScriptName>RollHandlers</ScriptName>
-    <FolderID>23</FolderID>
-    <Script>function AttackHandler(rSource, rTarget, rRoll)
-    local rMessage = ActionsManager.createActionMessage(rSource, rRoll);
-    rMessage.text = rMessage.text .. "[ATTACK]";
-    if rTarget then
-        rMessage.text = rMessage.text .. " vs " .. rTarget.sName;                 
+    <FolderID>24</FolderID>
+    <Script>--        local rMessageResult = ChatManager.createBaseMessage(rSource, rRoll.sUser);
+--        rMessageResult.text = rMessage.text;
+--        rCreature = DB.findNode(rTarget.sCTNode);
+
+function CombatHandler(rSource, rTarget, rRoll, sTypeResult)
+    local sResult=CheckHandler(rSource, rTarget, rRoll);
+	local sTypeAttack="";
+	
+    if rSource and rTarget and rSource.sCTNode and rTarget.sCTNode then
+        if not combat.tAttacts[rSource.sCTNode] then
+			combat.tAttacts[rSource.sCTNode]={}
+		end
+        if not combat.tAttacts[rSource.sCTNode][rTarget.sCTNode] then
+			combat.tAttacts[rSource.sCTNode][rTarget.sCTNode]={}
+		end
+        if rRoll.sDesc:match("MELEE") then
+			sTypeAttack="MELEE";
+		else
+			sTypeAttack="RANGED";
+		end
+		if not combat.tAttacts[rSource.sCTNode][rTarget.sCTNode][sTypeAttack] then
+			combat.tAttacts[rSource.sCTNode][rTarget.sCTNode][sTypeAttack]={}
+		end
+		combat.tAttacts[rSource.sCTNode][rTarget.sCTNode][sTypeAttack]["s"..sTypeResult.."Result"]=sResult;
+		combat.tAttacts[rSource.sCTNode][rTarget.sCTNode][sTypeAttack]["n"..sTypeResult.."Result"]=ActionsManager.total(rRoll);
+		combat.ResolveCombat(rSource, rTarget, rRoll, sTypeAttack);
     end
+end
 
-    Comm.deliverChatMessage(rMessage);    
+function AttackHandler(rSource, rTarget, rRoll)
 
-    if rTarget then
-        local rMessageResult = ChatManager.createBaseMessage(rSource, rRoll.sUser);
-        rMessageResult.text = rMessage.text;
+	CombatHandler(rSource, rTarget, rRoll, "Attack");
+end
 
-        local nTotal = ActionsManager.total(rRoll) + rRoll.nBonuses;
-        rCreature = DB.findNode(rTarget.sCTNode);
-        if (nTotal &gt;= rCreature.getChild("defense").getValue()) then
-            rMessageResult.text = rMessageResult.text .. " [HIT]";
-        else
-            rMessageResult.text = rMessageResult.text .. " [MISS]";
-        end
-        Comm.deliverChatMessage(rMessageResult);    
-    end
+function DefenseHandler(rSource, rTarget, rRoll) 
+	CombatHandler(rTarget, rSource, rRoll, "Defense");
 end
 
 function InitHandler(rSource, rTarget, rRoll)
