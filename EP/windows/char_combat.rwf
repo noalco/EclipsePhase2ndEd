@@ -252,9 +252,6 @@ end
 ]}}</Definition>
     <LUACode>local dataNode;
 local charNode;
--- estas dos están porque antes se usaban, ahora no, se pueden borrar pero hay que cambiar el Roll Description Text
-sPhAPMessage="";
-local nPhAP=0;
 
 function onInit()
 	dataNode=window.parentcontrol.window.getDatabaseNode();
@@ -271,14 +268,8 @@ function onClose()
 	DB.removeHandler(DB.getPath(charNode, "Skills.ActiveSkillsList"), "onChildUpdate", UpdateSkill);
 end
 
-function getAttackSkillTarget()
-	return getValue()+nPhAP;
-end
-
 function UpdateSkill()
 	local sType=DB.getValue(dataNode, "Type", "Melee Weapon");	
-	sPhAPMessage="";
-	nPhAP=0;
 	if sType=="Melee Weapon" or sType=="Ranged Weapon" or sType=="Micromissile/Minigrenade" then
 		local sSkill=DB.getValue(dataNode, "Weapon.AttackSkill", ""):lower();
 		local sField="";
@@ -329,7 +320,7 @@ function getDescriptionText()
 	else
 		sAttackType="RANGED";
 	end
-	return "["..sAttackType.." ATTACK] "..window.AttackSkill.getValue().." (vs "..getAttackSkillTarget()..")"..sPhAPMessage;
+	return "["..sAttackType.." ATTACK] "..window.AttackSkill.getValue().." (vs "..getValue()..")";
 end
 </LUACode>
     <GroupIndex>0</GroupIndex>
