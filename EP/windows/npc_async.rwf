@@ -1490,6 +1490,7 @@ end
 
 function onInit()
 	super.onInit();
+	setSourceField("Sleights.Mods.SleightRange");
 	onValueChanged();
 end
 </LUACode>
@@ -1548,7 +1549,11 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"241"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"105"}}
 ]}}</Definition>
-    <LUACode />
+    <LUACode>function onInit()
+	super.onInit();
+	setSourceField("Sleights.Mods.TargetType");
+end
+</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
