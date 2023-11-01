@@ -267,12 +267,15 @@ end</LUACode>
 end
 
 function setVisibility(bReadOnly)
-	setReadOnly(bReadOnly);
-	local bVisible=window.Type.isWeapon();
-	setVisible(bVisible);
-	window.LabelArmorUsed.setVisible(bVisible);
-	return bVisible;
-end</LUACode>
+--	setReadOnly(bReadOnly);
+--	local bVisible=window.Type.isWeapon();
+--	setVisible(bVisible);
+--	window.LabelArmorUsed.setVisible(bVisible);
+--	return bVisible;
+	return window.UpdateStringAndLabel(self, bReadOnly, window.Type.isWeapon());
+end
+
+</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -1065,10 +1068,13 @@ end</LUACode>
 --	setVisible(bVisible);
 --	window.LabelEnergy.setVisible(bVisible);
 --	return bVisible;
-	local bAux=window.UpdateNumberAndLabel(self, bReadOnly, window.Type.isArmor() or window.Type.isArmorMod());
-	window.LabelArmorValue.update(bReadOnly);
-	return bAux;
-end</LUACode>
+	return window.UpdateNumberAndLabel(self, bReadOnly, window.Type.isArmor() or window.Type.isArmorMod());
+end
+
+function onVisibilityChanged()
+	window.LabelArmorValue.setVisible(window.EnergyAV.isVisible() or window.KineticAV.isVisible());
+end
+</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -1243,6 +1249,7 @@ function UpdateNumberAndLabel(Control, bReadOnly, bOnItem)
 	end
 	return bVisible;
 end
+
 </LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
@@ -1313,10 +1320,13 @@ end
 --	setVisible(bVisible);
 --	window.LabelKinetic.setVisible(bVisible);
 --	return bVisible;
-	local bAux window.UpdateNumberAndLabel(self, bReadOnly, window.Type.isArmor() or window.Type.isArmorMod());
-	window.LabelArmorValue.update(bReadOnly);
-	return bAux;
-end</LUACode>
+	return window.UpdateNumberAndLabel(self, bReadOnly, window.Type.isArmor() or window.Type.isArmorMod());
+end
+
+function onVisibilityChanged()
+	window.LabelArmorValue.setVisible(window.EnergyAV.isVisible() or window.KineticAV.isVisible());
+end
+</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -1586,11 +1596,11 @@ end</LUACode>
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"9"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"547"}}
 ]}}</Definition>
-    <LUACode>function update(bReadOnly)
---	local bVisible=window.Type.isArmor() or window.Type.isArmorMod();
---	setVisible(bVisible);
-	setVisible(window.EnergyAV.isVisible() or window.KineticAV.isVisible());
-end</LUACode>
+    <LUACode>--function update()
+----	local bVisible=window.Type.isArmor() or window.Type.isArmorMod();
+----	setVisible(bVisible);
+--	
+--end</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
