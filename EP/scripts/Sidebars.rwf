@@ -49,10 +49,13 @@
 		["sleights"] = {
 			bExport=true,
 			aDataMap = {"reference.sleights"},
-			sListDisplayClass = "SleightSidebarBase",
+			sListDisplayClass = "masterindexitem_id",
 			sRecordDisplayClass ="SleightWindow",
 			sEditMode = "play",
 			sSidebarCategory = "character",
+			aCustomFilters = {
+				["Type"] = { sField = "Positive", fGetValue =  getSleightType },
+			}
 		},
 		["substrains"] = {
 			bExport=true,
@@ -103,6 +106,15 @@ function getTraitType(Node)
 		return "Morph";
 	elseif bIsEgo and bIsMorph then
 		return {"Ego", "Morph"};
+	end
+end
+
+function getSleightType(Node)
+	local sType=DB.getValue(Node, "Type", "Psi-chi");
+	if sType=="Psi-gamma" or sType=="Psi-epsilon" then
+		return sType;
+	else
+		return "Psi-chi";
 	end
 end</Script>
     <RegisterScript>true</RegisterScript>
