@@ -1667,7 +1667,7 @@ end
     <LUACode>function update(bReadOnly)
 	local bVisible=(not bReadOnly or window.StringApplicationMethods.getValue()~="") and window.Type.isDrugToxin();
 	setVisible(bVisible);
-	window.StringApplicationMethods.setVisible(bVisible);
+--	window.StringApplicationMethods.setVisible(bVisible);
 	return bVisible;
 end</LUACode>
     <GroupIndex>0</GroupIndex>
@@ -2486,7 +2486,7 @@ end</LUACode>
     <LUACode>function update(bReadOnly)
 	local bVisible=(not bReadOnly or window.StringFM.getValue()~="") and window.Type.isRangedWeapon();
 	setVisible(bVisible);
-	window.StringFM.setVisible(bVisible);
+--	window.StringFM.setVisible(bVisible);
 	return bVisible;
 end</LUACode>
     <GroupIndex>0</GroupIndex>
@@ -3247,7 +3247,7 @@ end</LUACode>
     <LUACode>function update(bReadOnly)
 	local bVisible=not (bReadOnly and window.StringWare.getValue()=="") and window.Type.hasWare();
 	setVisible(bVisible);
-	window.StringWare.setVisible(bVisible);
+--	window.StringWare.setVisible(bVisible);
 end</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
@@ -4018,7 +4018,7 @@ end</LUACode>
       {"Name":"HoverCursor"},
       {"Name":"InheritSizePosition"},
       {"Name":"InsertBefore"},
-      {"Name":"Invisible"},
+      {"Name":"Invisible","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"LineOffset"},
       {"Name":"MaximumHeight"},
       {"Name":"MaximumWidth"},
@@ -4118,7 +4118,7 @@ end</LUACode>
       {"Name":"HoverCursor"},
       {"Name":"InheritSizePosition"},
       {"Name":"InsertBefore"},
-      {"Name":"Invisible"},
+      {"Name":"Invisible","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"LineOffset"},
       {"Name":"MaximumHeight"},
       {"Name":"MaximumWidth"},
@@ -4200,7 +4200,7 @@ end</LUACode>
       {"Name":"HoverCursor"},
       {"Name":"InheritSizePosition"},
       {"Name":"InsertBefore"},
-      {"Name":"Invisible"},
+      {"Name":"Invisible","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"LineOffset"},
       {"Name":"MaximumHeight"},
       {"Name":"MaximumWidth"},
