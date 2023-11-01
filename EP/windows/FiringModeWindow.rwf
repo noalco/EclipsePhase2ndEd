@@ -17,7 +17,6 @@
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"20"}},
       {"Name":"DevelopmentComments"},
       {"Name":"Disabled"},
-      {"Name":"DynamicSize"},
       {"Name":"FrameName"},
       {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"GMEditOnly"},
@@ -54,11 +53,12 @@
 end
 
 function update(bReadOnly)
-	setReadOnly(bReadOnly);
-	local bVisible=not (bReadOnly and getValue()==0);
-	setVisible(bVisible);
-	window.LabelBurstFire.setVisible(bVisible);
-	return bVisible;
+--	setReadOnly(bReadOnly);
+--	local bVisible=not (bReadOnly and getValue()==0);
+--	setVisible(bVisible);
+--	window.LabelBurstFire.setVisible(bVisible);
+--	return bVisible;
+	return window.UpdateNumberAndLabel(self, bReadOnly, true);
 end</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
@@ -123,7 +123,21 @@ end</LUACode>
 	bVisible=SemiAutomatic.update(bReadOnly) or bVisible;
 	bVisible=BurstFire.update(bReadOnly) or bVisible;
 	return FullAutomatic.update(bReadOnly) or bVisible;
-end</LUACode>
+end
+
+function UpdateNumberAndLabel(Control, bReadOnly, bOnItem)
+	local bVisible=false;
+	if Control then
+		Control.setReadOnly(bReadOnly);
+		bVisible=not (bReadOnly and Control.getValue()==0) and bOnItem;
+		Control.setVisible(bVisible);
+		if self["Label"..Control.getName()] then
+			self["Label"..Control.getName()].setVisible(bVisible);
+		end
+	end
+	return bVisible;
+end
+</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -145,7 +159,6 @@ end</LUACode>
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"20"}},
       {"Name":"DevelopmentComments"},
       {"Name":"Disabled"},
-      {"Name":"DynamicSize"},
       {"Name":"FrameName"},
       {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"GMEditOnly"},
@@ -182,11 +195,12 @@ end</LUACode>
 end
 
 function update(bReadOnly)
-	setReadOnly(bReadOnly);
-	local bVisible=not (bReadOnly and getValue()==0);
-	setVisible(bVisible);
-	window.LabelFullAutomatic.setVisible(bVisible);
-	return bVisible;
+--	setReadOnly(bReadOnly);
+--	local bVisible=not (bReadOnly and getValue()==0);
+--	setVisible(bVisible);
+--	window.LabelFullAutomatic.setVisible(bVisible);
+--	return bVisible;
+	return window.UpdateNumberAndLabel(self, bReadOnly, true);
 end</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
@@ -425,7 +439,6 @@ end</LUACode>
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"20"}},
       {"Name":"DevelopmentComments"},
       {"Name":"Disabled"},
-      {"Name":"DynamicSize"},
       {"Name":"FrameName"},
       {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"GMEditOnly"},
@@ -462,11 +475,12 @@ end</LUACode>
 end
 
 function update(bReadOnly)
-	setReadOnly(bReadOnly);
-	local bVisible=not (bReadOnly and getValue()==0);
-	setVisible(bVisible);
-	window.LabelSemiAutomatic.setVisible(bVisible);
-	return bVisible;
+--	setReadOnly(bReadOnly);
+--	local bVisible=not (bReadOnly and getValue()==0);
+--	setVisible(bVisible);
+--	window.LabelSemiAutomatic.setVisible(bVisible);
+--	return bVisible;
+	return window.UpdateNumberAndLabel(self, bReadOnly, true);
 end</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
@@ -489,7 +503,6 @@ end</LUACode>
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"20"}},
       {"Name":"DevelopmentComments"},
       {"Name":"Disabled"},
-      {"Name":"DynamicSize"},
       {"Name":"FrameName"},
       {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"GMEditOnly"},
@@ -526,11 +539,12 @@ end</LUACode>
 end
 
 function update(bReadOnly)
-	setReadOnly(bReadOnly);
-	local bVisible=not (bReadOnly and getValue()==0);
-	setVisible(bVisible);
-	window.LabelSingleShot.setVisible(bVisible);
-	return bVisible;
+--	setReadOnly(bReadOnly);
+--	local bVisible=not (bReadOnly and getValue()==0);
+--	setVisible(bVisible);
+--	window.LabelSingleShot.setVisible(bVisible);
+--	return bVisible;
+	return window.UpdateNumberAndLabel(self, bReadOnly, true);
 end</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
