@@ -2,7 +2,7 @@
   <WindowControls>
     <WindowName>item_main</WindowName>
     <ControlName>Ammo</ControlName>
-    <ZIndex>39</ZIndex>
+    <ZIndex>43</ZIndex>
     <ControlClass>FGNumberField</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"top","AnchorTo":"top","Parent":"LabelAmmo"}}},
@@ -21,7 +21,6 @@
       {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
       {"Name":"Disabled"},
       {"Name":"DisplaySign"},
-      {"Name":"DynamicSize"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"FrameName","Value":{"@xsi:type":"xsd:string","#text":"fielddark"}},
@@ -58,7 +57,7 @@
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"92"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"327"}}
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"357"}}
 ]}}</Definition>
     <LUACode>function update(bReadOnly)
 	setReadOnly(bReadOnly);
@@ -76,7 +75,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>item_main</WindowName>
     <ControlName>Ammo2</ControlName>
-    <ZIndex>40</ZIndex>
+    <ZIndex>44</ZIndex>
     <ControlClass>FGNumberField</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"top","AnchorTo":"top","Parent":"LabelAmmo"}}},
@@ -95,7 +94,6 @@ end</LUACode>
       {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
       {"Name":"Disabled"},
       {"Name":"DisplaySign"},
-      {"Name":"DynamicSize"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"FrameName","Value":{"@xsi:type":"xsd:string","#text":"fielddark"}},
@@ -132,7 +130,7 @@ end</LUACode>
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"149"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"327"}}
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"357"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
@@ -141,7 +139,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>item_main</WindowName>
     <ControlName>AreaEffect</ControlName>
-    <ZIndex>45</ZIndex>
+    <ZIndex>49</ZIndex>
     <ControlClass>FGStringField</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"top","AnchorTo":"top","Parent":"LabelAreaEffect"}}},
@@ -195,7 +193,7 @@ end</LUACode>
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"109"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"377"}}
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"407"}}
 ]}}</Definition>
     <LUACode>function update(bReadOnly)
 	setReadOnly(bReadOnly);
@@ -210,7 +208,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>item_main</WindowName>
     <ControlName>ArmorUsed</ControlName>
-    <ZIndex>28</ZIndex>
+    <ZIndex>32</ZIndex>
     <ControlClass>FGStringCycler</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"top","AnchorTo":"top","Parent":"LabelArmorUsed"}}},
@@ -225,7 +223,6 @@ end</LUACode>
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"100"}},
       {"Name":"DevelopmentComments"},
       {"Name":"Disabled"},
-      {"Name":"DynamicSize"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"FrameName","Value":{"@xsi:type":"xsd:string","#text":"fielddark"}},
@@ -258,7 +255,7 @@ end</LUACode>
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"92"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"425"}}
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"455"}}
 ]}}</Definition>
     <LUACode>function update(parameter)
 	if type(parameter)=="boolean" then 
@@ -282,7 +279,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>item_main</WindowName>
     <ControlName>AttackSkill</ControlName>
-    <ZIndex>34</ZIndex>
+    <ZIndex>38</ZIndex>
     <ControlClass>FGStringField</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"top","AnchorTo":"top","Parent":"LabelAttackSkill"}}},
@@ -336,7 +333,7 @@ end</LUACode>
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"92"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"256"}}
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"286"}}
 ]}}</Definition>
     <LUACode>function update(bReadOnly)
 	local sType=window.WeaponType.getValue()
@@ -414,7 +411,7 @@ end
   <WindowControls>
     <WindowName>item_main</WindowName>
     <ControlName>AugmentationType</ControlName>
-    <ZIndex>7</ZIndex>
+    <ZIndex>9</ZIndex>
     <ControlClass>FGStringField</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"top","AnchorTo":"top","Parent":"LabelAugmentationType"}}},
@@ -468,7 +465,7 @@ end
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"135"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"683"}}
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"713"}}
 ]}}</Definition>
     <LUACode>function update(bReadOnly)
 	setReadOnly(bReadOnly);
@@ -482,7 +479,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>item_main</WindowName>
     <ControlName>Complexity</ControlName>
-    <ZIndex>9</ZIndex>
+    <ZIndex>11</ZIndex>
     <ControlClass>FGComboBox</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"top","AnchorTo":"top","Parent":"LabelComplexity"}}},
@@ -498,7 +495,6 @@ end</LUACode>
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"120"}},
       {"Name":"DevelopmentComments"},
       {"Name":"Disabled"},
-      {"Name":"DynamicSize"},
       {"Name":"EmptyText","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
@@ -548,7 +544,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>item_main</WindowName>
     <ControlName>DamageAverage</ControlName>
-    <ZIndex>24</ZIndex>
+    <ZIndex>28</ZIndex>
     <ControlClass>FGNumberField</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"top","AnchorTo":"top","Parent":"LabelDamage"}}},
@@ -567,7 +563,6 @@ end</LUACode>
       {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
       {"Name":"Disabled"},
       {"Name":"DisplaySign"},
-      {"Name":"DynamicSize"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"FrameName","Value":{"@xsi:type":"xsd:string","#text":"fielddark"}},
@@ -604,7 +599,7 @@ end</LUACode>
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"269"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"182"}}
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"212"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
@@ -613,7 +608,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>item_main</WindowName>
     <ControlName>DamageHealingRate</ControlName>
-    <ZIndex>58</ZIndex>
+    <ZIndex>62</ZIndex>
     <ControlClass>FGStringField</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"top","AnchorTo":"top","Parent":"LabelDamageHealingRate"}}},
@@ -667,7 +662,7 @@ end</LUACode>
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"150"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"565"}}
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"595"}}
 ]}}</Definition>
     <LUACode>function update(bReadOnly)
 	setReadOnly(bReadOnly);
@@ -682,7 +677,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>item_main</WindowName>
     <ControlName>DamagePlus</ControlName>
-    <ZIndex>65</ZIndex>
+    <ZIndex>69</ZIndex>
     <ControlClass>FGNumberField</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"top","AnchorTo":"top","Parent":"LabelDamage"}}},
@@ -701,7 +696,6 @@ end</LUACode>
       {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
       {"Name":"Disabled"},
       {"Name":"DisplaySign"},
-      {"Name":"DynamicSize"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"FrameName","Value":{"@xsi:type":"xsd:string","#text":"fielddark"}},
@@ -738,7 +732,7 @@ end</LUACode>
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"220"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"182"}}
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"212"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
@@ -747,7 +741,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>item_main</WindowName>
     <ControlName>DamageValue</ControlName>
-    <ZIndex>21</ZIndex>
+    <ZIndex>25</ZIndex>
     <ControlClass>FGDieField</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"top","AnchorTo":"top","Parent":"LabelDamage"}}},
@@ -762,7 +756,6 @@ end</LUACode>
       {"Name":"DevelopmentComments"},
       {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
       {"Name":"Disabled"},
-      {"Name":"DynamicSize"},
       {"Name":"FrameName","Value":{"@xsi:type":"xsd:string","#text":"fielddark"}},
       {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"GMEditOnly"},
@@ -792,7 +785,7 @@ end</LUACode>
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"131"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"182"}}
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"212"}}
 ]}}</Definition>
     <LUACode>function update(bReadOnly)
 	setReadOnly(bReadOnly);
@@ -818,7 +811,7 @@ end
   <WindowControls>
     <WindowName>item_main</WindowName>
     <ControlName>DamageValueMod</ControlName>
-    <ZIndex>26</ZIndex>
+    <ZIndex>30</ZIndex>
     <ControlClass>FGStringField</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"top","AnchorTo":"top","Parent":"LabelDamageValueMod"}}},
@@ -872,7 +865,7 @@ end
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"152"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"483"}}
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"513"}}
 ]}}</Definition>
     <LUACode>function update(bReadOnly)
 	setReadOnly(bReadOnly);
@@ -887,7 +880,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>item_main</WindowName>
     <ControlName>Description</ControlName>
-    <ZIndex>18</ZIndex>
+    <ZIndex>22</ZIndex>
     <ControlClass>FGFormattedText</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"top","AnchorTo":"bottom","Parent":"topAnchor"}}},
@@ -929,7 +922,7 @@ end</LUACode>
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"12"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"141"}}
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"171"}}
 ]}}</Definition>
     <LUACode>function update(bReadOnly)
 	setReadOnly(bReadOnly);
@@ -943,7 +936,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>item_main</WindowName>
     <ControlName>Divider</ControlName>
-    <ZIndex>19</ZIndex>
+    <ZIndex>23</ZIndex>
     <ControlClass>FGCustomControl</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":[{"EdgeAnchor":"top","AnchorTo":"bottom","Parent":"topAnchor"},{"EdgeAnchor":"right","AnchorTo":"right","Parent":null}]}},
@@ -987,7 +980,7 @@ end</LUACode>
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"10"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"177"}}
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"207"}}
 ]}}</Definition>
     <LUACode>function update()
 	local bVisible=window.Type.isWeapon() or
@@ -1003,7 +996,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>item_main</WindowName>
     <ControlName>EffectDuration</ControlName>
-    <ZIndex>62</ZIndex>
+    <ZIndex>66</ZIndex>
     <ControlClass>FGStringField</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"top","AnchorTo":"top","Parent":"LabelEffectDuration"}}},
@@ -1057,7 +1050,7 @@ end</LUACode>
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"150"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"631"}}
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"661"}}
 ]}}</Definition>
     <LUACode>function update(bReadOnly)
 	setReadOnly(bReadOnly);
@@ -1072,7 +1065,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>item_main</WindowName>
     <ControlName>EnergyAV</ControlName>
-    <ZIndex>52</ZIndex>
+    <ZIndex>56</ZIndex>
     <ControlClass>FGNumberField</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"top","AnchorTo":"top","Parent":"LabelArmorValue"}}},
@@ -1091,7 +1084,6 @@ end</LUACode>
       {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
       {"Name":"Disabled"},
       {"Name":"DisplaySign"},
-      {"Name":"DynamicSize"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"FrameName","Value":{"@xsi:type":"xsd:string","#text":"fielddark"}},
@@ -1128,7 +1120,7 @@ end</LUACode>
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"150"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"512"}}
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"542"}}
 ]}}</Definition>
     <LUACode>function update(bReadOnly)
 	setReadOnly(bReadOnly);
@@ -1143,7 +1135,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>item_main</WindowName>
     <ControlName>FiringModeSubwindow</ControlName>
-    <ZIndex>37</ZIndex>
+    <ZIndex>41</ZIndex>
     <ControlClass>FGSubWindow</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"Activate","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
@@ -1189,7 +1181,7 @@ end</LUACode>
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"10"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"305"}}
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"335"}}
 ]}}</Definition>
     <LUACode>function update(bReadOnly)
 	setVisible(subwindow.update(bReadOnly) and window.Type.isRangedWeapon());
@@ -1317,7 +1309,7 @@ end
   <WindowControls>
     <WindowName>item_main</WindowName>
     <ControlName>KineticAV</ControlName>
-    <ZIndex>54</ZIndex>
+    <ZIndex>58</ZIndex>
     <ControlClass>FGNumberField</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"top","AnchorTo":"top","Parent":"LabelArmorValue"}}},
@@ -1336,7 +1328,6 @@ end
       {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
       {"Name":"Disabled"},
       {"Name":"DisplaySign"},
-      {"Name":"DynamicSize"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"FrameName","Value":{"@xsi:type":"xsd:string","#text":"fielddark"}},
@@ -1373,7 +1364,7 @@ end
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"267"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"512"}}
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"542"}}
 ]}}</Definition>
     <LUACode>function update(bReadOnly)
 	setReadOnly(bReadOnly);
@@ -1388,7 +1379,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>item_main</WindowName>
     <ControlName>LabelAmmo</ControlName>
-    <ZIndex>38</ZIndex>
+    <ZIndex>42</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"top","AnchorTo":"bottom","Parent":"topAnchor"}}},
@@ -1433,7 +1424,7 @@ end</LUACode>
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"10"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"332"}}
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"362"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
@@ -1442,7 +1433,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>item_main</WindowName>
     <ControlName>LabelAmmo2</ControlName>
-    <ZIndex>64</ZIndex>
+    <ZIndex>68</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"top","AnchorTo":"top","Parent":"LabelAmmo"}}},
@@ -1487,7 +1478,7 @@ end</LUACode>
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"132"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"332"}}
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"362"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
@@ -1496,7 +1487,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>item_main</WindowName>
     <ControlName>LabelAreaEffect</ControlName>
-    <ZIndex>44</ZIndex>
+    <ZIndex>48</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"top","AnchorTo":"bottom","Parent":"topAnchor"}}},
@@ -1507,7 +1498,7 @@ end</LUACode>
       {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
       {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
       {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
-      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"100"}},
       {"Name":"DevelopmentComments"},
       {"Name":"Disabled"},
@@ -1541,7 +1532,7 @@ end</LUACode>
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"10"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"382"}}
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"412"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
@@ -1550,7 +1541,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>item_main</WindowName>
     <ControlName>LabelArmorUsed</ControlName>
-    <ZIndex>27</ZIndex>
+    <ZIndex>31</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"top","AnchorTo":"bottom","Parent":"topAnchor"}}},
@@ -1595,7 +1586,7 @@ end</LUACode>
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"10"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"430"}}
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"460"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
@@ -1604,7 +1595,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>item_main</WindowName>
     <ControlName>LabelArmorValue</ControlName>
-    <ZIndex>50</ZIndex>
+    <ZIndex>54</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"top","AnchorTo":"bottom","Parent":"topAnchor"}}},
@@ -1649,7 +1640,7 @@ end</LUACode>
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"12"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"517"}}
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"547"}}
 ]}}</Definition>
     <LUACode>function update(bReadOnly)
 	local bVisible=window.Type.isArmor() or window.Type.isArmorMod();
@@ -1661,7 +1652,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>item_main</WindowName>
     <ControlName>LabelAttackSkill</ControlName>
-    <ZIndex>33</ZIndex>
+    <ZIndex>37</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"top","AnchorTo":"bottom","Parent":"topAnchor"}}},
@@ -1706,7 +1697,7 @@ end</LUACode>
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"10"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"261"}}
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"291"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
@@ -1715,7 +1706,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>item_main</WindowName>
     <ControlName>LabelAugmentationType</ControlName>
-    <ZIndex>6</ZIndex>
+    <ZIndex>8</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"top","AnchorTo":"bottom","Parent":"topAnchor"}}},
@@ -1760,7 +1751,7 @@ end</LUACode>
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"12"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"688"}}
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"718"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
@@ -1769,7 +1760,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>item_main</WindowName>
     <ControlName>LabelAverage</ControlName>
-    <ZIndex>23</ZIndex>
+    <ZIndex>27</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"top","AnchorTo":"top","Parent":"LabelDamage"}}},
@@ -1814,7 +1805,7 @@ end</LUACode>
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"264"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"187"}}
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"217"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
@@ -1823,7 +1814,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>item_main</WindowName>
     <ControlName>LabelComplexity</ControlName>
-    <ZIndex>8</ZIndex>
+    <ZIndex>10</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"top","AnchorTo":"bottom","Parent":"topAnchor"}}},
@@ -1877,7 +1868,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>item_main</WindowName>
     <ControlName>LabelDamage</ControlName>
-    <ZIndex>20</ZIndex>
+    <ZIndex>24</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"top","AnchorTo":"bottom","Parent":"topAnchor"}}},
@@ -1922,7 +1913,7 @@ end</LUACode>
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"10"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"187"}}
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"217"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
@@ -1931,7 +1922,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>item_main</WindowName>
     <ControlName>LabelDamageHealingRate</ControlName>
-    <ZIndex>57</ZIndex>
+    <ZIndex>61</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"top","AnchorTo":"bottom","Parent":"topAnchor"}}},
@@ -1976,7 +1967,7 @@ end</LUACode>
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"12"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"570"}}
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"600"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
@@ -1985,7 +1976,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>item_main</WindowName>
     <ControlName>LabelDamagePlus</ControlName>
-    <ZIndex>22</ZIndex>
+    <ZIndex>26</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"top","AnchorTo":"top","Parent":"LabelDamage"}}},
@@ -2030,7 +2021,7 @@ end</LUACode>
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"207"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"187"}}
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"217"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
@@ -2039,7 +2030,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>item_main</WindowName>
     <ControlName>LabelDamageValueMod</ControlName>
-    <ZIndex>25</ZIndex>
+    <ZIndex>29</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"top","AnchorTo":"bottom","Parent":"topAnchor"}}},
@@ -2084,7 +2075,7 @@ end</LUACode>
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"10"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"488"}}
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"518"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
@@ -2093,7 +2084,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>item_main</WindowName>
     <ControlName>LabelDescription</ControlName>
-    <ZIndex>17</ZIndex>
+    <ZIndex>19</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"top","AnchorTo":"bottom","Parent":"topAnchor"}}},
@@ -2147,7 +2138,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>item_main</WindowName>
     <ControlName>LabelEffectDuration</ControlName>
-    <ZIndex>61</ZIndex>
+    <ZIndex>65</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"top","AnchorTo":"bottom","Parent":"topAnchor"}}},
@@ -2192,7 +2183,7 @@ end</LUACode>
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"12"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"636"}}
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"666"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
@@ -2201,7 +2192,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>item_main</WindowName>
     <ControlName>LabelEnergy</ControlName>
-    <ZIndex>51</ZIndex>
+    <ZIndex>55</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"top","AnchorTo":"bottom","Parent":"LabelArmorValue"}}},
@@ -2246,7 +2237,7 @@ end</LUACode>
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"108"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"517"}}
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"547"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
@@ -2255,7 +2246,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>item_main</WindowName>
     <ControlName>LabelFM</ControlName>
-    <ZIndex>35</ZIndex>
+    <ZIndex>39</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"top","AnchorTo":"bottom","Parent":"topAnchor"}}},
@@ -2300,7 +2291,7 @@ end</LUACode>
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"10"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"284"}}
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"314"}}
 ]}}</Definition>
     <LUACode>function update(bReadOnly)
 	local bVisible=(not bReadOnly or window.StringFM.getValue()~="") and window.Type.isRangedWeapon();
@@ -2314,7 +2305,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>item_main</WindowName>
     <ControlName>LabelKinetic</ControlName>
-    <ZIndex>53</ZIndex>
+    <ZIndex>57</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"top","AnchorTo":"bottom","Parent":"LabelArmorValue"}}},
@@ -2359,7 +2350,61 @@ end</LUACode>
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"225"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"517"}}
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"547"}}
+]}}</Definition>
+    <LUACode />
+    <GroupIndex>0</GroupIndex>
+    <Template />
+  </WindowControls>
+  <WindowControls>
+    <WindowName>item_main</WindowName>
+    <ControlName>LabelMiscType</ControlName>
+    <ZIndex>4</ZIndex>
+    <ControlClass>FGLabel</ControlClass>
+    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"top","AnchorTo":"bottom","Parent":"topAnchor"}}},
+      {"Name":"AdvancedTemplate","Value":{"@xsi:type":"xsd:string","#text":"label"}},
+      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"Center"},
+      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"LabelMiscType"}},
+      {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
+      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
+      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"120"}},
+      {"Name":"DevelopmentComments"},
+      {"Name":"Disabled"},
+      {"Name":"DynamicSize"},
+      {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"FrameName"},
+      {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"GMVisibleOnly"},
+      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"HoverCursor"},
+      {"Name":"InheritSizePosition"},
+      {"Name":"InsertBefore"},
+      {"Name":"Invisible"},
+      {"Name":"LabelCaption","Value":{"@xsi:type":"xsd:string","#text":"Misc. Type"}},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
+      {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
+      {"Name":"MultilineSpacing"},
+      {"Name":"NextTabTarget"},
+      {"Name":"PrevTabTarget"},
+      {"Name":"RelativeMargin","Value":{"@xsi:type":"xsd:int","#text":"10"}},
+      {"Name":"RelativeStacking","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"ScriptFile"},
+      {"Name":"StackVertWith"},
+      {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
+      {"Name":"TextUnderlined"},
+      {"Name":"Tooltip"},
+      {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"12"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"748"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
@@ -2368,7 +2413,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>item_main</WindowName>
     <ControlName>LabelNoAdditionalArmorLayer</ControlName>
-    <ZIndex>56</ZIndex>
+    <ZIndex>60</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"top","AnchorTo":"top","Parent":"NoAdditionalArmorLayer"}}},
@@ -2413,7 +2458,7 @@ end</LUACode>
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"32"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"541"}}
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"571"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
@@ -2422,7 +2467,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>item_main</WindowName>
     <ControlName>LabelQuantity</ControlName>
-    <ZIndex>48</ZIndex>
+    <ZIndex>52</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"top","AnchorTo":"bottom","Parent":"topAnchor"}}},
@@ -2433,7 +2478,7 @@ end</LUACode>
       {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
       {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
       {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
-      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"56"}},
       {"Name":"DevelopmentComments"},
       {"Name":"Disabled"},
@@ -2467,7 +2512,7 @@ end</LUACode>
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"10"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"459"}}
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"489"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
@@ -2476,7 +2521,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>item_main</WindowName>
     <ControlName>LabelRadius</ControlName>
-    <ZIndex>46</ZIndex>
+    <ZIndex>50</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"top","AnchorTo":"bottom","Parent":"topAnchor"}}},
@@ -2521,7 +2566,7 @@ end</LUACode>
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"10"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"409"}}
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"439"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
@@ -2530,7 +2575,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>item_main</WindowName>
     <ControlName>LabelRange</ControlName>
-    <ZIndex>41</ZIndex>
+    <ZIndex>45</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"top","AnchorTo":"bottom","Parent":"topAnchor"}}},
@@ -2541,7 +2586,7 @@ end</LUACode>
       {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
       {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
       {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
-      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"56"}},
       {"Name":"DevelopmentComments"},
       {"Name":"Disabled"},
@@ -2575,7 +2620,7 @@ end</LUACode>
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"10"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"357"}}
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"387"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
@@ -2584,7 +2629,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>item_main</WindowName>
     <ControlName>LabelRangedWeaponType</ControlName>
-    <ZIndex>31</ZIndex>
+    <ZIndex>35</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"top","AnchorTo":"bottom","Parent":"topAnchor"}}},
@@ -2629,7 +2674,7 @@ end</LUACode>
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"10"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"238"}}
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"268"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
@@ -2638,7 +2683,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>item_main</WindowName>
     <ControlName>LabelRestricted</ControlName>
-    <ZIndex>11</ZIndex>
+    <ZIndex>13</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"top","AnchorTo":"top","Parent":"LabelComplexity"}}},
@@ -2692,7 +2737,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>item_main</WindowName>
     <ControlName>LabelServiceType</ControlName>
-    <ZIndex>4</ZIndex>
+    <ZIndex>6</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"top","AnchorTo":"bottom","Parent":"topAnchor"}}},
@@ -2737,7 +2782,61 @@ end</LUACode>
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"12"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"661"}}
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"691"}}
+]}}</Definition>
+    <LUACode />
+    <GroupIndex>0</GroupIndex>
+    <Template />
+  </WindowControls>
+  <WindowControls>
+    <WindowName>item_main</WindowName>
+    <ControlName>LabelShortDesc</ControlName>
+    <ZIndex>20</ZIndex>
+    <ControlClass>FGLabel</ControlClass>
+    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"top","AnchorTo":"bottom","Parent":"topAnchor"}}},
+      {"Name":"AdvancedTemplate","Value":{"@xsi:type":"xsd:string","#text":"label"}},
+      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"Center"},
+      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"LabelShortDesc"}},
+      {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
+      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
+      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"80"}},
+      {"Name":"DevelopmentComments"},
+      {"Name":"Disabled"},
+      {"Name":"DynamicSize"},
+      {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"FrameName"},
+      {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"GMVisibleOnly"},
+      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"HoverCursor"},
+      {"Name":"InheritSizePosition"},
+      {"Name":"InsertBefore"},
+      {"Name":"Invisible"},
+      {"Name":"LabelCaption","Value":{"@xsi:type":"xsd:string","#text":"Short Desc."}},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
+      {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
+      {"Name":"MultilineSpacing"},
+      {"Name":"NextTabTarget"},
+      {"Name":"PrevTabTarget"},
+      {"Name":"RelativeMargin","Value":{"@xsi:type":"xsd:int","#text":"-10"}},
+      {"Name":"RelativeStacking","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"ScriptFile"},
+      {"Name":"StackVertWith"},
+      {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
+      {"Name":"TextUnderlined"},
+      {"Name":"Tooltip"},
+      {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"10"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"149"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
@@ -2746,7 +2845,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>item_main</WindowName>
     <ControlName>LabelSpecialization</ControlName>
-    <ZIndex>29</ZIndex>
+    <ZIndex>33</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"top","AnchorTo":"bottom","Parent":"topAnchor"}}},
@@ -2791,7 +2890,7 @@ end</LUACode>
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"10"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"216"}}
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"246"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
@@ -2800,7 +2899,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>item_main</WindowName>
     <ControlName>LabelTraitsNotes</ControlName>
-    <ZIndex>12</ZIndex>
+    <ZIndex>14</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"top","AnchorTo":"bottom","Parent":"topAnchor"}}},
@@ -2908,7 +3007,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>item_main</WindowName>
     <ControlName>LabelWare</ControlName>
-    <ZIndex>14</ZIndex>
+    <ZIndex>16</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"top","AnchorTo":"bottom","Parent":"topAnchor"}}},
@@ -2966,7 +3065,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>item_main</WindowName>
     <ControlName>LabelWoundHealingRate</ControlName>
-    <ZIndex>59</ZIndex>
+    <ZIndex>63</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"top","AnchorTo":"bottom","Parent":"topAnchor"}}},
@@ -3011,7 +3110,7 @@ end</LUACode>
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"12"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"601"}}
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"631"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
@@ -3019,8 +3118,77 @@ end</LUACode>
   </WindowControls>
   <WindowControls>
     <WindowName>item_main</WindowName>
+    <ControlName>MiscType</ControlName>
+    <ZIndex>5</ZIndex>
+    <ControlClass>FGStringField</ControlClass>
+    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"top","AnchorTo":"top","Parent":"LabelMiscType"}}},
+      {"Name":"AdvancedTemplate"},
+      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"Center"},
+      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"MiscType"}},
+      {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
+      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
+      {"Name":"DefaultText","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"DelayKeyUpdate","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"30"}},
+      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"177"}},
+      {"Name":"DevelopmentComments"},
+      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
+      {"Name":"Disabled"},
+      {"Name":"DynamicSize"},
+      {"Name":"EmptyText"},
+      {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"FrameName","Value":{"@xsi:type":"xsd:string","#text":"fielddark"}},
+      {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string","#text":"8,0,8,0"}},
+      {"Name":"GMEditOnly"},
+      {"Name":"GMVisibleOnly"},
+      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"2"}},
+      {"Name":"HoverCursor"},
+      {"Name":"InheritSizePosition"},
+      {"Name":"InsertBefore"},
+      {"Name":"Invisible"},
+      {"Name":"LineOffset"},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
+      {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
+      {"Name":"MultilineSpacing"},
+      {"Name":"NextTabTarget"},
+      {"Name":"NoDrag","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"NoDragselect","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"NoDrop","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"PrevTabTarget"},
+      {"Name":"ReadOnly"},
+      {"Name":"RelativeMargin","Value":{"@xsi:type":"xsd:int","#text":"-5"}},
+      {"Name":"RelativeStacking"},
+      {"Name":"ScriptFile"},
+      {"Name":"Source"},
+      {"Name":"StackVertWith"},
+      {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
+      {"Name":"Tooltip"},
+      {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"135"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"743"}}
+]}}</Definition>
+    <LUACode>function update(bReadOnly)
+	setReadOnly(bReadOnly);
+	local bVisible=not (bReadOnly and getValue()=="") and window.Type.isMiscelaneous();
+	setVisible(bVisible);
+	window.LabelMiscType.setVisible(bVisible);
+end
+</LUACode>
+    <GroupIndex>0</GroupIndex>
+    <Template />
+  </WindowControls>
+  <WindowControls>
+    <WindowName>item_main</WindowName>
     <ControlName>NoAdditionalArmorLayer</ControlName>
-    <ZIndex>55</ZIndex>
+    <ZIndex>59</ZIndex>
     <ControlClass>FGCheckbox</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"top","AnchorTo":"bottom","Parent":"topAnchor"}}},
@@ -3035,7 +3203,6 @@ end</LUACode>
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"20"}},
       {"Name":"DevelopmentComments"},
       {"Name":"Disabled"},
-      {"Name":"DynamicSize"},
       {"Name":"FrameName"},
       {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"GMEditOnly"},
@@ -3065,7 +3232,7 @@ end</LUACode>
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"12"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"541"}}
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"571"}}
 ]}}</Definition>
     <LUACode>function update(bReadOnly)
 	setReadOnly(bReadOnly);
@@ -3080,7 +3247,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>item_main</WindowName>
     <ControlName>Quantity</ControlName>
-    <ZIndex>49</ZIndex>
+    <ZIndex>53</ZIndex>
     <ControlClass>FGNumberField</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"top","AnchorTo":"top","Parent":"LabelQuantity"}}},
@@ -3099,7 +3266,6 @@ end</LUACode>
       {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
       {"Name":"Disabled"},
       {"Name":"DisplaySign"},
-      {"Name":"DynamicSize"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"FrameName","Value":{"@xsi:type":"xsd:string","#text":"fielddark"}},
@@ -3136,7 +3302,7 @@ end</LUACode>
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"92"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"454"}}
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"484"}}
 ]}}</Definition>
     <LUACode>function update(bReadOnly)
 	setReadOnly(bReadOnly);
@@ -3151,7 +3317,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>item_main</WindowName>
     <ControlName>Radius</ControlName>
-    <ZIndex>47</ZIndex>
+    <ZIndex>51</ZIndex>
     <ControlClass>FGStringField</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"top","AnchorTo":"top","Parent":"LabelRadius"}}},
@@ -3205,7 +3371,7 @@ end</LUACode>
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"92"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"404"}}
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"434"}}
 ]}}</Definition>
     <LUACode>function update(bReadOnly)
 	setReadOnly(bReadOnly);
@@ -3220,7 +3386,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>item_main</WindowName>
     <ControlName>Range</ControlName>
-    <ZIndex>42</ZIndex>
+    <ZIndex>46</ZIndex>
     <ControlClass>FGNumberField</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"top","AnchorTo":"top","Parent":"LabelRange"}}},
@@ -3239,7 +3405,6 @@ end</LUACode>
       {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
       {"Name":"Disabled"},
       {"Name":"DisplaySign"},
-      {"Name":"DynamicSize"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"FrameName","Value":{"@xsi:type":"xsd:string","#text":"fielddark"}},
@@ -3276,7 +3441,7 @@ end</LUACode>
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"92"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"352"}}
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"382"}}
 ]}}</Definition>
     <LUACode>function update(bReadOnly)
 	setReadOnly(bReadOnly);
@@ -3294,7 +3459,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>item_main</WindowName>
     <ControlName>RangeDesc</ControlName>
-    <ZIndex>43</ZIndex>
+    <ZIndex>47</ZIndex>
     <ControlClass>FGStringField</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"top","AnchorTo":"top","Parent":"LabelRange"}}},
@@ -3348,7 +3513,7 @@ end</LUACode>
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"150"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"352"}}
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"382"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
@@ -3357,7 +3522,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>item_main</WindowName>
     <ControlName>RangedWeaponType</ControlName>
-    <ZIndex>32</ZIndex>
+    <ZIndex>36</ZIndex>
     <ControlClass>FGComboBox</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"top","AnchorTo":"top","Parent":"LabelRangedWeaponType"}}},
@@ -3373,7 +3538,6 @@ end</LUACode>
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"220"}},
       {"Name":"DevelopmentComments"},
       {"Name":"Disabled"},
-      {"Name":"DynamicSize"},
       {"Name":"EmptyText"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
@@ -3408,7 +3572,7 @@ end</LUACode>
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"92"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"233"}}
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"263"}}
 ]}}</Definition>
     <LUACode>function onInit()
 	if getValue()=="" then setListValue("Beam Weapon"); end
@@ -3431,7 +3595,7 @@ end
   <WindowControls>
     <WindowName>item_main</WindowName>
     <ControlName>Restricted</ControlName>
-    <ZIndex>10</ZIndex>
+    <ZIndex>12</ZIndex>
     <ControlClass>FGCheckbox</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"top","AnchorTo":"top","Parent":"LabelComplexity"}}},
@@ -3446,7 +3610,6 @@ end
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"20"}},
       {"Name":"DevelopmentComments"},
       {"Name":"Disabled"},
-      {"Name":"DynamicSize"},
       {"Name":"FrameName"},
       {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"GMEditOnly"},
@@ -3490,7 +3653,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>item_main</WindowName>
     <ControlName>ServiceType</ControlName>
-    <ZIndex>5</ZIndex>
+    <ZIndex>7</ZIndex>
     <ControlClass>FGStringField</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"top","AnchorTo":"top","Parent":"LabelServiceType"}}},
@@ -3544,7 +3707,7 @@ end</LUACode>
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"92"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"656"}}
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"686"}}
 ]}}</Definition>
     <LUACode>function update(bReadOnly)
 	setReadOnly(bReadOnly);
@@ -3557,8 +3720,77 @@ end</LUACode>
   </WindowControls>
   <WindowControls>
     <WindowName>item_main</WindowName>
+    <ControlName>ShortDesc</ControlName>
+    <ZIndex>21</ZIndex>
+    <ControlClass>FGStringField</ControlClass>
+    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"top","AnchorTo":"top","Parent":"LabelShortDesc"}}},
+      {"Name":"AdvancedTemplate"},
+      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"Center"},
+      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"ShortDesc"}},
+      {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
+      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
+      {"Name":"DefaultText","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"DelayKeyUpdate","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"30"}},
+      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"220"}},
+      {"Name":"DevelopmentComments"},
+      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
+      {"Name":"Disabled"},
+      {"Name":"DynamicSize"},
+      {"Name":"EmptyText"},
+      {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"FrameName","Value":{"@xsi:type":"xsd:string","#text":"fielddark"}},
+      {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string","#text":"8,0,8,0"}},
+      {"Name":"GMEditOnly"},
+      {"Name":"GMVisibleOnly"},
+      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"2"}},
+      {"Name":"HoverCursor"},
+      {"Name":"InheritSizePosition"},
+      {"Name":"InsertBefore"},
+      {"Name":"Invisible"},
+      {"Name":"LineOffset"},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
+      {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
+      {"Name":"MultilineSpacing"},
+      {"Name":"NextTabTarget"},
+      {"Name":"NoDrag","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"NoDragselect","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"NoDrop","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"PrevTabTarget"},
+      {"Name":"ReadOnly"},
+      {"Name":"RelativeMargin","Value":{"@xsi:type":"xsd:int","#text":"-5"}},
+      {"Name":"RelativeStacking"},
+      {"Name":"ScriptFile"},
+      {"Name":"Source","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"StackVertWith"},
+      {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
+      {"Name":"Tooltip"},
+      {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"92"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"144"}}
+]}}</Definition>
+    <LUACode>function update(bReadOnly)
+	setReadOnly(bReadOnly);
+	local bVisible=not (bReadOnly and getValue()=="");
+	setVisible(bVisible);
+	window.LabelShortDesc.setVisible(bVisible);
+	return bVisible;
+end</LUACode>
+    <GroupIndex>0</GroupIndex>
+    <Template />
+  </WindowControls>
+  <WindowControls>
+    <WindowName>item_main</WindowName>
     <ControlName>Specialization</ControlName>
-    <ZIndex>30</ZIndex>
+    <ZIndex>34</ZIndex>
     <ControlClass>FGStringField</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"top","AnchorTo":"top","Parent":"LabelSpecialization"}}},
@@ -3612,7 +3844,7 @@ end</LUACode>
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"92"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"211"}}
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"241"}}
 ]}}</Definition>
     <LUACode>function update(bReadOnly)
 	setReadOnly(bReadOnly);
@@ -3626,7 +3858,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>item_main</WindowName>
     <ControlName>StringFM</ControlName>
-    <ZIndex>36</ZIndex>
+    <ZIndex>40</ZIndex>
     <ControlClass>FGStringField</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"top","AnchorTo":"top","Parent":"LabelFM"}}},
@@ -3680,7 +3912,7 @@ end</LUACode>
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"209"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"284"}}
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"314"}}
 ]}}</Definition>
     <LUACode>function Update()
 	local sFM="";
@@ -3708,7 +3940,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>item_main</WindowName>
     <ControlName>StringWare</ControlName>
-    <ZIndex>15</ZIndex>
+    <ZIndex>17</ZIndex>
     <ControlClass>FGStringField</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"top","AnchorTo":"top","Parent":"LabelWare"}}},
@@ -3832,7 +4064,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>item_main</WindowName>
     <ControlName>TraitsNotes</ControlName>
-    <ZIndex>13</ZIndex>
+    <ZIndex>15</ZIndex>
     <ControlClass>FGStringField</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"top","AnchorTo":"top","Parent":"LabelTraitsNotes"}}},
@@ -3907,7 +4139,7 @@ end</LUACode>
       {"Name":"AdvancedTemplate"},
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"ButtonOffset"},
-      {"Name":"ComboItems","Value":{"@xsi:type":"ArrayOfLabelValue","LabelValue":[{"Label":"Miscelaneous","Value":"Miscelaneous"},{"Label":"Melee Weapon","Value":"Melee Weapon"},{"Label":"Ranged Weapon","Value":"Ranged Weapon"},{"Label":"Kinetic Ammo","Value":"Kinetic Ammo"},{"Label":"Micromissile/Minigrenade","Value":"Micromissiel/Minigrenade"},{"Label":"Weapon Accesory","Value":"Weapon Accesory"},{"Label":"Armor","Value":"Armor"},{"Label":"Armor Mod","Value":"Armor Mod"},{"Label":"Healing/Repair","Value":"Healing/Repair"},{"Label":"Augmentation","Value":"Augmentation"},{"Label":"Everyday Tech","Value":"Everyday Tech"},{"Label":"Service","Value":"Service"}]}},
+      {"Name":"ComboItems","Value":{"@xsi:type":"ArrayOfLabelValue","LabelValue":[{"Label":"Miscelaneous","Value":"Miscelaneous"},{"Label":"Melee Weapon","Value":"Melee Weapon"},{"Label":"Ranged Weapon","Value":"Ranged Weapon"},{"Label":"Kinetic Ammo","Value":"Kinetic Ammo"},{"Label":"Micromissile/Minigrenade","Value":"Micromissiel/Minigrenade"},{"Label":"Weapon Accesory","Value":"Weapon Accesory"},{"Label":"Armor","Value":"Armor"},{"Label":"Armor Mod","Value":"Armor Mod"},{"Label":"Healing/Repair","Value":"Healing/Repair"},{"Label":"Augmentation","Value":"Augmentation"},{"Label":"Everyday Tech","Value":"Everyday Tech"},{"Label":"Service","Value":"Service"},{"Label":"Meshware","Value":"Meshware"},{"Label":"APPs &amp; ALIs","Value":"APPs &amp; ALIs"},{"Label":"Chemical","Value":"Chemical"},{"Label":"Drugs &amp; Toxins","Value":"Drugs &amp; Toxins"}]}},
       {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"Type"}},
       {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
       {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
@@ -3916,7 +4148,6 @@ end</LUACode>
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"220"}},
       {"Name":"DevelopmentComments"},
       {"Name":"Disabled"},
-      {"Name":"DynamicSize"},
       {"Name":"EmptyText"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
@@ -3932,7 +4163,7 @@ end</LUACode>
       {"Name":"ListDirection","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"ListOffset"},
       {"Name":"MaximumHeight"},
-      {"Name":"MaximumListSize"},
+      {"Name":"MaximumListSize","Value":{"@xsi:type":"xsd:int","#text":"10"}},
       {"Name":"MaximumWidth"},
       {"Name":"Merge"},
       {"Name":"MinimumHeight"},
@@ -3943,7 +4174,7 @@ end</LUACode>
       {"Name":"RelativeMargin","Value":{"@xsi:type":"xsd:int","#text":"-5"}},
       {"Name":"RelativeStacking"},
       {"Name":"ScriptFile"},
-      {"Name":"Sorted","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"Sorted","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"Source"},
       {"Name":"StackVertWith"},
       {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
@@ -4017,6 +4248,10 @@ function isService()
 	return getValue()=="Service";
 end
 
+function isMiscelaneous()
+	return getValue()=="Miscelaneous";
+end
+
 function hasWare()
 	return isMeleeWeapon() or isRangedWeapon() or isArmor() or isAugmentation();
 end
@@ -4043,7 +4278,7 @@ end
   <WindowControls>
     <WindowName>item_main</WindowName>
     <ControlName>wareSubwindow</ControlName>
-    <ZIndex>16</ZIndex>
+    <ZIndex>18</ZIndex>
     <ControlClass>FGSubWindow</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"Activate","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
@@ -4100,7 +4335,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>item_main</WindowName>
     <ControlName>WeaponType</ControlName>
-    <ZIndex>63</ZIndex>
+    <ZIndex>67</ZIndex>
     <ControlClass>FGStringField</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -4154,7 +4389,7 @@ end</LUACode>
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"340"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"261"}}
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"291"}}
 ]}}</Definition>
     <LUACode>function UpdateWeaponType()
 	local sTypeValue=window.Type.getValue()
@@ -4188,7 +4423,7 @@ end
   <WindowControls>
     <WindowName>item_main</WindowName>
     <ControlName>WoundHealingRate</ControlName>
-    <ZIndex>60</ZIndex>
+    <ZIndex>64</ZIndex>
     <ControlClass>FGStringField</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"top","AnchorTo":"top","Parent":"LabelWoundHealingRate"}}},
@@ -4242,7 +4477,7 @@ end
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"150"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"596"}}
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"626"}}
 ]}}</Definition>
     <LUACode>function update(bReadOnly)
 	setReadOnly(bReadOnly);

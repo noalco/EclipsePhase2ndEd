@@ -1,13 +1,13 @@
 <DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
   <Scripts>
     <ScriptName>Sidebars</ScriptName>
-    <FolderID>26</FolderID>
+    <FolderID>27</FolderID>
     <Script>function onInit()
 	aRecordOverrides = {
 		["backgrounds"] = {
 			bExport=true,
 			aDataMap = {"reference.backgrounds"},
-			sListDisplayClass = "BackgroundBase",
+			sListDisplayClass = "masterindexitem_id",
 			sRecordDisplayClass ="BackgroundSidebarWindow",
 			sEditMode = "play",
 			sSidebarCategory = "character",
@@ -15,7 +15,7 @@
 		["careers"] = {
 			bExport=true,
 			aDataMap = {"reference.careers"},
-			sListDisplayClass = "CareerBase",
+			sListDisplayClass = "masterindexitem_id",
 			sRecordDisplayClass ="CareerSidebarWindow",
 			sEditMode = "play",
 			sSidebarCategory = "character",
@@ -23,7 +23,7 @@
 		["interest"] = {
 			bExport=true,
 			aDataMap = {"reference.interest"},
-			sListDisplayClass = "InterestBase",
+			sListDisplayClass = "masterindexitem_id",
 			sRecordDisplayClass ="InterestSidebarWindow",
 			sEditMode = "play",
 			sSidebarCategory = "character",
@@ -35,35 +35,16 @@
 				["GP Cost"] = { sField = "GP" },
 			},
 		},
-		["traits"] = {
-			bExport=true,
-			aDataMap = {"reference.traits"},
-			sListDisplayClass = "TraitBaseSidebar",
-			sRecordDisplayClass ="TraitWindow",
-			sEditMode = "play",
-			sSidebarCategory = "character",
-		},
 		["morphs"] = {
 			bExport=true,
 			aDataMap = {"reference.morphs"},
-			sListDisplayClass = "MorphBase",
+			sListDisplayClass = "masterindexitem_id",
 			sRecordDisplayClass ="MorphDataSidebarWindow",
 			sEditMode = "play",
 			sSidebarCategory = "character",
-		},
-		["vehicle"] = {
-			bExport=true,
-			aDataMap = {"reference.vehicles"},
-			sListDisplayClass = "BotVehicleBase",
-			sRecordDisplayClass ="BotVehicleSidebarWindow",
-		},
-		["substrains"] = {
-			bExport=true,
-			aDataMap = {"reference.substrains"},
-			sListDisplayClass = "SubStrainBase",
-			sRecordDisplayClass ="SubStrainSidebarWindow",
-			sEditMode = "play",
-			sSidebarCategory = "character",
+			aCustomFilters = {
+				["MP Cost"] = { sField = "Cost" },
+			},
 		},
 		["sleights"] = {
 			bExport=true,
@@ -73,11 +54,56 @@
 			sEditMode = "play",
 			sSidebarCategory = "character",
 		},
+		["substrains"] = {
+			bExport=true,
+			aDataMap = {"reference.substrains"},
+			sListDisplayClass = "masterindexitem_id",
+			sRecordDisplayClass ="SubStrainSidebarWindow",
+			sEditMode = "play",
+			sSidebarCategory = "character",
+		},
+		["traits"] = {
+			bExport=true,
+			aDataMap = {"reference.traits"},
+			sListDisplayClass = "masterindexitem_id",
+			sRecordDisplayClass ="TraitWindow",
+			sEditMode = "play",
+			sSidebarCategory = "character",
+			aCustomFilters = {
+				["CP/MP Cost/Bonus"] = { sField = "CostBonus" },
+				["Positive/Negative"] = { sField = "Positive", fGetValue =  getTraitPosNeg },
+				["Type"] = { sField = "Positive", fGetValue =  getTraitType },
+			},
+		},
+		["vehicle"] = {
+			bExport=true,
+			aDataMap = {"reference.vehicles"},
+			sListDisplayClass = "masterindexitem_id",
+			sRecordDisplayClass ="BotVehicleSidebarWindow",
+		},
 	}
 	
-	
-	LibraryData.overrideRecordTypes(aRecordOverrides);
-	
+	LibraryData.overrideRecordTypes(aRecordOverrides);	
+end
+
+function getTraitPosNeg(Node)
+	if DB.getValue(Node, "Positive", 0)==1 then
+		return "Positive";
+	else
+		return "Negative";
+	end
+end
+
+function getTraitType(Node)
+	local bIsEgo=DB.getValue(Node, "IsEgo", 0)==1;
+	local bIsMorph=DB.getValue(Node, "IsMorph", 0)==1;
+	if bIsEgo and not bIsMorph then
+		return "Ego";
+	elseif not bIsEgo and bIsMorph then
+		return "Morph";
+	elseif bIsEgo and bIsMorph then
+		return {"Ego", "Morph"};
+	end
 end</Script>
     <RegisterScript>true</RegisterScript>
     <Encoding />
