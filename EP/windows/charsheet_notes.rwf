@@ -86,7 +86,6 @@
       {"Name":"DevelopmentComments"},
       {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
       {"Name":"Disabled"},
-      {"Name":"DynamicSize"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"FontName","Value":{"@xsi:type":"xsd:string","#text":"button-white"}},
       {"Name":"FrameName","Value":{"@xsi:type":"xsd:string"}},
@@ -148,7 +147,6 @@
       {"Name":"DevelopmentComments"},
       {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
       {"Name":"Disabled"},
-      {"Name":"DynamicSize"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"FontName","Value":{"@xsi:type":"xsd:string","#text":"button-white"}},
       {"Name":"FrameName","Value":{"@xsi:type":"xsd:string"}},
@@ -396,7 +394,6 @@ end</LUACode>
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"20"}},
       {"Name":"DevelopmentComments"},
       {"Name":"Disabled"},
-      {"Name":"DynamicSize"},
       {"Name":"FrameName"},
       {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"GMEditOnly"},
@@ -519,7 +516,6 @@ end
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"20"}},
       {"Name":"DevelopmentComments"},
       {"Name":"Disabled"},
-      {"Name":"DynamicSize"},
       {"Name":"FrameName"},
       {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"GMEditOnly"},
@@ -577,7 +573,6 @@ end
       {"Name":"DevelopmentComments"},
       {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
       {"Name":"Disabled"},
-      {"Name":"DynamicSize"},
       {"Name":"FrameName","Value":{"@xsi:type":"xsd:string","#text":"EPgroupbox"}},
       {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"GMEditOnly"},
@@ -692,7 +687,6 @@ end
       {"Name":"DevelopmentComments"},
       {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
       {"Name":"Disabled"},
-      {"Name":"DynamicSize"},
       {"Name":"FrameName","Value":{"@xsi:type":"xsd:string","#text":"EPgroupbox"}},
       {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"GMEditOnly"},
@@ -744,7 +738,6 @@ end
       {"Name":"DevelopmentComments"},
       {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
       {"Name":"Disabled"},
-      {"Name":"DynamicSize"},
       {"Name":"FrameName","Value":{"@xsi:type":"xsd:string","#text":"EPgroupbox"}},
       {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"GMEditOnly"},
@@ -1530,7 +1523,10 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"354"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"36"}}
 ]}}</Definition>
-    <LUACode />
+    <LUACode>function onDrop(x, y, dragdata)
+	window.MuseLink.onDrop(x, y, dragdata)
+end
+</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -1959,7 +1955,6 @@ end
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"20"}},
       {"Name":"DevelopmentComments"},
       {"Name":"Disabled"},
-      {"Name":"DynamicSize"},
       {"Name":"FrameName"},
       {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"GMEditOnly"},
@@ -2016,7 +2011,6 @@ end
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"20"}},
       {"Name":"DevelopmentComments"},
       {"Name":"Disabled"},
-      {"Name":"DynamicSize"},
       {"Name":"FrameName"},
       {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"GMEditOnly"},
@@ -2052,7 +2046,76 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"332"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"19"}}
 ]}}</Definition>
-    <LUACode />
+    <LUACode>function onDrop(x, y, dragdata)
+	local sClass,sRecord = dragdata.getShortcutData();
+	if sClass=="item" and sRecord~=DB.getPath(window.getDatabaseNode()) and sRecord~="" then
+		local Node=DB.findNode(sRecord);
+		if DB.getValue(Node, "Type", "")=="APPs &amp; ALIs" then
+			Interface.openWindow("MuseWindow", DB.getPath(window.getDatabaseNode()));
+			DB.deleteChildren(window.getDatabaseNode(), "Muse.SkillList");
+			sSkills=DB.getValue(Node, "Skills", ""):lower();
+			local aClauses,_ = StringManager.split(sSkills, ",\r\n", true);
+			local sSkill;
+			local sField;
+			local nValue;
+			local bAddSkill=false;
+			local SkillNode;
+			local sNumber;
+			for i=1,#aClauses do
+				if aClauses[i]:match(".*%s*:%s*.* %d+") then
+					sSkill, sField, nValue=aClauses[i]:match("(.*)%s*:%s*(.*) (%d+)");
+					bAddSkill=true;
+				elseif aClauses[i]:match(".* %d+") then
+					sSkill, nValue=aClauses[i]:match("(.*) (%d+)");
+					sField="";
+					bAddSkill=true;
+				else
+					bAddSkill=false;
+				end
+				sSkill=StringManager.capitalize(sSkill);
+				Debug.chat(sSkill)
+				if bAddSkill then
+					if DataCommon.ActiveSkills[sSkill] or sSkill=="Know" then
+						if sSkill=="Know" then
+							if DataCommon.KnowFields["COG"]:match(sField) then
+								sSkill="KnowCog";
+							elseif DataCommon.KnowFields["INT"]:match(sField) then
+								sSkill="KnowInt";
+							else
+								sSkill="KnowCog";
+							end
+							Debug.chat(sSkill)
+						end
+						SkillNode=DB.createChild(DB.getPath(window.getDatabaseNode(), "Muse.SkillList"));
+						if SkillNode then
+							DB.setValue(SkillNode, "Name", "string", sSkill);
+							DB.setValue(SkillNode, "Field", "string", StringManager.capitalize(sField));
+							DB.setValue(SkillNode, "SkillValue", "number", nValue-DB.getValue(SkillNode, "AptitudeBonus"));
+						end
+					elseif sSkill:lower():match("plus .* other .* skills at") then
+						sNumber, sSkill = sSkill:lower():match("plus (.*) other (.*) skills at");
+						sSkill=StringManager.capitalize(sSkill);
+						if (DataCommon.ActiveSkills[sSkill] or sSkill=="Know") and DataCommon.Numbers[sNumber] then
+							if sSkill=="Know" then
+								sSkill="KnowCog";
+							end
+							sField="";
+							for i=1,DataCommon.Numbers[sNumber] do
+								SkillNode=DB.createChild(DB.getPath(window.getDatabaseNode(), "Muse.SkillList"));
+								if SkillNode then
+									DB.setValue(SkillNode, "Name", "string", sSkill);
+									DB.setValue(SkillNode, "Field", "string", StringManager.capitalize(sField));
+									DB.setValue(SkillNode, "SkillValue", "number", nValue-DB.getValue(SkillNode, "AptitudeBonus"));
+								end
+							end
+						end
+					end
+				end
+			end
+		end
+	end
+end
+</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -2115,10 +2178,10 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"354"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"19"}}
 ]}}</Definition>
-    <LUACode>--function onDrop(x, y, dragdata)
---	window.MuseLink.onDrop(x, y, dragdata)
---end
---</LUACode>
+    <LUACode>function onDrop(x, y, dragdata)
+	window.MuseLink.onDrop(x, y, dragdata)
+end
+</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -2257,7 +2320,6 @@ end
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"20"}},
       {"Name":"DevelopmentComments"},
       {"Name":"Disabled"},
-      {"Name":"DynamicSize"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"FrameName","Value":{"@xsi:type":"xsd:string","#text":"scrollbar_base"}},
       {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string","#text":"0,12,0,12"}},
@@ -2311,7 +2373,6 @@ end
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"20"}},
       {"Name":"DevelopmentComments"},
       {"Name":"Disabled"},
-      {"Name":"DynamicSize"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"FrameName","Value":{"@xsi:type":"xsd:string","#text":"scrollbar_base"}},
       {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string","#text":"0,12,0,12"}},

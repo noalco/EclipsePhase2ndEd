@@ -425,7 +425,7 @@ end
       {"Name":"DelayKeyUpdate","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
       {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"30"}},
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
-      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"177"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"220"}},
       {"Name":"DevelopmentComments"},
       {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
       {"Name":"Disabled"},
@@ -464,7 +464,7 @@ end
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"135"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"92"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"713"}}
 ]}}</Definition>
     <LUACode>function update(bReadOnly)
@@ -912,7 +912,7 @@ end</LUACode>
       {"Name":"NextTabTarget"},
       {"Name":"PrevTabTarget"},
       {"Name":"ReadOnly"},
-      {"Name":"RelativeMargin","Value":{"@xsi:type":"xsd:int","#text":"-10"}},
+      {"Name":"RelativeMargin"},
       {"Name":"RelativeStacking","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"ScriptFile"},
       {"Name":"Source"},
@@ -927,8 +927,9 @@ end</LUACode>
     <LUACode>function update(bReadOnly)
 	setReadOnly(bReadOnly);
 	local bVisible=not (bReadOnly and getValue()=="&lt;p /&gt;");
+	local bVisibleLabel=not (bReadOnly and getValue()=="&lt;p /&gt;" and window.ShortDesc.getValue()=="");
 	setVisible(bVisible);
-	window.LabelDescription.setVisible(bVisible);
+	window.LabelDescription.setVisible(bVisibleLabel);
 end</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
@@ -1258,43 +1259,6 @@ end
 function update()
 	local nodeRecord = getDatabaseNode();
 	local bReadOnly = WindowManager.getReadOnlyState(nodeRecord);
---	-- General section
---	updateControl("Type", bReadOnly);
---	updateControl("ServiceType", bReadOnly);
---	updateControl("AugmentationType", bReadOnly);
---	updateControl("Complexity", bReadOnly);
---	updateControl("Restricted", bReadOnly);
---	updateControl("TraitsNotes", bReadOnly);
---	updateControl("LabelWare", bReadOnly);
-----	wareSubwindow.setVisible(not bReadOnly and Type.hasWare());
---	updateControl("wareSubwindow", bReadOnly);
---	updateControl("Description", bReadOnly);
---	-- Weapon
---	local bVisible=updateControl("DamageAverage", bReadOnly);
---	bVisible=updateControl("DamageValue", bReadOnly) or bVisible;
---	LabelDamage.setVisible(bVisible);
---	updateControl("Specialization", bReadOnly);
---	updateControl("LabelFM", bReadOnly);
-----	FiringModeSubwindow.setVisible(not bReadOnly and Type.isRangedWeapon());
---	updateControl("FiringModeSubwindow", bReadOnly);
---	updateControl("Ammo", bReadOnly);
---	updateControl("Range", bReadOnly);
---	updateControl("AreaEffect", bReadOnly);
---	updateControl("Radius", bReadOnly);
---	updateControl("ArmorUsed", bReadOnly);
---	updateControl("Quantity", bReadOnly);
---	updateControl("DamageValueMod", bReadOnly);
---	-- Armor
---	bVisible=updateControl("EnergyAV", bReadOnly);
---	bVisible=updateControl("KineticAV", bReadOnly) or bVisible;
---	LabelArmorValue.setVisible(bVisible);
---	updateControl("NoAdditionalArmorLayer", bReadOnly);
---	-- Healing/Repair
---	bVisible=updateControl("DamageHealingRate", bReadOnly);
---	bVisible=updateControl("WoundHealingRate", bReadOnly) or bVisible;
---	bVisible=updateControl("EffectDuration", bReadOnly) or bVisible;
---	-- Divider: Se muestra si es un arma, una munición, una armadura o si se muestra algún control de sanación
---	Divider.update(Type.isWeapon() or Type.isKineticAmmo() or Type.isArmor() or Type.isArmorMod() or bVisible);
 	for _,c in pairs(getControls()) do
 		if c.update then
 			c.update(bReadOnly)
@@ -1732,7 +1696,7 @@ end</LUACode>
       {"Name":"InheritSizePosition"},
       {"Name":"InsertBefore"},
       {"Name":"Invisible"},
-      {"Name":"LabelCaption","Value":{"@xsi:type":"xsd:string","#text":"Augmentation Type"}},
+      {"Name":"LabelCaption","Value":{"@xsi:type":"xsd:string","#text":"Augm. Type"}},
       {"Name":"MaximumHeight"},
       {"Name":"MaximumWidth"},
       {"Name":"Merge"},
@@ -2826,7 +2790,7 @@ end</LUACode>
       {"Name":"MultilineSpacing"},
       {"Name":"NextTabTarget"},
       {"Name":"PrevTabTarget"},
-      {"Name":"RelativeMargin","Value":{"@xsi:type":"xsd:int","#text":"-10"}},
+      {"Name":"RelativeMargin"},
       {"Name":"RelativeStacking","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"ScriptFile"},
       {"Name":"StackVertWith"},
@@ -2837,6 +2801,60 @@ end</LUACode>
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"10"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"149"}}
+]}}</Definition>
+    <LUACode />
+    <GroupIndex>0</GroupIndex>
+    <Template />
+  </WindowControls>
+  <WindowControls>
+    <WindowName>item_main</WindowName>
+    <ControlName>LabelSkills</ControlName>
+    <ZIndex>73</ZIndex>
+    <ControlClass>FGLabel</ControlClass>
+    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
+      {"Name":"AdvancedTemplate","Value":{"@xsi:type":"xsd:string","#text":"label"}},
+      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"Center"},
+      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"LabelSkills"}},
+      {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
+      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
+      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"120"}},
+      {"Name":"DevelopmentComments"},
+      {"Name":"Disabled"},
+      {"Name":"DynamicSize"},
+      {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"FrameName"},
+      {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"GMVisibleOnly"},
+      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"HoverCursor"},
+      {"Name":"InheritSizePosition"},
+      {"Name":"InsertBefore"},
+      {"Name":"Invisible"},
+      {"Name":"LabelCaption","Value":{"@xsi:type":"xsd:string","#text":"Skills"}},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
+      {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
+      {"Name":"MultilineSpacing"},
+      {"Name":"NextTabTarget"},
+      {"Name":"PrevTabTarget"},
+      {"Name":"RelativeMargin","Value":{"@xsi:type":"xsd:int","#text":"10"}},
+      {"Name":"RelativeStacking","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"ScriptFile"},
+      {"Name":"StackVertWith","Value":{"@xsi:type":"xsd:string","#text":"topAnchor"}},
+      {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
+      {"Name":"TextUnderlined"},
+      {"Name":"Tooltip"},
+      {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"12"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"778"}}
 ]}}</Definition>
     <LUACode />
     <GroupIndex>0</GroupIndex>
@@ -3133,7 +3151,7 @@ end</LUACode>
       {"Name":"DelayKeyUpdate","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
       {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"30"}},
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
-      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"177"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"220"}},
       {"Name":"DevelopmentComments"},
       {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
       {"Name":"Disabled"},
@@ -3172,7 +3190,7 @@ end</LUACode>
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"135"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"92"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"743"}}
 ]}}</Definition>
     <LUACode>function update(bReadOnly)
@@ -3789,6 +3807,75 @@ end</LUACode>
   </WindowControls>
   <WindowControls>
     <WindowName>item_main</WindowName>
+    <ControlName>Skills</ControlName>
+    <ZIndex>74</ZIndex>
+    <ControlClass>FGStringField</ControlClass>
+    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"top","AnchorTo":"top","Parent":"LabelSkills"}}},
+      {"Name":"AdvancedTemplate"},
+      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"Center"},
+      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"Skills"}},
+      {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
+      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
+      {"Name":"DefaultText","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"DelayKeyUpdate","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"30"}},
+      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"220"}},
+      {"Name":"DevelopmentComments"},
+      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
+      {"Name":"Disabled"},
+      {"Name":"DynamicSize","Value":{"@xsi:type":"xsd:string","#text":"Dynamic Height"}},
+      {"Name":"EmptyText"},
+      {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"FrameName","Value":{"@xsi:type":"xsd:string","#text":"fielddark"}},
+      {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string","#text":"12,12,12,12"}},
+      {"Name":"GMEditOnly"},
+      {"Name":"GMVisibleOnly"},
+      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"2"}},
+      {"Name":"HoverCursor"},
+      {"Name":"InheritSizePosition"},
+      {"Name":"InsertBefore"},
+      {"Name":"Invisible"},
+      {"Name":"LineOffset"},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
+      {"Name":"Merge"},
+      {"Name":"MinimumHeight","Value":{"@xsi:type":"xsd:int","#text":"30"}},
+      {"Name":"MinimumWidth"},
+      {"Name":"MultilineSpacing","Value":{"@xsi:type":"xsd:int","#text":"18"}},
+      {"Name":"NextTabTarget"},
+      {"Name":"NoDrag","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"NoDragselect","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"NoDrop","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"PrevTabTarget"},
+      {"Name":"ReadOnly"},
+      {"Name":"RelativeMargin","Value":{"@xsi:type":"xsd:int","#text":"-5"}},
+      {"Name":"RelativeStacking"},
+      {"Name":"ScriptFile"},
+      {"Name":"Source"},
+      {"Name":"StackVertWith","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
+      {"Name":"Tooltip"},
+      {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"92"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"773"}}
+]}}</Definition>
+    <LUACode>function update(bReadOnly)
+	setReadOnly(bReadOnly);
+	local bVisible=not (bReadOnly and getValue()=="") and window.Type.isAPP_ALI();
+	setVisible(bVisible);
+	window.LabelSkills.setVisible(bVisible);
+end
+</LUACode>
+    <GroupIndex>0</GroupIndex>
+    <Template />
+  </WindowControls>
+  <WindowControls>
+    <WindowName>item_main</WindowName>
     <ControlName>Specialization</ControlName>
     <ZIndex>34</ZIndex>
     <ControlClass>FGStringField</ControlClass>
@@ -4250,6 +4337,10 @@ end
 
 function isMiscelaneous()
 	return getValue()=="Miscelaneous";
+end
+
+function isAPP_ALI()
+	return getValue()=="APPs &amp; ALIs";
 end
 
 function hasWare()

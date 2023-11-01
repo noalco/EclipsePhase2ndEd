@@ -35,7 +35,24 @@ Aptitudes = {
 	["SOM"] = {sPath=".Aptitudes.Scores.Somatics", sPool="Vigor"},
 	["WIL"] = {sPath=".Aptitudes.Scores.Willpower", sPool="Moxie"},
 }
-</Script>
+
+KnowFields = {
+	["COG"] = "archeology, astrobiology, astronomy, astrophysics, astrosociology, biology, botany, chemistry, computer science, cryptography, economics, engineering, genetics, geology, history, law, linguistics, mathematics, memetics, nanotechnology, physics, political science, psychology, sociology, xeno-archeology, xenolinguistics, zoology, celebrities, conspiracies, factors, exhumans, exoplanet colonies, gambling, hypercorp politics, lunar habitats, martian beers, morphs, reclaimer blogs, scum drug dealers, spaceship models, strategy games, titan tech, triad economics, transhuman factions, underground xp, vr games, accounting, administration, asteroid mining, body bank ops, bodyguarding, cool hunting, con artistry, data processing, ego hunting, emergency services, entertainment, fencing, field science, first-contact ops, flight crew ops, freelancing, gas mining, gatecrashing, habitat ops, instruction, investigation, journalism, lab ops, medical services, military ops, morph design, nanofacturing, network engineering,police ops, racketeering, scavenging, security ops, service work, smuggling, social engineering, social services, spycraft, surveying, system administration, terraforming",
+	["INT"] = "architecture, ar design, criticism, dance, drama, drawing, music, painting, performance, sculpture, singing, speech, vr design, writing"
+}
+
+Numbers = {
+	["one"] = 1,
+	["two"] = 2,
+	["three"] = 3,
+	["four"] = 4,
+	["five"] = 5,
+	["six"] = 6,
+	["seven"] = 7,
+	["eight"] = 8,
+	["nine"] = 9,
+	["ten"] = 10,
+}</Script>
     <RegisterScript>true</RegisterScript>
     <Encoding />
   </Scripts>
