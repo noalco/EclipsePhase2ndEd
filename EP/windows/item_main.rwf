@@ -78,7 +78,7 @@ end
   <WindowControls>
     <WindowName>item_main</WindowName>
     <ControlName>AddictionType</ControlName>
-    <ZIndex>80</ZIndex>
+    <ZIndex>79</ZIndex>
     <ControlClass>FGStringCycler</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"top","AnchorTo":"top","Parent":"LabelAddiction"}}},
