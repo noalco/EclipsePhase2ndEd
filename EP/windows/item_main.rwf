@@ -60,11 +60,6 @@
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"852"}}
 ]}}</Definition>
     <LUACode>function update(bReadOnly)
---	setReadOnly(bReadOnly);
---	local bVisible=window.Type.isArmor() or window.Type.isArmorMod();
---	setVisible(bVisible);
---	window.LabelEnergy.setVisible(bVisible);
---	return bVisible;
 	return window.UpdateNumberAndLabel(self, bReadOnly, window.Type.isArmor() or window.Type.isDrugToxin());
 end
 
@@ -1278,11 +1273,6 @@ end
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"826"}}
 ]}}</Definition>
     <LUACode>function update(bReadOnly)
---	setReadOnly(bReadOnly);
---	local bVisible=not (bReadOnly and getValue()=="") and window.Type.hasSubtype();
---	setVisible(bVisible);
---	window.LabelSubType.setVisible(bVisible);
-	window.LabelSubType.setValue(window.Type.getSubtype());
 	return window.UpdateStringAndLabel(self, bReadOnly, window.Type.isDrugToxin());
 end</LUACode>
     <GroupIndex>0</GroupIndex>
@@ -1488,57 +1478,6 @@ end
     <LUACode>function update(bReadOnly)
 	setVisible(subwindow.update(bReadOnly) and window.Type.isRangedWeapon());
 end</LUACode>
-    <GroupIndex>0</GroupIndex>
-    <Template />
-  </WindowControls>
-  <WindowControls>
-    <WindowName>item_main</WindowName>
-    <ControlName>IconControl1</ControlName>
-    <ZIndex>1</ZIndex>
-    <ControlClass>FGIconControl</ControlClass>
-    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
-      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
-      {"Name":"AdvancedTemplate"},
-      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
-      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"IconControl1"}},
-      {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
-      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
-      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"740"}},
-      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
-      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"330"}},
-      {"Name":"DevelopmentComments"},
-      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
-      {"Name":"Disabled"},
-      {"Name":"FrameName"},
-      {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
-      {"Name":"GMEditOnly"},
-      {"Name":"GMVisibleOnly"},
-      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"HoverCursor"},
-      {"Name":"IconName","Value":{"@xsi:type":"xsd:string"}},
-      {"Name":"InheritSizePosition"},
-      {"Name":"InsertBefore"},
-      {"Name":"Invisible","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
-      {"Name":"MaximumHeight"},
-      {"Name":"MaximumWidth"},
-      {"Name":"Merge"},
-      {"Name":"MinimumHeight"},
-      {"Name":"MinimumWidth"},
-      {"Name":"NextTabTarget"},
-      {"Name":"PrevTabTarget"},
-      {"Name":"ReadOnly"},
-      {"Name":"RelativeMargin"},
-      {"Name":"RelativeStacking"},
-      {"Name":"ScriptFile"},
-      {"Name":"StackVertWith"},
-      {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
-      {"Name":"Tooltip"},
-      {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
-      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"598"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"0"}}
-]}}</Definition>
-    <LUACode />
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -3485,7 +3424,7 @@ end</LUACode>
   </WindowControls>
   <WindowControls>
     <WindowName>item_main</WindowName>
-    <ControlName>LabelSubType</ControlName>
+    <ControlName>LabelSubroup</ControlName>
     <ZIndex>4</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
@@ -3493,7 +3432,7 @@ end</LUACode>
       {"Name":"AdvancedTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"Center"},
-      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"LabelSubType"}},
+      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"LabelSubroup"}},
       {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
       {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
       {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
@@ -3512,7 +3451,7 @@ end</LUACode>
       {"Name":"InheritSizePosition"},
       {"Name":"InsertBefore"},
       {"Name":"Invisible"},
-      {"Name":"LabelCaption","Value":{"@xsi:type":"xsd:string","#text":"Service Type"}},
+      {"Name":"LabelCaption","Value":{"@xsi:type":"xsd:string","#text":"Subgroup"}},
       {"Name":"MaximumHeight"},
       {"Name":"MaximumWidth"},
       {"Name":"Merge"},
@@ -4358,10 +4297,10 @@ end</LUACode>
 ]}}</Definition>
     <LUACode>function update(bReadOnly)
 --	setReadOnly(bReadOnly);
---	local bVisible=not (bReadOnly and getValue()=="") and window.Type.isAPP_ALI();
+--	local bVisible=not (bReadOnly and getValue()=="") and window.Type.isALIMUSE();
 --	setVisible(bVisible);
 --	window.LabelSkills.setVisible(bVisible);
-	return window.UpdateStringAndLabel(self, bReadOnly, window.Type.isAPP_ALI());
+	return window.UpdateStringAndLabel(self, bReadOnly, window.Type.isALIMUSE());
 end
 </LUACode>
     <GroupIndex>0</GroupIndex>
@@ -4691,15 +4630,15 @@ end</LUACode>
   </WindowControls>
   <WindowControls>
     <WindowName>item_main</WindowName>
-    <ControlName>SubType</ControlName>
+    <ControlName>Subroup</ControlName>
     <ZIndex>5</ZIndex>
     <ControlClass>FGStringField</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
-      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"top","AnchorTo":"top","Parent":"LabelSubType"}}},
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"top","AnchorTo":"top","Parent":"LabelSubroup"}}},
       {"Name":"AdvancedTemplate"},
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"Center"},
-      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"SubType"}},
+      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"Subroup"}},
       {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
       {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
       {"Name":"DefaultText","Value":{"@xsi:type":"xsd:string"}},
@@ -4753,8 +4692,8 @@ end</LUACode>
 --	local bVisible=not (bReadOnly and getValue()=="") and window.Type.hasSubtype();
 --	setVisible(bVisible);
 --	window.LabelSubType.setVisible(bVisible);
-	window.LabelSubType.setValue(window.Type.getSubtype());
-	return window.UpdateStringAndLabel(self, bReadOnly, window.Type.hasSubtype());
+--	window.LabelGroup.setValue(window.Type.getSubtype());
+	return window.UpdateStringAndLabel(self, bReadOnly, window.Type.hasSubgroup());
 end</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
@@ -4838,7 +4777,7 @@ end</LUACode>
       {"Name":"AdvancedTemplate"},
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"ButtonOffset"},
-      {"Name":"ComboItems","Value":{"@xsi:type":"ArrayOfLabelValue","LabelValue":[{"Label":"Miscelaneous","Value":"Miscelaneous"},{"Label":"Melee Weapon","Value":"Melee Weapon"},{"Label":"Ranged Weapon","Value":"Ranged Weapon"},{"Label":"Kinetic Ammo","Value":"Kinetic Ammo"},{"Label":"Micromissile/Minigrenade","Value":"Micromissiel/Minigrenade"},{"Label":"Weapon Accesory","Value":"Weapon Accesory"},{"Label":"Armor","Value":"Armor"},{"Label":"Armor Mod","Value":"Armor Mod"},{"Label":"Healing/Repair","Value":"Healing/Repair"},{"Label":"Augmentation","Value":"Augmentation"},{"Label":"Everyday Tech","Value":"Everyday Tech"},{"Label":"Service","Value":"Service"},{"Label":"Meshware","Value":"Meshware"},{"Label":"APPs &amp; ALIs","Value":"APPs &amp; ALIs"},{"Label":"Chemical","Value":"Chemical"},{"Label":"Drugs &amp; Toxins","Value":"Drugs &amp; Toxins"}]}},
+      {"Name":"ComboItems","Value":{"@xsi:type":"ArrayOfLabelValue","LabelValue":[{"Label":"ALIs and MUSEs","Value":"ALIs and MUSEs"},{"Label":"Augmentation","Value":"Augmentation"},{"Label":"Armor","Value":"Armor"},{"Label":"Armor Mod","Value":"Armor Mod"},{"Label":"Drugs &amp; Toxins","Value":"Drugs &amp; Toxins"},{"Label":"Healing/Repair","Value":"Healing/Repair"},{"Label":"Kinetic Ammo","Value":"Kinetic Ammo"},{"Label":"Melee Weapon","Value":"Melee Weapon"},{"Label":"Micromissile/Minigrenade","Value":"Micromissiel/Minigrenade"},{"Label":"Miscelaneous","Value":"Miscelaneous"},{"Label":"Ranged Weapon","Value":"Ranged Weapon"}]}},
       {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"Type"}},
       {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
       {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
@@ -4862,7 +4801,7 @@ end</LUACode>
       {"Name":"ListDirection","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"ListOffset"},
       {"Name":"MaximumHeight"},
-      {"Name":"MaximumListSize","Value":{"@xsi:type":"xsd:int","#text":"10"}},
+      {"Name":"MaximumListSize"},
       {"Name":"MaximumWidth"},
       {"Name":"Merge"},
       {"Name":"MinimumHeight"},
@@ -4883,7 +4822,25 @@ end</LUACode>
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"92"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"0"}}
 ]}}</Definition>
-    <LUACode>function onInit()
+    <LUACode>--	Gear items without a specific item type entry (they don't have any special field):
+--		Grouped in Miscelaneous:
+--			Services (all: MESH SERVICES, PHYSICAL SERVICES)
+--			COMMON TECH &amp; WARE (only EVERYDAY TECHNOLOGY and MESHWARE)
+--			APPS &amp; ALIs (only APPS, SCORCHERS and TACNETS)
+--			CHEMICALS, DRUGS, &amp; TOXINS (only CHEMICALS)
+--			COMMS &amp; MESH GEAR (all: COMMUNICATIONS, NEUTRINO COMMUNICATORS, QUANTUM FARCASTERS, QUANTUM-ENTANGLED COMMUNICATION, MESH HARDWARE)
+--			ESPIONAGE &amp; SECURITY TECH (all: ESPIONAGE GEAR)
+--			MISSION GEAR (all: EXPLORATION TOOLS, SALVAGE TOOLS, SCIENCE TOOLS, SURVIVAL TOOLS, VACSUITS)
+--			NANOTECH (all: NANOTECH GEAR, HIVES, NANOFABRICATORS, SPECIALIZED FABBERS)
+--			NANOSWARMS &amp; MICROSWARMS (all: SWARMS)
+--			WEAPON ACCESSORIES
+--		Stored as NPC:
+--			Creatures (all)
+--			ROBOTS (all)
+--		Stored as Vehicles:
+--			VEHICLES (all)
+
+function onInit()
 	if getValue()=="" then
 		setListValue("Miscelaneous");
 	end
@@ -4927,10 +4884,6 @@ function isArmor()
 	return getValue()=="Armor";
 end
 
-function isWeaponAccesory()
-	return getValue()=="Weapon Accesory";
-end
-
 function isArmorMod()
 	return getValue()=="Armor Mod";
 end
@@ -4943,16 +4896,12 @@ function isAugmentation()
 	return getValue()=="Augmentation";
 end
 
-function isService()
-	return getValue()=="Service";
-end
-
 function isMiscelaneous()
 	return getValue()=="Miscelaneous";
 end
 
-function isAPP_ALI()
-	return getValue()=="APPs &amp; ALIs";
+function isALIMUSE()
+	return getValue()=="ALIs and MUSEs";
 end
 
 function isDrugToxin()
@@ -4964,39 +4913,13 @@ function hasWare()
 end
 
 function hasTraitsNotes()
-	return isWeapon() or isKineticAmmo() or isArmor() or isArmorMod();
+--	return isWeapon() or isKineticAmmo() or isArmor() or isArmorMod() or isMiscelaneous();
+	return true;
 end
 
-function hasSubtype()
-	return isService() or isMiscelaneous() or isAPP_ALI() or isAugmentation() or isDrugToxin();
+function hasSubgroup()
+	return isMiscelaneous() or isAugmentation() or isDrugToxin();
 end
-
-function getSubtype()
-	if isService() then
-		return "Service Group";
-	elseif isMiscelaneous() then
-		return "Misc.  Group";
-	elseif isAPP_ALI() then
-		return "APP/ALI Group";
-	elseif isAugmentation() then
-		return "Augm. Group";
-	elseif isDrugToxin() then
-		return "D/T Group";
-	else
-		return "";
-	end
-end
---	SERVICES:	Service Type	Complexity	GP	Description
---		MESH
---		PHYSICAL
---	AUGMENTATIONS:	Augmentation Type	Ware Type	Complexity	GP	Description
---		STANDARD:				Ware Type	Complexity	GP	Description
---		SENSORY AUGMENTATIONS:	Ware Type	Complexity	GP	Description
---		MENTAL AUGMENTATIONS:	Ware Type	Complexity	GP	Description
---		SOCIAL AUGMENTATIONS:	Ware Type	Complexity	GP	Description
---		COMBAT AUGMENTATIONS:	Ware Type	Complexity	GP	Description
---		PHYSICAL AUGMENTATIONS:	Ware Type	Complexity	GP	Description
---		SOFTWARE							Complexity	GP	Description
 </LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />

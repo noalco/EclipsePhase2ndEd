@@ -33,6 +33,7 @@
 			aCustomFilters = {
 				["Gear Type"] = { sField = "Type" },
 				["GP Cost"] = { sField = "GP" },
+				["Subgroup"] = { sField = "SubType" },
 			},
 		},
 		["morphs"] = {
