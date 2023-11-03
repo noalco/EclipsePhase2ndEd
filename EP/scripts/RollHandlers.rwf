@@ -84,7 +84,6 @@ function InitHandler(rSource, rTarget, rRoll)
         local nTotal = ActionsManager.total(rRoll);
         rCreature = DB.findNode(rSource.sCreatureNode);
         DB.setValue(rCreature, "initresult", "number", nTotal);
---        rCreature.getChild("initresult").setValue(nTotal);
     end
 end
 
@@ -101,7 +100,6 @@ function CheckHandler(rSource, rTarget, rRoll)
 	local nMod=rRoll.nMod;
 	rRoll.nMod=0;
     local rMessage;
-    Debug.chat(rRoll.sType)
     if rRoll.sType=="DefenseCheck" then
 		rMessage = ActionsManager.createActionMessage(rTarget, rRoll);
 	else
