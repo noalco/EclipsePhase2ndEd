@@ -88,8 +88,10 @@ function InitHandler(rSource, rTarget, rRoll)
 end
 
 function RollResultFrom0to99(rRoll)
-	rRoll.aDice[1].value=rRoll.aDice[1].value%100;
-	rRoll.aDice[1].result=rRoll.aDice[1].result%100;
+	for i=1,#rRoll.aDice do
+		rRoll.aDice[i].value=rRoll.aDice[i].value%100;
+		rRoll.aDice[i].result=rRoll.aDice[i].result%100;
+	end
 	rRoll.aDice.total=rRoll.aDice.total%100;
 	rRoll.nTotal=rRoll.nTotal%100;
 	return rRoll;
