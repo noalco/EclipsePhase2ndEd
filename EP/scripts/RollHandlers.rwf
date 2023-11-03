@@ -2,11 +2,7 @@
   <Scripts>
     <ScriptName>RollHandlers</ScriptName>
     <FolderID>24</FolderID>
-    <Script>--        local rMessageResult = ChatManager.createBaseMessage(rSource, rRoll.sUser);
---        rMessageResult.text = rMessage.text;
---        rCreature = DB.findNode(rTarget.sCTNode);
-
-OOB_ADD_ATTACK="OOB_ADD_ATTACK";
+    <Script>OOB_ADD_ATTACK="OOB_ADD_ATTACK";
 
 function onInit()
 	OOBManager.registerOOBMsgHandler(OOB_ADD_ATTACK, OOBAddAttack);
@@ -34,7 +30,7 @@ function AddAttack(sSourceCTNode, sTargetCTNode, sTypeAttack, sTypeResult, sResu
 		if combat.ResolveCombat(sSourceCTNode, sTargetCTNode, sTypeAttack) and OptionsManager.isOption("AUTODEFENSEROLL", "on") then
 			GameSystem.actions["DefenseCheck"] = { bUseModStack = "true", sIcon = "action_attack", sTargeting = "all" }
 			ActionsManager.registerResultHandler("DefenseCheck", CombatHandler);
-			local sSkill, nDefenseTarget = getDefenderSkillAndTarget({sCreatureNode=sTargetCTNode}, sTypeAttack);
+			local sSkill, nDefenseTarget = Tools.getDefenderSkillAndTarget(sTargetCTNode, sTypeAttack);
 			local aDice2, nMod2 = StringManager.convertStringToDice("1d100");
 			local rRoll = { sType = "DefenseCheck", sDesc = "["..sTypeAttack.." DEFENSE] "..sSkill.." (vs "..nDefenseTarget..")", aDice = aDice2, nMod = nMod2};
 			local rTargetNode=DB.findNode(sTargetCTNode);
@@ -46,13 +42,15 @@ end
 
 function CombatHandler(rSource, rTarget, rRoll)
 	local sTypeResult="";
-	if rRoll and rRoll.sType=="DefenseCheck" then
-		local rAux=rSource;
-		rSource=rTarget;
-		rTarget=rAux;
-		sTypeResult="Defense";
-	elseif rRoll and rRoll.sType=="AttackCheck" then
-		sTypeResult="Attack";
+	if rRoll then
+		if rRoll.sType=="DefenseCheck" then
+			local rAux=rSource;
+			rSource=rTarget;
+			rTarget=rAux;
+			sTypeResult="Defense";
+		elseif rRoll.sType=="AttackCheck" then
+			sTypeResult="Attack";
+		end
 	end
     local sResult=CheckHandler(rSource, rTarget, rRoll);
 	local sTypeAttack="";
@@ -78,19 +76,6 @@ function CombatHandler(rSource, rTarget, rRoll)
     end
 end
 
---function AttackHandler(rSource, rTarget, rRoll)
-----	local sAttackMode=rRoll.sDesc:match("%[.* (.*)%]");
-----	if sAttackMode=="ATTACK" then
---		CombatHandler(rSource, rTarget, rRoll, "Attack");
-----	elseif sAttackMode=="DEFENSE" then
-----		CombatHandler(rSource, rTarget, rRoll, "Defense");
-----	end
---end
---
---function DefenseHandler(rSource, rTarget, rRoll)
---	CombatHandler(rTarget, rSource, rRoll, "Defense");
---end
-
 function InitHandler(rSource, rTarget, rRoll)
     local rMessage = ActionsManager.createActionMessage(rSource, rRoll);
     Comm.deliverChatMessage(rMessage);    
@@ -103,20 +88,6 @@ function InitHandler(rSource, rTarget, rRoll)
 end
 
 function RollResultFrom0to99(rRoll)
---	{ s'nBonuses' = s'0', 
---	s'aDice' = { 
---		#1 = { 
---			s'value' = #67, 
---			s'type' = s'd100', 
---			s'result' = #67 }, 
---		s'expr' = s'1d100', 
---		s'total' = #67 }, 
---	s'nMod' = #0, 
---	s'sType' = s'CognitionCheckRollAction', 
---	s'nTotal' = #67, 
---	s'bSecret' = bFALSE, 
---	s'sDesc' = s'[Cognition vs 90]' }
-
 	rRoll.aDice[1].value=rRoll.aDice[1].value%100;
 	rRoll.aDice[1].result=rRoll.aDice[1].result%100;
 	rRoll.aDice.total=rRoll.aDice.total%100;
@@ -148,60 +119,7 @@ function CheckHandler(rSource, rTarget, rRoll)
 	Comm.deliverChatMessage(rMessage);
 	return RollChecks.RollCheck(nTotal, nTarget):upper();
 end
-
-function getDefenderSkillAndTarget(Node, sAttackType)
-	if Node and Node.sCreatureNode and sAttackType then
-		local sClass, sRecord=DB.getValue(Node.sCreatureNode..".link");
-		local CreatureNode;
-		if sClass=="npc" then
-			CreatureNode=DB.findNode(Node.sCreatureNode);
-		else
-			CreatureNode=DB.findNode(sRecord);
-		end
-		if sAttackType=="MELEE" then
-			if DB.getValue(CreatureNode, "Combat.Melee", 0)&gt;=DB.getValue(CreatureNode, "Combat.Fray", 0) then
-				return "Melee", DB.getValue(CreatureNode, "Combat.Melee", 0);
-			else
-				return "Fray", DB.getValue(CreatureNode, "Combat.Fray", 0);
-			end
-		elseif sAttackType=="RANGED" then
-			return "Fray/2", DB.getValue(CreatureNode, "Combat.Fray2", 0);
-		else
-			return nil, nil;
-		end
-	else
-		return nil, nil;
-	end
-end
-
-function AttackingOpposedTest(rSource, aTargeting, rRolls)
-	if rRolls then
-		local rRoll;
-		local iRoll = 1;
-		local iRoll2 = 1;
-		local sAttackType=rRolls[1].sDesc:match("%[(.*) ATTACK%]");
-		local sSkill="";
-		local nDefenseTarget=0;
-		rRoll=Tools.CopyTable(rRolls[1]);
-
-		if aTargeting and rSource and sAttackType then
-			local sMod;
-			local nValor;
-			for _,vTargetGroup in ipairs(aTargeting) do
-				for _,vTarget in ipairs(vTargetGroup) do
-					sSkill, nDefenseTarget = getDefenderSkillAndTarget(vTarget, sAttackType);
-					if sSkill and nDefenseTarget then
-						iRoll = iRoll + 1;
-						rRolls[iRoll]=Tools.CopyTable(rRoll);
-						rRolls[iRoll].sDesc="["..sAttackType.." DEFENSE] "..sSkill.." (vs "..nDefenseTarget..")";
-						iRoll2 = iRoll2 + 1;
-					end
-				end
-			end
-		end
-	end
-	return aTargeting;
-end</Script>
+</Script>
     <RegisterScript>true</RegisterScript>
     <Encoding />
   </Scripts>

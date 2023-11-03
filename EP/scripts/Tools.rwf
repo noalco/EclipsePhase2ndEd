@@ -100,7 +100,31 @@ function CopyTable(rTable)
 	return rTable2;
 end
 
-</Script>
+
+function getDefenderSkillAndTarget(sCreatureNode, sAttackType)
+	if sCreatureNode and sAttackType then
+		local sClass, sRecord=DB.getValue(sCreatureNode..".link");
+		local CreatureNode;
+		if sClass=="npc" then
+			CreatureNode=DB.findNode(sCreatureNode);
+		else
+			CreatureNode=DB.findNode(sRecord);
+		end
+		if sAttackType=="MELEE" then
+			if DB.getValue(CreatureNode, "Combat.Melee", 0)&gt;=DB.getValue(CreatureNode, "Combat.Fray", 0) then
+				return "Melee", DB.getValue(CreatureNode, "Combat.Melee", 0);
+			else
+				return "Fray", DB.getValue(CreatureNode, "Combat.Fray", 0);
+			end
+		elseif sAttackType=="RANGED" then
+			return "Fray/2", DB.getValue(CreatureNode, "Combat.Fray2", 0);
+		else
+			return nil, nil;
+		end
+	else
+		return nil, nil;
+	end
+end</Script>
     <RegisterScript>true</RegisterScript>
     <Encoding />
   </Scripts>
