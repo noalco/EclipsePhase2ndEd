@@ -31,7 +31,7 @@ function ResolveCombat(sSourceCTNode, sTargetCTNode, sTypeAttack)
 		sAttackerName=Tools.getName(sSourceCTNode);
 		sAttackResult=tAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack].sAttackResult;
 		nAttackResult=tAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack].nAttackResult;
-		rMessage = ChatManager.createBaseMessage();
+		rMessage = ChatManager.createBaseMessage(DB.findNode(sSourceCTNode));
 		
 		sDefenderName=Tools.getName(sTargetCTNode);
 		sDefenseResult=tAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack].sDefenseResult;
