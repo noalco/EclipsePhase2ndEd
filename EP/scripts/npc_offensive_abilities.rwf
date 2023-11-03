@@ -69,8 +69,7 @@ function parseComponents()
 end
 
 function GetFields(startpos, aSubStrings, aSubStringsStats, nNameDesp, bIsRange)
-
-	if string.match(aSubStrings[1], "(%d+)") then
+	if aSubStrings and aSubStrings[1] and aSubStringsStats and string.match(aSubStrings[1], "(%d+)") then
 		nAttackTarget = tonumber(string.match(aSubStrings[1], "(%d+)") or "0");
 		table.insert(aComponents, {sLabel=sDragLabel, nAttackTarget=nAttackTarget, nRollType=ATTACK, nStart=startpos, nEnd=startpos+aSubStringsStats[1].endpos+nNameDesp, bIsRange=bIsRange});--, aDVRoll
 		for i=2,#aSubStrings do
@@ -80,11 +79,8 @@ function GetFields(startpos, aSubStrings, aSubStringsStats, nNameDesp, bIsRange)
 				sDVMod=aSubStrings[i]:match("DV%s*%d+d%d+%s*([%+%-]%s*%d*)") or "";
 				sVsArmor=aSubStrings[i]:match("DV%s*%d+d%d+%s*[%+%-]%s*%d*%s%(([KE])%)") or "";
 				table.insert(aComponents, {sLabel=sDragLabel, sDVRoll=sDVRoll, sDVMod=sDVMod, nRollType=DAMAGE, nStart=startpos+aSubStringsStats[i].startpos+nNameDesp, nEnd=startpos+aSubStringsStats[i].endpos+nNameDesp, sVsArmor=sVsArmor});
---			else
---				table.insert(aComponents, {sLabel=sDragLabel, sEffect=aSubStrings[i], nRollType=EFFECT, nStart=startpos+aSubStringsStats[i].startpos+nNameDesp, nEnd=startpos+aSubStringsStats[i].endpos+nNameDesp});
 			end
 		end
---		Debug.chat(DiceManager.convertDiceStringToTerms(sDVRoll..sDVMod))
 	end
 end
 
@@ -181,7 +177,7 @@ function action(dragInfo)
 			DiceRollDescription = "["..sAttackType.." ATTACK] "..sDragLabel.." (vs "..nAttackTarget..")";
 			GameSystem.actions["AttackCheck"] = { bUseModStack = "true", sIcon = "action_attack", sTargeting = "each"}
 			sActionType="AttackCheck";
-			ActionsManager.registerResultHandler("AttackCheck", RollHandlers.AttackHandler);
+			ActionsManager.registerResultHandler("AttackCheck", RollHandlers.CombatHandler);
 			DiceRollString="1d100";
 		elseif isDamage then
 			DiceRollDescription = "[DAMAGE] "..sDragLabel;

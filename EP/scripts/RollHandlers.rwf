@@ -32,17 +32,8 @@ function AddAttack(sSourceCTNode, sTargetCTNode, sTypeAttack, sTypeResult, sResu
 		combat.tAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack]["s"..sTypeResult.."Result"]=sResult;
 		combat.tAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack]["n"..sTypeResult.."Result"]=nRollTotal;
 		if combat.ResolveCombat(sSourceCTNode, sTargetCTNode, sTypeAttack) and OptionsManager.isOption("AUTODEFENSEROLL", "on") then
---			local windataref = DB.findNode(sTargetCTNode);
---			local sSkill, nDefenseTarget = getDefenderSkillAndTarget({sCreatureNode=sTargetCTNode}, sTypeAttack);
---			DiceRollDescription =  "["..sTypeAttack.." DEFENSE] "..sSkill.." (vs "..nDefenseTarget..")";
---			GameSystem.actions["DefenseCheck"] = { bUseModStack = "true", sIcon = "action_attack", sTargeting = "all" }
---			ActionsManager.registerResultHandler("DefenseCheck", DefenseHandler);
---			DiceRollAdditionalInfo = {};
---			RulesetWizardDiceRoller.Roll(nil, windataref, "DefenseCheck", DiceRollDescription, "1d100", nDefenseTarget, DiceRollAdditionalInfo);
---			ModifierStack.reset();
-
 			GameSystem.actions["DefenseCheck"] = { bUseModStack = "true", sIcon = "action_attack", sTargeting = "all" }
-			ActionsManager.registerResultHandler("DefenseCheck", DefenseHandler);
+			ActionsManager.registerResultHandler("DefenseCheck", CombatHandler);
 			local sSkill, nDefenseTarget = getDefenderSkillAndTarget({sCreatureNode=sTargetCTNode}, sTypeAttack);
 			local aDice2, nMod2 = StringManager.convertStringToDice("1d100");
 			local rRoll = { sType = "DefenseCheck", sDesc = "["..sTypeAttack.." DEFENSE] "..sSkill.." (vs "..nDefenseTarget..")", aDice = aDice2, nMod = nMod2};
@@ -53,7 +44,16 @@ function AddAttack(sSourceCTNode, sTargetCTNode, sTypeAttack, sTypeResult, sResu
 	end
 end
 
-function CombatHandler(rSource, rTarget, rRoll, sTypeResult)
+function CombatHandler(rSource, rTarget, rRoll)
+	local sTypeResult="";
+	if rRoll and rRoll.sType=="DefenseCheck" then
+		local rAux=rSource;
+		rSource=rTarget;
+		rTarget=rAux;
+		sTypeResult="Defense";
+	elseif rRoll and rRoll.sType=="AttackCheck" then
+		sTypeResult="Attack";
+	end
     local sResult=CheckHandler(rSource, rTarget, rRoll);
 	local sTypeAttack="";
     if rSource and rTarget and rSource.sCTNode and rTarget.sCTNode then
@@ -78,18 +78,18 @@ function CombatHandler(rSource, rTarget, rRoll, sTypeResult)
     end
 end
 
-function AttackHandler(rSource, rTarget, rRoll)
---	local sAttackMode=rRoll.sDesc:match("%[.* (.*)%]");
---	if sAttackMode=="ATTACK" then
-		CombatHandler(rSource, rTarget, rRoll, "Attack");
---	elseif sAttackMode=="DEFENSE" then
---		CombatHandler(rSource, rTarget, rRoll, "Defense");
---	end
-end
-
-function DefenseHandler(rSource, rTarget, rRoll)
-	CombatHandler(rTarget, rSource, rRoll, "Defense");
-end
+--function AttackHandler(rSource, rTarget, rRoll)
+----	local sAttackMode=rRoll.sDesc:match("%[.* (.*)%]");
+----	if sAttackMode=="ATTACK" then
+--		CombatHandler(rSource, rTarget, rRoll, "Attack");
+----	elseif sAttackMode=="DEFENSE" then
+----		CombatHandler(rSource, rTarget, rRoll, "Defense");
+----	end
+--end
+--
+--function DefenseHandler(rSource, rTarget, rRoll)
+--	CombatHandler(rTarget, rSource, rRoll, "Defense");
+--end
 
 function InitHandler(rSource, rTarget, rRoll)
     local rMessage = ActionsManager.createActionMessage(rSource, rRoll);
