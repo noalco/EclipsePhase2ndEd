@@ -31,7 +31,7 @@ function AddAttack(sSourceCTNode, sTargetCTNode, sTypeAttack, sTypeResult, sResu
 		end
 		combat.tAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack]["s"..sTypeResult.."Result"]=sResult;
 		combat.tAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack]["n"..sTypeResult.."Result"]=nRollTotal;
-		if combat.ResolveCombat(sSourceCTNode, sTargetCTNode, sTypeAttack) then
+		if combat.ResolveCombat(sSourceCTNode, sTargetCTNode, sTypeAttack) and OptionsManager.isOption("AUTODEFENSEROLL", "on") then
 --			local windataref = DB.findNode(sTargetCTNode);
 --			local sSkill, nDefenseTarget = getDefenderSkillAndTarget({sCreatureNode=sTargetCTNode}, sTypeAttack);
 --			DiceRollDescription =  "["..sTypeAttack.." DEFENSE] "..sSkill.." (vs "..nDefenseTarget..")";
