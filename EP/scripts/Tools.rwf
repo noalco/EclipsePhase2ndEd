@@ -88,7 +88,19 @@ function getName(sCTNode)
 	else
 		return "";
 	end
-end</Script>
+end
+
+function CopyTable(rTable)
+	local rTable2={};
+	if rTable then
+		for k, v in pairs(rTable) do
+			rTable2[k] = v;
+		end
+	end
+	return rTable2;
+end
+
+</Script>
     <RegisterScript>true</RegisterScript>
     <Encoding />
   </Scripts>

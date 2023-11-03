@@ -31,7 +31,18 @@ function AddAttack(sSourceCTNode, sTargetCTNode, sTypeAttack, sTypeResult, sResu
 		end
 		combat.tAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack]["s"..sTypeResult.."Result"]=sResult;
 		combat.tAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack]["n"..sTypeResult.."Result"]=nRollTotal;
-		combat.ResolveCombat(sSourceCTNode, sTargetCTNode, sTypeAttack);
+		if combat.ResolveCombat(sSourceCTNode, sTargetCTNode, sTypeAttack) then
+--			DiceRollString = "1d100";
+--			local windataref = DB.findNode(sTargetCTNode);
+--			local sSkill, nDefenseTarget = getDefenderSkillAndTarget({sCreatureNode=sTargetCTNode}, sTypeAttack);
+--			Debug.chat(DB.getValue(windataref, "name", ""), sSkill, nDefenseTarget)
+--			DiceRollDescription =  "["..sTypeAttack.." DEFENSE] "..sSkill.." (vs "..nDefenseTarget..")";
+--			GameSystem.actions["DefenseCheck"] = { bUseModStack = "true", sIcon = "action_attack", sTargeting = "all" }
+--			ActionsManager.registerResultHandler("DefenseCheck", DefenseHandler);
+--			DiceRollAdditionalInfo = {};
+--			RulesetWizardDiceRoller.Roll(nil, windataref,"DefenseCheck", DiceRollDescription, DiceRollString, nDefenseTarget, DiceRollAdditionalInfo);
+--			ModifierStack.reset();
+		end
 	end
 end
 
@@ -52,7 +63,7 @@ function CombatHandler(rSource, rTarget, rRoll, sTypeResult)
 			msgOOB.sSourceCTNode=rSource.sCTNode;
 			msgOOB.sTargetCTNode=rTarget.sCTNode;
 			msgOOB.sTypeAttack=sTypeAttack;
-			msgOOB.sTypeResult=sTypeResult
+			msgOOB.sTypeResult=sTypeResult;
 			msgOOB.sResult=sResult;
 			msgOOB.nRollTotal=ActionsManager.total(rRoll);
 			Comm.deliverOOBMessage(msgOOB);
@@ -61,10 +72,16 @@ function CombatHandler(rSource, rTarget, rRoll, sTypeResult)
 end
 
 function AttackHandler(rSource, rTarget, rRoll)
-	CombatHandler(rSource, rTarget, rRoll, "Attack");
+	local sAttackMode=rRoll.sDesc:match("%[.* (.*)%]");
+	if sAttackMode=="ATTACK" then
+		CombatHandler(rSource, rTarget, rRoll, "Attack");
+	elseif sAttackMode=="DEFENSE" then
+		CombatHandler(rSource, rTarget, rRoll, "Defense");
+	end
 end
 
-function DefenseHandler(rSource, rTarget, rRoll) 
+function DefenseHandler(rSource, rTarget, rRoll)
+	Debug.chat(rRoll)
 	CombatHandler(rTarget, rSource, rRoll, "Defense");
 end
 
@@ -119,7 +136,61 @@ function CheckHandler(rSource, rTarget, rRoll)
 	Comm.deliverChatMessage(rMessage);
 	return RollChecks.RollCheck(nTotal, nTarget):upper();
 end
-</Script>
+
+function getDefenderSkillAndTarget(Node, sAttackType)
+	if Node and Node.sCreatureNode and sAttackType then
+		local sClass, sRecord=DB.getValue(Node.sCreatureNode..".link");
+		local CreatureNode;
+		if sClass=="npc" then
+			CreatureNode=DB.findNode(Node.sCreatureNode);
+		else
+			CreatureNode=DB.findNode(sRecord);
+		end
+		Debug.chat(CreatureNode);
+		if sAttackType=="MELEE" then
+			if DB.getValue(CreatureNode, "Combat.Melee", 0)&gt;=DB.getValue(CreatureNode, "Combat.Fray", 0) then
+				return "Melee", DB.getValue(CreatureNode, "Combat.Melee", 0);
+			else
+				return "Fray", DB.getValue(CreatureNode, "Combat.Fray", 0);
+			end
+		elseif sAttackType=="RANGED" then
+			return "Fray/2", DB.getValue(CreatureNode, "Combat.Fray2", 0);
+		else
+			return nil, nil;
+		end
+	else
+		return nil, nil;
+	end
+end
+
+function AttackingOpposedTest(rSource, aTargeting, rRolls)
+	if rRolls then
+		local rRoll;
+		local iRoll = 1;
+		local iRoll2 = 1;
+		local sAttackType=rRolls[1].sDesc:match("%[(.*) ATTACK%]");
+		local sSkill="";
+		local nDefenseTarget=0;
+		rRoll=Tools.CopyTable(rRolls[1]);
+
+		if aTargeting and rSource and sAttackType then
+			local sMod;
+			local nValor;
+			for _,vTargetGroup in ipairs(aTargeting) do
+				for _,vTarget in ipairs(vTargetGroup) do
+					sSkill, nDefenseTarget = getDefenderSkillAndTarget(vTarget, sAttackType);
+					if sSkill and nDefenseTarget then
+						iRoll = iRoll + 1;
+						rRolls[iRoll]=Tools.CopyTable(rRoll);
+						rRolls[iRoll].sDesc="["..sAttackType.." DEFENSE] "..sSkill.." (vs "..nDefenseTarget..")";
+						iRoll2 = iRoll2 + 1;
+					end
+				end
+			end
+		end
+	end
+	return aTargeting;
+end</Script>
     <RegisterScript>true</RegisterScript>
     <Encoding />
   </Scripts>

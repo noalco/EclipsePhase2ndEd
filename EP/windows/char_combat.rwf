@@ -209,7 +209,7 @@ end
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"25"}},
       {"Name":"DevelopmentComments"},
-      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"1d100","DiceRollDescription":"{@self.getDescriptionText()}","DiceRollType":"AttackCheck","UseModStack":"true","ResetModStack":"true","SecretRoll":{"@xsi:nil":"true"},"DragIcon":"action_attack","AllowDragDrop":"true","Targeting":"each","ResultHandlerFunction":"RollHandlers.AttackHandler","AdditionalInfo":null}},
+      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"1d100","DiceRollDescription":"{@self.getDescriptionText()}","DiceRollType":"AttackCheck","UseModStack":"true","ResetModStack":"true","SecretRoll":{"@xsi:nil":"true"},"DragIcon":"action_attack","AllowDragDrop":"true","Targeting":"each","ResultHandlerFunction":"RollHandlers.AttackHandler","TargetingHandlerFunction":null,"AdditionalInfo":null}},
       {"Name":"Disabled"},
       {"Name":"DisplaySign"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
@@ -252,6 +252,8 @@ end
 ]}}</Definition>
     <LUACode>local dataNode;
 local charNode;
+
+--RollHandlers.AttackingOpposedTest
 
 function onInit()
 	dataNode=window.parentcontrol.window.getDatabaseNode();

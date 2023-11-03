@@ -55,7 +55,7 @@ function ResolveCombat(sSourceCTNode, sTargetCTNode, sTypeAttack)
 					-- The defender wins the opposed test
 					rMessage.text = sAttackerName.." vs "..sDefenderName..": "..Interface.getString("attack_miss");
 					rMessage.icon = "roll_attack_miss";
-					tAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack]={};
+--					tAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack]={};
 				end
 				if tResults[sDefenseResult].nRange&gt;0 then
 					rMessage.text = rMessage.text.." ("..nAttackResult.." vs "..nDefenseResult..")"
@@ -63,8 +63,9 @@ function ResolveCombat(sSourceCTNode, sTargetCTNode, sTypeAttack)
 			else -- The atacker fails
 				rMessage.text = sAttackerName.." vs "..sDefenderName..": "..Interface.getString("attack_miss");
 				rMessage.icon = "roll_attack_miss";
-				tAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack]={};
+--				tAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack]={};
 			end
+			tAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack]={};			
 			Comm.deliverChatMessage(rMessage);
 		elseif bAttacker and tResults[sAttackResult].nRange&lt;0 then -- The atacker fails and there is no defence roll
 			rMessage.text = sAttackerName.." vs "..sDefenderName..": "..Interface.getString("attack_miss");
@@ -75,8 +76,10 @@ function ResolveCombat(sSourceCTNode, sTargetCTNode, sTypeAttack)
 			rMessage.text = sAttackerName.." vs "..sDefenderName..": "..Interface.getString("attack_possible_hit")..". "..sDefenderName.." "..Interface.getString(sTypeAttack:lower().."_defence_roll_required").." (vs "..nAttackResult..")";
 			rMessage.icon = "roll_attack_possible_hit";
 			Comm.deliverChatMessage(rMessage);
+			return true;
 		end
 	end
+	return false;
 end</Script>
     <RegisterScript>true</RegisterScript>
     <Encoding />
