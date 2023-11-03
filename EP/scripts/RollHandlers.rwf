@@ -83,7 +83,8 @@ function InitHandler(rSource, rTarget, rRoll)
     if (rSource) then
         local nTotal = ActionsManager.total(rRoll);
         rCreature = DB.findNode(rSource.sCreatureNode);
-        rCreature.getChild("initresult").setValue(nTotal);
+        DB.setValue(rCreature, "initresult", "number", nTotal);
+--        rCreature.getChild("initresult").setValue(nTotal);
     end
 end
 
