@@ -100,7 +100,6 @@ function CopyTable(rTable)
 	return rTable2;
 end
 
-
 function getDefenderSkillAndTarget(sCreatureNode, sAttackType)
 	if sCreatureNode and sAttackType then
 		local sClass, sRecord=DB.getValue(sCreatureNode..".link");
@@ -123,6 +122,19 @@ function getDefenderSkillAndTarget(sCreatureNode, sAttackType)
 		end
 	else
 		return nil, nil;
+	end
+end
+
+function getDefenderWillTarget(sCreatureNode)
+	if sCreatureNode then
+		local sClass, sRecord=DB.getValue(sCreatureNode..".link");
+		local CreatureNode;
+		if sClass=="npc" then
+			CreatureNode=DB.findNode(sCreatureNode);
+		else
+			CreatureNode=DB.findNode(sRecord);
+		end
+		return DB.getValue(CreatureNode, "Aptitudes.Checks.WillpowerCheck", 0);
 	end
 end</Script>
     <RegisterScript>true</RegisterScript>

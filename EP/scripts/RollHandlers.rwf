@@ -3,9 +3,45 @@
     <ScriptName>RollHandlers</ScriptName>
     <FolderID>24</FolderID>
     <Script>OOB_ADD_ATTACK="OOB_ADD_ATTACK";
+OOB_ADD_SLEIGHT_ATTACK="OOB_ADD_SLEIGHT_ATTACK";
 
 function onInit()
 	OOBManager.registerOOBMsgHandler(OOB_ADD_ATTACK, OOBAddAttack);
+	OOBManager.registerOOBMsgHandler(OOB_ADD_SLEIGHT_ATTACK, OOBAddSleightAttack);
+end
+
+function RollResultFrom0to99(rRoll)
+	for i=1,#rRoll.aDice do
+		rRoll.aDice[i].value=rRoll.aDice[i].value%100;
+		rRoll.aDice[i].result=rRoll.aDice[i].result%100;
+	end
+	rRoll.aDice.total=rRoll.aDice.total%100;
+	rRoll.nTotal=rRoll.nTotal%100;
+	return rRoll;
+end
+
+function CheckHandler(rSource, rTarget, rRoll)
+	rRoll=RollResultFrom0to99(rRoll)
+	local nMod=rRoll.nMod;
+	rRoll.nMod=0;
+    local rMessage;
+    if rRoll.sType=="DefenseCheck" or rRoll.sType=="DefenseSleightCheck" then
+		rMessage = ActionsManager.createActionMessage(rTarget, rRoll);
+	else
+		rMessage = ActionsManager.createActionMessage(rSource, rRoll);
+	end
+	local nTarget=tonumber(rMessage.text:match("%(vs (%-*%d+)%)"));
+	local sTarget=""..nTarget;
+	if nTarget&lt;0 then
+		sTarget="%"..sTarget;
+	end
+	rMessage.text=rMessage.text:gsub("vs "..sTarget, "vs "..math.max(0,nTarget+nMod));
+	nTarget=nTarget+nMod;
+
+	local nTotal = ActionsManager.total(rRoll);
+	rMessage.text=rMessage.text.." ["..RollChecks.RollCheck(nTotal, nTarget):upper().."]";
+	Comm.deliverChatMessage(rMessage);
+	return RollChecks.RollCheck(nTotal, nTarget):upper();
 end
 
 function OOBAddAttack(msgOOB)
@@ -17,13 +53,13 @@ end
 function AddAttack(sSourceCTNode, sTargetCTNode, sTypeAttack, sTypeResult, sResult, nRollTotal)
 	if Session.IsHost and sSourceCTNode and sTargetCTNode and sTypeAttack and sTypeResult and sResult and nRollTotal then
 		if not combat.tAttacts[sSourceCTNode] then
-			combat.tAttacts[sSourceCTNode]={}
+			combat.tAttacts[sSourceCTNode]={};
 		end
 		if not combat.tAttacts[sSourceCTNode][sTargetCTNode] then
-			combat.tAttacts[sSourceCTNode][sTargetCTNode]={}
+			combat.tAttacts[sSourceCTNode][sTargetCTNode]={};
 		end
 		if not combat.tAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack] then
-			combat.tAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack]={}
+			combat.tAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack]={};
 		end
 		combat.tAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack]["s"..sTypeResult.."Result"]=sResult;
 		combat.tAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack]["n"..sTypeResult.."Result"]=nRollTotal;
@@ -34,8 +70,8 @@ function AddAttack(sSourceCTNode, sTargetCTNode, sTypeAttack, sTypeResult, sResu
 			local aDice2, nMod2 = StringManager.convertStringToDice("1d100");
 			local rRoll = { sType = "DefenseCheck", sDesc = "["..sTypeAttack.." DEFENSE] "..sSkill.." (vs "..nDefenseTarget..")", aDice = aDice2, nMod = nMod2};
 			local rTargetNode=DB.findNode(sTargetCTNode);
-			local tTargetGroups=ActionsManager.getTargeting(rTargetNode, DB.findNode(sSourceCTNode), rRoll.sType, { rRoll })
-			ActionsManager.actionRoll(rTargetNode, tTargetGroups, { rRoll })
+			local tTargetGroups=ActionsManager.getTargeting(rTargetNode, DB.findNode(sSourceCTNode), rRoll.sType, { rRoll });
+			ActionsManager.actionRoll(rTargetNode, tTargetGroups, { rRoll });
 		end
 	end
 end
@@ -87,39 +123,100 @@ function InitHandler(rSource, rTarget, rRoll)
     end
 end
 
-function RollResultFrom0to99(rRoll)
-	for i=1,#rRoll.aDice do
-		rRoll.aDice[i].value=rRoll.aDice[i].value%100;
-		rRoll.aDice[i].result=rRoll.aDice[i].result%100;
+function OOBAddSleightAttack(msgOOB)
+	if Session.IsHost then
+		AddSleightAttack(msgOOB.sSourceCTNode, msgOOB.sTargetCTNode, msgOOB.sTypeResult, msgOOB.sResult, msgOOB.nRollTotal);
 	end
-	rRoll.aDice.total=rRoll.aDice.total%100;
-	rRoll.nTotal=rRoll.nTotal%100;
-	return rRoll;
 end
 
-function CheckHandler(rSource, rTarget, rRoll)
-	rRoll=RollResultFrom0to99(rRoll)
-	local nMod=rRoll.nMod;
-	rRoll.nMod=0;
-    local rMessage;
-    if rRoll.sType=="DefenseCheck" then
-		rMessage = ActionsManager.createActionMessage(rTarget, rRoll);
-	else
-		rMessage = ActionsManager.createActionMessage(rSource, rRoll);
+function AddSleightAttack(sSourceCTNode, sTargetCTNode, sTypeResult, sResult, nRollTotal)
+	if Session.IsHost and sSourceCTNode and sTargetCTNode and sTypeResult and sResult and nRollTotal then
+		if not combat.tAttacts[sSourceCTNode] then
+			combat.tAttacts[sSourceCTNode]={};
+		end
+		if not combat.tAttacts[sSourceCTNode][sTargetCTNode] then
+			combat.tAttacts[sSourceCTNode][sTargetCTNode]={};
+		end
+		combat.tAttacts[sSourceCTNode][sTargetCTNode]["s"..sTypeResult.."Result"]=sResult;
+		combat.tAttacts[sSourceCTNode][sTargetCTNode]["n"..sTypeResult.."Result"]=nRollTotal;
+		if combat.ResolveSleightAttack(sSourceCTNode, sTargetCTNode, sTypeAttack) then
+			GameSystem.actions["DefenseSleightCheck"] = { bUseModStack = "true", sIcon = "action_attack", sTargeting = "all" }
+			ActionsManager.registerResultHandler("DefenseSleightCheck", SleightHandler);
+			local nDefenseTarget = Tools.getDefenderWillTarget(sTargetCTNode);
+			local aDice2, nMod2 = StringManager.convertStringToDice("1d100");
+			local rRoll = { sType = "DefenseSleightCheck", sDesc = "[SLEIGHT DEFENSE] Willpower (vs "..nDefenseTarget..")", aDice = aDice2, nMod = nMod2};
+			local rTargetNode=DB.findNode(sTargetCTNode);
+			local tTargetGroups=ActionsManager.getTargeting(rTargetNode, DB.findNode(sSourceCTNode), rRoll.sType, { rRoll });
+			ActionsManager.actionRoll(rTargetNode, tTargetGroups, { rRoll });
+		end
 	end
-	local nTarget=tonumber(rMessage.text:match("%(vs (%-*%d+)%)"));
-	local sTarget=""..nTarget;
-	if nTarget&lt;0 then
-		sTarget="%"..sTarget;
-	end
-	rMessage.text=rMessage.text:gsub("vs "..sTarget, "vs "..math.max(0,nTarget+nMod));
-	nTarget=nTarget+nMod;
-
-	local nTotal = ActionsManager.total(rRoll);
-	rMessage.text=rMessage.text.." ["..RollChecks.RollCheck(nTotal, nTarget):upper().."]";
-	Comm.deliverChatMessage(rMessage);
-	return RollChecks.RollCheck(nTotal, nTarget):upper();
 end
+
+function SleightHandler(rSource, rTarget, rRoll)
+ 	local sTypeResult="";
+	if rRoll then
+		if rRoll.sType=="DefenseSleightCheck" then
+			local rAux=rSource;
+			rSource=rTarget;
+			rTarget=rAux;
+			sTypeResult="Defense";
+		elseif rRoll.sType=="AttackSleightCheck" then
+			sTypeResult="Attack";
+		end
+	end
+	local sResult=CheckHandler(rSource, rTarget, rRoll);
+    if rSource and rTarget and rSource.sCTNode and rTarget.sCTNode then
+		if Session.IsHost then
+			AddSleightAttack(rSource.sCTNode, rTarget.sCTNode, sTypeResult, sResult, ActionsManager.total(rRoll));
+		else
+			local msgOOB={};
+			msgOOB.type=OOB_ADD_SLEIGHT_ATTACK;
+			msgOOB.sSourceCTNode=rSource.sCTNode;
+			msgOOB.sTargetCTNode=rTarget.sCTNode;
+			msgOOB.sTypeResult=sTypeResult;
+			msgOOB.sResult=sResult;
+			msgOOB.nRollTotal=ActionsManager.total(rRoll);
+			Comm.deliverOOBMessage(msgOOB);
+		end
+    end
+ end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </Script>
     <RegisterScript>true</RegisterScript>
     <Encoding />

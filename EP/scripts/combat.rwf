@@ -2,9 +2,7 @@
   <Scripts>
     <ScriptName>combat</ScriptName>
     <FolderID>13</FolderID>
-    <Script>tAttacts = {} -- sAttackResult, sDefenseResult, nAttackResult, nDefenseResult
-
-tResults = {
+    <Script>tResults = {
 	["CRITICAL SUCCESS"]= {nRange=4, nExtraD6=0, nDamageMult=2},
 	["TWO SUPERIOR SUCCESSES"]= {nRange=3, nExtraD6=2, nDamageMult=1},
 	["ONE SUPERIOR SUCCESS"]= {nRange=2, nExtraD6=1, nDamageMult=1},
@@ -15,13 +13,13 @@ tResults = {
 	["CRITICAL FAILURE"]= {nRange=-4, nExtraD6=0, nDamageMult=1},
 }
 
+tAttacts = {} -- sAttackResult, sDefenseResult, nAttackResult, nDefenseResult
 function ResolveCombat(sSourceCTNode, sTargetCTNode, sTypeAttack)
 	if sSourceCTNode and sTargetCTNode and sTypeAttack then
 		local bAttacker=tAttacts[sSourceCTNode] and tAttacts[sSourceCTNode][sTargetCTNode] and tAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack] and tAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack].sAttackResult;
 		local bDefender=tAttacts[sSourceCTNode] and tAttacts[sSourceCTNode][sTargetCTNode] and tAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack] and tAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack].sDefenseResult;
 		local sAttackerName="";
 		local sDefenderName="";
-		local rCombatNode;
 		local rMessage;
 		local sAttackResult="";
 		local nAttackResult=0;
@@ -80,7 +78,72 @@ function ResolveCombat(sSourceCTNode, sTargetCTNode, sTypeAttack)
 		end
 	end
 	return false;
-end</Script>
+end
+
+tSleightAttack = {} -- sAttackResult, sDefenseResult, nAttackResult, nDefenseResult
+function ResolveSleightAttack(sSourceCTNode, sTargetCTNode)
+	if sSourceCTNode and sTargetCTNode then
+		local bAttacker=tAttacts[sSourceCTNode] and tAttacts[sSourceCTNode][sTargetCTNode] and tAttacts[sSourceCTNode][sTargetCTNode] and tAttacts[sSourceCTNode][sTargetCTNode].sAttackResult;
+		local bDefender=tAttacts[sSourceCTNode] and tAttacts[sSourceCTNode][sTargetCTNode] and tAttacts[sSourceCTNode][sTargetCTNode] and tAttacts[sSourceCTNode][sTargetCTNode].sDefenseResult;
+		local sAttackerName="";
+		local sDefenderName="";
+		local rMessage;
+		local sAttackResult="";
+		local nAttackResult=0;
+		local sDefenseResult="";
+		local nDefenseResult=0;
+		
+		sAttackerName=Tools.getName(sSourceCTNode);
+		sAttackResult=tAttacts[sSourceCTNode][sTargetCTNode].sAttackResult;
+		nAttackResult=tAttacts[sSourceCTNode][sTargetCTNode].nAttackResult;
+		rMessage = ChatManager.createBaseMessage(DB.findNode(sSourceCTNode));
+		
+		sDefenderName=Tools.getName(sTargetCTNode);
+		sDefenseResult=tAttacts[sSourceCTNode][sTargetCTNode].sDefenseResult;
+		nDefenseResult=tAttacts[sSourceCTNode][sTargetCTNode].nDefenseResult;
+		
+		if bAttacker and bDefender then -- There are both attacker and defender
+			if tResults[sAttackResult].nRange&gt;0 then -- The atacker succeeds
+				if tResults[sDefenseResult].nRange&lt;0 or -- The defender fails
+				sAttackResult ~= "CRITICAL SUCCESS" and sDefenseResult ~= "CRITICAL SUCCESS" and nAttackResult&gt;nDefenseResult then -- Both attacker and defencer succeed with non critical success and attaker roll &gt; defender roll
+					Debug.chat("The atacker succeeds --- The defender fails ooo Both attacker and defencer succeed with non critical success and attaker roll &gt; defender roll");
+				elseif sAttackResult == "CRITICAL SUCCESS" and sDefenseResult ~= "CRITICAL SUCCESS" or -- The attacker succeeds with a critical success and the defender succeeds with a non critical success
+				sAttackResult == "CRITICAL SUCCESS" and sDefenseResult == "CRITICAL SUCCESS" and nAttackResult&gt;nDefenseResult then -- Both attacker and defencer succeed with critical success and attaker roll &gt; defender roll
+					Debug.chat("The attacker succeeds with a critical success and the defender succeeds with a non critical success ooo Both attacker and defencer succeed with critical success and attaker roll &gt; defender roll");
+				elseif sAttackResult ~= "CRITICAL SUCCESS" and sDefenseResult == "CRITICAL SUCCESS" and nAttackResult&gt;nDefenseResult or -- The defender succeeds with a critical success and the attacker succeeds with a non critical success
+				sAttackResult == "CRITICAL SUCCESS" and sDefenseResult == "CRITICAL SUCCESS" and nAttackResult&lt;=nDefenseResult then -- Both attacker and defencer succeed with critical success and attaker roll &lt;= defender roll
+					Debug.chat("The defender succeeds with a critical success and the attacker succeeds with a non critical success ooo Both attacker and defencer succeed with critical success and attaker roll &lt;= defender roll");
+				else
+					-- The defender wins the opposed test
+					Debug.chat("The defender wins the opposed test");
+				end
+			else -- The atacker fails
+				Debug.chat("The atacker fails");
+			end
+			tAttacts[sSourceCTNode][sTargetCTNode]={};
+		elseif bAttacker and tResults[sAttackResult].nRange&lt;0 then -- The atacker fails and there is no defence roll
+			Debug.chat("The atacker fails and there is no defence roll");
+			tAttacts[sSourceCTNode][sTargetCTNode]={};
+		elseif bAttacker and tResults[sAttackResult].nRange&gt;0 then -- The atacker succeeds and there is no defence roll
+			Debug.chat("The atacker succeeds and there is no defence roll");
+			return true;
+		end
+	end
+	return false;
+end
+
+
+
+
+
+
+
+
+
+
+
+
+</Script>
     <RegisterScript>true</RegisterScript>
     <Encoding />
   </Scripts>
