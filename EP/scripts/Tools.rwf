@@ -136,6 +136,28 @@ function getDefenderWillTarget(sCreatureNode)
 		end
 		return DB.getValue(CreatureNode, "Aptitudes.Checks.WillpowerCheck", 0);
 	end
+end
+
+function sortListToString(DBNode, subPath, sDBField, default)
+	local sList="";
+	local sSep="";
+	local value=default;
+	local tTable={};
+	local sortedChildren=DB.getChildren(DBNode, subPath);
+	if sortedChildren then
+		for _,c in pairs(sortedChildren) do
+			value=DB.getValue(c, sDBField, default);
+			if value~=default then
+				table.insert(tTable, value);
+			end
+		end
+	end
+	table.sort(tTable);
+	for _,v in pairs(tTable) do
+		sList=sList..sSep..v;
+		sSep=", ";
+	end
+	return sList;
 end</Script>
     <RegisterScript>true</RegisterScript>
     <Encoding />
