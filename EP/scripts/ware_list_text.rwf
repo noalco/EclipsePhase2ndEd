@@ -1,0 +1,71 @@
+<DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
+  <Scripts>
+    <ScriptName>ware_list_text</ScriptName>
+    <FolderID>9</FolderID>
+    <Script>-- 
+-- Please see the license.html file included with this distribution for 
+-- attribution and copyright information.
+--
+
+local sFocus = "name";
+
+function onInit()
+	if newfocus then
+		sFocus = newfocus[1];
+	end
+end
+
+function onListChanged()
+	update();
+end
+
+function update()
+	local sEdit = getName() .. "_iedit";
+	if window[sEdit] then
+		local bEdit = (window[sEdit].getValue() == 1);
+		for _,w in ipairs(getWindows()) do
+			w.idelete.setVisibility(bEdit);
+		end
+	end
+end
+
+function addEntry(bFocus)
+	local w = createWindow();
+	if bFocus and w[sFocus] then
+		w[sFocus].setFocus();
+	end
+	if self.onEntryAdded then
+		self.onEntryAdded(w);
+	end
+	return w;
+end
+
+function onDrop(x, y, dragdata)
+	if dragdata.isType("shortcut") then
+		local sClass, sRecord = dragdata.getShortcutData();
+		if sClass~="item" then
+			return false;
+		end
+		local DBNode=DB.findNode(sRecord);
+		if not DBNode or DB.getValue(DBNode, "Typevalue")~="Augmentation" then
+			return false;
+		end
+		local w=createWindow();
+		local nodeWindow=w.getDatabaseNode();
+		DB.setValue(nodeWindow, "name", "string", DB.getValue(DBNode, "name", ""));
+		DB.setValue(nodeWindow, "GP", "number", DB.getValue(DBNode, "GP", 0));
+		DB.setValue(nodeWindow, "WareType", "string", DB.getValue(DBNode, "StringWare", ""));
+		DB.setValue(nodeWindow, "Complexity", "string", DB.getValue(DBNode, "Complexity", ""));
+		if DB.getValue(DBNode, "Restricted", 0)==1 then
+			DB.setValue(nodeWindow, "Complexity", "string", DB.getValue(DBNode, "Complexity", "").." (R)");
+		else
+			DB.setValue(nodeWindow, "Complexity", "string", DB.getValue(DBNode, "Complexity", ""));
+		end
+		DB.setValue(nodeWindow, "Description", "formattedtext", DB.getValue(DBNode, "Description", ""));
+	end
+end
+</Script>
+    <RegisterScript>true</RegisterScript>
+    <Encoding />
+  </Scripts>
+</DocumentElement>
