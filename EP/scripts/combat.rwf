@@ -42,7 +42,6 @@ function ResolveCombat(sSourceCTNode, sTargetCTNode, sTypeAttack)
 				sAttackResult ~= "CRITICAL SUCCESS" and sDefenseResult ~= "CRITICAL SUCCESS" and nAttackResult&gt;nDefenseResult or -- Both attacker and defencer succeed with non critical success and attaker roll &gt; defender roll
 				sAttackResult == "CRITICAL SUCCESS" and sDefenseResult == "CRITICAL SUCCESS" and nAttackResult&gt;nDefenseResult then -- Both attacker and defencer succeed with critical success and attaker roll &gt; defender roll
 					-- The attacker wins the opposed test
-					tAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack].bHit=true;
 					rMessage.text = sAttackerName.." vs "..sDefenderName..": "..Interface.getString("attack_hit");
 					if sAttackResult=="CRITICAL SUCCESS" then
 						rMessage.icon = "roll_attack_crit";
@@ -56,7 +55,7 @@ function ResolveCombat(sSourceCTNode, sTargetCTNode, sTypeAttack)
 --					tAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack]={};
 				end
 				if tResults[sDefenseResult].nRange&gt;0 then
-					rMessage.text = rMessage.text.." ("..nAttackResult.." vs "..nDefenseResult..")"
+					rMessage.text = rMessage.text.." ("..nAttackResult.." vs "..nDefenseResult..")";
 				end
 			else -- The atacker fails
 				rMessage.text = sAttackerName.." vs "..sDefenderName..": "..Interface.getString("attack_miss");
@@ -101,48 +100,58 @@ function ResolveSleightAttack(sSourceCTNode, sTargetCTNode)
 		sDefenderName=Tools.getName(sTargetCTNode);
 		sDefenseResult=tAttacts[sSourceCTNode][sTargetCTNode].sDefenseResult;
 		nDefenseResult=tAttacts[sSourceCTNode][sTargetCTNode].nDefenseResult;
-		
+
 		if bAttacker and bDefender then -- There are both attacker and defender
 			if tResults[sAttackResult].nRange&gt;0 then -- The atacker succeeds
-				if tResults[sDefenseResult].nRange&lt;0 or -- The defender fails
-				sAttackResult ~= "CRITICAL SUCCESS" and sDefenseResult ~= "CRITICAL SUCCESS" and nAttackResult&gt;nDefenseResult then -- Both attacker and defencer succeed with non critical success and attaker roll &gt; defender roll
-					Debug.chat("The atacker succeeds --- The defender fails ooo Both attacker and defencer succeed with non critical success and attaker roll &gt; defender roll");
-				elseif sAttackResult == "CRITICAL SUCCESS" and sDefenseResult ~= "CRITICAL SUCCESS" or -- The attacker succeeds with a critical success and the defender succeeds with a non critical success
+				if sAttackResult == "CRITICAL SUCCESS" and sDefenseResult ~= "CRITICAL SUCCESS" or -- The attacker succeeds with a critical success and the defender succeeds with a non critical success
 				sAttackResult == "CRITICAL SUCCESS" and sDefenseResult == "CRITICAL SUCCESS" and nAttackResult&gt;nDefenseResult then -- Both attacker and defencer succeed with critical success and attaker roll &gt; defender roll
-					Debug.chat("The attacker succeeds with a critical success and the defender succeeds with a non critical success ooo Both attacker and defencer succeed with critical success and attaker roll &gt; defender roll");
-				elseif sAttackResult ~= "CRITICAL SUCCESS" and sDefenseResult == "CRITICAL SUCCESS" and nAttackResult&gt;nDefenseResult or -- The defender succeeds with a critical success and the attacker succeeds with a non critical success
+					-- Critical success
+					rMessage.text = sAttackerName.." vs "..sDefenderName..": "..Interface.getString("cast_atk_crit_hit");
+					rMessage.icon = "roll_cast_crit_hit";
+				elseif sAttackResult ~= "CRITICAL SUCCESS" and sDefenseResult == "CRITICAL SUCCESS" or -- The defender succeeds with a critical success and the attacker succeeds with a non critical success
 				sAttackResult == "CRITICAL SUCCESS" and sDefenseResult == "CRITICAL SUCCESS" and nAttackResult&lt;=nDefenseResult then -- Both attacker and defencer succeed with critical success and attaker roll &lt;= defender roll
-					Debug.chat("The defender succeeds with a critical success and the attacker succeeds with a non critical success ooo Both attacker and defencer succeed with critical success and attaker roll &lt;= defender roll");
-				else
-					-- The defender wins the opposed test
-					Debug.chat("The defender wins the opposed test");
+					-- Critical miss
+					rMessage.text = sAttackerName.." vs "..sDefenderName..": "..sAttackerName.." "..Interface.getString("cast_def_crit_hit");
+					rMessage.icon = "roll_cast_crit_miss";
+				elseif tResults[sDefenseResult].nRange&lt;0 or -- The defender fails
+				sAttackResult ~= "CRITICAL SUCCESS" and sDefenseResult ~= "CRITICAL SUCCESS" and nAttackResult&gt;nDefenseResult then -- Both attacker and defencer succeed with non critical success and attaker roll &gt; defender roll
+					-- normal success
+					rMessage.text = sAttackerName.." vs "..sDefenderName..": "..Interface.getString("cast_hit");
+					rMessage.icon = "roll_cast_hit";
+				else -- The defender wins the opposed test
+					-- Normal miss
+					rMessage.text = sAttackerName.." vs "..sDefenderName..": "..sAttackerName.." "..Interface.getString("cast_miss");
+					rMessage.icon = "roll_cast_miss";					
+				end
+				if tResults[sDefenseResult].nRange&gt;0 and tResults[sAttackResult].nRange&gt;0 then
+					rMessage.text = rMessage.text.." ("..nAttackResult.." vs "..nDefenseResult..")";
 				end
 			else -- The atacker fails
-				Debug.chat("The atacker fails");
+				rMessage.text = sAttackerName.." vs "..sDefenderName..": "..Interface.getString("cast_miss");
+				rMessage.icon = "roll_cast_miss";									
+				if sAttackResult=="CRITICAL FAILURE" then
+					rMessage.text = sAttackerName.." vs "..sDefenderName..": "..sAttackerName.." "..Interface.getString("cast_crit_miss");
+				end
 			end
+			Comm.deliverChatMessage(rMessage);
 			tAttacts[sSourceCTNode][sTargetCTNode]={};
 		elseif bAttacker and tResults[sAttackResult].nRange&lt;0 then -- The atacker fails and there is no defence roll
-			Debug.chat("The atacker fails and there is no defence roll");
+			rMessage.text = sAttackerName.." vs "..sDefenderName..": "..Interface.getString("cast_miss");
+			rMessage.icon = "roll_cast_miss";									
+			if sAttackResult=="CRITICAL FAILURE" then
+				rMessage.text = sAttackerName.." vs "..sDefenderName..": "..sAttackerName.." "..Interface.getString("cast_crit_miss");
+			end
+			Comm.deliverChatMessage(rMessage);
 			tAttacts[sSourceCTNode][sTargetCTNode]={};
 		elseif bAttacker and tResults[sAttackResult].nRange&gt;0 then -- The atacker succeeds and there is no defence roll
-			Debug.chat("The atacker succeeds and there is no defence roll");
+			rMessage.text = sAttackerName.." vs "..sDefenderName..": "..Interface.getString("cast_possible_hit")..". "..sDefenderName.." "..Interface.getString("cast_defence_roll_required").." (vs "..nAttackResult..")";
+			rMessage.icon = "roll_cast_possible_hit";
+			Comm.deliverChatMessage(rMessage);
 			return true;
 		end
 	end
 	return false;
 end
-
-
-
-
-
-
-
-
-
-
-
-
 </Script>
     <RegisterScript>true</RegisterScript>
     <Encoding />

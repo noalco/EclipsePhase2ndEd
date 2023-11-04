@@ -152,6 +152,20 @@ function AddSleightAttack(sSourceCTNode, sTargetCTNode, sTypeResult, sResult, nR
 	end
 end
 
+function TargetingSleightHandler(rSource, aTargeting, rRolls)
+	if aTargeting and rSource then
+		local rMessage = ChatManager.createBaseMessage(rSource);
+		rMessage.icon = "roll_cast";
+		for _,vTargetGroup in ipairs(aTargeting) do
+			for _,vTarget in ipairs(vTargetGroup) do
+				rMessage.text = "["..Interface.getString("sleight_cast").."] "..(rRolls[1].sleight or "nonono").." [at "..Tools.getName(vTarget.sCTNode).."]";
+				Comm.deliverChatMessage(rMessage);
+			end
+		end
+	end
+	return aTargeting;
+end
+
 function SleightHandler(rSource, rTarget, rRoll)
  	local sTypeResult="";
 	if rRoll then

@@ -156,6 +156,10 @@ function getPsiTargetValue()
 	return nPsiTarget;
 end
 
+function onBeforeDiceRoll(dragInfo)
+	DiceRollAdditionalInfo["sleight"] = window.name.getValue();
+end
+
 function onAfterDiceRoll()
 	window.windowlist.window.InfectionRatingIncrease.setValue(window.windowlist.window.InfectionRatingIncrease.getValue()+window.InfectionMod.getValue());
 end
