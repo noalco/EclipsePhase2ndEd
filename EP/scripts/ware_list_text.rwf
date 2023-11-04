@@ -57,9 +57,9 @@ function onDrop(x, y, dragdata)
 		DB.setValue(nodeWindow, "WareType", "string", DB.getValue(DBNode, "StringWare", ""));
 		DB.setValue(nodeWindow, "Complexity", "string", DB.getValue(DBNode, "Complexity", ""));
 		if DB.getValue(DBNode, "Restricted", 0)==1 then
-			DB.setValue(nodeWindow, "Complexity", "string", DB.getValue(DBNode, "Complexity", "").." (R)");
+			DB.setValue(nodeWindow, "Complexity", "string", DB.getValue(DBNode, "Complexityvalue", "").." [R]");
 		else
-			DB.setValue(nodeWindow, "Complexity", "string", DB.getValue(DBNode, "Complexity", ""));
+			DB.setValue(nodeWindow, "Complexity", "string", DB.getValue(DBNode, "Complexityvalue", ""));
 		end
 		DB.setValue(nodeWindow, "Description", "formattedtext", DB.getValue(DBNode, "Description", ""));
 	end
