@@ -837,7 +837,7 @@ end</LUACode>
       {"Name":"DevelopmentComments"},
       {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"{@self.getDiceString()}","DiceRollDescription":"{@self.getDescriptionText()}","DiceRollType":"Damage","UseModStack":"true","ResetModStack":"true","SecretRoll":{"@xsi:nil":"true"},"DragIcon":"action_damage","AllowDragDrop":"true","AdditionalInfo":null}},
       {"Name":"Disabled"},
-      {"Name":"DynamicSize","Value":{"@xsi:type":"xsd:string","#text":"Dynamic Height"}},
+      {"Name":"DynamicSize"},
       {"Name":"EmptyText"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
@@ -877,23 +877,57 @@ end</LUACode>
 ]}}</Definition>
     <LUACode>function onInit()
 	DB.addHandler(DB.getPath(window.getDatabaseNode(), "Weapon.DamageValue"), "onUpdate", UpdateValue);
+	DB.addHandler(DB.getPath(window.getDatabaseNode(), "Type"), "onUpdate", UpdateValue);
+	DB.addHandler(DB.getPath(window.getDatabaseNode(), "Weapon.RangedWeaponType"), "onUpdate", UpdateValue);
 	DB.addHandler(DB.getPath(window.getDatabaseNode(), "Weapon.DamagePlus"), "onUpdate", UpdateValue);
 	DB.addHandler(DB.getPath(window.getDatabaseNode(), "Weapon.ArmorUsed"), "onUpdate", UpdateValue);
+	DB.addHandler(Tools.getCharNodePath(window.getDatabaseNode())..".inventorylist.*.Weapon.DamageValueMod", "onUpdate", UpdateValue);
 	UpdateValue();
 end
 
 function onClose()
 	DB.removeHandler(DB.getPath(window.getDatabaseNode(), "Weapon.DamageValue"), "onUpdate", UpdateValue);
+	DB.removeHandler(DB.getPath(window.getDatabaseNode(), "Type"), "onUpdate", UpdateValue);
+	DB.removeHandler(DB.getPath(window.getDatabaseNode(), "Weapon.RangedWeaponType"), "onUpdate", UpdateValue);
 	DB.removeHandler(DB.getPath(window.getDatabaseNode(), "Weapon.DamagePlus"), "onUpdate", UpdateValue);
 	DB.removeHandler(DB.getPath(window.getDatabaseNode(), "Weapon.ArmorUsed"), "onUpdate", UpdateValue);
+	DB.removeHandler(Tools.getCharNodePath(window.getDatabaseNode())..".inventorylist.*.Weapon.DamageValueMod", "onUpdate", UpdateValue);
 end
 
 function UpdateValue()
 	local sType=DB.getValue(window.getDatabaseNode(), "Type", "Melee Weapon");
 	local sDice="";
+	local sMod="";
 	if sType=="Melee Weapon" or sType=="Ranged Weapon" or sType=="Micromissile/Minigrenade" then
 		sDice=DiceManager.convertDiceToString(DB.getValue(window.getDatabaseNode(), "Weapon.DamageValue"), DB.getValue(window.getDatabaseNode(), "Weapon.DamagePlus"));
+		if sType=="Ranged Weapon" and DB.getValue(window.getDatabaseNode(), "Weapon.RangedWeaponType", "")=="Kinetic Weapon" then
+			local sAmmoChosen=window.AmmoChosen.getStringValue();
+			if sAmmoChosen:lower():match("smart %(.*%)") then
+				local sSmartType=sAmmoChosen:lower():match("smart %((.*)%)") or "";
+				for _,v in pairs(DataCommon.tSmartAmmo) do
+					if v.sString==sSmartType then
+						sMod=v.sDmgMod;
+						break;
+					end
+				end
+			else
+				sMod=DB.getValue(sAmmoChosen..".Weapon.DamageValueMod", "")
+			end
+			if sMod~="" then
+				if sMod=="-" or sMod=="—" then
+					sMod="";
+				elseif sMod=="/2" or sMod=="÷2" then
+					sMod=" [H]";
+				elseif sMod:lower()=="no damage" then
+					sMod="";
+					sDice="";
+				elseif sMod:sub(1, 1)~="+" and sMod:sub(1, 1)~="-" then
+					sMod="+"..sMod;
+				end
+			end
+		end
 		if sDice~="" then
+			sDice=sDice..sMod
 			if DB.getValue(window.getDatabaseNode(), "Weapon.ArmorUsed")=="Energy" then
 				sDice=sDice.." (vs Energy)";
 			elseif DB.getValue(window.getDatabaseNode(), "Weapon.ArmorUsed")=="Kinetic" then
@@ -905,6 +939,7 @@ function UpdateValue()
 	else
 		sDice="0";
 	end
+	setTooltipText(sDice)
 	setValue(sDice);
 end
 
