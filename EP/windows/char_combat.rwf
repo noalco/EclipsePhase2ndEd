@@ -229,11 +229,27 @@ function UpdateData()
 		end
 		update();
 		window.DamageString.UpdateValue();
+		UpdateTooltip();
 	end
 end
 
 function onValueChanged()
 	window.DamageString.UpdateValue();
+	UpdateTooltip();
+end
+
+function UpdateTooltip()
+	local sAmmoChosen=getStringValue();
+	if sAmmoChosen:lower():match("smart %(.*%)") then
+		local sSmartType=sAmmoChosen:match("smart %((.*)%)") or "";
+		for k,v in pairs(DataCommon.tSmartAmmo) do
+			if v.sString==sSmartType then
+				setTooltipText("Smart - "..k);
+				return;
+			end
+		end
+	end
+	setTooltipText("");
 end
 </LUACode>
     <GroupIndex>0</GroupIndex>
