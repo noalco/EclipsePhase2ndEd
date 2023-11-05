@@ -903,7 +903,7 @@ function UpdateValue()
 		if sType=="Ranged Weapon" and DB.getValue(window.getDatabaseNode(), "Weapon.RangedWeaponType", "")=="Kinetic Weapon" then
 			local sAmmoChosen=window.AmmoChosen.getStringValue();
 			if sAmmoChosen:lower():match("smart %(.*%)") then
-				local sSmartType=sAmmoChosen:lower():match("smart %((.*)%)") or "";
+				local sSmartType=sAmmoChosen:match("smart %((.*)%)") or "";
 				for _,v in pairs(DataCommon.tSmartAmmo) do
 					if v.sString==sSmartType then
 						sMod=v.sDmgMod;
@@ -914,20 +914,25 @@ function UpdateValue()
 				sMod=DB.getValue(sAmmoChosen..".Weapon.DamageValueMod", "")
 			end
 			if sMod~="" then
-				if sMod=="-" or sMod=="—" then
-					sMod="";
-				elseif sMod=="/2" or sMod=="÷2" then
+--				if sMod=="-" or sMod=="—" then
+--					sMod="";
+				if sMod=="/2" or sMod=="÷2" then
 					sMod=" [H]";
+					if sDice~="" then
+						sDice=sDice..sMod
+					end
 				elseif sMod:lower()=="no damage" then
 					sMod="";
 					sDice="";
 				elseif sMod:sub(1, 1)~="+" and sMod:sub(1, 1)~="-" then
 					sMod="+"..sMod;
+					sDice=sDice..sMod
+				else
+					sDice=sDice..sMod
 				end
 			end
 		end
 		if sDice~="" then
-			sDice=sDice..sMod
 			if DB.getValue(window.getDatabaseNode(), "Weapon.ArmorUsed")=="Energy" then
 				sDice=sDice.." (vs Energy)";
 			elseif DB.getValue(window.getDatabaseNode(), "Weapon.ArmorUsed")=="Kinetic" then
