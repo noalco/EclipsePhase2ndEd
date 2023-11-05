@@ -914,9 +914,10 @@ function UpdateValue()
 				sMod=DB.getValue(sAmmoChosen..".Weapon.DamageValueMod", "")
 			end
 			if sMod~="" then
---				if sMod=="-" or sMod=="—" then
---					sMod="";
-				if sMod=="/2" or sMod=="÷2" then
+				sMod=sMod:gsub("–", "-");
+				if sMod=="-" or sMod=="—" then
+					sMod="";
+				elseif sMod=="/2" or sMod=="÷2" then
 					sMod=" [H]";
 					if sDice~="" then
 						sDice=sDice..sMod
@@ -927,7 +928,7 @@ function UpdateValue()
 				elseif sMod:sub(1, 1)~="+" and sMod:sub(1, 1)~="-" then
 					sMod="+"..sMod;
 					sDice=sDice..sMod
-				else
+				elseif sMod~="-" and sMod~="—" and sMod~="–" then
 					sDice=sDice..sMod
 				end
 			end
