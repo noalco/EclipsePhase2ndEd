@@ -5,7 +5,7 @@
     <ZIndex>17</ZIndex>
     <ControlClass>FGNumberField</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
-      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"left","AnchorTo":"right","Parent":"LabelAmmo"}}},
       {"Name":"AdvancedTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"Ammo"}},
@@ -29,7 +29,7 @@
       {"Name":"GMVisibleOnly"},
       {"Name":"HideOnValue"},
       {"Name":"HideRollWidget"},
-      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"1"}},
+      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"HoverCursor"},
       {"Name":"InheritSizePosition"},
       {"Name":"InsertBefore"},
@@ -37,7 +37,7 @@
       {"Name":"MaximumHeight"},
       {"Name":"MaximumWidth"},
       {"Name":"MaxValue"},
-      {"Name":"Merge"},
+      {"Name":"Merge","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"MinimumHeight"},
       {"Name":"MinimumWidth"},
       {"Name":"MinValue","Value":{"@xsi:type":"xsd:decimal","#text":"0"}},
@@ -47,8 +47,8 @@
       {"Name":"NoKeyEdit"},
       {"Name":"PrevTabTarget"},
       {"Name":"ReadOnly"},
-      {"Name":"RelativeMargin","Value":{"@xsi:type":"xsd:int","#text":"-5"}},
-      {"Name":"RelativeStacking"},
+      {"Name":"RelativeMargin","Value":{"@xsi:type":"xsd:int","#text":"-4"}},
+      {"Name":"RelativeStacking","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"ScriptFile"},
       {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":".Weapon.Ammo"}},
       {"Name":"StackVertWith"},
@@ -56,7 +56,7 @@
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"285"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"209"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"36"}}
 ]}}</Definition>
     <LUACode>function onValueChanged()
@@ -69,10 +69,10 @@ end
   <WindowControls>
     <WindowName>char_combat</WindowName>
     <ControlName>Ammo2</ControlName>
-    <ZIndex>20</ZIndex>
+    <ZIndex>19</ZIndex>
     <ControlClass>FGNumberField</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
-      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"left","AnchorTo":"right","Parent":"LabelAmmo2"}}},
       {"Name":"AdvancedTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"Ammo2"}},
@@ -96,7 +96,7 @@ end
       {"Name":"GMVisibleOnly"},
       {"Name":"HideOnValue"},
       {"Name":"HideRollWidget"},
-      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"1"}},
+      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"HoverCursor"},
       {"Name":"InheritSizePosition"},
       {"Name":"InsertBefore"},
@@ -114,8 +114,8 @@ end
       {"Name":"NoKeyEdit"},
       {"Name":"PrevTabTarget"},
       {"Name":"ReadOnly"},
-      {"Name":"RelativeMargin","Value":{"@xsi:type":"xsd:int","#text":"-5"}},
-      {"Name":"RelativeStacking"},
+      {"Name":"RelativeMargin","Value":{"@xsi:type":"xsd:int","#text":"-3"}},
+      {"Name":"RelativeStacking","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"ScriptFile"},
       {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":".Weapon.Ammo2"}},
       {"Name":"StackVertWith"},
@@ -123,7 +123,7 @@ end
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"332"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"256"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"36"}}
 ]}}</Definition>
     <LUACode>function onValueChanged()
@@ -136,10 +136,10 @@ end
   <WindowControls>
     <WindowName>char_combat</WindowName>
     <ControlName>AmmoChosen</ControlName>
-    <ZIndex>18</ZIndex>
+    <ZIndex>21</ZIndex>
     <ControlClass>FGStringCycler</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
-      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":[{"EdgeAnchor":"left","AnchorTo":"right","Parent":"LabelAmmo"},{"EdgeAnchor":"right","AnchorTo":"left","Parent":"Ammo"}]}},
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"left","AnchorTo":"right","Parent":"Ammunition"}}},
       {"Name":"AdvancedTemplate"},
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"AmmoChosen"}},
@@ -157,7 +157,7 @@ end
       {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string","#text":"0,0,0,0"}},
       {"Name":"GMEditOnly"},
       {"Name":"GMVisibleOnly"},
-      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"2"}},
       {"Name":"HoverCursor"},
       {"Name":"InheritSizePosition"},
       {"Name":"InsertBefore"},
@@ -170,7 +170,7 @@ end
       {"Name":"NextTabTarget"},
       {"Name":"PrevTabTarget"},
       {"Name":"ReadOnly"},
-      {"Name":"RelativeMargin","Value":{"@xsi:type":"xsd:int","#text":"-4"}},
+      {"Name":"RelativeMargin"},
       {"Name":"RelativeStacking","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"ScriptFile"},
       {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":".Weapon.AmmoChosen"}},
@@ -182,7 +182,7 @@ end
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"208"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"383"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"36"}}
 ]}}</Definition>
     <LUACode>function onInit()
@@ -197,12 +197,24 @@ function UpdateData()
 		local sValue=DB.getValue(window.getDatabaseNode(), "Weapon.AmmoChosen");
 		local tValues = {};
 		local tLabels = {};
+		local name="";
 		for _,n in pairs(DB.getChildren(Tools.getCharNodePath(window.getDatabaseNode())..".inventorylist")) do
 			if DB.getValue(n, "Type", "") == "Kinetic Ammo" then
-				table.insert(tValues, DB.getPath(n));
-				table.insert(tLabels, DB.getValue(n, "name", ""));
-				if sValue==DB.getPath(n) then
-					bExist=true;
+				name=DB.getValue(n, "name", "");
+				if name:lower()~="smart" then
+					table.insert(tValues, DB.getPath(n));
+					table.insert(tLabels, name);
+					if sValue==DB.getPath(n) then
+						bExist=true;
+					end
+				else
+					for _,v in pairs(DataCommon.tSmartAmmo) do
+						table.insert(tValues, name.." ("..v.sString..")");
+						table.insert(tLabels, name.." ("..v.sString..")");
+						if sValue==name.." ("..v.sString..")" then
+							bExist=true;
+						end
+					end
 				end
 			end
 		end
@@ -216,18 +228,24 @@ function UpdateData()
 			setStringValue(sValue);
 		end
 		update();
+		window.DamageString.UpdateValue();
 	end
-end</LUACode>
+end
+
+function onValueChanged()
+	window.DamageString.UpdateValue();
+end
+</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>char_combat</WindowName>
     <ControlName>Ammunition</ControlName>
-    <ZIndex>21</ZIndex>
+    <ZIndex>20</ZIndex>
     <ControlClass>FGCounterList</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
-      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"left","AnchorTo":"right","Parent":"Ammo2"}}},
       {"Name":"AdvancedTemplate"},
       {"Name":"AllowSingleSpacing","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
@@ -245,7 +263,7 @@ end</LUACode>
       {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"GMEditOnly"},
       {"Name":"GMVisibleOnly"},
-      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"1"}},
+      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"HoverCursor"},
       {"Name":"InheritSizePosition"},
       {"Name":"InsertBefore"},
@@ -262,7 +280,7 @@ end</LUACode>
       {"Name":"PrevTabTarget"},
       {"Name":"ReadOnly"},
       {"Name":"RelativeMargin"},
-      {"Name":"RelativeStacking"},
+      {"Name":"RelativeStacking","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"ScriptFile"},
       {"Name":"Source"},
       {"Name":"Spacing"},
@@ -271,7 +289,7 @@ end</LUACode>
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"363"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"286"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"42"}}
 ]}}</Definition>
     <LUACode />
@@ -817,7 +835,7 @@ end</LUACode>
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"130"}},
       {"Name":"DevelopmentComments"},
-      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"{@self.getValue()}","DiceRollDescription":"{@self.getDescriptionText()}","DiceRollType":"Damage","UseModStack":"true","ResetModStack":"true","SecretRoll":{"@xsi:nil":"true"},"DragIcon":"action_damage","AllowDragDrop":"true","AdditionalInfo":null}},
+      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"{@self.getDiceString()}","DiceRollDescription":"{@self.getDescriptionText()}","DiceRollType":"Damage","UseModStack":"true","ResetModStack":"true","SecretRoll":{"@xsi:nil":"true"},"DragIcon":"action_damage","AllowDragDrop":"true","AdditionalInfo":null}},
       {"Name":"Disabled"},
       {"Name":"DynamicSize","Value":{"@xsi:type":"xsd:string","#text":"Dynamic Height"}},
       {"Name":"EmptyText"},
@@ -860,8 +878,14 @@ end</LUACode>
     <LUACode>function onInit()
 	DB.addHandler(DB.getPath(window.getDatabaseNode(), "Weapon.DamageValue"), "onUpdate", UpdateValue);
 	DB.addHandler(DB.getPath(window.getDatabaseNode(), "Weapon.DamagePlus"), "onUpdate", UpdateValue);
-	DB.addHandler(DB.getPath(window.getDatabaseNode(), "ArmorUsed"), "onUpdate", UpdateValue);
+	DB.addHandler(DB.getPath(window.getDatabaseNode(), "Weapon.ArmorUsed"), "onUpdate", UpdateValue);
 	UpdateValue();
+end
+
+function onClose()
+	DB.removeHandler(DB.getPath(window.getDatabaseNode(), "Weapon.DamageValue"), "onUpdate", UpdateValue);
+	DB.removeHandler(DB.getPath(window.getDatabaseNode(), "Weapon.DamagePlus"), "onUpdate", UpdateValue);
+	DB.removeHandler(DB.getPath(window.getDatabaseNode(), "Weapon.ArmorUsed"), "onUpdate", UpdateValue);
 end
 
 function UpdateValue()
@@ -870,9 +894,9 @@ function UpdateValue()
 	if sType=="Melee Weapon" or sType=="Ranged Weapon" or sType=="Micromissile/Minigrenade" then
 		sDice=DiceManager.convertDiceToString(DB.getValue(window.getDatabaseNode(), "Weapon.DamageValue"), DB.getValue(window.getDatabaseNode(), "Weapon.DamagePlus"));
 		if sDice~="" then
-			if DB.getValue(window.getDatabaseNode(), "ArmorUsed")=="Energy" then
+			if DB.getValue(window.getDatabaseNode(), "Weapon.ArmorUsed")=="Energy" then
 				sDice=sDice.." (vs Energy)";
-			elseif DB.getValue(window.getDatabaseNode(), "ArmorUsed")=="Kinetic" then
+			elseif DB.getValue(window.getDatabaseNode(), "Weapon.ArmorUsed")=="Kinetic" then
 				sDice=sDice.." (vs Kinetic)";
 			end
 		else
@@ -892,6 +916,10 @@ function getDescriptionText()
 		sMessage=sMessage.." vs Kinetic";
 	end
 	return sMessage;
+end
+
+function getDiceString()
+	return getValue();
 end
 </LUACode>
     <GroupIndex>0</GroupIndex>
@@ -1150,10 +1178,10 @@ end
   <WindowControls>
     <WindowName>char_combat</WindowName>
     <ControlName>LabelAmmo2</ControlName>
-    <ZIndex>19</ZIndex>
+    <ZIndex>18</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
-      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"left","AnchorTo":"right","Parent":"Ammo"}}},
       {"Name":"AdvancedTemplate","Value":{"@xsi:type":"xsd:string","#text":"label"}},
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"Center","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
@@ -1171,7 +1199,7 @@ end
       {"Name":"FrameName"},
       {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"GMVisibleOnly"},
-      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"1"}},
+      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"HoverCursor"},
       {"Name":"InheritSizePosition"},
       {"Name":"InsertBefore"},
@@ -1185,8 +1213,8 @@ end
       {"Name":"MultilineSpacing"},
       {"Name":"NextTabTarget"},
       {"Name":"PrevTabTarget"},
-      {"Name":"RelativeMargin"},
-      {"Name":"RelativeStacking"},
+      {"Name":"RelativeMargin","Value":{"@xsi:type":"xsd:int","#text":"-3"}},
+      {"Name":"RelativeStacking","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"ScriptFile"},
       {"Name":"StackVertWith"},
       {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
@@ -1194,7 +1222,7 @@ end
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"325"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"249"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"42"}}
 ]}}</Definition>
     <LUACode />
@@ -1695,6 +1723,11 @@ end
 function onInit()
 	super.onInit();
 	UpdateVisibility()
+	DB.addHandler(DB.getPath(window.getDatabaseNode(), "Weapon.RangedWeaponType"), "onUpdate", UpdateVisibility);
+end
+
+function onClose()
+	DB.removeHandler(DB.getPath(window.getDatabaseNode(), "Weapon.RangedWeaponType"), "onUpdate", UpdateVisibility);
 end
 
 function UpdateVisibility()
@@ -1708,6 +1741,7 @@ function UpdateVisibility()
 	window.StringFM.setVisible(bIsRanged);
 	window.LabelRange.setVisible(bIsRanged);
 	window.Range.setVisible(bIsRanged);
+	window.AmmoChosen.setVisible(bIsRanged and DB.getValue(window.getDatabaseNode(), "Weapon.RangedWeaponType", "")=="Kinetic Weapon");
 end</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />

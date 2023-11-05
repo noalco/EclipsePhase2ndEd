@@ -4043,7 +4043,7 @@ end</LUACode>
       {"Name":"AdvancedTemplate"},
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"ButtonOffset"},
-      {"Name":"ComboItems","Value":{"@xsi:type":"ArrayOfLabelValue","LabelValue":[{"Label":"Beam Weapon","Value":"Beam Weapon"},{"Label":"Spray Weapon","Value":"Spray Weapon"},{"Label":"Thrown Weapon","Value":"Thrown Weapon"},{"Label":"Weapon System","Value":"Weapon System"},{"Label":"Seeker Weapon","Value":"Seeker Weapon"}]}},
+      {"Name":"ComboItems","Value":{"@xsi:type":"ArrayOfLabelValue","LabelValue":[{"Label":"Beam Weapon","Value":"Beam Weapon"},{"Label":"Spray Weapon","Value":"Spray Weapon"},{"Label":"Thrown Weapon","Value":"Thrown Weapon"},{"Label":"Weapon System","Value":"Weapon System"},{"Label":"Seeker Weapon","Value":"Seeker Weapon"},{"Label":"Kinetic Weapon","Value":"Kinetic Weapon"}]}},
       {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"RangedWeaponType"}},
       {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
       {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},

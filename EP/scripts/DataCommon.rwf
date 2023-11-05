@@ -52,6 +52,12 @@ Numbers = {
 	["eight"] = 8,
 	["nine"] = 9,
 	["ten"] = 10,
+}
+
+tSmartAmmo = {
+	["Accushot"]={sString="A", sDmgMod=""},
+	["Hollow-point"]={sString="HP", sDmgMod="÷2"},
+	["Plastic"]={sString="P", sDmgMod="+1d6"}
 }</Script>
     <RegisterScript>true</RegisterScript>
     <Encoding />
