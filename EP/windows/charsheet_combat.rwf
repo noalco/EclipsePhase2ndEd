@@ -246,6 +246,7 @@ end</LUACode>
 ]}}</Definition>
     <LUACode>function onInit()
 	DB.addHandler(DB.getPath(getDatabaseNode(), "inventorylist.*.Type"), "onUpdate", UpdateCombatList);
+	DB.addHandler(DB.getPath(getDatabaseNode(), "inventorylist.*.name"), "onUpdate", UpdateCombatList);
 	DB.addHandler(DB.getPath(getDatabaseNode(), "inventorylist"), "onChildAdded", UpdateCombatList);
 	DB.addHandler(DB.getPath(getDatabaseNode(), "inventorylist"), "onChildDeleted", UpdateCombatList);
 	
@@ -257,6 +258,7 @@ end
 
 function onClose()
 	DB.removeHandler(DB.getPath(getDatabaseNode(), "inventorylist.*.Type"), "onUpdate", UpdateCombatList);
+	DB.removeHandler(DB.getPath(getDatabaseNode(), "inventorylist.*.name"), "onUpdate", UpdateCombatList);
 	DB.removeHandler(DB.getPath(getDatabaseNode(), "inventorylist"), "onChildAdded", UpdateCombatList);
 	DB.removeHandler(DB.getPath(getDatabaseNode(), "inventorylist"), "onChildDeleted", UpdateCombatList);
 end
@@ -267,6 +269,7 @@ function UpdateCombatList()
 		sType=DB.getValue(w.getDatabaseNode(), "Type", "");
 		w.Attack.setVisible((sType=="Melee Weapon" or sType=="Ranged Weapon" or sType=="Micromissile/Minigrenade") and (Mode.getValue()=="Preparation" or Mode.getValue()=="Combat" and w.Attack.subwindow.carried.getValue()==2));
 		w.Attack.subwindow.carried.UpdateVisibility();
+		w.Attack.subwindow.AmmoChosen.UpdateData();
 	end
 end
 

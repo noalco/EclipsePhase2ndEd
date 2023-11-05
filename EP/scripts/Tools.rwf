@@ -33,7 +33,8 @@ end
 function getCharNodePath(Node)
 	if Node and Node.getPath and Node.getPath():match("(charsheet%.id%-%d*)") then
 		return Node.getPath():match("(charsheet%.id%-%d*)");
-	else return "";
+	else
+		return "";
 	end
 end
 
