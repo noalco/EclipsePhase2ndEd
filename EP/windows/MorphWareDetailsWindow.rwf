@@ -292,7 +292,7 @@
       {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"WareList"}},
       {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
       {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
-      {"Name":"DataSource","Value":{"@xsi:type":"xsd:string","#text":".Morph.WareList"}},
+      {"Name":"DataSource","Value":{"@xsi:type":"xsd:string","#text":".WareList"}},
       {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"239"}},
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"277"}},

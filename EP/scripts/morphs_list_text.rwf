@@ -1,0 +1,160 @@
+<DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
+  <Scripts>
+    <ScriptName>morphs_list_text</ScriptName>
+    <FolderID>9</FolderID>
+    <Script>-- 
+-- Please see the license.html file included with this distribution for 
+-- attribution and copyright information.
+--
+
+local sFocus = "name";
+
+function onInit()
+	if newfocus then
+		sFocus = newfocus[1];
+	end
+end
+
+function onListChanged()
+	update();
+end
+
+function update()
+	local sEdit = getName() .. "_iedit";
+	if window[sEdit] then
+		local bEdit = (window[sEdit].getValue() == 1);
+		for _,w in ipairs(getWindows()) do
+			w.idelete.setVisibility(bEdit);
+		end
+	end
+end
+
+function addEntry(bFocus)
+	local w = createWindow();
+	if bFocus and w[sFocus] then
+		w[sFocus].setFocus();
+	end
+	if self.onEntryAdded then
+		self.onEntryAdded(w);
+	end
+	return w;
+end
+
+function onDrop(x, y, dragdata)
+	local sClass,sRecord = dragdata.getShortcutData();
+	if sClass=="MorphDataSidebarWindow" or sClass=="MorphDataWindow" or sClass=="MorphListBase" then
+		local recordNode=DB.findNode(sRecord);
+		local newMorph=createWindow();
+		DB.copyNode(recordNode, newMorph.getDatabaseNode());
+		newMorph.link.setValue("MorphDataWindow", "");
+		ParseTraits(newMorph.getDatabaseNode(), recordNode);
+		ParseWare(newMorph.getDatabaseNode(), recordNode);
+	end
+end
+
+function ParseTraits(newMorph, recordNode)
+	local sTraits=DB.getValue(recordNode, "Traits", "");
+	if sTraits=="" then
+		return;
+	end
+	sTraits=sTraits:gsub("\n", " ");
+	while sTraits:match("  ") do sTraits=sTraits:gsub("  ", " "); end
+	local aTraits,_ = StringManager.split(sTraits, ",", true);
+	local NewTraitNode;
+	local sTraitName;
+	local nLevel;
+	local sLevelField;
+	local TraitListNode=DB.createChild(newMorph, "TraitList");
+	for i=1,#aTraits do
+		if aTraits[i]:match("%(") then
+			sTraitName=aTraits[i]:match("(.*)%(");
+			nLevel=aTraits[i]:lower():match("level (%d*)")
+			if nLevel then
+				nLevel=tonumber(nLevel);
+			end
+			sLevelField="TraitLevel";
+		else
+			sTraitName=aTraits[i];
+			nLevel=nil;
+			sLevelField=nil;
+		end
+		while sTraitName:sub(-1)==" " do sTraitName=sTraitName:sub(1, -2); end
+		NewTraitNode=Tools.SearchRecord(sTraitName, "traits", sLevelField, nLevel);
+		local w=DB.createChild(TraitListNode);
+		if NewTraitNode and NewTraitNode~="" then
+			DB.copyNode(NewTraitNode, w);
+		else
+			DB.setValue(w, "name", "string", sTraitName);
+			DB.setValue(w, "IsMorph", "number", 1);
+		end
+	end
+end
+
+function ParseWare(newMorph, recordNode)
+	local sWares=DB.getValue(recordNode, "Ware", "");
+	if sWares=="" then
+		return;
+	end
+	sWares=sWares:gsub("\n", " ");
+	while sWares:match("  ") do sWares=sWares:gsub("  ", " "); end
+	local aWares,_ = StringManager.split(sWares, ",", true);
+	local NewWareNode;
+	local WareListNode=DB.createChild(newMorph, "WareList");
+	for i=1,#aWares do
+		while aWares[i]:sub(-1)==" " do aWares[i]=aWares[i]:sub(1, -2); end
+		NewWareNode=Tools.SearchRecord(aWares[i], "item");
+		local w=DB.createChild(WareListNode);
+		if NewWareNode and NewWareNode~="" then
+			DB.copyNode(NewWareNode, w);
+		else
+			DB.setValue(w, "name", "string", aWares[i]);
+		end
+	end
+end
+
+
+--function ParseWear(newMorph, recordNode)
+--	local sWears=DB.getValue(recordNode, "Wear", "");
+--	if sWears=="" then
+--		return;
+--	end
+--	local sNodeChar=Tools.getCharNodePath(getDatabaseNode());
+--	sWears=sWears:gsub("\n", " ");
+--	while sWears:match("  ") do sWears=sWears:gsub("  ", " "); end
+--	local aWears,_ = StringManager.split(sWears, ",", true);
+--	local NewItemNode;
+--	local sWareName;
+--	local InventoryNode=DB.findNode(sNodeChar..".inventorylist");
+--	local WareListNode=DB.createChild(newMorph, "WareList");
+--	local w;
+--	for i=1,#aWears do
+--		if aWears[i]:lower():match("armor") then
+--			sWareName=aWears[i]:lower():match("(.*) armor");
+--		else
+--			sWareName=aWears[i];
+--		end
+--		while sWareName:sub(-1)==" " do
+--			sWareName=sWareName:sub(1, -2);
+--		end
+--		NewItemNode=Tools.SearchRecord(sWareName, "items");
+--		if NewItemNode and NewItemNode~="" then
+--			if DB.getValue(NewItemNode, "Type", "")~="Augmentation" then
+--				w=DB.createChild(InventoryNode);
+--				DB.copyNode(NewItemNode, w);
+--				DB.setValue(w, "count", "number", 1);
+--			else
+--				w=DB.createChild(WareListNode);
+--				DB.copyNode(NewItemNode, w);
+--			end
+--		else
+--			w=DB.createChild(InventoryNode);
+--			DB.setValue(w, "name", "string", sWareName);
+--			DB.setValue(w, "count", "number", 1);
+--		end
+--	end
+--end
+</Script>
+    <RegisterScript>false</RegisterScript>
+    <Encoding />
+  </Scripts>
+</DocumentElement>

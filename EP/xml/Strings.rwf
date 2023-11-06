@@ -57,8 +57,10 @@
 	&lt;string name="moprh_empty_name"&gt;« Morph Name »&lt;/string&gt;
 	&lt;string name="morph_empty_type"&gt;« Morph Type »&lt;/string&gt;
 	&lt;string name="morph_label"&gt;MORPH&lt;/string&gt;
+	&lt;string name="morph_list"&gt;AVAILABLE MORPHS&lt;/string&gt;
 	&lt;string name="morph_points_label"&gt;MP&lt;/string&gt;
 	&lt;string name="morph_pool_label"&gt;Morph&lt;/string&gt;
+	&lt;string name="total_morph_mp_spent"&gt;Spent MPs&lt;/string&gt;
 	&lt;string name="morph_trait_label"&gt;Morph trait&lt;/string&gt;
 	&lt;string name="morph_traits_main_label"&gt;Morph Traits&lt;/string&gt;
 	&lt;string name="morph_traits_label"&gt;MORPH TRAITS&lt;/string&gt;
@@ -136,6 +138,7 @@
 	&lt;string name="trauma_Threshol_tooltip"&gt;Trauma Threshol&lt;/string&gt;
 	&lt;string name="weapon_type_tooltip"&gt;For Exotic Skills, use the "Exotic Skill: exotic skill name" format (example: Exotic Skill: Monowire Garrote)&lt;/string&gt;
 	&lt;string name="wound_threshol_tooltip"&gt;Wound Threshol&lt;/string&gt;
+	&lt;string name="morph_list_tooltip"&gt;Available Morphs&lt;/string&gt;
 	
 	&lt;!-- Combat --&gt;
 	&lt;string name="attack_hit"&gt;the attack hits&lt;/string&gt;

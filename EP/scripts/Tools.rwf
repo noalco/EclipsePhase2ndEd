@@ -31,11 +31,15 @@ function ChatMenssage(sMenssage, sFont, sIcon, bDMOnly, sUser)
 end
 
 function getCharNodePath(Node)
-	if Node and Node.getPath and Node.getPath():match("(charsheet%.id%-%d*)") then
-		return Node.getPath():match("(charsheet%.id%-%d*)");
+	if Node and DB.getPath(Node):match("(charsheet%.id%-%d*)") then
+		return DB.getPath(Node):match("(charsheet%.id%-%d*)");
 	else
 		return "";
 	end
+end
+
+function getCharNode(Node)
+	return DB.findNode(getCharNodePath(Node));
 end
 
 function SearchRecord(sRecordName, sReference, sExtraField, ExtraFieldValue)
