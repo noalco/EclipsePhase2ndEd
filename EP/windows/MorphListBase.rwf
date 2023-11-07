@@ -2,7 +2,7 @@
   <WindowControls>
     <WindowName>MorphListBase</WindowName>
     <ControlName>Cost</ControlName>
-    <ZIndex>6</ZIndex>
+    <ZIndex>4</ZIndex>
     <ControlClass>FGNumberField</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -132,7 +132,7 @@ end
   <WindowControls>
     <WindowName>MorphListBase</WindowName>
     <ControlName>Label3</ControlName>
-    <ZIndex>7</ZIndex>
+    <ZIndex>5</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -370,7 +370,7 @@ end
   <WindowControls>
     <WindowName>MorphListBase</WindowName>
     <ControlName>Selected</ControlName>
-    <ZIndex>8</ZIndex>
+    <ZIndex>6</ZIndex>
     <ControlClass>FGCheckbox</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -417,14 +417,16 @@ end
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"5"}}
 ]}}</Definition>
     <LUACode>function onInit()
-	if window.windowlist.getWindowCount()&lt;1 and getValue()==0 then
+	if window.windowlist.window.SelectedMorph.getValue()==0 then
 		setValue(1);
+		window.windowlist.window.SelectedMorph.setValue(1);
 	end
 	setReadOnly(getValue()==1);
 end
 
 function onValueChanged()
 	if getValue()==1 then
+		window.windowlist.window.SelectedMorph.setValue(1);
 		local nodeChar=Tools.getCharNode(window.getDatabaseNode());
 		local sClass, sRecord=window.link.getValue();
 		setReadOnly(true);
