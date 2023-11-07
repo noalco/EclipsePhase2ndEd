@@ -43,7 +43,6 @@ end
 function onDrop(x, y, dragdata)
 	local sClass,sRecord = dragdata.getShortcutData();
 	if sClass=="MorphDataSidebarWindow" or sClass=="MorphDataWindow" or sClass=="MorphListBase" then
-		Debug.chat(sClass)
 		local recordNode=DB.findNode(sRecord);
 		local newMorph=createWindow();
 		DB.copyNode(recordNode, newMorph.getDatabaseNode());

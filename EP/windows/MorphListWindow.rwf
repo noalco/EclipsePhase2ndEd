@@ -456,7 +456,24 @@
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"222"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"257"}}
 ]}}</Definition>
-    <LUACode />
+    <LUACode>function onInit()
+	DB.addHandler(DB.getPath(window.getDatabaseNode())..".MorphList.*.Cost", "onUpdate", UpdateTotalCost);
+	DB.addHandler(DB.getPath(window.getDatabaseNode())..".MorphList", "onChildDeleted", UpdateTotalCost);
+	UpdateTotalCost();
+end
+
+function onClose()
+	DB.removeHandler(DB.getPath(window.getDatabaseNode())..".MorphList.*.Cost", "onUpdate", UpdateTotalCost);
+	DB.removeHandler(DB.getPath(window.getDatabaseNode())..".MorphList", "onChildDeleted", UpdateTotalCost);
+end
+
+function UpdateTotalCost()
+	local nTotal=0;
+	for _,w in pairs(window.MorphList.getWindows()) do
+		nTotal=nTotal+w.Cost.getValue();
+	end
+	setValue(nTotal);
+end</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
