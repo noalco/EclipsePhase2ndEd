@@ -3842,7 +3842,7 @@ end
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
     <ControlName>MorphTraitsDetailsLink</ControlName>
-    <ZIndex>90</ZIndex>
+    <ZIndex>85</ZIndex>
     <ControlClass>FGLinkField</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -4028,7 +4028,7 @@ end
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
     <ControlName>MorphWareDetailsLink</ControlName>
-    <ZIndex>91</ZIndex>
+    <ZIndex>86</ZIndex>
     <ControlClass>FGLinkField</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},

@@ -58,7 +58,9 @@ function SearchRecord(sRecordName, sReference, sExtraField, ExtraFieldValue)
 				sRecordNodeName=sRecordNodeName:gsub("%-", " ");
 				if sRecordNodeName:match(sRecordName) then
 					if sExtraField and ExtraFieldValue and sExtraField~="" then
-						if DB.getValue(rReferenceNode, sExtraField)==ExtraFieldValue then return rReferenceNode; end
+						if DB.getValue(rReferenceNode, sExtraField)==ExtraFieldValue then
+							return rReferenceNode;
+						end
 					else
 						return rReferenceNode;
 					end
@@ -75,7 +77,9 @@ function SearchRecord(sRecordName, sReference, sExtraField, ExtraFieldValue)
 					sRecordNodeName=sRecordNodeName:gsub("%-", " ");
 					if sRecordNodeName:match(sRecordName) then
 						if sExtraField and ExtraFieldValue and sExtraField~="" then
-							if DB.getValue(rReferenceNode, sExtraField)==ExtraFieldValue then return rReferenceNode; end
+							if DB.getValue(rReferenceNode, sExtraField)==ExtraFieldValue then
+								return rReferenceNode;
+							end
 						else
 							return rReferenceNode;
 						end

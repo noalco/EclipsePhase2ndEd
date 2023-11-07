@@ -43,56 +43,110 @@ end
 function onDrop(x, y, dragdata)
 	local sClass,sRecord = dragdata.getShortcutData();
 	if sClass=="MorphDataSidebarWindow" or sClass=="MorphDataWindow" or sClass=="MorphListBase" then
+		Debug.chat(sClass)
 		local recordNode=DB.findNode(sRecord);
 		local newMorph=createWindow();
 		DB.copyNode(recordNode, newMorph.getDatabaseNode());
 		newMorph.link.setValue("MorphDataWindow", "");
-		ParseTraits(newMorph.getDatabaseNode(), recordNode);
-		ParseWare(newMorph.getDatabaseNode(), recordNode);
+		if sClass=="MorphDataSidebarWindow" then
+			ParseTraits(newMorph.getDatabaseNode(), recordNode);
+			ParseWare(newMorph.getDatabaseNode(), recordNode);
+		end
 	end
 end
 
 function ParseTraits(newMorph, recordNode)
 	local sTraits=DB.getValue(recordNode, "Traits", "");
-	if sTraits=="" then
+	if not sTraits or sTraits=="" then -- or DB.getChild(newMorph, "TraitList") then
 		return;
 	end
 	sTraits=sTraits:gsub("\n", " ");
 	while sTraits:match("  ") do sTraits=sTraits:gsub("  ", " "); end
-	local aTraits,_ = StringManager.split(sTraits, ",", true);
 	local NewTraitNode;
 	local sTraitName;
 	local nLevel;
 	local sLevelField;
 	local TraitListNode=DB.createChild(newMorph, "TraitList");
+	local aSpecializations;
+	local tSpecializations={};
+	local sSpecName;
+	local sPecLevel;
+	local straits={};
+	local sAux;
+	local sAux2;
+	while sTraits:match("%(.-,.-%)") do -- Change character ',' for '|' in format "(specialization, level X)" because traits are also separated by ','
+		sAux=sTraits:match("%((.-,.-)%)");
+		sAux2=sAux:gsub(",", "|");
+		sTraits=sTraits:gsub(sAux, sAux2);
+	end
+	local aTraits,_ = StringManager.split(sTraits, ",", true);
 	for i=1,#aTraits do
-		if aTraits[i]:match("%(") then
-			sTraitName=aTraits[i]:match("(.*)%(");
-			nLevel=aTraits[i]:lower():match("level (%d*)")
-			if nLevel then
-				nLevel=tonumber(nLevel);
+		if aTraits[i]:match(".*%s*%(.*%)") then
+			sTraitName=aTraits[i]:match("(.*)%(.*%)") or "";
+			local sInnerData=aTraits[i]:match("%((.*)%)") or "";
+			tSpecializations={};
+			if sInnerData:match(";") then
+--				Enhanced Behavior (Aggressiveness, Level 2; Cooperation, Level 2) -&gt; Morph name (especialización 1, Level X; especialización 2, Level Y, ...)
+				aSpecializations,_ = StringManager.split(sInnerData, ";", true);				
+				for i=1,#aSpecializations do
+					sSpecName=aSpecializations[i]:match("(.*)|%s*[Ll][Ee][Vv][Ee][Ll]") or "";
+					sPecLevel=aSpecializations[i]:lower():match("level%s*(%d+)") or "1";
+					table.insert(tSpecializations, {sSpecName=sSpecName, nPecLevel=tonumber(sPecLevel)});
+				end
+			elseif sInnerData:lower():match(".*|%s*level %d+") then
+--				Enhanced Behavior (Patience, Level 2) -&gt; Morph name (especialización, Level X)
+				sSpecName=sInnerData:match("(.*)|%s*[Ll][Ee][Vv][Ee][Ll]") or "";
+				sPecLevel=sInnerData:lower():match("level%s*(%d+)") or "1";
+				table.insert(tSpecializations, {sSpecName=sSpecName, nPecLevel=tonumber(sPecLevel)});
+			elseif sInnerData:lower():match("level %d+") then
+--				Exotic Morphology (Level 1) -&gt; Morph name (Level X)
+				nLevel=tonumber(sInnerData:lower():match("level (%d+)"));
+				sLevelField="TraitLevel";
+			else
+				nLevel=nil;
+				sLevelField=nil;
 			end
-			sLevelField="TraitLevel";
 		else
 			sTraitName=aTraits[i];
 			nLevel=nil;
 			sLevelField=nil;
 		end
 		while sTraitName:sub(-1)==" " do sTraitName=sTraitName:sub(1, -2); end
-		NewTraitNode=Tools.SearchRecord(sTraitName, "traits", sLevelField, nLevel);
-		local w=DB.createChild(TraitListNode);
-		if NewTraitNode and NewTraitNode~="" then
-			DB.copyNode(NewTraitNode, w);
+		
+		if #tSpecializations&gt;0 then
+			sLevelField="TraitLevel";
+			for i=1,#tSpecializations do
+				NewTraitNode=Tools.SearchRecord(sTraitName, "traits", sLevelField, tSpecializations[i].nPecLevel);
+				local w=DB.createChild(TraitListNode);
+				if NewTraitNode and NewTraitNode~="" then
+					DB.copyNode(NewTraitNode, w);
+					DB.setValue(w, "name", "string", sTraitName.." ("..tSpecializations[i].sSpecName..")");
+				else
+					DB.setValue(w, "name", "string", sTraitName.." ("..tSpecializations[i].sSpecName..")");
+					DB.setValue(w, "IsMorph", "number", 1);
+					DB.setValue(w, "TraitLevel", "number", tSpecializations[i].nPecLevel);
+				end
+			end
 		else
-			DB.setValue(w, "name", "string", sTraitName);
-			DB.setValue(w, "IsMorph", "number", 1);
+			NewTraitNode=Tools.SearchRecord(sTraitName, "traits", sLevelField, nLevel);
+			local w=DB.createChild(TraitListNode);
+			if NewTraitNode and NewTraitNode~="" then
+				DB.copyNode(NewTraitNode, w);
+			else
+				DB.setValue(w, "name", "string", sTraitName);
+				DB.setValue(w, "IsMorph", "number", 1);
+				if nLevel and nLevel&gt;1 then
+					DB.setValue(w, "TraitLevel", "number", nLevel);
+				end
+			end
 		end
 	end
 end
 
 function ParseWare(newMorph, recordNode)
+--	TODO: Añadir un checkbox a los items para indicar que son items (wear) obtenidos de morph
 	local sWares=DB.getValue(recordNode, "Ware", "");
-	if sWares=="" then
+	if sWares=="" then -- or DB.getChild(newMorph, "WareList") then
 		return;
 	end
 	sWares=sWares:gsub("\n", " ");
@@ -111,48 +165,6 @@ function ParseWare(newMorph, recordNode)
 		end
 	end
 end
-
-
---function ParseWear(newMorph, recordNode)
---	local sWears=DB.getValue(recordNode, "Wear", "");
---	if sWears=="" then
---		return;
---	end
---	local sNodeChar=Tools.getCharNodePath(getDatabaseNode());
---	sWears=sWears:gsub("\n", " ");
---	while sWears:match("  ") do sWears=sWears:gsub("  ", " "); end
---	local aWears,_ = StringManager.split(sWears, ",", true);
---	local NewItemNode;
---	local sWareName;
---	local InventoryNode=DB.findNode(sNodeChar..".inventorylist");
---	local WareListNode=DB.createChild(newMorph, "WareList");
---	local w;
---	for i=1,#aWears do
---		if aWears[i]:lower():match("armor") then
---			sWareName=aWears[i]:lower():match("(.*) armor");
---		else
---			sWareName=aWears[i];
---		end
---		while sWareName:sub(-1)==" " do
---			sWareName=sWareName:sub(1, -2);
---		end
---		NewItemNode=Tools.SearchRecord(sWareName, "items");
---		if NewItemNode and NewItemNode~="" then
---			if DB.getValue(NewItemNode, "Type", "")~="Augmentation" then
---				w=DB.createChild(InventoryNode);
---				DB.copyNode(NewItemNode, w);
---				DB.setValue(w, "count", "number", 1);
---			else
---				w=DB.createChild(WareListNode);
---				DB.copyNode(NewItemNode, w);
---			end
---		else
---			w=DB.createChild(InventoryNode);
---			DB.setValue(w, "name", "string", sWareName);
---			DB.setValue(w, "count", "number", 1);
---		end
---	end
---end
 </Script>
     <RegisterScript>false</RegisterScript>
     <Encoding />
