@@ -461,7 +461,7 @@ function onClose()
 end
 
 function UpdateWareList()
-	setValue(Tools.sortListToString(window.getDatabaseNode(), "TraitList", "name", ""))
+	setValue(Tools.sortListToString(window.getDatabaseNode(), "TraitList", "name", "", "TraitLevel", "Level"))
 end
 </LUACode>
     <GroupIndex>0</GroupIndex>

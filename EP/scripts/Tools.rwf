@@ -147,17 +147,32 @@ function getDefenderWillTarget(sCreatureNode)
 	end
 end
 
-function sortListToString(DBNode, subPath, sDBField, default)
+function sortListToString(DBNode, subPath, sDBField, default, sDBSubFieldName, sSubFieldLabel)
 	local sList="";
 	local sSep="";
 	local value=default;
+	local SubValue;
 	local tTable={};
 	local sortedChildren=DB.getChildren(DBNode, subPath);
 	if sortedChildren then
 		for _,c in pairs(sortedChildren) do
 			value=DB.getValue(c, sDBField, default);
 			if value~=default then
-				table.insert(tTable, value);
+				if sDBSubFieldName and sSubFieldLabel then
+					SubValue=DB.getValue(c, sDBSubFieldName);
+					if SubValue then
+						if value:match("%)") then
+							value=value:gsub("%)", ", "..sSubFieldLabel.." "..SubValue..")")
+						else
+							value=value.." ("..sSubFieldLabel.." "..SubValue..")";
+						end
+						table.insert(tTable, value);
+					else
+						table.insert(tTable, value);
+					end
+				else
+					table.insert(tTable, value);
+				end
 			end
 		end
 	end
