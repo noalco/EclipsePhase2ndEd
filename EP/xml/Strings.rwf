@@ -4,7 +4,7 @@
     <FolderID>0</FolderID>
     <XML>&lt;?xml version="1.0" encoding="utf-8"?&gt;
 &lt;root&gt;
-	&lt;!-- Main sheet --&gt;
+	&lt;!-- Main sheet --&gt; 
 	&lt;string name="aptitude_cognition_label"&gt;Cognition&lt;/string&gt;
 	&lt;string name="aptitude_intuition_label"&gt;Intuition&lt;/string&gt;
 	&lt;string name="aptitude_reflexes_label"&gt;Reflexes&lt;/string&gt;
