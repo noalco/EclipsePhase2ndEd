@@ -1,0 +1,26 @@
+<DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
+  <XMLFiles>
+    <XmlName>trait_masterindexitem_id</XmlName>
+    <FolderID>25</FolderID>
+    <XML>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;root&gt;
+	&lt;windowclass name="trait_masterindexitem_id" copy="masterindexitem_id"&gt;
+		&lt;sheetdata&gt;
+			&lt;masterindexitem_name name="name_level" insertbefore="name"&gt;
+				&lt;script&gt;
+					function onInit()
+						UpdateValue();
+						DB.addHandler(DB.getPath(window.getDatabaseNode(), "name"), "onUpdate", UpdateValue);
+						DB.addHandler(DB.getPath(window.getDatabaseNode(), "TraitLevel"), "onUpdate", UpdateValue);
+					end
+					
+					function UpdateValue()
+						setValue(DB.getValue(window.getDatabaseNode(), "name", "").." (Level "..DB.getValue(window.getDatabaseNode(), "TraitLevel", 1)..")");
+					end
+				&lt;/script&gt;
+			&lt;/masterindexitem_name&gt;
+		&lt;/sheetdata&gt;
+	&lt;/windowclass&gt;
+&lt;/root&gt;</XML>
+  </XMLFiles>
+</DocumentElement>

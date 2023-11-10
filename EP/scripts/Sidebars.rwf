@@ -69,7 +69,7 @@
 		["traits"] = {
 			bExport=true,
 			aDataMap = {"reference.traits"},
-			sListDisplayClass = "masterindexitem_id",
+			sListDisplayClass = "trait_masterindexitem_id",
 			sRecordDisplayClass ="TraitWindow",
 			sEditMode = "play",
 			sSidebarCategory = "character",
@@ -77,6 +77,7 @@
 				["CP/MP Cost/Bonus"] = { sField = "CostBonus" },
 				["Positive/Negative"] = { sField = "Positive", fGetValue =  getTraitPosNeg },
 				["Type"] = { sField = "Positive", fGetValue =  getTraitType },
+				["Level"] = { sField = "TraitLevel"},
 			},
 		},
 		["vehicle"] = {
