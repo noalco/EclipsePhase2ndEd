@@ -5,6 +5,12 @@
     <XML>&lt;?xml version="1.0" encoding="utf-8"?&gt;
 &lt;root&gt;
 	&lt;windowclass name="trait_masterindexitem_id" copy="masterindexitem_id"&gt;
+		&lt;script&gt;
+			function onInit()
+				super.onInit();
+				windowlist.onSortCompare=onSortCompareFunctions.onSortCompareTraits;
+			end
+		&lt;/script&gt;
 		&lt;sheetdata&gt;
 			&lt;masterindexitem_name name="name_level" insertbefore="name"&gt;
 				&lt;script&gt;
@@ -16,6 +22,7 @@
 					
 					function UpdateValue()
 						setValue(DB.getValue(window.getDatabaseNode(), "name", "").." (Level "..DB.getValue(window.getDatabaseNode(), "TraitLevel", 1)..")");
+						window.windowlist.applySort();
 					end
 				&lt;/script&gt;
 			&lt;/masterindexitem_name&gt;

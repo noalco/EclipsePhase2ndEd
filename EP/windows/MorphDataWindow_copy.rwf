@@ -1473,7 +1473,7 @@ end</LUACode>
   </WindowControls>
   <WindowControls>
     <WindowName>MorphDataWindow_copy</WindowName>
-    <ControlName>MorphDataWindow</ControlName>
+    <ControlName>MorphDataWindow_copy</ControlName>
     <ZIndex>0</ZIndex>
     <ControlClass>FGWindow</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
@@ -1481,7 +1481,7 @@ end</LUACode>
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"BottomMargin","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"Comments"},
-      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"MorphDataWindow"}},
+      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"MorphDataWindow_copy"}},
       {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
       {"Name":"DataSource"},
       {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"390"}},
