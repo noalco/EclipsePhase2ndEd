@@ -184,7 +184,7 @@
     <LUACode>function onValueChanged()
 --	window.attacks_iadd.setVisible(getValue()==1);
 	for _,w in pairs(window.attacks.getWindows()) do
-		w.Attack.subwindow.idelete.setVisible(getValue()==1);
+		w.Attack.subwindow.idelete.setVisible(getValue()==1 and w.Attack.subwindow.IsMorphWare.getValue()==0);
 	end
 end</LUACode>
     <GroupIndex>0</GroupIndex>
@@ -239,6 +239,7 @@ end</LUACode>
       {"Name":"Tooltip"},
       {"Name":"TooltipField"},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"WindowClassCopy"},
       {"Name":"WindowMargins","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"WindowTitle"},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"0"}},

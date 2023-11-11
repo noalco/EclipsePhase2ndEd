@@ -295,6 +295,7 @@ end
       {"Name":"Tooltip"},
       {"Name":"TooltipField"},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"WindowClassCopy"},
       {"Name":"WindowMargins","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"WindowTitle"},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"0"}},
@@ -435,6 +436,11 @@ function onValueChanged()
 			if w~=window then
 				w.Selected.setValue(0);
 				w.Selected.setReadOnly(false);
+			end
+		end
+		for _,n in pairs(DB.getChildren(nodeChar, "inventorylist")) do
+			if DB.getValue(n, "IsMorphWare")==1 then
+				DB.deleteNode(n);
 			end
 		end
 		window.idelete.setVisible(false);
