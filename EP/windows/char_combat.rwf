@@ -185,7 +185,17 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"383"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"36"}}
 ]}}</Definition>
-    <LUACode>function onInit()
+    <LUACode>tAmmoCounts={};
+
+function onInit()
+	local sName="";
+	for _,n in pairs(DB.getChildren(window.getDatabaseNode(), "AmmoCounts")) do
+		sName=DB.getName(n);
+		if sName~="Standard" then
+			sName=sName:gsub("_", ".");
+		end
+		tAmmoCounts[sName]=DB.getValue(n);
+	end
 	UpdateData();
 	super.onInit();
 	setSourceField("Weapon.AmmoChosen");
@@ -193,6 +203,12 @@ end
 
 function UpdateData()
 	if DB.getValue(window.getDatabaseNode(), "Type", "") == "Ranged Weapon" then
+		local tAmmoCountsAux={}
+		for k,v in pairs(tAmmoCounts) do
+			tAmmoCountsAux[k]=v;
+		end
+		tAmmoCounts={};
+		DB.deleteNode(DB.getPath(window.getDatabaseNode(), "AmmoCounts"));
 		local bExist=false;
 		local sValue=DB.getValue(window.getDatabaseNode(), "Weapon.AmmoChosen");
 		local tValues = {};
@@ -216,16 +232,28 @@ function UpdateData()
 						end
 					end
 				end
+				tAmmoCounts[DB.getPath(n)]=0;
+			end
+		end
+		tAmmoCounts["Standard"]=0;
+		local newCount;
+		for k,v in pairs(tAmmoCountsAux) do
+			if tAmmoCounts[k] then
+				tAmmoCounts[k]=v;
+				k=k:gsub("%.", "_");
+				DB.setValue(window.getDatabaseNode(), "AmmoCounts."..k, "number", v);
 			end
 		end
 		
 		parameters[1].defaultlabel="Standard";
---		parameters[1].defaultlabelres="";
 		parameters[1].values = { table.concat(tValues, "|") };
 		parameters[1].labels = { table.concat(tLabels, "|") };
 		initDisplayData();
 		if bExist then
 			setStringValue(sValue);
+			if tAmmoCounts[sValue] then
+				window.CurrentAmmo.setValue(tAmmoCounts[sValue]);
+			end
 		end
 		update();
 		window.DamageString.UpdateValue();
@@ -236,6 +264,12 @@ end
 function onValueChanged()
 	window.DamageString.UpdateValue();
 	UpdateTooltip();
+	local sAmmo=getStringValue();
+	if sAmmo~="" and tAmmoCounts[getStringValue()] then
+		window.CurrentAmmo.setValue(tAmmoCounts[sAmmo]);
+	elseif sAmmo=="" and tAmmoCounts["Standard"] then
+		window.CurrentAmmo.setValue(tAmmoCounts["Standard"]);
+	end
 end
 
 function UpdateTooltip()
@@ -445,6 +479,13 @@ function getDescriptionText()
 		sAttackType="RANGED";
 	end
 	return "["..sAttackType.." ATTACK] "..window.AttackSkill.getValue().." (vs "..getValue()..")";
+end
+
+function onBeforeDiceRoll(dragInfo)
+	if window.CurrentAmmo.getValue()&lt;window.MaxAmmo.getValue() then
+		window.CurrentAmmo.setValue(window.CurrentAmmo.getValue()+1);
+	end
+	return true;
 end
 </LUACode>
     <GroupIndex>0</GroupIndex>
@@ -829,7 +870,18 @@ end</LUACode>
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"656"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"39"}}
 ]}}</Definition>
-    <LUACode />
+    <LUACode>function onValueChanged()
+	local sAmmo=window.AmmoChosen.getStringValue();
+	if sAmmo~="" and window.AmmoChosen.tAmmoCounts[sAmmo] then
+		window.AmmoChosen.tAmmoCounts[sAmmo]=getValue();
+		sAmmo=sAmmo:gsub("%.", "_");
+		DB.setValue(window.getDatabaseNode(), "AmmoCounts."..sAmmo, "number", getValue());
+	elseif sAmmo=="" and window.AmmoChosen.tAmmoCounts["Standard"] then
+		window.AmmoChosen.tAmmoCounts["Standard"]=getValue();
+		DB.setValue(window.getDatabaseNode(), "AmmoCounts.Standard", "number", getValue());
+	end
+end
+</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
