@@ -58,6 +58,14 @@ tSmartAmmo = {
 	["Accushot"]={sString="A", sDmgMod=""},
 	["Hollow-point"]={sString="HP", sDmgMod="+1d6"},
 	["Plastic"]={sString="P", sDmgMod="÷2"}
+}
+
+tReach = {
+	["Very Small Size"]=-2,
+	["Small Size"]=-1,
+	["Medium Size"]=0,
+	["Large Size"]=1,
+	["Very Large Size"]=2,
 }</Script>
     <RegisterScript>true</RegisterScript>
     <Encoding />

@@ -79,6 +79,22 @@ end
 
 function CombatHandler(rSource, rTarget, rRoll)
 	local sTypeResult="";
+	local sTypeAttack="";
+	if rRoll.sDesc:match("MELEE") then
+		sTypeAttack="MELEE";
+	else
+		sTypeAttack="RANGED";
+	end
+	
+	if rRoll and rSource and rTarget and rSource.sCTNode and rTarget.sCTNode and sTypeAttack=="MELEE" then
+		local nSourceSize=DataCommon.tReach[DB.getValue(rSource.sCTNode..".Size") or "Medium Size"];
+		local nTargetSize=DataCommon.tReach[DB.getValue(rTarget.sCTNode..".Size") or "Medium Size"];
+		if nSourceSize&gt;nTargetSize then
+			rRoll.nMod=rRoll.nMod+math.min((nSourceSize-nTargetSize)*10, 30);
+			rRoll.sDesc=rRoll.sDesc.." [REACH: +"..math.min((nSourceSize-nTargetSize)*10, 30).."]";
+		end
+	end
+	
 	if rRoll then
 		if rRoll.sType=="DefenseCheck" then
 			local rAux=rSource;
@@ -90,13 +106,7 @@ function CombatHandler(rSource, rTarget, rRoll)
 		end
 	end
     local sResult=CheckHandler(rSource, rTarget, rRoll);
-	local sTypeAttack="";
     if rSource and rTarget and rSource.sCTNode and rTarget.sCTNode then
-        if rRoll.sDesc:match("MELEE") then
-			sTypeAttack="MELEE";
-		else
-			sTypeAttack="RANGED";
-		end
 		if Session.IsHost then
 			AddAttack(rSource.sCTNode, rTarget.sCTNode, sTypeAttack, sTypeResult, sResult, ActionsManager.total(rRoll));
 		else
