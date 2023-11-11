@@ -63,7 +63,8 @@ function AddAttack(sSourceCTNode, sTargetCTNode, sTypeAttack, sTypeResult, sResu
 		end
 		combat.tAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack]["s"..sTypeResult.."Result"]=sResult;
 		combat.tAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack]["n"..sTypeResult.."Result"]=nRollTotal;
-		if combat.ResolveCombat(sSourceCTNode, sTargetCTNode, sTypeAttack) and OptionsManager.isOption("AUTODEFENSEROLL", "on") then
+		local bOpposedRollNeeded=combat.ResolveCombat(sSourceCTNode, sTargetCTNode, sTypeAttack);
+		if bOpposedRollNeeded and OptionsManager.isOption("AUTODEFENSEROLL", "on") then
 			GameSystem.actions["DefenseCheck"] = { bUseModStack = "true", sIcon = "action_attack", sTargeting = "all" }
 			ActionsManager.registerResultHandler("DefenseCheck", CombatHandler);
 			local sSkill, nDefenseTarget = Tools.getDefenderSkillAndTarget(sTargetCTNode, sTypeAttack);
