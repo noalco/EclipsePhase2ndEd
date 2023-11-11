@@ -91,6 +91,7 @@
 	&lt;string name="spent_label"&gt;Spent&lt;/string&gt;
 	&lt;string name="stress_taken_label"&gt;Stress Taken&lt;/string&gt;
 	&lt;string name="temp_label"&gt;Temp&lt;/string&gt;
+	&lt;string name="threat_pool_label"&gt;Thread Pool&lt;/string&gt;
 	&lt;string name="total_label"&gt;Total&lt;/string&gt;
 	&lt;string name="trait_empty_name"&gt;« Trait Name »&lt;/string&gt;
 	&lt;string name="trait_level_label"&gt;Trait Level&lt;/string&gt;

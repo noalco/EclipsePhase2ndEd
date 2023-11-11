@@ -91,9 +91,9 @@ function SearchRecord(sRecordName, sReference, sExtraField, ExtraFieldValue)
 	return "";
 end
 
-function getName(sCTNode)
-	if sCTNode then
-		return DB.getValue(sCTNode..".name", "");
+function getName(sPath)
+	if sPath and sPath~="" then
+		return DB.getValue(sPath..".name", "");
 	else
 		return "";
 	end
