@@ -57,7 +57,9 @@
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"9"}}
 ]}}</Definition>
     <LUACode>function onValueChanged()
-    window.setAttacksVisible();
+	if not window.isPC() then
+		window.setAttacksVisible();
+	end
 end
 </LUACode>
     <GroupIndex>0</GroupIndex>
@@ -1418,7 +1420,7 @@ end
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"430"}},
       {"Name":"DevelopmentComments"},
       {"Name":"Disabled"},
-      {"Name":"DynamicSize"},
+      {"Name":"DynamicSize","Value":{"@xsi:type":"xsd:string","#text":"Dynamic Height"}},
       {"Name":"FastInit"},
       {"Name":"FrameName","Value":{"@xsi:type":"xsd:string","#text":"ct_subgroupbox"}},
       {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string","#text":"8,8,8,8"}},
