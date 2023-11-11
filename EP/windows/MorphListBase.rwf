@@ -443,6 +443,15 @@ function onValueChanged()
 				DB.deleteNode(n);
 			end
 		end
+		local newItem;
+		local inventoryNode=DB.getChild(nodeChar, "inventorylist");
+		for _,n in pairs(DB.getChildren(window.getDatabaseNode(), "WareList")) do
+			newItem=DB.createChild(inventoryNode);
+			if newItem then
+				DB.copyNode(n, newItem);
+				DB.setValue(newItem, "IsMorphWare", "number", 1);
+			end
+		end
 		window.idelete.setVisible(false);
 	else
 		window.idelete.setVisible(window.windowlist.window.MorphList_iedit.getValue()==1);

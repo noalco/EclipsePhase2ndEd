@@ -145,7 +145,7 @@ end
 function ParseWare(newMorph, recordNode)
 --	TODO: Añadir un checkbox a los items para indicar que son items (wear) obtenidos de morph
 	local sWares=DB.getValue(recordNode, "Ware", "");
-	if sWares=="" then -- or DB.getChild(newMorph, "WareList") then
+	if sWares=="" then
 		return;
 	end
 	sWares=sWares:gsub("\n", " ");
@@ -155,7 +155,7 @@ function ParseWare(newMorph, recordNode)
 	local WareListNode=DB.createChild(newMorph, "WareList");
 	for i=1,#aWares do
 		while aWares[i]:sub(-1)==" " do aWares[i]=aWares[i]:sub(1, -2); end
-		NewWareNode=Tools.SearchRecord(aWares[i], "item");
+		NewWareNode=Tools.SearchRecord(aWares[i], "items");
 		local w=DB.createChild(WareListNode);
 		if NewWareNode and NewWareNode~="" then
 			DB.copyNode(NewWareNode, w);
