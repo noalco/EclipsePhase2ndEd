@@ -119,8 +119,14 @@ function InitHandler(rSource, rTarget, rRoll)
 
     if (rSource) then
         local nTotal = ActionsManager.total(rRoll);
-        rCreature = DB.findNode(rSource.sCreatureNode);
-        DB.setValue(rCreature, "initresult", "number", nTotal);
+        rCreature = DB.findNode(rSource.sCTNode);
+        if rCreature then
+			if Session.IsHost then
+				DB.setValue(rCreature, "initresult", "number", nTotal);
+			else
+				RulesetWizard.changeDBValueOOB(DB.getChild(rCreature, "initresult"), nTotal);
+			end
+		end
     end
 end
 
