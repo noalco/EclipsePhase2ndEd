@@ -559,6 +559,13 @@ end
 	-- Register the deletion menu item for the host
 	registerMenuItem(Interface.getString("list_menu_deleteitem"), "delete", 6);
 	registerMenuItem(Interface.getString("list_menu_deleteconfirm"), "delete", 6, 7);
+	
+	DB.addHandler(DB.getPath(getDatabaseNode(), "active"), "onUpdate", ActivateattacksOnTurn);
+	ActivateattacksOnTurn();
+end
+
+function onClose()
+	DB.removeHandler(DB.getPath(getDatabaseNode(), "active"), "onUpdate", ActivateattacksOnTurn);
 end
 
 function onMenuSelection(selection, subselection)
@@ -737,6 +744,18 @@ function setAttacksVisible()
 	end
 	attacksicon.setVisible(v);
 	sub_attacks.setVisible(v);
+end
+
+local activateattacksPrev=0;
+function ActivateattacksOnTurn()
+	if not isPC() then
+		if active.getValue()==1 then
+			activateattacksPrev=activateattacks.getValue();
+			activateattacks.setValue(1);
+		else
+			activateattacks.setValue(activateattacksPrev);
+		end
+	end
 end
 
 function setDefenseVisible()
