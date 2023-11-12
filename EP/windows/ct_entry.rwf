@@ -560,12 +560,12 @@ end
 	registerMenuItem(Interface.getString("list_menu_deleteitem"), "delete", 6);
 	registerMenuItem(Interface.getString("list_menu_deleteconfirm"), "delete", 6, 7);
 	
-	DB.addHandler(DB.getPath(getDatabaseNode(), "active"), "onUpdate", ActivateattacksOnTurn);
-	ActivateattacksOnTurn();
+	DB.addHandler(DB.getPath(getDatabaseNode(), "active"), "onUpdate", ActivateOnTurn);
+	ActivateOnTurn();
 end
 
 function onClose()
-	DB.removeHandler(DB.getPath(getDatabaseNode(), "active"), "onUpdate", ActivateattacksOnTurn);
+	DB.removeHandler(DB.getPath(getDatabaseNode(), "active"), "onUpdate", ActivateOnTurn);
 end
 
 function onMenuSelection(selection, subselection)
@@ -679,7 +679,7 @@ function linkPCFields()
 	local nodeChar = link.getTargetDatabaseNode();
 	if nodeChar then
 		name.setLink(nodeChar.createChild("name", "string"), true);
-		initresult.setLink(nodeChar.createChild("initresult", "number"), true);
+--		initresult.setLink(nodeChar.createChild("initresult", "number"), true);
 	end
 end
 
@@ -747,13 +747,18 @@ function setAttacksVisible()
 end
 
 local activateattacksPrev=0;
-function ActivateattacksOnTurn()
+local activatedefensePrev=0;
+function ActivateOnTurn()
 	if not isPC() then
 		if active.getValue()==1 then
 			activateattacksPrev=activateattacks.getValue();
 			activateattacks.setValue(1);
+			activatedefensePrev=activatedefense.getValue();
+			activatedefense.setValue(1);
+			
 		else
 			activateattacks.setValue(activateattacksPrev);
+			activatedefense.setValue(activatedefensePrev);
 		end
 	end
 end
@@ -1494,7 +1499,7 @@ end
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"430"}},
       {"Name":"DevelopmentComments"},
       {"Name":"Disabled"},
-      {"Name":"DynamicSize"},
+      {"Name":"DynamicSize","Value":{"@xsi:type":"xsd:string","#text":"Dynamic Height"}},
       {"Name":"FastInit"},
       {"Name":"FrameName","Value":{"@xsi:type":"xsd:string","#text":"ct_subgroupbox"}},
       {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string","#text":"8,8,8,8"}},
@@ -1604,10 +1609,10 @@ end
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"430"}},
       {"Name":"DevelopmentComments"},
       {"Name":"Disabled"},
-      {"Name":"DynamicSize"},
+      {"Name":"DynamicSize","Value":{"@xsi:type":"xsd:string","#text":"Dynamic Height"}},
       {"Name":"FastInit"},
       {"Name":"FrameName","Value":{"@xsi:type":"xsd:string","#text":"ct_subgroupbox"}},
-      {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string","#text":"8,8,8,8"}},
       {"Name":"GMEditOnly"},
       {"Name":"GMVisibleOnly"},
       {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"2"}},
