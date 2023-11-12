@@ -74,7 +74,7 @@ end
   <WindowControls>
     <WindowName>ct_defense</WindowName>
     <ControlName>EnergyAV</ControlName>
-    <ZIndex>5</ZIndex>
+    <ZIndex>3</ZIndex>
     <ControlClass>FGNumberField</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -138,7 +138,7 @@ end
   <WindowControls>
     <WindowName>ct_defense</WindowName>
     <ControlName>Fray</ControlName>
-    <ZIndex>8</ZIndex>
+    <ZIndex>6</ZIndex>
     <ControlClass>FGNumberField</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -209,7 +209,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>ct_defense</WindowName>
     <ControlName>Fray2</ControlName>
-    <ZIndex>9</ZIndex>
+    <ZIndex>7</ZIndex>
     <ControlClass>FGNumberField</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -273,7 +273,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>ct_defense</WindowName>
     <ControlName>KineticAV</ControlName>
-    <ZIndex>6</ZIndex>
+    <ZIndex>4</ZIndex>
     <ControlClass>FGNumberField</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -337,7 +337,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>ct_defense</WindowName>
     <ControlName>LabelEnergyAV</ControlName>
-    <ZIndex>3</ZIndex>
+    <ZIndex>1</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -391,7 +391,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>ct_defense</WindowName>
     <ControlName>LabelFray</ControlName>
-    <ZIndex>7</ZIndex>
+    <ZIndex>5</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -445,7 +445,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>ct_defense</WindowName>
     <ControlName>LabelKineticAV</ControlName>
-    <ZIndex>4</ZIndex>
+    <ZIndex>2</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -499,7 +499,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>ct_defense</WindowName>
     <ControlName>LabelMelee</ControlName>
-    <ZIndex>10</ZIndex>
+    <ZIndex>8</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -553,7 +553,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>ct_defense</WindowName>
     <ControlName>Melee</ControlName>
-    <ZIndex>11</ZIndex>
+    <ZIndex>9</ZIndex>
     <ControlClass>FGNumberField</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},

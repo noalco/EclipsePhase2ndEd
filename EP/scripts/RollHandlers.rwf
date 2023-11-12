@@ -11,12 +11,41 @@ function onInit()
 end
 
 function RollResultFrom0to99(rRoll)
-	for i=1,#rRoll.aDice do
-		rRoll.aDice[i].value=rRoll.aDice[i].value%100;
-		rRoll.aDice[i].result=rRoll.aDice[i].result%100;
+	if rRoll and rRoll.aDice and rRoll.nTotal then
+		for i=1,#rRoll.aDice do
+			rRoll.aDice[i].value=rRoll.aDice[i].value%100;
+			rRoll.aDice[i].result=rRoll.aDice[i].result%100;
+		end
+		rRoll.aDice.total=rRoll.aDice.total%100;
+		rRoll.nTotal=rRoll.nTotal%100;
+	else
+		rRoll.nTotal=rRoll.nMod;
+		rRoll.aDice["total"]=rRoll.nMod;
+		rRoll.aDice["expr"]="d100";
+		rRoll.aDice[1]={};
+		rRoll.aDice[1]["value"]=rRoll.nMod;
+		rRoll.aDice[1]["type"]="d100";
+		rRoll.aDice[1]["result"]=rRoll.nMod;	
+--		{ s'nBonuses' = s'0', 
+--		s'aDice' = { #1 = { s'value' = #85, s'type' = s'd100', s'result' = #85 }, s'expr' = s'1d100', s'total' = #85 }, 
+--		s'nMod' = #0, 
+--		s'sType' = s'AttackCheck', 
+--		s'bSecret' = bFALSE, 
+--		s'nTotal' = #85, 
+--		s'sDesc' = s'[MELEE ATTACK] Melee (vs 65)' }
+
+--		{ s'aDice' = {  }, s'nMod' = #85, s'sType' = s'AttackCheck', s'sDesc' = s'[MELEE ATTACK] Melee (vs 65) [FAILURE]', s'bSecret' = bFALSE }
+		rRoll.sDesc=rRoll.sDesc:gsub(" %[CRITICAL FAILURE%]", "");
+		rRoll.sDesc=rRoll.sDesc:gsub(" %[TWO SUPERIOR FAILURES%]", "");
+		rRoll.sDesc=rRoll.sDesc:gsub(" %[ONE SUPERIOR FAILURE%]", "");
+		rRoll.sDesc=rRoll.sDesc:gsub(" %[FAILURE%]", "");
+		rRoll.sDesc=rRoll.sDesc:gsub(" %[CRITICAL SUCCESS%]", "");
+		rRoll.sDesc=rRoll.sDesc:gsub(" %[TWO SUPERIOR SUCCESSES%]", "");
+		rRoll.sDesc=rRoll.sDesc:gsub(" %[ONE SUPERIOR SUCCESS%]", "");
+		rRoll.sDesc=rRoll.sDesc:gsub(" %[SUCCESS%]", "");
+
+		rRoll.nMod=0;
 	end
-	rRoll.aDice.total=rRoll.aDice.total%100;
-	rRoll.nTotal=rRoll.nTotal%100;
 	return rRoll;
 end
 
@@ -41,17 +70,17 @@ function CheckHandler(rSource, rTarget, rRoll)
 	local nTotal = ActionsManager.total(rRoll);
 	rMessage.text=rMessage.text.." ["..RollChecks.RollCheck(nTotal, nTarget):upper().."]";
 	Comm.deliverChatMessage(rMessage);
-	return RollChecks.RollCheck(nTotal, nTarget):upper();
+	return RollChecks.RollCheck(nTotal, nTarget):upper(), nTarget;
 end
 
 function OOBAddAttack(msgOOB)
 	if Session.IsHost then
-		AddAttack(msgOOB.sSourceCTNode, msgOOB.sTargetCTNode, msgOOB.sTypeAttack, msgOOB.sTypeResult, msgOOB.sResult, msgOOB.nRollTotal);
+		AddAttack(msgOOB.sSourceCTNode, msgOOB.sTargetCTNode, msgOOB.sTypeAttack, msgOOB.sTypeResult, msgOOB.sResult, msgOOB.nRollTotal, msgOOB.nTarget);
 	end
 end
 
-function AddAttack(sSourceCTNode, sTargetCTNode, sTypeAttack, sTypeResult, sResult, nRollTotal)
-	if Session.IsHost and sSourceCTNode and sTargetCTNode and sTypeAttack and sTypeResult and sResult and nRollTotal then
+function AddAttack(sSourceCTNode, sTargetCTNode, sTypeAttack, sTypeResult, sResult, nRollTotal, nTarget)
+	if Session.IsHost and sSourceCTNode and sTargetCTNode and sTypeAttack and sTypeResult and sResult and nRollTotal and nTarget then
 		if not combat.tAttacts[sSourceCTNode] then
 			combat.tAttacts[sSourceCTNode]={};
 		end
@@ -61,8 +90,16 @@ function AddAttack(sSourceCTNode, sTargetCTNode, sTypeAttack, sTypeResult, sResu
 		if not combat.tAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack] then
 			combat.tAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack]={};
 		end
+		
 		combat.tAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack]["s"..sTypeResult.."Result"]=sResult;
 		combat.tAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack]["n"..sTypeResult.."Result"]=nRollTotal;
+		
+		if sTypeResult=="Attack" then
+			combat.StoreUnresolvedRoll(sSourceCTNode, Tools.getName(sTargetCTNode), sTypeResult, nRollTotal, sResult, nTarget);
+		elseif sTypeResult=="Defense" then
+			combat.StoreUnresolvedRoll(sTargetCTNode, Tools.getName(sSourceCTNode), sTypeResult, nRollTotal, sResult, nTarget);
+		end
+		
 		local bOpposedRollNeeded=combat.ResolveCombat(sSourceCTNode, sTargetCTNode, sTypeAttack);
 		if bOpposedRollNeeded and OptionsManager.isOption("AUTODEFENSEROLL", "on") then
 			GameSystem.actions["DefenseCheck"] = { bUseModStack = "true", sIcon = "action_attack", sTargeting = "all" }
@@ -115,10 +152,10 @@ function CombatHandler(rSource, rTarget, rRoll)
 			sTypeResult="Attack";
 		end
 	end
-    local sResult=CheckHandler(rSource, rTarget, rRoll);
+    local sResult, nTarget=CheckHandler(rSource, rTarget, rRoll);
     if rSource and rTarget and rSource.sCTNode and rTarget.sCTNode then
 		if Session.IsHost then
-			AddAttack(rSource.sCTNode, rTarget.sCTNode, sTypeAttack, sTypeResult, sResult, ActionsManager.total(rRoll));
+			AddAttack(rSource.sCTNode, rTarget.sCTNode, sTypeAttack, sTypeResult, sResult, ActionsManager.total(rRoll), nTarget);
 		else
 			local msgOOB={};
 			msgOOB.type=OOB_ADD_ATTACK;
@@ -128,6 +165,7 @@ function CombatHandler(rSource, rTarget, rRoll)
 			msgOOB.sTypeResult=sTypeResult;
 			msgOOB.sResult=sResult;
 			msgOOB.nRollTotal=ActionsManager.total(rRoll);
+			msgOOB.nTarget=nTarget;
 			Comm.deliverOOBMessage(msgOOB);
 		end
     end

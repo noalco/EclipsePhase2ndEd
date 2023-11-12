@@ -3,14 +3,14 @@
     <ScriptName>combat</ScriptName>
     <FolderID>13</FolderID>
     <Script>tResults = {
-	["CRITICAL SUCCESS"]= {nRange=4, nExtraD6=0, nDamageMult=2},
-	["TWO SUPERIOR SUCCESSES"]= {nRange=3, nExtraD6=2, nDamageMult=1},
-	["ONE SUPERIOR SUCCESS"]= {nRange=2, nExtraD6=1, nDamageMult=1},
-	["SUCCESS"]= {nRange=1, nExtraD6=1, nDamageMult=1},
-	["FAILURE"]= {nRange=-1, nExtraD6=0, nDamageMult=1},
-	["ONE SUPERIOR FAILURE"]= {nRange=-2, nExtraD6=0, nDamageMult=1},
-	["TWO SUPERIOR FAILURES"]= {nRange=-3, nExtraD6=0, nDamageMult=1},
-	["CRITICAL FAILURE"]= {nRange=-4, nExtraD6=0, nDamageMult=1},
+	["CRITICAL SUCCESS"]= {nRange=4, nExtraD6=0, nDamageMult=2, sAbr="CS"},
+	["TWO SUPERIOR SUCCESSES"]= {nRange=3, nExtraD6=2, nDamageMult=1, sAbr="2SS"},
+	["ONE SUPERIOR SUCCESS"]= {nRange=2, nExtraD6=1, nDamageMult=1, sAbr="1SS"},
+	["SUCCESS"]= {nRange=1, nExtraD6=1, nDamageMult=1, sAbr="S"},
+	["FAILURE"]= {nRange=-1, nExtraD6=0, nDamageMult=1, sAbr="F"},
+	["ONE SUPERIOR FAILURE"]= {nRange=-2, nExtraD6=0, nDamageMult=1, sAbr="1SF"},
+	["TWO SUPERIOR FAILURES"]= {nRange=-3, nExtraD6=0, nDamageMult=1, sAbr="2SF"},
+	["CRITICAL FAILURE"]= {nRange=-4, nExtraD6=0, nDamageMult=1, sAbr="CF"},
 }
 
 tAttacts = {} -- sAttackResult, sDefenseResult, nAttackResult, nDefenseResult
@@ -25,6 +25,7 @@ function ResolveCombat(sSourceCTNode, sTargetCTNode, sTypeAttack)
 		local nAttackResult=0;
 		local sDefenseResult="";
 		local nDefenseResult=0;
+
 		
 		sAttackerName=Tools.getName(sSourceCTNode);
 		sAttackResult=tAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack].sAttackResult;
@@ -151,6 +152,34 @@ function ResolveSleightAttack(sSourceCTNode, sTargetCTNode)
 		end
 	end
 	return false;
+end
+
+
+function StoreUnresolvedRoll(sSourceCTNode, sTargetName, sRollType, nRollTotal, sRollResult, nRollTarget)
+	if not sSourceCTNode or not sTargetName or not sRollType or not nRollTotal or not sRollResult or not tResults[sRollResult] or not nRollTarget then
+		return;
+	end
+	local CTWindow=Interface.findWindow("combattracker_host", "combattracker");
+	local SourceCTWindow;
+	local TargetCTWindow;
+	for _,w in pairs(CTWindow.list.getWindows()) do
+		if DB.getPath(w.getDatabaseNode())==sSourceCTNode then
+			SourceCTWindow=w;
+			break
+--		elseif DB.getPath(w.getDatabaseNode())==sTargetCTNode then
+--			TargetCTWindow=w;
+		end
+	end
+	if not SourceCTWindow then --or not TargetCTWindow then
+		return;
+	end
+	
+	local w=SourceCTWindow.sub_rolls.createWindow();
+	w.RollResult.setValue(tResults[sRollResult].sAbr);
+	w.RollTotal.setValue(nRollTotal);
+	w.RollTarget.setValue(nRollTarget);
+	w.RollText.setValue(sRollType.." vs "..sTargetName);
+	w.ButtonUpgrade.UpdateVisibility();
 end
 </Script>
     <RegisterScript>true</RegisterScript>
