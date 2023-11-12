@@ -813,6 +813,7 @@ end
 
 local activateattacksPrev=0;
 local activatedefensePrev=0;
+local activaterollsPrev=0;
 function ActivateOnTurn()
 	if not isPC() then
 		if active.getValue()==1 then
@@ -820,10 +821,12 @@ function ActivateOnTurn()
 			activateattacks.setValue(1);
 			activatedefensePrev=activatedefense.getValue();
 			activatedefense.setValue(1);
-			
+			activaterollsPrev=activateroll.getValue();
+			activateroll.setValue(1);			
 		else
 			activateattacks.setValue(activateattacksPrev);
 			activatedefense.setValue(activatedefensePrev);
+			activateroll.setValue(activaterollsPrev);
 		end
 	end
 end
@@ -1776,7 +1779,10 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"88"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"215"}}
 ]}}</Definition>
-    <LUACode />
+    <LUACode>function onFilter(w)
+	return w.delete.getValue()==0;
+end
+</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
