@@ -2,15 +2,7 @@
   <Scripts>
     <ScriptName>RollHandlers</ScriptName>
     <FolderID>24</FolderID>
-    <Script>OOB_ADD_ATTACK="OOB_ADD_ATTACK";
-OOB_ADD_SLEIGHT_ATTACK="OOB_ADD_SLEIGHT_ATTACK";
-
-function onInit()
-	OOBManager.registerOOBMsgHandler(OOB_ADD_ATTACK, OOBAddAttack);
-	OOBManager.registerOOBMsgHandler(OOB_ADD_SLEIGHT_ATTACK, OOBAddSleightAttack);
-end
-
-function RollResultFrom0to99(rRoll)
+    <Script>function RollResultFrom0to99(rRoll)
 	if rRoll and rRoll.aDice and rRoll.nTotal then
 		for i=1,#rRoll.aDice do
 			rRoll.aDice[i].value=rRoll.aDice[i].value%100;
@@ -73,47 +65,6 @@ function CheckHandler(rSource, rTarget, rRoll)
 	return RollChecks.RollCheck(nTotal, nTarget):upper(), nTarget;
 end
 
-function OOBAddAttack(msgOOB)
-	if Session.IsHost then
-		AddAttack(msgOOB.sSourceCTNode, msgOOB.sTargetCTNode, msgOOB.sTypeAttack, msgOOB.sTypeResult, msgOOB.sResult, msgOOB.nRollTotal, msgOOB.nTarget);
-	end
-end
-
-function AddAttack(sSourceCTNode, sTargetCTNode, sTypeAttack, sTypeResult, sResult, nRollTotal, nTarget)
-	if Session.IsHost and sSourceCTNode and sTargetCTNode and sTypeAttack and sTypeResult and sResult and nRollTotal and nTarget then
-		if not combat.tAttacts[sSourceCTNode] then
-			combat.tAttacts[sSourceCTNode]={};
-		end
-		if not combat.tAttacts[sSourceCTNode][sTargetCTNode] then
-			combat.tAttacts[sSourceCTNode][sTargetCTNode]={};
-		end
-		if not combat.tAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack] then
-			combat.tAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack]={};
-		end
-		
-		combat.tAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack]["s"..sTypeResult.."Result"]=sResult;
-		combat.tAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack]["n"..sTypeResult.."Result"]=nRollTotal;
-		
-		if sTypeResult=="Attack" then
-			combat.StoreUnresolvedRoll(sSourceCTNode, Tools.getName(sTargetCTNode), sTypeResult, nRollTotal, sResult, nTarget);
-		elseif sTypeResult=="Defense" then
-			combat.StoreUnresolvedRoll(sTargetCTNode, Tools.getName(sSourceCTNode), sTypeResult, nRollTotal, sResult, nTarget);
-		end
-		
-		local bOpposedRollNeeded=combat.ResolveCombat(sSourceCTNode, sTargetCTNode, sTypeAttack);
-		if bOpposedRollNeeded and OptionsManager.isOption("AUTODEFENSEROLL", "on") then
-			GameSystem.actions["DefenseCheck"] = { bUseModStack = "true", sIcon = "action_attack", sTargeting = "all" }
-			ActionsManager.registerResultHandler("DefenseCheck", CombatHandler);
-			local sSkill, nDefenseTarget = Tools.getDefenderSkillAndTarget(sTargetCTNode, sTypeAttack);
-			local aDice2, nMod2 = StringManager.convertStringToDice("1d100");
-			local rRoll = { sType = "DefenseCheck", sDesc = "["..sTypeAttack.." DEFENSE] "..sSkill.." (vs "..nDefenseTarget..")", aDice = aDice2, nMod = nMod2};
-			local rTargetNode=DB.findNode(sTargetCTNode);
-			local tTargetGroups=ActionsManager.getTargeting(rTargetNode, DB.findNode(sSourceCTNode), rRoll.sType, { rRoll });
-			ActionsManager.actionRoll(rTargetNode, tTargetGroups, { rRoll });
-		end
-	end
-end
-
 function CombatHandler(rSource, rTarget, rRoll)
 	local sTypeResult="";
 	local sTypeAttack="";
@@ -155,10 +106,10 @@ function CombatHandler(rSource, rTarget, rRoll)
     local sResult, nTarget=CheckHandler(rSource, rTarget, rRoll);
     if rSource and rTarget and rSource.sCTNode and rTarget.sCTNode then
 		if Session.IsHost then
-			AddAttack(rSource.sCTNode, rTarget.sCTNode, sTypeAttack, sTypeResult, sResult, ActionsManager.total(rRoll), nTarget);
+			combat.AddAttack(rSource.sCTNode, rTarget.sCTNode, sTypeAttack, sTypeResult, sResult, ActionsManager.total(rRoll), nTarget);
 		else
 			local msgOOB={};
-			msgOOB.type=OOB_ADD_ATTACK;
+			msgOOB.type=combat.OOB_ADD_ATTACK;
 			msgOOB.sSourceCTNode=rSource.sCTNode;
 			msgOOB.sTargetCTNode=rTarget.sCTNode;
 			msgOOB.sTypeAttack=sTypeAttack;
@@ -186,35 +137,6 @@ function InitHandler(rSource, rTarget, rRoll)
 			end
 		end
     end
-end
-
-function OOBAddSleightAttack(msgOOB)
-	if Session.IsHost then
-		AddSleightAttack(msgOOB.sSourceCTNode, msgOOB.sTargetCTNode, msgOOB.sTypeResult, msgOOB.sResult, msgOOB.nRollTotal);
-	end
-end
-
-function AddSleightAttack(sSourceCTNode, sTargetCTNode, sTypeResult, sResult, nRollTotal)
-	if Session.IsHost and sSourceCTNode and sTargetCTNode and sTypeResult and sResult and nRollTotal then
-		if not combat.tAttacts[sSourceCTNode] then
-			combat.tAttacts[sSourceCTNode]={};
-		end
-		if not combat.tAttacts[sSourceCTNode][sTargetCTNode] then
-			combat.tAttacts[sSourceCTNode][sTargetCTNode]={};
-		end
-		combat.tAttacts[sSourceCTNode][sTargetCTNode]["s"..sTypeResult.."Result"]=sResult;
-		combat.tAttacts[sSourceCTNode][sTargetCTNode]["n"..sTypeResult.."Result"]=nRollTotal;
-		if combat.ResolveSleightAttack(sSourceCTNode, sTargetCTNode, sTypeAttack) then
-			GameSystem.actions["DefenseSleightCheck"] = { bUseModStack = "true", sIcon = "action_attack", sTargeting = "all" }
-			ActionsManager.registerResultHandler("DefenseSleightCheck", SleightHandler);
-			local nDefenseTarget = Tools.getDefenderWillTarget(sTargetCTNode);
-			local aDice2, nMod2 = StringManager.convertStringToDice("1d100");
-			local rRoll = { sType = "DefenseSleightCheck", sDesc = "[SLEIGHT DEFENSE] Willpower (vs "..nDefenseTarget..")", aDice = aDice2, nMod = nMod2};
-			local rTargetNode=DB.findNode(sTargetCTNode);
-			local tTargetGroups=ActionsManager.getTargeting(rTargetNode, DB.findNode(sSourceCTNode), rRoll.sType, { rRoll });
-			ActionsManager.actionRoll(rTargetNode, tTargetGroups, { rRoll });
-		end
-	end
 end
 
 function TargetingSleightHandler(rSource, aTargeting, rRolls)
@@ -246,10 +168,10 @@ function SleightHandler(rSource, rTarget, rRoll)
 	local sResult=CheckHandler(rSource, rTarget, rRoll);
     if rSource and rTarget and rSource.sCTNode and rTarget.sCTNode then
 		if Session.IsHost then
-			AddSleightAttack(rSource.sCTNode, rTarget.sCTNode, sTypeResult, sResult, ActionsManager.total(rRoll));
+			combat.AddSleightAttack(rSource.sCTNode, rTarget.sCTNode, sTypeResult, sResult, ActionsManager.total(rRoll));
 		else
 			local msgOOB={};
-			msgOOB.type=OOB_ADD_SLEIGHT_ATTACK;
+			msgOOB.type=combat.OOB_ADD_SLEIGHT_ATTACK;
 			msgOOB.sSourceCTNode=rSource.sCTNode;
 			msgOOB.sTargetCTNode=rTarget.sCTNode;
 			msgOOB.sTypeResult=sTypeResult;

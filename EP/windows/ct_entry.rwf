@@ -196,7 +196,7 @@ end
   <WindowControls>
     <WindowName>ct_entry</WindowName>
     <ControlName>activateroll</ControlName>
-    <ZIndex>34</ZIndex>
+    <ZIndex>33</ZIndex>
     <ControlClass>FGButton</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -500,7 +500,7 @@ end
   <WindowControls>
     <WindowName>ct_entry</WindowName>
     <ControlName>bottom_spacer</ControlName>
-    <ZIndex>33</ZIndex>
+    <ZIndex>32</ZIndex>
     <ControlClass>FGCustomControl</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -906,7 +906,7 @@ end
   <WindowControls>
     <WindowName>ct_entry</WindowName>
     <ControlName>effect_summary</ControlName>
-    <ZIndex>32</ZIndex>
+    <ZIndex>31</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -1392,7 +1392,7 @@ end
   <WindowControls>
     <WindowName>ct_entry</WindowName>
     <ControlName>rollsicon</ControlName>
-    <ZIndex>30</ZIndex>
+    <ZIndex>29</ZIndex>
     <ControlClass>FGIconControl</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"top","AnchorTo":"top","Parent":"sub_rolls"}}},
@@ -1722,7 +1722,7 @@ end
   <WindowControls>
     <WindowName>ct_entry</WindowName>
     <ControlName>sub_rolls</ControlName>
-    <ZIndex>29</ZIndex>
+    <ZIndex>28</ZIndex>
     <ControlClass>FGWindowList</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AcceptDrop","Value":{"@xsi:type":"ArrayOfPropertyAcceptDrop"}},
@@ -1735,7 +1735,7 @@ end
       {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"sub_rolls"}},
       {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
       {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
-      {"Name":"DataSource"},
+      {"Name":"DataSource","Value":{"@xsi:type":"xsd:string","#text":".rolls"}},
       {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"40"}},
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"430"}},
@@ -1779,10 +1779,10 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"88"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"215"}}
 ]}}</Definition>
-    <LUACode>function onFilter(w)
-	return w.delete.getValue()==0;
-end
-</LUACode>
+    <LUACode>--function onInit()
+--	DB.deleteChildren(getDatabaseNode())
+--end
+--</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -1899,7 +1899,7 @@ end
   <WindowControls>
     <WindowName>ct_entry</WindowName>
     <ControlName>target_summary</ControlName>
-    <ZIndex>31</ZIndex>
+    <ZIndex>30</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},

@@ -2,7 +2,15 @@
   <Scripts>
     <ScriptName>combat</ScriptName>
     <FolderID>13</FolderID>
-    <Script>tResults = {
+    <Script>OOB_ADD_ATTACK="OOB_ADD_ATTACK";
+OOB_ADD_SLEIGHT_ATTACK="OOB_ADD_SLEIGHT_ATTACK";
+
+function onInit()
+	OOBManager.registerOOBMsgHandler(OOB_ADD_ATTACK, OOBAddAttack);
+	OOBManager.registerOOBMsgHandler(OOB_ADD_SLEIGHT_ATTACK, OOBAddSleightAttack);
+end
+
+tResults = {
 	["CRITICAL SUCCESS"]= {nRange=4, nExtraD6=0, nDamageMult=2, sAbr="CS"},
 	["TWO SUPERIOR SUCCESSES"]= {nRange=3, nExtraD6=2, nDamageMult=1, sAbr="2SS"},
 	["ONE SUPERIOR SUCCESS"]= {nRange=2, nExtraD6=1, nDamageMult=1, sAbr="1SS"},
@@ -154,32 +162,103 @@ function ResolveSleightAttack(sSourceCTNode, sTargetCTNode)
 	return false;
 end
 
-
-function StoreUnresolvedRoll(sSourceCTNode, sTargetName, sRollType, nRollTotal, sRollResult, nRollTarget)
-	if not sSourceCTNode or not sTargetName or not sRollType or not nRollTotal or not sRollResult or not tResults[sRollResult] or not nRollTarget then
-		return;
+function OOBAddAttack(msgOOB)
+	if Session.IsHost then
+		combat.AddAttack(msgOOB.sSourceCTNode, msgOOB.sTargetCTNode, msgOOB.sTypeAttack, msgOOB.sTypeResult, msgOOB.sResult, msgOOB.nRollTotal, msgOOB.nTarget);
 	end
-	local CTWindow=Interface.findWindow("combattracker_host", "combattracker");
-	local SourceCTWindow;
-	local TargetCTWindow;
-	for _,w in pairs(CTWindow.list.getWindows()) do
-		if DB.getPath(w.getDatabaseNode())==sSourceCTNode then
-			SourceCTWindow=w;
-			break
---		elseif DB.getPath(w.getDatabaseNode())==sTargetCTNode then
---			TargetCTWindow=w;
+end
+
+function AddAttack(sSourceCTNode, sTargetCTNode, sTypeAttack, sTypeResult, sResult, nRollTotal, nTarget)
+	if Session.IsHost and sSourceCTNode and sTargetCTNode and sTypeAttack and sTypeResult and sResult and nRollTotal and nTarget then
+		if not combat.tAttacts[sSourceCTNode] then
+			combat.tAttacts[sSourceCTNode]={};
+		end
+		if not combat.tAttacts[sSourceCTNode][sTargetCTNode] then
+			combat.tAttacts[sSourceCTNode][sTargetCTNode]={};
+		end
+		if not combat.tAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack] then
+			combat.tAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack]={};
+		end
+		
+		combat.tAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack]["s"..sTypeResult.."Result"]=sResult;
+		combat.tAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack]["n"..sTypeResult.."Result"]=nRollTotal;
+		
+		if sTypeResult=="Attack" then
+			combat.StoreUnresolvedRoll(sSourceCTNode, sTargetCTNode, sTypeResult, nRollTotal, sResult, nTarget);
+		elseif sTypeResult=="Defense" then
+			combat.StoreUnresolvedRoll(sTargetCTNode, sSourceCTNode, sTypeResult, nRollTotal, sResult, nTarget);
+		end
+		
+		local bOpposedRollNeeded=combat.ResolveCombat(sSourceCTNode, sTargetCTNode, sTypeAttack);
+		if bOpposedRollNeeded and OptionsManager.isOption("AUTODEFENSEROLL", "on") then
+			GameSystem.actions["DefenseCheck"] = { bUseModStack = "true", sIcon = "action_attack", sTargeting = "all" }
+			ActionsManager.registerResultHandler("DefenseCheck", RollHandlers.CombatHandler);
+			local sSkill, nDefenseTarget = Tools.getDefenderSkillAndTarget(sTargetCTNode, sTypeAttack);
+			local aDice2, nMod2 = StringManager.convertStringToDice("1d100");
+			local rRoll = { sType = "DefenseCheck", sDesc = "["..sTypeAttack.." DEFENSE] "..sSkill.." (vs "..nDefenseTarget..")", aDice = aDice2, nMod = nMod2};
+			local rTargetNode=DB.findNode(sTargetCTNode);
+			local tTargetGroups=ActionsManager.getTargeting(rTargetNode, DB.findNode(sSourceCTNode), rRoll.sType, { rRoll });
+			ActionsManager.actionRoll(rTargetNode, tTargetGroups, { rRoll });
 		end
 	end
-	if not SourceCTWindow then --or not TargetCTWindow then
+end
+
+function AddSleightAttack(sSourceCTNode, sTargetCTNode, sTypeResult, sResult, nRollTotal)
+	if Session.IsHost and sSourceCTNode and sTargetCTNode and sTypeResult and sResult and nRollTotal then
+		if not combat.tAttacts[sSourceCTNode] then
+			combat.tAttacts[sSourceCTNode]={};
+		end
+		if not combat.tAttacts[sSourceCTNode][sTargetCTNode] then
+			combat.tAttacts[sSourceCTNode][sTargetCTNode]={};
+		end
+		combat.tAttacts[sSourceCTNode][sTargetCTNode]["s"..sTypeResult.."Result"]=sResult;
+		combat.tAttacts[sSourceCTNode][sTargetCTNode]["n"..sTypeResult.."Result"]=nRollTotal;
+		if combat.ResolveSleightAttack(sSourceCTNode, sTargetCTNode, sTypeAttack) then
+			GameSystem.actions["DefenseSleightCheck"] = { bUseModStack = "true", sIcon = "action_attack", sTargeting = "all" }
+			ActionsManager.registerResultHandler("DefenseSleightCheck", RollHandlers.SleightHandler);
+			local nDefenseTarget = Tools.getDefenderWillTarget(sTargetCTNode);
+			local aDice2, nMod2 = StringManager.convertStringToDice("1d100");
+			local rRoll = { sType = "DefenseSleightCheck", sDesc = "[SLEIGHT DEFENSE] Willpower (vs "..nDefenseTarget..")", aDice = aDice2, nMod = nMod2};
+			local rTargetNode=DB.findNode(sTargetCTNode);
+			local tTargetGroups=ActionsManager.getTargeting(rTargetNode, DB.findNode(sSourceCTNode), rRoll.sType, { rRoll });
+			ActionsManager.actionRoll(rTargetNode, tTargetGroups, { rRoll });
+		end
+	end
+end
+
+function StoreUnresolvedRoll(sSourceCTNode, sTargetCTNode, sRollType, nRollTotal, sRollResult, nRollTarget)
+	if not sSourceCTNode or not sTargetCTNode or not sRollType or not nRollTotal or not sRollResult or not tResults[sRollResult] or not nRollTarget then
 		return;
 	end
-	
-	local w=SourceCTWindow.sub_rolls.createWindow();
-	w.RollResult.setValue(tResults[sRollResult].sAbr);
-	w.RollTotal.setValue(nRollTotal);
-	w.RollTarget.setValue(nRollTarget);
-	w.RollText.setValue(sRollType.." vs "..sTargetName);
-	w.ButtonUpgrade.UpdateVisibility();
+	Debug.chat(sSourceCTNode, sTargetCTNode)
+	local sTargetName=Tools.getName(sTargetCTNode)
+	local CTWindow=Interface.findWindow("combattracker_host", "combattracker");
+--	local SourceCTWindow;
+--	local TargetCTWindow;
+----	for _,w in pairs(CTWindow.list.getWindows()) do
+----		if DB.getPath(w.getDatabaseNode())==sSourceCTNode then
+----			SourceCTWindow=w;
+----			break
+----		end
+----	end
+----	if not SourceCTWindow then --or not TargetCTWindow then
+----		return;
+----	end
+----	
+--	local w=SourceCTWindow.sub_rolls.createWindow();
+--	w.RollResult.setValue(tResults[sRollResult].sAbr);
+--	w.RollTotal.setValue(nRollTotal);
+--	w.RollTarget.setValue(nRollTarget);
+--	w.RollText.setValue(sRollType.." vs "..sTargetName);
+--	w.ButtonUpgrade.UpdateVisibility();
+
+	local newNode=DB.createChild(DB.getChild(sSourceCTNode..".rolls"));
+	if newNode then
+		DB.setValue(newNode, "RollResult", tResults[sRollResult].sAbr);
+		DB.setValue(newNode, "RollTotal", "number", nRollTotal);
+		DB.setValue(newNode, "RollTarget", "number", nRollTarget);
+		DB.setValue(newNode, "RollText", "string", sRollType.." vs "..sTargetName);
+	end
 end
 </Script>
     <RegisterScript>true</RegisterScript>

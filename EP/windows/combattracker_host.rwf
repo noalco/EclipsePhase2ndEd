@@ -1208,7 +1208,16 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"356"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"353"}}
 ]}}</Definition>
-    <LUACode />
+    <LUACode>function onValueChanged()
+	for _,w in pairs(window.list.getWindows()) do
+		DB.deleteChildren(w.sub_rolls.getDatabaseNode());
+	end
+end
+
+function onInit()
+	onValueChanged();
+end
+</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
