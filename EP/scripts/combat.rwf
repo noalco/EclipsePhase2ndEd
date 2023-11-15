@@ -22,6 +22,7 @@ tResults = {
 }
 
 tAttacts = {} -- sAttackResult, sDefenseResult, nAttackResult, nDefenseResult
+tPrevAttacts = {} -- sAttackResult, sDefenseResult, nAttackResult, nDefenseResult
 function ResolveCombat(sSourceCTNode, sTargetCTNode, sTypeAttack)
 	if sSourceCTNode and sTargetCTNode and sTypeAttack then
 		local bAttacker=tAttacts[sSourceCTNode] and tAttacts[sSourceCTNode][sTargetCTNode] and tAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack] and tAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack].sAttackResult;
@@ -61,7 +62,6 @@ function ResolveCombat(sSourceCTNode, sTargetCTNode, sTypeAttack)
 					-- The defender wins the opposed test
 					rMessage.text = sAttackerName.." vs "..sDefenderName..": "..Interface.getString("attack_miss");
 					rMessage.icon = "roll_attack_miss";
---					tAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack]={};
 				end
 				if tResults[sDefenseResult].nRange&gt;0 then
 					rMessage.text = rMessage.text.." ("..nAttackResult.." vs "..nDefenseResult..")";
@@ -69,14 +69,40 @@ function ResolveCombat(sSourceCTNode, sTargetCTNode, sTypeAttack)
 			else -- The atacker fails
 				rMessage.text = sAttackerName.." vs "..sDefenderName..": "..Interface.getString("attack_miss");
 				rMessage.icon = "roll_attack_miss";
---				tAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack]={};
 			end
-			tAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack]={};			
+			
+			if not tPrevAttacts[sSourceCTNode] then
+				tPrevAttacts[sSourceCTNode]={};
+			end
+			if not tPrevAttacts[sSourceCTNode][sTargetCTNode] then
+				tPrevAttacts[sSourceCTNode][sTargetCTNode]={};
+			end
+			if not tPrevAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack] then
+				tPrevAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack]={};
+			end
+			tPrevAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack].sAttackResult=tAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack].sAttackResult;
+			tPrevAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack].nAttackResult=tAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack].nAttackResult;
+			tPrevAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack].sDefenseResult=tAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack].sDefenseResult;
+			tPrevAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack].nDefenseResult=tAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack].nDefenseResult;
+			
+			tAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack]={};
 			Comm.deliverChatMessage(rMessage);
 		elseif bAttacker and tResults[sAttackResult].nRange&lt;0 then -- The atacker fails and there is no defence roll
+			if not tPrevAttacts[sSourceCTNode] then
+				tPrevAttacts[sSourceCTNode]={};
+			end
+			if not tPrevAttacts[sSourceCTNode][sTargetCTNode] then
+				tPrevAttacts[sSourceCTNode][sTargetCTNode]={};
+			end
+			if not tPrevAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack] then
+				tPrevAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack]={};
+			end
+			tPrevAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack].sAttackResult=tAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack].sAttackResult;
+			tPrevAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack].nAttackResult=tAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack].nAttackResult;
+
+			tAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack]={};
 			rMessage.text = sAttackerName.." vs "..sDefenderName..": "..Interface.getString("attack_miss");
 			rMessage.icon = "roll_attack_miss";
-			tAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack]={};
 			Comm.deliverChatMessage(rMessage);
 		elseif bAttacker and tResults[sAttackResult].nRange&gt;0 then -- The atacker succeeds and there is no defence roll
 			rMessage.text = sAttackerName.." vs "..sDefenderName..": "..Interface.getString("attack_possible_hit")..". "..sDefenderName.." "..Interface.getString(sTypeAttack:lower().."_defence_roll_required").." (vs "..nAttackResult..")";
@@ -164,32 +190,34 @@ end
 
 function OOBAddAttack(msgOOB)
 	if Session.IsHost then
-		combat.AddAttack(msgOOB.sSourceCTNode, msgOOB.sTargetCTNode, msgOOB.sTypeAttack, msgOOB.sTypeResult, msgOOB.sResult, msgOOB.nRollTotal, msgOOB.nTarget);
+		AddAttack(msgOOB.sSourceCTNode, msgOOB.sTargetCTNode, msgOOB.sTypeAttack, msgOOB.sTypeResult, msgOOB.sResult, msgOOB.nRollTotal, msgOOB.nTarget);
 	end
 end
 
 function AddAttack(sSourceCTNode, sTargetCTNode, sTypeAttack, sTypeResult, sResult, nRollTotal, nTarget)
+--	sTypeAttack: MELEE, RANGED
+--	sTypeResult: Defense, Attack
 	if Session.IsHost and sSourceCTNode and sTargetCTNode and sTypeAttack and sTypeResult and sResult and nRollTotal and nTarget then
-		if not combat.tAttacts[sSourceCTNode] then
-			combat.tAttacts[sSourceCTNode]={};
+		if not tAttacts[sSourceCTNode] then
+			tAttacts[sSourceCTNode]={};
 		end
-		if not combat.tAttacts[sSourceCTNode][sTargetCTNode] then
-			combat.tAttacts[sSourceCTNode][sTargetCTNode]={};
+		if not tAttacts[sSourceCTNode][sTargetCTNode] then
+			tAttacts[sSourceCTNode][sTargetCTNode]={};
 		end
-		if not combat.tAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack] then
-			combat.tAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack]={};
+		if not tAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack] then
+			tAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack]={};
 		end
 		
-		combat.tAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack]["s"..sTypeResult.."Result"]=sResult;
-		combat.tAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack]["n"..sTypeResult.."Result"]=nRollTotal;
+		tAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack]["s"..sTypeResult.."Result"]=sResult;
+		tAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack]["n"..sTypeResult.."Result"]=nRollTotal;
 		
 		if sTypeResult=="Attack" then
-			combat.StoreUnresolvedRoll(sSourceCTNode, sTargetCTNode, sTypeResult, nRollTotal, sResult, nTarget);
+			StoreUnresolvedRoll(sSourceCTNode, sTargetCTNode, sTypeResult, sTypeAttack, nRollTotal, sResult, nTarget);
 		elseif sTypeResult=="Defense" then
-			combat.StoreUnresolvedRoll(sTargetCTNode, sSourceCTNode, sTypeResult, nRollTotal, sResult, nTarget);
+			StoreUnresolvedRoll(sTargetCTNode, sSourceCTNode, sTypeResult, sTypeAttack, nRollTotal, sResult, nTarget);
 		end
 		
-		local bOpposedRollNeeded=combat.ResolveCombat(sSourceCTNode, sTargetCTNode, sTypeAttack);
+		local bOpposedRollNeeded=ResolveCombat(sSourceCTNode, sTargetCTNode, sTypeAttack);
 		if bOpposedRollNeeded and OptionsManager.isOption("AUTODEFENSEROLL", "on") then
 			GameSystem.actions["DefenseCheck"] = { bUseModStack = "true", sIcon = "action_attack", sTargeting = "all" }
 			ActionsManager.registerResultHandler("DefenseCheck", RollHandlers.CombatHandler);
@@ -205,15 +233,15 @@ end
 
 function AddSleightAttack(sSourceCTNode, sTargetCTNode, sTypeResult, sResult, nRollTotal)
 	if Session.IsHost and sSourceCTNode and sTargetCTNode and sTypeResult and sResult and nRollTotal then
-		if not combat.tAttacts[sSourceCTNode] then
-			combat.tAttacts[sSourceCTNode]={};
+		if not tAttacts[sSourceCTNode] then
+			tAttacts[sSourceCTNode]={};
 		end
-		if not combat.tAttacts[sSourceCTNode][sTargetCTNode] then
-			combat.tAttacts[sSourceCTNode][sTargetCTNode]={};
+		if not tAttacts[sSourceCTNode][sTargetCTNode] then
+			tAttacts[sSourceCTNode][sTargetCTNode]={};
 		end
-		combat.tAttacts[sSourceCTNode][sTargetCTNode]["s"..sTypeResult.."Result"]=sResult;
-		combat.tAttacts[sSourceCTNode][sTargetCTNode]["n"..sTypeResult.."Result"]=nRollTotal;
-		if combat.ResolveSleightAttack(sSourceCTNode, sTargetCTNode, sTypeAttack) then
+		tAttacts[sSourceCTNode][sTargetCTNode]["s"..sTypeResult.."Result"]=sResult;
+		tAttacts[sSourceCTNode][sTargetCTNode]["n"..sTypeResult.."Result"]=nRollTotal;
+		if ResolveSleightAttack(sSourceCTNode, sTargetCTNode, sTypeAttack) then
 			GameSystem.actions["DefenseSleightCheck"] = { bUseModStack = "true", sIcon = "action_attack", sTargeting = "all" }
 			ActionsManager.registerResultHandler("DefenseSleightCheck", RollHandlers.SleightHandler);
 			local nDefenseTarget = Tools.getDefenderWillTarget(sTargetCTNode);
@@ -226,8 +254,8 @@ function AddSleightAttack(sSourceCTNode, sTargetCTNode, sTypeResult, sResult, nR
 	end
 end
 
-function StoreUnresolvedRoll(sSourceCTNode, sTargetCTNode, sRollType, nRollTotal, sRollResult, nRollTarget)
-	if not sSourceCTNode or not sTargetCTNode or not sRollType or not nRollTotal or not sRollResult or not tResults[sRollResult] or not nRollTarget then
+function StoreUnresolvedRoll(sSourceCTNode, sTargetCTNode, sTypeResult, sTypeAttack, nRollTotal, sRollResult, nRollTarget)
+	if not sSourceCTNode or not sTargetCTNode or not sTypeResult or not sTypeAttack or not nRollTotal or not sRollResult or not tResults[sRollResult] or not nRollTarget then
 		return;
 	end
 	Debug.chat(sSourceCTNode, sTargetCTNode)
@@ -249,7 +277,7 @@ function StoreUnresolvedRoll(sSourceCTNode, sTargetCTNode, sRollType, nRollTotal
 --	w.RollResult.setValue(tResults[sRollResult].sAbr);
 --	w.RollTotal.setValue(nRollTotal);
 --	w.RollTarget.setValue(nRollTarget);
---	w.RollText.setValue(sRollType.." vs "..sTargetName);
+--	w.RollText.setValue(sTypeResult.." vs "..sTargetName);
 --	w.ButtonUpgrade.UpdateVisibility();
 
 	local newNode=DB.createChild(DB.getChild(sSourceCTNode..".rolls"));
@@ -257,7 +285,9 @@ function StoreUnresolvedRoll(sSourceCTNode, sTargetCTNode, sRollType, nRollTotal
 		DB.setValue(newNode, "RollResult", tResults[sRollResult].sAbr);
 		DB.setValue(newNode, "RollTotal", "number", nRollTotal);
 		DB.setValue(newNode, "RollTarget", "number", nRollTarget);
-		DB.setValue(newNode, "RollText", "string", sRollType.." vs "..sTargetName);
+		DB.setValue(newNode, "RollText", "string", sTypeResult.." vs "..sTargetName);
+		DB.setValue(newNode, "TargetCTNode", "string", sTargetCTNode);
+		DB.setValue(newNode, "TypeAttack", "string", sTypeAttack);
 	end
 end
 </Script>
