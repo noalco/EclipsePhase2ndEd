@@ -2,7 +2,7 @@
   <WindowControls>
     <WindowName>ct_rolls</WindowName>
     <ControlName>ButtonFlipFlop</ControlName>
-    <ZIndex>5</ZIndex>
+    <ZIndex>6</ZIndex>
     <ControlClass>FGButton</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -65,10 +65,7 @@
 	sResult=sResult:upper();
 	window.RollResult.setValue(combat.tResults[sResult].sAbr);
 --	window.ButtonUpgrade.UpdateVisibility();
-	setVisible(false);
-	window.ButtonUpgrade.setVisible(false);
-	window.ChangeRoll();
-	if combat.tAttacts[DB.getPath(window.getDatabaseNode())][TargetCTNode][TypeResult]
+	window.UpdateRoll("FLIP-FLOP ROLL");
 end
 </LUACode>
     <GroupIndex>0</GroupIndex>
@@ -77,7 +74,7 @@ end
   <WindowControls>
     <WindowName>ct_rolls</WindowName>
     <ControlName>ButtonUpgrade</ControlName>
-    <ZIndex>7</ZIndex>
+    <ZIndex>9</ZIndex>
     <ControlClass>FGButton</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -140,14 +137,13 @@ end
 	elseif sRollResult=="1SS" then
 		window.RollResult.setValue("2SS");
 	end
-	window.ButtonFlipFlop.setVisible(false);
-	setVisible(false);
-	window.ChangeRoll();
+	window.UpdateRoll("UPGRADE RESULT");
 end
 
 function UpdateVisibility()
 	setVisible(window.RollResult.getValue()=="CF" or window.RollResult.getValue()=="S" or window.RollResult.getValue()=="1SS");
-end</LUACode>
+end
+</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -164,7 +160,7 @@ end</LUACode>
       {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"ct_rolls"}},
       {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
       {"Name":"DataSource"},
-      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"25"}},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"28"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"394"}},
       {"Name":"DevelopmentComments"},
       {"Name":"Disabled"},
@@ -206,8 +202,96 @@ end</LUACode>
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"0"}}
 ]}}</Definition>
-    <LUACode>function ChangeRoll()
+    <LUACode>function ShowRollMessage(sUpdateType)
+--{ s'sType' = s'npc', s'sCreatureNode' = s'combattracker.list.id-00003', s'sCTNode' = s'combattracker.list.id-00003', s'sName' = s'Iktomi Kumobot 1' } 
+--{ s'sType' = s'charsheet', s'sCreatureNode' = s'charsheet.id-00001', s'sCTNode' = s'combattracker.list.id-00001', s'sName' = s'PC' }
 
+--		{ s'nBonuses' = s'0', 
+--		s'aDice' = { #1 = { s'value' = #85, s'type' = s'd100', s'result' = #85 }, s'expr' = s'1d100', s'total' = #85 }, 
+--		s'nMod' = #0, 
+--		s'sType' = s'AttackCheck', 
+--		s'bSecret' = bFALSE, 
+--		s'nTotal' = #85, 
+--		s'sDesc' = s'[MELEE ATTACK] Melee (vs 65)' }
+
+	local sClass, sRecord=DB.getValue(windowlist.window.getDatabaseNode(), "link");
+	local rSource={Type=sClass, sCreatureNode=sRecord, sCTNode=DB.getPath(windowlist.window.getDatabaseNode()), sName=Tools.getName(DB.getPath(windowlist.window.getDatabaseNode()))};
+	local rRoll={ nBonuses = 0, 
+		aDice = { [1] = { value = RollTotal.getValue(), ["type"] = "d100", result = RollTotal.getValue() }, expr = "1d100", total = RollTotal.getValue() }, 
+		nMod = 0, 
+		sType = TypeResult.getValue().."Check", 
+		bSecret = bFALSE, 
+		nTotal = RollTotal.getValue(), 
+		sDesc = "["..TypeAttack.getValue().." ATTACK] "..sUpdateType.." (vs "..RollTarget.getValue()..")" }
+	local rMessage = ActionsManager.createActionMessage(rSource, rRoll);
+	rMessage.text=rMessage.text.." ["..combat.tResultsAbr[RollResult.getValue()].."]";
+	Comm.deliverChatMessage(rMessage);
+	
+end
+
+
+function UpdateRoll(sUpdateType)
+	ButtonUpgrade.setVisible(false);
+	ButtonFlipFlop.setVisible(false);
+	local sSourceCTNode;
+	local sTargetCTNode;
+	local sTypeResult=TypeResult.getValue();
+	local sTypeAttack=TypeAttack.getValue();
+	local sOppositeTypeResult;
+	local sSearchCTNode=DB.getPath(windowlist.window.getDatabaseNode());
+	
+	if sTypeResult=="Attack" or sTypeResult=="Defense" then
+		if sTypeResult=="Attack" then
+			sSourceCTNode=sSearchCTNode;
+			sTargetCTNode=TargetCTNode.getValue();
+			sOppositeTypeResult="Defense";
+		else
+			sSourceCTNode=TargetCTNode.getValue();
+			sTargetCTNode=sSearchCTNode;
+			sOppositeTypeResult="Attack";
+		end
+		
+		if not combat.tAttacts[sSourceCTNode] or not combat.tAttacts[sSourceCTNode][sTargetCTNode] or not combat.tAttacts[sSourceCTNode][sTargetCTNode][sTypeResult]  or not combat.tAttacts[sSourceCTNode][sTargetCTNode][sTypeResult]["s"..sTypeResult.."Result"] then
+			for _,n in pairs(DB.getChildren(TargetCTNode.getValue()..".rolls")) do
+				-- Looking for the opposite roll
+				if DB.getValue(n, "TargetCTNode", "")==sSearchCTNode and DB.getValue(n, "TypeResult", "")==sOppositeTypeResult and DB.getValue(n, "TypeAttack", "")==sTypeAttack then
+					if not combat.tAttactsBck[sSourceCTNode] then
+						combat.tAttactsBck[sSourceCTNode]={};
+					end
+					if not combat.tAttactsBck[sSourceCTNode][sTargetCTNode] then
+						combat.tAttactsBck[sSourceCTNode][sTargetCTNode]={};
+					end
+					if not combat.tAttactsBck[sSourceCTNode][sTargetCTNode][sTypeAttack] then
+						combat.tAttactsBck[sSourceCTNode][sTargetCTNode][sTypeAttack]={};
+					end
+					
+					combat.tAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack]["s"..sOppositeTypeResult.."Result"]=combat.tResultsAbr[DB.getValue(n, "RollResult", "F")];
+					combat.tAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack]["n"..sOppositeTypeResult.."Result"]=DB.getValue(n, "RollTotal", 0);
+					break;
+				end
+			end
+		end
+		
+		ShowRollMessage(sUpdateType)
+		
+		if Session.IsHost then
+			combat.AddAttack(sSourceCTNode, sTargetCTNode, sTypeAttack, sTypeResult, combat.tResultsAbr[RollResult.getValue()], RollTotal.getValue(), RollTarget.getValue(), true);
+		else
+			local msgOOB={};
+			msgOOB.type=combat.OOB_ADD_ATTACK;
+			msgOOB.sSourceCTNode=rSource.sCTNode;
+			msgOOB.sTargetCTNode=rTarget.sCTNode;
+			msgOOB.sTypeAttack=sTypeAttack;
+			msgOOB.sTypeResult=sTypeResult;
+			msgOOB.sResult=combat.tResultsAbr[RollResult.getValue()];
+			msgOOB.nRollTotal=RollTotal.getValue();
+			msgOOB.nTarget=RollTarget.getValue();
+			Comm.deliverOOBMessage(msgOOB);
+		end
+	else
+		return;
+	end
+--	DB.deleteNode(getDatabaseNode());
 end</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
@@ -215,7 +299,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>ct_rolls</WindowName>
     <ControlName>idelete</ControlName>
-    <ZIndex>8</ZIndex>
+    <ZIndex>10</ZIndex>
     <ControlClass>FGButton</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -283,7 +367,7 @@ end
   <WindowControls>
     <WindowName>ct_rolls</WindowName>
     <ControlName>LabelVS</ControlName>
-    <ZIndex>3</ZIndex>
+    <ZIndex>4</ZIndex>
     <ControlClass>FGLabel</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -337,8 +421,8 @@ end
   <WindowControls>
     <WindowName>ct_rolls</WindowName>
     <ControlName>RollResult</ControlName>
-    <ZIndex>6</ZIndex>
-    <ControlClass>FGLabel</ControlClass>
+    <ZIndex>8</ZIndex>
+    <ControlClass>FGStringField</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
       {"Name":"AdvancedTemplate"},
@@ -347,23 +431,28 @@ end
       {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"RollResult"}},
       {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
       {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
+      {"Name":"DefaultText","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"DelayKeyUpdate","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
       {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"30"}},
       {"Name":"DevelopmentComments"},
+      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
       {"Name":"Disabled"},
       {"Name":"DynamicSize"},
+      {"Name":"EmptyText"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"FrameName"},
       {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"GMEditOnly"},
       {"Name":"GMVisibleOnly"},
       {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"1"}},
       {"Name":"HoverCursor"},
       {"Name":"InheritSizePosition"},
       {"Name":"InsertBefore"},
       {"Name":"Invisible"},
-      {"Name":"LabelCaption","Value":{"@xsi:type":"xsd:string","#text":"XXX"}},
+      {"Name":"LineOffset"},
       {"Name":"MaximumHeight"},
       {"Name":"MaximumWidth"},
       {"Name":"Merge"},
@@ -371,27 +460,38 @@ end
       {"Name":"MinimumWidth"},
       {"Name":"MultilineSpacing"},
       {"Name":"NextTabTarget"},
+      {"Name":"NoDrag","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"NoDragselect","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"NoDrop","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
       {"Name":"PrevTabTarget"},
+      {"Name":"ReadOnly"},
       {"Name":"RelativeMargin"},
       {"Name":"RelativeStacking"},
       {"Name":"ScriptFile"},
+      {"Name":"Source"},
       {"Name":"StackVertWith"},
       {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
-      {"Name":"TextUnderlined"},
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"337"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"0"}}
 ]}}</Definition>
-    <LUACode />
+    <LUACode>function onValueChanged()
+	window.ButtonUpgrade.UpdateVisibility();
+end
+
+function onInit()
+	window.ButtonUpgrade.UpdateVisibility();
+end
+</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>ct_rolls</WindowName>
     <ControlName>RollTarget</ControlName>
-    <ZIndex>4</ZIndex>
+    <ZIndex>5</ZIndex>
     <ControlClass>FGNumberField</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -456,7 +556,7 @@ end
     <WindowName>ct_rolls</WindowName>
     <ControlName>RollText</ControlName>
     <ZIndex>1</ZIndex>
-    <ControlClass>FGLabel</ControlClass>
+    <ControlClass>FGStringField</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
       {"Name":"AdvancedTemplate"},
@@ -465,23 +565,28 @@ end
       {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"RollText"}},
       {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
       {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
+      {"Name":"DefaultText","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"DelayKeyUpdate","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
       {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"250"}},
       {"Name":"DevelopmentComments"},
+      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
       {"Name":"Disabled"},
       {"Name":"DynamicSize"},
+      {"Name":"EmptyText"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"FrameName"},
       {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"GMEditOnly"},
       {"Name":"GMVisibleOnly"},
-      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"2"}},
+      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"HoverCursor"},
       {"Name":"InheritSizePosition"},
       {"Name":"InsertBefore"},
       {"Name":"Invisible"},
-      {"Name":"LabelCaption","Value":{"@xsi:type":"xsd:string","#text":"Willpower vs"}},
+      {"Name":"LineOffset"},
       {"Name":"MaximumHeight"},
       {"Name":"MaximumWidth"},
       {"Name":"Merge"},
@@ -489,13 +594,17 @@ end
       {"Name":"MinimumWidth"},
       {"Name":"MultilineSpacing"},
       {"Name":"NextTabTarget"},
+      {"Name":"NoDrag","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"NoDragselect","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"NoDrop","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
       {"Name":"PrevTabTarget"},
+      {"Name":"ReadOnly"},
       {"Name":"RelativeMargin"},
       {"Name":"RelativeStacking"},
       {"Name":"ScriptFile"},
+      {"Name":"Source"},
       {"Name":"StackVertWith"},
       {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
-      {"Name":"TextUnderlined"},
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
@@ -509,7 +618,7 @@ end
   <WindowControls>
     <WindowName>ct_rolls</WindowName>
     <ControlName>RollTotal</ControlName>
-    <ZIndex>2</ZIndex>
+    <ZIndex>3</ZIndex>
     <ControlClass>FGNumberField</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -572,22 +681,22 @@ end
   </WindowControls>
   <WindowControls>
     <WindowName>ct_rolls</WindowName>
-    <ControlName>sTargetCTNode</ControlName>
-    <ZIndex>9</ZIndex>
+    <ControlName>TargetCTNode</ControlName>
+    <ZIndex>11</ZIndex>
     <ControlClass>FGStringField</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
       {"Name":"AdvancedTemplate"},
       {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"Center"},
-      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"sTargetCTNode"}},
+      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"TargetCTNode"}},
       {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
       {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
       {"Name":"DefaultText","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"DelayKeyUpdate","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
       {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
-      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"150"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"30"}},
       {"Name":"DevelopmentComments"},
       {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
       {"Name":"Disabled"},
@@ -626,7 +735,70 @@ end
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"418"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"432"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"0"}}
+]}}</Definition>
+    <LUACode />
+    <GroupIndex>0</GroupIndex>
+    <Template />
+  </WindowControls>
+  <WindowControls>
+    <WindowName>ct_rolls</WindowName>
+    <ControlName>TypeAttack</ControlName>
+    <ZIndex>13</ZIndex>
+    <ControlClass>FGStringField</ControlClass>
+    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
+      {"Name":"AdvancedTemplate"},
+      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"Center"},
+      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"TypeAttack"}},
+      {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
+      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
+      {"Name":"DefaultText","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"DelayKeyUpdate","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
+      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"30"}},
+      {"Name":"DevelopmentComments"},
+      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
+      {"Name":"Disabled"},
+      {"Name":"DynamicSize"},
+      {"Name":"EmptyText"},
+      {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"FontName","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"FrameName"},
+      {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"GMEditOnly"},
+      {"Name":"GMVisibleOnly"},
+      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"HoverCursor"},
+      {"Name":"InheritSizePosition"},
+      {"Name":"InsertBefore"},
+      {"Name":"Invisible","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"LineOffset","Value":{"@xsi:type":"xsd:int","#text":"2"}},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
+      {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
+      {"Name":"MultilineSpacing"},
+      {"Name":"NextTabTarget"},
+      {"Name":"NoDrag","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"NoDragselect","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"NoDrop","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"PrevTabTarget"},
+      {"Name":"ReadOnly"},
+      {"Name":"RelativeMargin"},
+      {"Name":"RelativeStacking"},
+      {"Name":"ScriptFile"},
+      {"Name":"Source"},
+      {"Name":"StackVertWith"},
+      {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
+      {"Name":"Tooltip"},
+      {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"469"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"0"}}
 ]}}</Definition>
     <LUACode />
@@ -636,7 +808,7 @@ end
   <WindowControls>
     <WindowName>ct_rolls</WindowName>
     <ControlName>TypeResult</ControlName>
-    <ZIndex>10</ZIndex>
+    <ZIndex>12</ZIndex>
     <ControlClass>FGStringField</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -650,7 +822,7 @@ end
       {"Name":"DelayKeyUpdate","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
       {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
-      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"150"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"30"}},
       {"Name":"DevelopmentComments"},
       {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
       {"Name":"Disabled"},
@@ -689,7 +861,7 @@ end
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"591"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"510"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"0"}}
 ]}}</Definition>
     <LUACode />

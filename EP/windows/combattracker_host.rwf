@@ -726,18 +726,17 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"0"}}
 ]}}</Definition>
-    <LUACode>
-function onInit()
-	DB.addHandler(DB.getPath(list.getDatabaseNode())..".*.active", "onUpdate", CleanRolls);
-	CleanRolls();
-end
-
-function CleanRolls()
-	for _,w in pairs(list.getWindows()) do
-		DB.deleteChildren(w.sub_rolls.getDatabaseNode());
-	end
-	combat.tPrevAttacts={}
-end</LUACode>
+    <LUACode>--function onInit()
+--	DB.addHandler(DB.getPath(list.getDatabaseNode())..".*.active", "onUpdate", CleanRolls);
+--	CleanRolls();
+--end
+--
+--function CleanRolls()
+--	for _,w in pairs(list.getWindows()) do
+--		DB.deleteChildren(w.sub_rolls.getDatabaseNode());
+--	end
+--	combat.tPrevAttacts={}
+--end</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -1219,10 +1218,10 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"356"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"353"}}
 ]}}</Definition>
-    <LUACode>function onValueChanged()
-	window.CleanRolls();
-end
-</LUACode>
+    <LUACode>--function onValueChanged()
+--	window.CleanRolls();
+--end
+--</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
