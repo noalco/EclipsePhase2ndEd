@@ -224,9 +224,9 @@ function AddAttack(sSourceCTNode, sTargetCTNode, sTypeAttack, sTypeResult, sResu
 		tAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack]["n"..sTypeResult.."Result"]=nRollTotal;
 		
 		if sTypeResult=="Attack" and not bModifiedRoll then
-			StoreUnresolvedRoll(sSourceCTNode, sTargetCTNode, sTypeAttack, sTypeResult, sResult, nRollTotal, nTarget);
+			StoreUnresolvedAttackRoll(sSourceCTNode, sTargetCTNode, sTypeAttack, sTypeResult, sResult, nRollTotal, nTarget);
 		elseif sTypeResult=="Defense" and not bModifiedRoll then
-			StoreUnresolvedRoll(sTargetCTNode, sSourceCTNode, sTypeAttack, sTypeResult, sResult, nRollTotal, nTarget);
+			StoreUnresolvedAttackRoll(sTargetCTNode, sSourceCTNode, sTypeAttack, sTypeResult, sResult, nRollTotal, nTarget);
 		end
 		
 		local bOpposedRollNeeded=ResolveCombat(sSourceCTNode, sTargetCTNode, sTypeAttack);
@@ -266,40 +266,34 @@ function AddSleightAttack(sSourceCTNode, sTargetCTNode, sTypeResult, sResult, nR
 	end
 end
 
-function StoreUnresolvedRoll(sSourceCTNode, sTargetCTNode, sTypeAttack, sTypeResult, sRollResult, nRollTotal, nRollTarget)
+function StoreUnresolvedAttackRoll(sSourceCTNode, sTargetCTNode, sTypeAttack, sTypeResult, sRollResult, nRollTotal, nRollTarget)
 	if not sSourceCTNode or not sTargetCTNode or not sTypeResult or not sTypeAttack or not nRollTotal or not sRollResult or not tResults[sRollResult] or not nRollTarget then
 		return;
 	end
 	local sTargetName=Tools.getName(sTargetCTNode)
-	local CTWindow=Interface.findWindow("combattracker_host", "combattracker");
---	local SourceCTWindow;
---	local TargetCTWindow;
-----	for _,w in pairs(CTWindow.list.getWindows()) do
-----		if DB.getPath(w.getDatabaseNode())==sSourceCTNode then
-----			SourceCTWindow=w;
-----			break
-----		end
-----	end
-----	if not SourceCTWindow then --or not TargetCTWindow then
-----		return;
-----	end
-----	
---	local w=SourceCTWindow.sub_rolls.createWindow();
---	w.RollResult.setValue(tResults[sRollResult].sAbr);
---	w.RollTotal.setValue(nRollTotal);
---	w.RollTarget.setValue(nRollTarget);
---	w.RollText.setValue(sTypeResult.." vs "..sTargetName);
---	w.ButtonUpgrade.UpdateVisibility();
 
-	local newNode=DB.createChild(DB.getChild(sSourceCTNode..".rolls"));
-	if newNode then
-		DB.setValue(newNode, "RollResult", "string", tResults[sRollResult].sAbr);
-		DB.setValue(newNode, "RollTotal", "number", nRollTotal);
-		DB.setValue(newNode, "RollTarget", "number", nRollTarget);
-		DB.setValue(newNode, "RollText", "string", StringManager.capitalize(sTypeAttack:lower()).." "..sTypeResult.." vs "..sTargetName);
-		DB.setValue(newNode, "TargetCTNode", "string", sTargetCTNode);
-		DB.setValue(newNode, "TypeResult", "string", sTypeResult);
-		DB.setValue(newNode, "TypeAttack", "string", sTypeAttack);
+	local rollsNode=DB.getChild(sSourceCTNode..".rolls");
+	local bNodeFound=false;
+	local rollNode;
+	for _,n in pairs(DB.getChildren(rollsNode)) do
+		if DB.getValue(n, "TargetCTNode", "")==sTargetCTNode and DB.getValue(n, "TypeAttack", "")==sTypeAttack and DB.getValue(n, "TypeResult", "")==sTypeResult then
+			bNodeFound=true;
+			rollNode=n;
+		end
+	end
+	if not bNodeFound then
+		rollNode=DB.createChild(rollsNode);
+	end
+	if rollNode then
+		DB.setValue(rollNode, "RollResult", "string", tResults[sRollResult].sAbr);
+		DB.setValue(rollNode, "RollTotal", "number", nRollTotal);
+		DB.setValue(rollNode, "RollTarget", "number", nRollTarget);
+		DB.setValue(rollNode, "RollText", "string", StringManager.capitalize(sTypeAttack:lower()).." "..sTypeResult.." vs "..sTargetName);
+		DB.setValue(rollNode, "TargetCTNode", "string", sTargetCTNode);
+		DB.setValue(rollNode, "TypeResult", "string", sTypeResult);
+		DB.setValue(rollNode, "TypeAttack", "string", sTypeAttack);
+		DB.setValue(rollNode, "ShowButtons", "number", 1);
+		DB.setValue(rollNode, "CheckedRoll", "number", 0);
 	end
 end
 </Script>
