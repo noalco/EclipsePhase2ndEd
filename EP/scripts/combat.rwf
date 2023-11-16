@@ -276,7 +276,7 @@ function StoreUnresolvedAttackRoll(sSourceCTNode, sTargetCTNode, sTypeAttack, sT
 	local bNodeFound=false;
 	local rollNode;
 	for _,n in pairs(DB.getChildren(rollsNode)) do
-		if DB.getValue(n, "TargetCTNode", "")==sTargetCTNode and DB.getValue(n, "TypeAttack", "")==sTypeAttack and DB.getValue(n, "TypeResult", "")==sTypeResult then
+		if DB.getValue(n, "TargetCTNode", "")==sTargetCTNode and DB.getValue(n, "TypeResult", "")==sTypeResult then -- and DB.getValue(n, "TypeAttack", "")==sTypeAttack 
 			bNodeFound=true;
 			rollNode=n;
 		end
