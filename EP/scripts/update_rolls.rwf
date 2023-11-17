@@ -1,0 +1,134 @@
+<DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
+  <Scripts>
+    <ScriptName>update_rolls</ScriptName>
+    <FolderID>13</FolderID>
+    <Script>function ShowUpdatedRollMessage(sUpdateType)
+--{ s'sType' = s'npc', s'sCreatureNode' = s'combattracker.list.id-00003', s'sCTNode' = s'combattracker.list.id-00003', s'sName' = s'Iktomi Kumobot 1' } 
+--{ s'sType' = s'charsheet', s'sCreatureNode' = s'charsheet.id-00001', s'sCTNode' = s'combattracker.list.id-00001', s'sName' = s'PC' }
+
+--		{ s'nBonuses' = s'0', 
+--		s'aDice' = { #1 = { s'value' = #85, s'type' = s'd100', s'result' = #85 }, s'expr' = s'1d100', s'total' = #85 }, 
+--		s'nMod' = #0, 
+--		s'sType' = s'AttackCheck', 
+--		s'bSecret' = bFALSE, 
+--		s'nTotal' = #85, 
+--		s'sDesc' = s'[MELEE ATTACK] Melee (vs 65)' }
+
+	local sClass, sRecord=DB.getValue(windowlist.window.getDatabaseNode(), "link");
+	local rSource={Type=sClass, sCreatureNode=sRecord, sCTNode=DB.getPath(windowlist.window.getDatabaseNode()), sName=Tools.getName(DB.getPath(windowlist.window.getDatabaseNode()))};
+	local rRoll={ nBonuses = 0, 
+		aDice = { [1] = { value = RollTotal.getValue(), ["type"] = "d100", result = RollTotal.getValue() }, expr = "1d100", total = RollTotal.getValue() }, 
+		nMod = 0, 
+		sType = TypeResult.getValue().."Check", 
+		bSecret = bFALSE, 
+		nTotal = RollTotal.getValue(), 
+		sDesc = "["..TypeAttack.getValue().." "..TypeResult.getValue():upper().."] "..sUpdateType.." (vs "..RollTarget.getValue()..")" }; --"..RollTotal.getValue().."
+	local rMessage = ActionsManager.createActionMessage(rSource, rRoll);
+	rMessage.text=rMessage.text.." ["..combat.tResultsAbr[RollResult.getValue()].."]";
+	Comm.deliverChatMessage(rMessage);
+	
+end
+
+
+function UpdateAttackRoll(sUpdateType)
+	ButtonUpgrade.setVisible(false);
+	ButtonFlipFlop.setVisible(false);
+	local sSourceCTNode;
+	local sTargetCTNode;
+	local sTypeResult=TypeResult.getValue();
+	local sTypeAttack=TypeAttack.getValue();
+	local sOppositeTypeResult;
+	local sSearchCTNode=DB.getPath(windowlist.window.getDatabaseNode());
+	
+--	if sTypeResult=="Attack" or sTypeResult=="Defense" then
+	if sTypeAttack=="MELEE" or sTypeAttack=="RANGED" then
+		if sTypeResult=="Attack" then
+			sSourceCTNode=sSearchCTNode;
+			sTargetCTNode=TargetCTNode.getValue();
+			sOppositeTypeResult="Defense";
+		else
+			sSourceCTNode=TargetCTNode.getValue();
+			sTargetCTNode=sSearchCTNode;
+			sOppositeTypeResult="Attack";
+		end
+		
+		if not combat.tAttacts[sSourceCTNode] or not combat.tAttacts[sSourceCTNode][sTargetCTNode] or not combat.tAttacts[sSourceCTNode][sTargetCTNode][sTypeResult] or not combat.tAttacts[sSourceCTNode][sTargetCTNode][sTypeResult]["s"..sTypeResult.."Result"] then
+			for _,n in pairs(DB.getChildren(TargetCTNode.getValue()..".rolls")) do
+				-- Looking for the opposite roll
+				if DB.getValue(n, "TargetCTNode", "")==sSearchCTNode and DB.getValue(n, "TypeResult", "")==sOppositeTypeResult and DB.getValue(n, "TypeAttack", "")==sTypeAttack and DB.getValue(n, "CheckedRoll", 0)==0 then
+					
+					combat.tAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack]["s"..sOppositeTypeResult.."Result"]=combat.tResultsAbr[DB.getValue(n, "RollResult", "F")];
+					combat.tAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack]["n"..sOppositeTypeResult.."Result"]=DB.getValue(n, "RollTotal", 0);
+					
+					DB.setValue(n, "CheckedRoll", "number", 1);
+					
+					break;
+				end
+			end
+		end
+		
+		ShowUpdatedRollMessage(sUpdateType)
+		
+		if Session.IsHost then
+			combat.AddAttack(sSourceCTNode, sTargetCTNode, sTypeAttack, sTypeResult, combat.tResultsAbr[RollResult.getValue()], RollTotal.getValue(), RollTarget.getValue(), true);
+		else
+			local msgOOB={};
+			msgOOB.type=combat.OOB_ADD_ATTACK;
+			msgOOB.sSourceCTNode=sSourceCTNode;
+			msgOOB.sTargetCTNode=sTargetCTNode;
+			msgOOB.sTypeAttack=sTypeAttack;
+			msgOOB.sTypeResult=sTypeResult;
+			msgOOB.sResult=combat.tResultsAbr[RollResult.getValue()];
+			msgOOB.nRollTotal=RollTotal.getValue();
+			msgOOB.nTarget=RollTarget.getValue();
+			Comm.deliverOOBMessage(msgOOB);
+		end
+	elseif sTypeAttack=="SLEIGHT" then
+		if sTypeResult=="Attack" then
+			sSourceCTNode=sSearchCTNode;
+			sTargetCTNode=TargetCTNode.getValue();
+			sOppositeTypeResult="Defense";
+		else
+			sSourceCTNode=TargetCTNode.getValue();
+			sTargetCTNode=sSearchCTNode;
+			sOppositeTypeResult="Attack";
+		end
+		
+		if not combat.tSleightAttacks[sSourceCTNode] or not combat.tSleightAttacks[sSourceCTNode][sTargetCTNode] or not combat.tSleightAttacks[sSourceCTNode][sTargetCTNode]["s"..sTypeResult.."Result"] then
+			for _,n in pairs(DB.getChildren(TargetCTNode.getValue()..".rolls")) do
+				-- Looking for the opposite roll
+				if DB.getValue(n, "TargetCTNode", "")==sSearchCTNode and DB.getValue(n, "TypeResult", "")==sOppositeTypeResult and DB.getValue(n, "TypeAttack", "")=="SLEIGHT" and DB.getValue(n, "CheckedRoll", 0)==0 then
+					
+					combat.tSleightAttacks[sSourceCTNode][sTargetCTNode]["s"..sOppositeTypeResult.."Result"]=combat.tResultsAbr[DB.getValue(n, "RollResult", "F")];
+					combat.tSleightAttacks[sSourceCTNode][sTargetCTNode]["n"..sOppositeTypeResult.."Result"]=DB.getValue(n, "RollTotal", 0);
+					
+					DB.setValue(n, "CheckedRoll", "number", 1);
+					
+					break;
+				end
+			end
+		end
+		
+		ShowUpdatedRollMessage(sUpdateType)
+		
+		if Session.IsHost then
+			combat.AddSleightAttack(sSourceCTNode, sTargetCTNode, sTypeResult, combat.tResultsAbr[RollResult.getValue()], RollTotal.getValue(), RollTarget.getValue(), true);
+		else
+			local msgOOB={};
+			msgOOB.type=combat.OOB_ADD_SLEIGHT_ATTACK;
+			msgOOB.sSourceCTNode=sSourceCTNode;
+			msgOOB.sTargetCTNode=sTargetCTNode;
+			msgOOB.sTypeResult=sTypeResult;
+			msgOOB.sResult=combat.tResultsAbr[RollResult.getValue()];
+			msgOOB.nRollTotal=RollTotal.getValue();
+			msgOOB.nTarget=RollTarget.getValue();
+			Comm.deliverOOBMessage(msgOOB);
+		end
+	else
+		return;
+	end
+end</Script>
+    <RegisterScript>false</RegisterScript>
+    <Encoding />
+  </Scripts>
+</DocumentElement>

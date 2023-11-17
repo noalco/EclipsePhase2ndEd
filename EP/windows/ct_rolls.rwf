@@ -2,7 +2,7 @@
   <WindowControls>
     <WindowName>ct_rolls</WindowName>
     <ControlName>ButtonFlipFlop</ControlName>
-    <ZIndex>7</ZIndex>
+    <ZIndex>4</ZIndex>
     <ControlClass>FGButton</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"right","AnchorTo":"left","Parent":"ButtonUpgrade"}}},
@@ -65,7 +65,7 @@
 	sResult=sResult:upper();
 	window.RollResult.setValue(combat.tResults[sResult].sAbr);
 --	window.ButtonUpgrade.UpdateVisibility();
-	window.UpdateRoll("FLIP-FLOP ROLL");
+	window.UpdateAttackRoll("FLIP-FLOP ROLL");
 end
 </LUACode>
     <GroupIndex>0</GroupIndex>
@@ -74,7 +74,7 @@ end
   <WindowControls>
     <WindowName>ct_rolls</WindowName>
     <ControlName>ButtonUpgrade</ControlName>
-    <ZIndex>6</ZIndex>
+    <ZIndex>3</ZIndex>
     <ControlClass>FGButton</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"right","AnchorTo":"right"}}},
@@ -137,7 +137,7 @@ end
 	elseif sRollResult=="1SS" then
 		window.RollResult.setValue("2SS");
 	end
-	window.UpdateRoll("UPGRADE RESULT");
+	window.UpdateAttackRoll("UPGRADE RESULT");
 end
 
 function UpdateVisibility()
@@ -150,7 +150,7 @@ end
   <WindowControls>
     <WindowName>ct_rolls</WindowName>
     <ControlName>CheckedRoll</ControlName>
-    <ZIndex>16</ZIndex>
+    <ZIndex>13</ZIndex>
     <ControlClass>FGCheckbox</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -242,7 +242,7 @@ end
       {"Name":"PlayerControl"},
       {"Name":"Resize","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"RightMargin","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"ScriptFile"},
+      {"Name":"ScriptFile","Value":{"@xsi:type":"xsd:string","#text":"CombatTracker/Scripts/update_rolls.lua"}},
       {"Name":"Sharable"},
       {"Name":"ShareAs"},
       {"Name":"SoftClose"},
@@ -255,107 +255,14 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"0"}}
 ]}}</Definition>
-    <LUACode>function ShowRollMessage(sUpdateType)
---{ s'sType' = s'npc', s'sCreatureNode' = s'combattracker.list.id-00003', s'sCTNode' = s'combattracker.list.id-00003', s'sName' = s'Iktomi Kumobot 1' } 
---{ s'sType' = s'charsheet', s'sCreatureNode' = s'charsheet.id-00001', s'sCTNode' = s'combattracker.list.id-00001', s'sName' = s'PC' }
-
---		{ s'nBonuses' = s'0', 
---		s'aDice' = { #1 = { s'value' = #85, s'type' = s'd100', s'result' = #85 }, s'expr' = s'1d100', s'total' = #85 }, 
---		s'nMod' = #0, 
---		s'sType' = s'AttackCheck', 
---		s'bSecret' = bFALSE, 
---		s'nTotal' = #85, 
---		s'sDesc' = s'[MELEE ATTACK] Melee (vs 65)' }
-
-	local sClass, sRecord=DB.getValue(windowlist.window.getDatabaseNode(), "link");
-	local rSource={Type=sClass, sCreatureNode=sRecord, sCTNode=DB.getPath(windowlist.window.getDatabaseNode()), sName=Tools.getName(DB.getPath(windowlist.window.getDatabaseNode()))};
-	local rRoll={ nBonuses = 0, 
-		aDice = { [1] = { value = RollTotal.getValue(), ["type"] = "d100", result = RollTotal.getValue() }, expr = "1d100", total = RollTotal.getValue() }, 
-		nMod = 0, 
-		sType = TypeResult.getValue().."Check", 
-		bSecret = bFALSE, 
-		nTotal = RollTotal.getValue(), 
-		sDesc = "["..TypeAttack.getValue().." ATTACK] "..sUpdateType.." (vs "..RollTarget.getValue()..")" }
-	local rMessage = ActionsManager.createActionMessage(rSource, rRoll);
-	rMessage.text=rMessage.text.." ["..combat.tResultsAbr[RollResult.getValue()].."]";
-	Comm.deliverChatMessage(rMessage);
-	
-end
-
-
-function UpdateRoll(sUpdateType)
-	ButtonUpgrade.setVisible(false);
-	ButtonFlipFlop.setVisible(false);
-	local sSourceCTNode;
-	local sTargetCTNode;
-	local sTypeResult=TypeResult.getValue();
-	local sTypeAttack=TypeAttack.getValue();
-	local sOppositeTypeResult;
-	local sSearchCTNode=DB.getPath(windowlist.window.getDatabaseNode());
-	
-	if sTypeResult=="Attack" or sTypeResult=="Defense" then
-		if sTypeResult=="Attack" then
-			sSourceCTNode=sSearchCTNode;
-			sTargetCTNode=TargetCTNode.getValue();
-			sOppositeTypeResult="Defense";
-		else
-			sSourceCTNode=TargetCTNode.getValue();
-			sTargetCTNode=sSearchCTNode;
-			sOppositeTypeResult="Attack";
-		end
-		
-		if not combat.tAttacts[sSourceCTNode] or not combat.tAttacts[sSourceCTNode][sTargetCTNode] or not combat.tAttacts[sSourceCTNode][sTargetCTNode][sTypeResult]  or not combat.tAttacts[sSourceCTNode][sTargetCTNode][sTypeResult]["s"..sTypeResult.."Result"] then
-			for _,n in pairs(DB.getChildren(TargetCTNode.getValue()..".rolls")) do
-				-- Looking for the opposite roll
-				if DB.getValue(n, "TargetCTNode", "")==sSearchCTNode and DB.getValue(n, "TypeResult", "")==sOppositeTypeResult and DB.getValue(n, "TypeAttack", "")==sTypeAttack and DB.getValue(n, "CheckedRoll", 0)==0 then
-					if not combat.tAttactsBck[sSourceCTNode] then
-						combat.tAttactsBck[sSourceCTNode]={};
-					end
-					if not combat.tAttactsBck[sSourceCTNode][sTargetCTNode] then
-						combat.tAttactsBck[sSourceCTNode][sTargetCTNode]={};
-					end
-					if not combat.tAttactsBck[sSourceCTNode][sTargetCTNode][sTypeAttack] then
-						combat.tAttactsBck[sSourceCTNode][sTargetCTNode][sTypeAttack]={};
-					end
-					
-					combat.tAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack]["s"..sOppositeTypeResult.."Result"]=combat.tResultsAbr[DB.getValue(n, "RollResult", "F")];
-					combat.tAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack]["n"..sOppositeTypeResult.."Result"]=DB.getValue(n, "RollTotal", 0);
-					
-					DB.setValue(n, "CheckedRoll", "number", 1);
-					
-					break;
-				end
-			end
-		end
-		
-		ShowRollMessage(sUpdateType)
-		
-		if Session.IsHost then
-			combat.AddAttack(sSourceCTNode, sTargetCTNode, sTypeAttack, sTypeResult, combat.tResultsAbr[RollResult.getValue()], RollTotal.getValue(), RollTarget.getValue(), true);
-		else
-			local msgOOB={};
-			msgOOB.type=combat.OOB_ADD_ATTACK;
-			msgOOB.sSourceCTNode=rSource.sCTNode;
-			msgOOB.sTargetCTNode=rTarget.sCTNode;
-			msgOOB.sTypeAttack=sTypeAttack;
-			msgOOB.sTypeResult=sTypeResult;
-			msgOOB.sResult=combat.tResultsAbr[RollResult.getValue()];
-			msgOOB.nRollTotal=RollTotal.getValue();
-			msgOOB.nTarget=RollTarget.getValue();
-			Comm.deliverOOBMessage(msgOOB);
-		end
-	else
-		return;
-	end
---	DB.deleteNode(getDatabaseNode());
-end</LUACode>
+    <LUACode />
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
   <WindowControls>
     <WindowName>ct_rolls</WindowName>
     <ControlName>idelete</ControlName>
-    <ZIndex>11</ZIndex>
+    <ZIndex>8</ZIndex>
     <ControlClass>FGButton</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -423,7 +330,7 @@ end
   <WindowControls>
     <WindowName>ct_rolls</WindowName>
     <ControlName>LabelVS</ControlName>
-    <ZIndex>8</ZIndex>
+    <ZIndex>5</ZIndex>
     <ControlClass>FGStringField</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"right","AnchorTo":"left","Parent":"ButtonFlipFlop"}}},
@@ -493,7 +400,7 @@ end</LUACode>
   <WindowControls>
     <WindowName>ct_rolls</WindowName>
     <ControlName>RollResult</ControlName>
-    <ZIndex>10</ZIndex>
+    <ZIndex>7</ZIndex>
     <ControlClass>FGStringField</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -631,7 +538,7 @@ end
   <WindowControls>
     <WindowName>ct_rolls</WindowName>
     <ControlName>RollText</ControlName>
-    <ZIndex>9</ZIndex>
+    <ZIndex>6</ZIndex>
     <ControlClass>FGStringField</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor","AdvancedAnchor":{"EdgeAnchor":"right","AnchorTo":"left","Parent":"LabelVS"}}},
@@ -761,7 +668,7 @@ end
   <WindowControls>
     <WindowName>ct_rolls</WindowName>
     <ControlName>ShowButtons</ControlName>
-    <ZIndex>15</ZIndex>
+    <ZIndex>12</ZIndex>
     <ControlClass>FGCheckbox</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -821,7 +728,7 @@ end
   <WindowControls>
     <WindowName>ct_rolls</WindowName>
     <ControlName>TargetCTNode</ControlName>
-    <ZIndex>12</ZIndex>
+    <ZIndex>9</ZIndex>
     <ControlClass>FGStringField</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -884,7 +791,7 @@ end
   <WindowControls>
     <WindowName>ct_rolls</WindowName>
     <ControlName>TypeAttack</ControlName>
-    <ZIndex>14</ZIndex>
+    <ZIndex>11</ZIndex>
     <ControlClass>FGStringField</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
@@ -947,7 +854,7 @@ end
   <WindowControls>
     <WindowName>ct_rolls</WindowName>
     <ControlName>TypeResult</ControlName>
-    <ZIndex>13</ZIndex>
+    <ZIndex>10</ZIndex>
     <ControlClass>FGStringField</ControlClass>
     <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
       {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},

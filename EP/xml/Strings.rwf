@@ -144,14 +144,14 @@
 	&lt;!-- Combat --&gt;
 	&lt;string name="attack_hit"&gt;the attack hits&lt;/string&gt;
 	&lt;string name="attack_miss"&gt;the attack misses&lt;/string&gt;
-	&lt;string name="attack_possible_hit"&gt;posible hit&lt;/string&gt;
+	&lt;string name="attack_possible_hit"&gt;possible hit&lt;/string&gt;
 	&lt;string name="cast_atk_crit_hit"&gt;the sleight critically pass the target's mental defenses&lt;/string&gt;
 	&lt;string name="cast_crit_miss"&gt;suffer 1d6 DV as the effort takes a physical toll&lt;/string&gt;
 	&lt;string name="cast_def_crit_hit"&gt;is temporarily “locked out” of their mind&lt;/string&gt;
 	&lt;string name="cast_defence_roll_required"&gt;must defend against a sleight attack&lt;/string&gt;
 	&lt;string name="cast_hit"&gt;the sleight pass the target's mental defenses&lt;/string&gt;
 	&lt;string name="cast_miss"&gt;the sleight misses&lt;/string&gt;
-	&lt;string name="cast_possible_hit"&gt;posible sleight effect&lt;/string&gt;
+	&lt;string name="cast_possible_hit"&gt;possible sleight effect&lt;/string&gt;
 	&lt;string name="melee_defence_roll_required"&gt;must defend against melee attack&lt;/string&gt;
 	&lt;string name="ranged_defence_roll_required"&gt;must defend against ranged attack&lt;/string&gt;
 	&lt;string name="sleight_cast"&gt;CAST&lt;/string&gt;

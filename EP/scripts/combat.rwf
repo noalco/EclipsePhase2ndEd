@@ -16,7 +16,6 @@ function CleanRolls()
 	for _,n in pairs(DB.getChildren("combattracker.list")) do
 		DB.deleteChildren(n, "rolls");
 	end
-	tAttactsBck={}
 end
 
 tResults = {
@@ -89,29 +88,9 @@ function ResolveCombat(sSourceCTNode, sTargetCTNode, sTypeAttack)
 				rMessage.icon = "roll_attack_miss";
 			end
 			
-			if not tAttactsBck[sSourceCTNode] then
-				tAttactsBck[sSourceCTNode]={};
-			end
-			if not tAttactsBck[sSourceCTNode][sTargetCTNode] then
-				tAttactsBck[sSourceCTNode][sTargetCTNode]={};
-			end
-			if not tAttactsBck[sSourceCTNode][sTargetCTNode][sTypeAttack] then
-				tAttactsBck[sSourceCTNode][sTargetCTNode][sTypeAttack]={};
-			end
-			
 			tAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack]={};
 			Comm.deliverChatMessage(rMessage);
 		elseif bAttacker and tResults[sAttackResult].nRange&lt;0 then -- The atacker fails and there is no defence roll
-			if not tAttactsBck[sSourceCTNode] then
-				tAttactsBck[sSourceCTNode]={};
-			end
-			if not tAttactsBck[sSourceCTNode][sTargetCTNode] then
-				tAttactsBck[sSourceCTNode][sTargetCTNode]={};
-			end
-			if not tAttactsBck[sSourceCTNode][sTargetCTNode][sTypeAttack] then
-				tAttactsBck[sSourceCTNode][sTargetCTNode][sTypeAttack]={};
-			end
-
 			tAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack]={};
 			rMessage.text = sAttackerName.." vs "..sDefenderName..": "..Interface.getString("attack_miss");
 			rMessage.icon = "roll_attack_miss";
@@ -126,11 +105,11 @@ function ResolveCombat(sSourceCTNode, sTargetCTNode, sTypeAttack)
 	return false;
 end
 
-tSleightAttack = {} -- sAttackResult, sDefenseResult, nAttackResult, nDefenseResult
+tSleightAttacks = {} -- sAttackResult, sDefenseResult, nAttackResult, nDefenseResult
 function ResolveSleightAttack(sSourceCTNode, sTargetCTNode)
 	if sSourceCTNode and sTargetCTNode then
-		local bAttacker=tAttacts[sSourceCTNode] and tAttacts[sSourceCTNode][sTargetCTNode] and tAttacts[sSourceCTNode][sTargetCTNode] and tAttacts[sSourceCTNode][sTargetCTNode].sAttackResult;
-		local bDefender=tAttacts[sSourceCTNode] and tAttacts[sSourceCTNode][sTargetCTNode] and tAttacts[sSourceCTNode][sTargetCTNode] and tAttacts[sSourceCTNode][sTargetCTNode].sDefenseResult;
+		local bAttacker=tSleightAttacks[sSourceCTNode] and tSleightAttacks[sSourceCTNode][sTargetCTNode] and tSleightAttacks[sSourceCTNode][sTargetCTNode] and tSleightAttacks[sSourceCTNode][sTargetCTNode].sAttackResult;
+		local bDefender=tSleightAttacks[sSourceCTNode] and tSleightAttacks[sSourceCTNode][sTargetCTNode] and tSleightAttacks[sSourceCTNode][sTargetCTNode] and tSleightAttacks[sSourceCTNode][sTargetCTNode].sDefenseResult;
 		local sAttackerName="";
 		local sDefenderName="";
 		local rMessage;
@@ -140,13 +119,13 @@ function ResolveSleightAttack(sSourceCTNode, sTargetCTNode)
 		local nDefenseResult=0;
 		
 		sAttackerName=Tools.getName(sSourceCTNode);
-		sAttackResult=tAttacts[sSourceCTNode][sTargetCTNode].sAttackResult;
-		nAttackResult=tAttacts[sSourceCTNode][sTargetCTNode].nAttackResult;
+		sAttackResult=tSleightAttacks[sSourceCTNode][sTargetCTNode].sAttackResult;
+		nAttackResult=tSleightAttacks[sSourceCTNode][sTargetCTNode].nAttackResult;
 		rMessage = ChatManager.createBaseMessage(DB.findNode(sSourceCTNode));
 		
 		sDefenderName=Tools.getName(sTargetCTNode);
-		sDefenseResult=tAttacts[sSourceCTNode][sTargetCTNode].sDefenseResult;
-		nDefenseResult=tAttacts[sSourceCTNode][sTargetCTNode].nDefenseResult;
+		sDefenseResult=tSleightAttacks[sSourceCTNode][sTargetCTNode].sDefenseResult;
+		nDefenseResult=tSleightAttacks[sSourceCTNode][sTargetCTNode].nDefenseResult;
 
 		if bAttacker and bDefender then -- There are both attacker and defender
 			if tResults[sAttackResult].nRange&gt;0 then -- The atacker succeeds
@@ -181,7 +160,7 @@ function ResolveSleightAttack(sSourceCTNode, sTargetCTNode)
 				end
 			end
 			Comm.deliverChatMessage(rMessage);
-			tAttacts[sSourceCTNode][sTargetCTNode]={};
+			tSleightAttacks[sSourceCTNode][sTargetCTNode]={};
 		elseif bAttacker and tResults[sAttackResult].nRange&lt;0 then -- The atacker fails and there is no defence roll
 			rMessage.text = sAttackerName.." vs "..sDefenderName..": "..Interface.getString("cast_miss");
 			rMessage.icon = "roll_cast_miss";									
@@ -189,7 +168,7 @@ function ResolveSleightAttack(sSourceCTNode, sTargetCTNode)
 				rMessage.text = sAttackerName.." vs "..sDefenderName..": "..sAttackerName.." "..Interface.getString("cast_crit_miss");
 			end
 			Comm.deliverChatMessage(rMessage);
-			tAttacts[sSourceCTNode][sTargetCTNode]={};
+			tSleightAttacks[sSourceCTNode][sTargetCTNode]={};
 		elseif bAttacker and tResults[sAttackResult].nRange&gt;0 then -- The atacker succeeds and there is no defence roll
 			rMessage.text = sAttackerName.." vs "..sDefenderName..": "..Interface.getString("cast_possible_hit")..". "..sDefenderName.." "..Interface.getString("cast_defence_roll_required").." (vs "..nAttackResult..")";
 			rMessage.icon = "roll_cast_possible_hit";
@@ -224,9 +203,9 @@ function AddAttack(sSourceCTNode, sTargetCTNode, sTypeAttack, sTypeResult, sResu
 		tAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack]["n"..sTypeResult.."Result"]=nRollTotal;
 		
 		if sTypeResult=="Attack" and not bModifiedRoll then
-			StoreUnresolvedAttackRoll(sSourceCTNode, sTargetCTNode, sTypeAttack, sTypeResult, sResult, nRollTotal, nTarget);
+			StoreUnresolvedRoll(sSourceCTNode, sTargetCTNode, sTypeAttack, sTypeResult, sResult, nRollTotal, nTarget);
 		elseif sTypeResult=="Defense" and not bModifiedRoll then
-			StoreUnresolvedAttackRoll(sTargetCTNode, sSourceCTNode, sTypeAttack, sTypeResult, sResult, nRollTotal, nTarget);
+			StoreUnresolvedRoll(sTargetCTNode, sSourceCTNode, sTypeAttack, sTypeResult, sResult, nRollTotal, nTarget);
 		end
 		
 		local bOpposedRollNeeded=ResolveCombat(sSourceCTNode, sTargetCTNode, sTypeAttack);
@@ -243,16 +222,23 @@ function AddAttack(sSourceCTNode, sTargetCTNode, sTypeAttack, sTypeResult, sResu
 	end
 end
 
-function AddSleightAttack(sSourceCTNode, sTargetCTNode, sTypeResult, sResult, nRollTotal)
-	if Session.IsHost and sSourceCTNode and sTargetCTNode and sTypeResult and sResult and nRollTotal then
-		if not tAttacts[sSourceCTNode] then
-			tAttacts[sSourceCTNode]={};
+function AddSleightAttack(sSourceCTNode, sTargetCTNode, sTypeResult, sResult, nRollTotal, nTarget, bModifiedRoll)
+	if Session.IsHost and sSourceCTNode and sTargetCTNode and sTypeResult and sResult and nRollTotal and nTarget then
+		if not tSleightAttacks[sSourceCTNode] then
+			tSleightAttacks[sSourceCTNode]={};
 		end
-		if not tAttacts[sSourceCTNode][sTargetCTNode] then
-			tAttacts[sSourceCTNode][sTargetCTNode]={};
+		if not tSleightAttacks[sSourceCTNode][sTargetCTNode] then
+			tSleightAttacks[sSourceCTNode][sTargetCTNode]={};
 		end
-		tAttacts[sSourceCTNode][sTargetCTNode]["s"..sTypeResult.."Result"]=sResult;
-		tAttacts[sSourceCTNode][sTargetCTNode]["n"..sTypeResult.."Result"]=nRollTotal;
+		tSleightAttacks[sSourceCTNode][sTargetCTNode]["s"..sTypeResult.."Result"]=sResult;
+		tSleightAttacks[sSourceCTNode][sTargetCTNode]["n"..sTypeResult.."Result"]=nRollTotal;
+		
+		if sTypeResult=="Attack" and not bModifiedRoll then
+			StoreUnresolvedRoll(sSourceCTNode, sTargetCTNode, "SLEIGHT", sTypeResult, sResult, nRollTotal, nTarget);
+		elseif sTypeResult=="Defense" and not bModifiedRoll then
+			StoreUnresolvedRoll(sTargetCTNode, sSourceCTNode, "SLEIGHT", sTypeResult, sResult, nRollTotal, nTarget);
+		end
+
 		if ResolveSleightAttack(sSourceCTNode, sTargetCTNode, sTypeAttack) then
 			GameSystem.actions["DefenseSleightCheck"] = { bUseModStack = "true", sIcon = "action_attack", sTargeting = "all" }
 			ActionsManager.registerResultHandler("DefenseSleightCheck", RollHandlers.SleightHandler);
@@ -266,7 +252,7 @@ function AddSleightAttack(sSourceCTNode, sTargetCTNode, sTypeResult, sResult, nR
 	end
 end
 
-function StoreUnresolvedAttackRoll(sSourceCTNode, sTargetCTNode, sTypeAttack, sTypeResult, sRollResult, nRollTotal, nRollTarget)
+function StoreUnresolvedRoll(sSourceCTNode, sTargetCTNode, sTypeAttack, sTypeResult, sRollResult, nRollTotal, nRollTarget)
 	if not sSourceCTNode or not sTargetCTNode or not sTypeResult or not sTypeAttack or not nRollTotal or not sRollResult or not tResults[sRollResult] or not nRollTarget then
 		return;
 	end
@@ -276,7 +262,7 @@ function StoreUnresolvedAttackRoll(sSourceCTNode, sTargetCTNode, sTypeAttack, sT
 	local bNodeFound=false;
 	local rollNode;
 	for _,n in pairs(DB.getChildren(rollsNode)) do
-		if DB.getValue(n, "TargetCTNode", "")==sTargetCTNode and DB.getValue(n, "TypeResult", "")==sTypeResult then -- and DB.getValue(n, "TypeAttack", "")==sTypeAttack 
+		if DB.getValue(n, "TargetCTNode", "")==sTargetCTNode and DB.getValue(n, "TypeResult", "")==sTypeResult and DB.getValue(n, "TypeAttack", "")==sTypeAttack then
 			bNodeFound=true;
 			rollNode=n;
 		end

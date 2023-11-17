@@ -165,10 +165,10 @@ function SleightHandler(rSource, rTarget, rRoll)
 			sTypeResult="Attack";
 		end
 	end
-	local sResult=CheckHandler(rSource, rTarget, rRoll);
+	local sResult, nTarget=CheckHandler(rSource, rTarget, rRoll);
     if rSource and rTarget and rSource.sCTNode and rTarget.sCTNode then
 		if Session.IsHost then
-			combat.AddSleightAttack(rSource.sCTNode, rTarget.sCTNode, sTypeResult, sResult, ActionsManager.total(rRoll));
+			combat.AddSleightAttack(rSource.sCTNode, rTarget.sCTNode, sTypeResult, sResult, ActionsManager.total(rRoll), nTarget);
 		else
 			local msgOOB={};
 			msgOOB.type=combat.OOB_ADD_SLEIGHT_ATTACK;
@@ -177,6 +177,7 @@ function SleightHandler(rSource, rTarget, rRoll)
 			msgOOB.sTypeResult=sTypeResult;
 			msgOOB.sResult=sResult;
 			msgOOB.nRollTotal=ActionsManager.total(rRoll);
+			msgOOB.nTarget=nTarget;
 			Comm.deliverOOBMessage(msgOOB);
 		end
     end
