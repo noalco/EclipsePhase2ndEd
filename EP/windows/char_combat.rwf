@@ -904,7 +904,7 @@ end
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"130"}},
       {"Name":"DevelopmentComments"},
-      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"{@self.getDiceString()}","DiceRollDescription":"{@self.getDescriptionText()}","DiceRollType":"Damage","UseModStack":"true","ResetModStack":"true","SecretRoll":{"@xsi:nil":"true"},"DragIcon":"action_damage","AllowDragDrop":"true","AdditionalInfo":null}},
+      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"{@self.getDiceString()}","DiceRollDescription":"{@self.getDescriptionText()}","DiceRollType":"Damage","UseModStack":"true","ResetModStack":"true","SecretRoll":{"@xsi:nil":"true"},"DragIcon":"action_damage","AllowDragDrop":"true","Targeting":"each","ResultHandlerFunction":"RollHandlers.PerformDamage","AdditionalInfo":null}},
       {"Name":"Disabled"},
       {"Name":"DynamicSize"},
       {"Name":"EmptyText"},
@@ -1020,9 +1020,9 @@ end
 
 function getDescriptionText()
 	local sMessage="[DAMAGE] "..window.name.getValue();
-	if DB.getValue(window.getDatabaseNode(), "ArmorUsed")=="Energy" then
+	if DB.getValue(window.getDatabaseNode(), "Weapon.ArmorUsed")=="Energy" then
 		sMessage=sMessage.." vs Energy";
-	elseif DB.getValue(window.getDatabaseNode(), "ArmorUsed")=="Kinetic" then
+	elseif DB.getValue(window.getDatabaseNode(), "Weapon.ArmorUsed")=="Kinetic" then
 		sMessage=sMessage.." vs Kinetic";
 	end
 	return sMessage;

@@ -183,7 +183,59 @@ function SleightHandler(rSource, rTarget, rRoll)
     end
  end
 
-
+function PerformDamage(rSource, rTarget, rRoll)
+	if not rRoll then
+		return;
+	end
+	local rMessage;
+	if rSource then
+		rMessage=ActionsManager.createActionMessage(rSource, rRoll);
+		Comm.deliverChatMessage(rMessage);
+	end
+    rMessage=ChatManager.createBaseMessage();
+    rMessage.icon = "roll_damage";
+    local sTarget="";
+	local sArmorType="";
+	local nArmorReduction=0;
+	local nDamage=ActionsManager.total(rRoll);
+	if rRoll.sDesc:match("vs Kinetic") then
+		sArmorType=" vs Kinetic";
+	elseif rRoll.sDesc:match("vs Energy") then
+		sArmorType=" vs Energy";
+	end
+	
+    if rTarget and rTarget.sCTNode then
+		local nWoundThreshold=DB.getValue(rTarget.sCTNode..".Health.Physical.WoundThreshol");
+		sTarget=" -&gt; to "..Tools.getName(rTarget.sCTNode);
+		if rRoll.sDesc:match("vs Kinetic") then
+			nArmorReduction=DB.getValue(rTarget.sCTNode..".Armor.KineticAV", 0);
+		elseif rRoll.sDesc:match("vs Energy") then
+			nArmorReduction=DB.getValue(rTarget.sCTNode..".Armor.EnergyAV", 0);
+		end
+		if nArmorReduction&gt;0 then
+			sTarget=sTarget.." [Armor Reduction: "..math.min(nArmorReduction, ActionsManager.total(rRoll)).."]";
+			nDamage=math.max(ActionsManager.total(rRoll)-nArmorReduction, 0);
+		end
+		
+		local nTotalDamageTaken=DB.getValue(rTarget.sCTNode..".Health.Physical.DamageTaken", 0)+nDamage;
+		DB.setValue(rTarget.sCTNode..".Health.Physical.DamageTaken", "number", nTotalDamageTaken);
+		
+		if nDamage&gt;=nWoundThreshold then
+			local nWounds=math.floor(nDamage/nWoundThreshold);
+			sTarget=sTarget.." [WOUNDS: "..nWounds.."]";
+			DB.setValue(rTarget.sCTNode..".Health.Physical.WoundsTaken", "number", DB.getValue(rTarget.sCTNode..".Health.Physical.WoundsTaken")+nWounds);
+		end
+		
+		if nTotalDamageTaken&gt;=DB.getValue(rTarget.sCTNode..".Health.Physical.DeathRating") then
+			sTarget=sTarget.." [STATUS: Death/Destroyed]";
+		elseif nTotalDamageTaken&gt;=DB.getValue(rTarget.sCTNode..".Health.Physical.Durability") then
+			sTarget=sTarget.." [STATUS: Unconscious/Disabled]";
+		end
+    end
+    
+    rMessage.text = "Damage"..sArmorType.." ["..nDamage.."]"..sTarget;
+	Comm.deliverChatMessage(rMessage);
+end
 
 
 
