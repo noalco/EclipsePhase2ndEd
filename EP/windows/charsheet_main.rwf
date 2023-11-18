@@ -178,6 +178,61 @@ end
   </WindowControls>
   <WindowControls>
     <WindowName>charsheet_main</WindowName>
+    <ControlName>biomorph</ControlName>
+    <ZIndex>87</ZIndex>
+    <ControlClass>FGCheckbox</ControlClass>
+    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
+      {"Name":"AdvancedTemplate","Value":{"@xsi:type":"xsd:string","#text":"checkbox_ct_crosslink"}},
+      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"biomorph"}},
+      {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
+      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
+      {"Name":"DefaultChecked"},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
+      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"false"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"20"}},
+      {"Name":"DevelopmentComments"},
+      {"Name":"Disabled"},
+      {"Name":"FrameName"},
+      {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"GMEditOnly"},
+      {"Name":"GMVisibleOnly"},
+      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"HoverCursor"},
+      {"Name":"InheritSizePosition"},
+      {"Name":"InsertBefore"},
+      {"Name":"Invisible","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
+      {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
+      {"Name":"NextTabTarget"},
+      {"Name":"OffStateIcon"},
+      {"Name":"OnStateIcon"},
+      {"Name":"PrevTabTarget"},
+      {"Name":"ReadOnly"},
+      {"Name":"RelativeMargin"},
+      {"Name":"RelativeStacking"},
+      {"Name":"ScriptFile"},
+      {"Name":"Source","Value":{"@xsi:type":"xsd:string","#text":".Morph.biomorph"}},
+      {"Name":"StackVertWith"},
+      {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
+      {"Name":"Tooltip"},
+      {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"605"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"288"}}
+]}}</Definition>
+    <LUACode>function onValueChanged()
+	window.DeathRating.Update();
+end</LUACode>
+    <GroupIndex>0</GroupIndex>
+    <Template />
+  </WindowControls>
+  <WindowControls>
+    <WindowName>charsheet_main</WindowName>
     <ControlName>ButtonShowWindowInnerPools</ControlName>
     <ZIndex>78</ZIndex>
     <ControlClass>FGButton</ControlClass>
@@ -690,18 +745,19 @@ end
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"370"}}
 ]}}</Definition>
     <LUACode>function Update()
-	if DB.getValue(window.getDatabaseNode(), ".Morph.biomorph", 0)==1 then
+--	if DB.getValue(window.getDatabaseNode(), ".Morph.biomorph", 0)==1 then
+	if window.biomorph.getValue()==1 then
 		setValue(Tools.RoundNumber(window.Durability.getValue()*1.5));
 	else
 		setValue(window.Durability.getValue()*2);
 	end
 end
-
-function onInit()
-	Update();
-	DB.addHandler(Tools.getCharNodePath(getDatabaseNode())..".Morph.biomorph", "onUpdate", Update);
-end
-</LUACode>
+--
+--function onInit()
+--	Update();
+--	DB.addHandler(Tools.getCharNodePath(getDatabaseNode())..".Morph.biomorph", "onUpdate", Update);
+--end
+--</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -1747,10 +1803,10 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"199"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"291"}}
 ]}}</Definition>
-    <LUACode>function onDrop(x, y, dragdata)
-	window.MorphLink.onDrop(x, y, dragdata)
-end
-</LUACode>
+    <LUACode>--function onDrop(x, y, dragdata)
+--	window.MorphLink.onDrop(x, y, dragdata)
+--end
+--</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -2688,10 +2744,10 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"189"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"246"}}
 ]}}</Definition>
-    <LUACode>function onDrop(x, y, dragdata)
-	window.MorphLink.onDrop(x, y, dragdata)
-end
-</LUACode>
+    <LUACode>--function onDrop(x, y, dragdata)
+--	window.MorphLink.onDrop(x, y, dragdata)
+--end
+--</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -2745,10 +2801,10 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"222"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"332"}}
 ]}}</Definition>
-    <LUACode>function onDrop(x, y, dragdata)
-	window.MorphLink.onDrop(x, y, dragdata)
-end
-</LUACode>
+    <LUACode>--function onDrop(x, y, dragdata)
+--	window.MorphLink.onDrop(x, y, dragdata)
+--end
+--</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -2802,10 +2858,10 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"365"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"332"}}
 ]}}</Definition>
-    <LUACode>function onDrop(x, y, dragdata)
-	window.MorphLink.onDrop(x, y, dragdata)
-end
-</LUACode>
+    <LUACode>--function onDrop(x, y, dragdata)
+--	window.MorphLink.onDrop(x, y, dragdata)
+--end
+--</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -2859,10 +2915,10 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"423"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"291"}}
 ]}}</Definition>
-    <LUACode>function onDrop(x, y, dragdata)
-	window.MorphLink.onDrop(x, y, dragdata)
-end
-</LUACode>
+    <LUACode>--function onDrop(x, y, dragdata)
+--	window.MorphLink.onDrop(x, y, dragdata)
+--end
+--</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -3551,8 +3607,7 @@ function onValueChanged()
 		window.MovementRate.setLink(DB.createChild(sRecord, "MovementRate", "string"), true);
 		window.MorphTraitsDetailsLink.setValue("MorphTraitsDetailsWindow", sRecord);
 		window.MorphWareDetailsLink.setValue("MorphWareDetailsWindow", sRecord);
-		
-		
+		window.biomorph.setLink(DB.createChild(sRecord, "biomorph", "number"), true);		
 	else
 		setValue(nil, nil);
 		window.MorphTraitsDetailsLink.setValue(nil, nil);
@@ -3560,7 +3615,7 @@ function onValueChanged()
 	end
 end
 
-function onDrop(x, y, dragdata)
+--function onDrop(x, y, dragdata)
 --	local sClass,sRecord = dragdata.getShortcutData();
 --	if sClass=="MorphDataSidebarWindow" or sClass=="MorphDataWindow" then
 --		local Node=DB.getParent(getDatabaseNode());
@@ -3572,7 +3627,7 @@ function onDrop(x, y, dragdata)
 --			ParseWear();
 --		end
 --	end
-end
+--end
 
 function ParseTraits()
 	local sNodeChar=Tools.getCharNodePath(getDatabaseNode());
@@ -3771,10 +3826,10 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"222"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"268"}}
 ]}}</Definition>
-    <LUACode>function onDrop(x, y, dragdata)
-	window.MorphLink.onDrop(x, y, dragdata)
-end
-</LUACode>
+    <LUACode>--function onDrop(x, y, dragdata)
+--	window.MorphLink.onDrop(x, y, dragdata)
+--end
+--</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -3957,10 +4012,10 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"365"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"268"}}
 ]}}</Definition>
-    <LUACode>function onDrop(x, y, dragdata)
-	window.MorphLink.onDrop(x, y, dragdata)
-end
-</LUACode>
+    <LUACode>--function onDrop(x, y, dragdata)
+--	window.MorphLink.onDrop(x, y, dragdata)
+--end
+--</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -4143,10 +4198,10 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"199"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"309"}}
 ]}}</Definition>
-    <LUACode>function onDrop(x, y, dragdata)
-	window.MorphLink.onDrop(x, y, dragdata)
-end
-</LUACode>
+    <LUACode>--function onDrop(x, y, dragdata)
+--	window.MorphLink.onDrop(x, y, dragdata)
+--end
+--</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -4209,10 +4264,10 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"423"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"309"}}
 ]}}</Definition>
-    <LUACode>function onDrop(x, y, dragdata)
-	window.MorphLink.onDrop(x, y, dragdata)
-end
-</LUACode>
+    <LUACode>--function onDrop(x, y, dragdata)
+--	window.MorphLink.onDrop(x, y, dragdata)
+--end
+--</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -4319,10 +4374,10 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"189"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"231"}}
 ]}}</Definition>
-    <LUACode>function onDrop(x, y, dragdata)
-	window.MorphLink.onDrop(x, y, dragdata)
-end
-</LUACode>
+    <LUACode>--function onDrop(x, y, dragdata)
+--	window.MorphLink.onDrop(x, y, dragdata)
+--end
+--</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
