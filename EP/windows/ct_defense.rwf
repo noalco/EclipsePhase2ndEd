@@ -340,7 +340,19 @@ end</LUACode>
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"322"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"30"}}
 ]}}</Definition>
-    <LUACode />
+    <LUACode>function onVisibilityChanged()
+	if isVisible() then
+		window.Fray2.setStaticBounds(281, 30, 45, 30);
+	else
+		window.Fray2.setStaticBounds(281, 30, 87, 30);
+	end
+end
+
+function onInit()
+	super.onInit();
+	onVisibilityChanged();
+end
+</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -404,7 +416,19 @@ end</LUACode>
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"237"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"30"}}
 ]}}</Definition>
-    <LUACode />
+    <LUACode>function onVisibilityChanged()
+	if isVisible() then
+		window.Fray.setStaticBounds(196, 30, 45, 30);
+	else
+		window.Fray.setStaticBounds(196, 30, 87, 30);
+	end
+end
+
+function onInit()
+	super.onInit();
+	onVisibilityChanged();
+end
+</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -1175,7 +1199,19 @@ end</LUACode>
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"152"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"30"}}
 ]}}</Definition>
-    <LUACode />
+    <LUACode>function onVisibilityChanged()
+	if isVisible() then
+		window.Melee.setStaticBounds(110, 30, 45, 30);
+	else
+		window.Melee.setStaticBounds(110, 30, 87, 30);
+	end
+end
+
+function onInit()
+	super.onInit();
+	onVisibilityChanged();
+end
+</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
