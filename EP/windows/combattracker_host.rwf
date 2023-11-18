@@ -53,7 +53,7 @@
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"446"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"496"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"8"}}
 ]}}</Definition>
     <LUACode />
@@ -104,7 +104,7 @@
       {"Name":"Tooltip","Value":{"@xsi:type":"xsd:string","#text":"Foe"}},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"1"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"210"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"230"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"358"}}
 ]}}</Definition>
     <LUACode />
@@ -155,7 +155,7 @@
       {"Name":"Tooltip","Value":{"@xsi:type":"xsd:string","#text":"Friend"}},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"1"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"159"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"179"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"358"}}
 ]}}</Definition>
     <LUACode />
@@ -206,7 +206,7 @@
       {"Name":"Tooltip","Value":{"@xsi:type":"xsd:string","#text":"Neutral"}},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"1"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"184"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"204"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"358"}}
 ]}}</Definition>
     <LUACode />
@@ -267,7 +267,7 @@
       {"Name":"Tooltip","Value":{"@xsi:type":"xsd:string","#text":"Click for CT menu"}},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"1"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"104"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"117"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"357"}}
 ]}}</Definition>
     <LUACode />
@@ -399,7 +399,7 @@ end
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"1"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"413"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"463"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"355"}}
 ]}}</Definition>
     <LUACode />
@@ -599,7 +599,7 @@ end
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"422"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"472"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"8"}}
 ]}}</Definition>
     <LUACode />
@@ -660,7 +660,7 @@ end
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"1"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"240"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"265"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"353"}}
 ]}}</Definition>
     <LUACode>
@@ -685,7 +685,7 @@ end
       {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
       {"Name":"DataSource"},
       {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"400"}},
-      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"470"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"520"}},
       {"Name":"DevelopmentComments"},
       {"Name":"Disabled"},
       {"Name":"Dynamic","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
@@ -702,7 +702,7 @@ end
       {"Name":"MergeWindow","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"MinimizedIcon"},
       {"Name":"MinimumHeight","Value":{"@xsi:type":"xsd:int","#text":"400"}},
-      {"Name":"MinimumWidth","Value":{"@xsi:type":"xsd:int","#text":"470"}},
+      {"Name":"MinimumWidth","Value":{"@xsi:type":"xsd:int","#text":"520"}},
       {"Name":"NoClose"},
       {"Name":"NoDelete"},
       {"Name":"NoMove"},
@@ -838,7 +838,7 @@ end
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"1"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"309"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"359"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"358"}}
 ]}}</Definition>
     <LUACode />
@@ -972,7 +972,7 @@ end
       {"Name":"DataSource","Value":{"@xsi:type":"xsd:string","#text":".list"}},
       {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"278"}},
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
-      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"452"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"502"}},
       {"Name":"DevelopmentComments"},
       {"Name":"Disabled"},
       {"Name":"DynamicSize"},
@@ -1151,7 +1151,7 @@ end
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"1"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"452"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"502"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"381"}}
 ]}}</Definition>
     <LUACode />
@@ -1215,7 +1215,7 @@ end
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"1"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"356"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"406"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"353"}}
 ]}}</Definition>
     <LUACode>--function onValueChanged()
@@ -1271,7 +1271,7 @@ end
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"2"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"444"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"494"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"65"}}
 ]}}</Definition>
     <LUACode />

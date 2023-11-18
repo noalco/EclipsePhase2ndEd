@@ -62,8 +62,8 @@
 		local sWindowPath=getDatabaseNode().getPath();
 		if sSkillName=="Melee" and DB.getValue(sNodeChar..".Paths.MeleeSkillPath")~=sWindowPath then
 			DB.setValue(sNodeChar..".Paths.MeleeSkillPath", "string", sWindowPath);
-		elseif sSkillName=="Guns" and DB.getValue(sNodeChar..".Paths.GunsSkillPath")~=sWindowPath then
-			DB.setValue(sNodeChar..".Paths.GunsSkillPath", "string", sWindowPath);
+		elseif sSkillName=="Guns" and DB.getValue(sNodeChar..".Paths.GunsFraySkillPath")~=sWindowPath then
+			DB.setValue(sNodeChar..".Paths.GunsFraySkillPath", "string", sWindowPath);
 		end
 	end
 	local tSkill=DataCommon.ActiveSkills[sSkillName];
@@ -127,6 +127,56 @@ function GetRollSpecializationMessage()
 		sMessage=sMessage.." - "..SpecializationName.getValue();
 	end
 	return sMessage;
+end
+
+
+
+
+local sFraySkillPath="";
+
+function UpdateSpec()
+	local bIsFray2=name.getValue()=="Fray/2 (vs. ranged attacks)";
+	Specialization.setEnabled(not bIsFray2);
+	SpecializationName.setEnabled(not bIsFray2);
+	if bIsFray2 then
+		if DB.getValue(sFraySkillPath..".Specialization", 0)==1 then
+			SpecializationName.setValue(DB.getValue(sFraySkillPath..".SpecializationName", ""));
+			Specialization.setValue(1);
+		else
+			Specialization.setValue(0);
+		end
+	end
+end
+
+function UpdateFraySkillPath()
+	if sFraySkillPath~="" then
+		DB.removeHandler(sFraySkillPath, "onChildUpdate", UpdateSpec);
+	end
+	sFraySkillPath=DB.getValue(Tools.getCharNodePath(getDatabaseNode())..".Paths.FraySkillPath", "");
+	if sFraySkillPath~="" then
+		DB.addHandler(sFraySkillPath, "onChildUpdate", UpdateSpec);
+	end
+	UpdateSpec();
+end
+
+function onInit()
+--	local bIsFray2=name.getValue()=="Fray/2 (vs. ranged attacks)";
+	if name.getValue()=="Fray/2 (vs. ranged attacks)" then
+		DB.addHandler(Tools.getCharNodePath(getDatabaseNode())..".Paths.FraySkillPath", "onUpdate", UpdateFraySkillPath);
+		UpdateFraySkillPath();
+	else
+		UpdateSpec();
+	end
+end
+
+function onClose()
+--	local bIsFray2=name.getValue()=="Fray/2 (vs. ranged attacks)";
+	if name.getValue()=="Fray/2 (vs. ranged attacks)" then
+		DB.removeHandler(Tools.getCharNodePath(getDatabaseNode())..".Paths.FraySkillPath", "onUpdate", UpdateFraySkillPath);
+		if sFraySkillPath~="" then
+			DB.removeHandler(sFraySkillPath, "onChildUpdate", UpdateSpec);
+		end
+	end
 end</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
@@ -1244,7 +1294,10 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"356"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"5"}}
 ]}}</Definition>
-    <LUACode />
+    <LUACode>function onInit()
+	setVisible(window.name.getValue()~="Fray/2 (vs. ranged attacks)");
+end
+</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -1541,6 +1594,7 @@ end
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"5"}}
 ]}}</Definition>
     <LUACode>function onValueChanged()
+	setVisible(window.name.getValue()~="Fray/2 (vs. ranged attacks)");
 	local bVisible=getValue()==1;
 	window.SpecializationName.setVisible(bVisible);
 	window.SpecializationTotal.setVisible(bVisible);
@@ -1548,7 +1602,8 @@ end
 
 function onInit()
 	onValueChanged();
-end</LUACode>
+end
+</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -1662,7 +1717,7 @@ end</LUACode>
       {"Name":"NoDrop"},
       {"Name":"NoKeyEdit"},
       {"Name":"PrevTabTarget"},
-      {"Name":"ReadOnly"},
+      {"Name":"ReadOnly","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"RelativeMargin"},
       {"Name":"RelativeStacking"},
       {"Name":"ScriptFile"},
@@ -1744,7 +1799,7 @@ end</LUACode>
       {"Name":"NoDrop"},
       {"Name":"NoKeyEdit"},
       {"Name":"PrevTabTarget"},
-      {"Name":"ReadOnly"},
+      {"Name":"ReadOnly","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"RelativeMargin"},
       {"Name":"RelativeStacking"},
       {"Name":"ScriptFile"},
@@ -1764,10 +1819,10 @@ function Update()
 	if window.Type.getValue()=="Physical" or window.Type.getValue()=="Combat" then
 		nPhAP=window.PhAP.getValue();
 	end
-	if window.name.getValue()~="Fray/2 (vs. ranged attacks)" then
-		setValue(window.AptitudeBonus.getValue()*window.AptMult.getValue()+window.Background.getValue()+window.Career.getValue()+window.Interest.getValue()+window.CustomizationPoints.getValue()+nPhAP);
-	else
+	if window.name.getValue()=="Fray/2 (vs. ranged attacks)" then
 		setValue(Tools.RoundNumber((window.AptitudeBonus.getValue()*window.AptMult.getValue()+window.Background.getValue()+window.Career.getValue()+window.Interest.getValue()+window.CustomizationPoints.getValue()+nPhAP)/2));
+	else
+		setValue(window.AptitudeBonus.getValue()*window.AptMult.getValue()+window.Background.getValue()+window.Career.getValue()+window.Interest.getValue()+window.CustomizationPoints.getValue()+nPhAP);
 	end
 end
 

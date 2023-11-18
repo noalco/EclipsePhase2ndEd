@@ -19,6 +19,7 @@ function onInit()
 	onCareerSkillListUpdate();
 	onInterestSkillListUpdate();
 	constructDefaultSkills();
+	CreatePaths();
 	if newfocus then
 		sFocus = newfocus[1];
 	end
@@ -54,15 +55,15 @@ function constructDefaultSkills()
 					w.Type.setStringValue(t.sType);
 					w.AptMult.setValue(t.nAptMult);
 					matches = { w };
-					if k=="Melee" then
-						DB.setValue(Tools.getCharNodePath(w.getDatabaseNode())..".Paths.MeleeSkillPath", "string", w.getDatabaseNode().getPath());
-					elseif k=="Guns" then
-						DB.setValue(Tools.getCharNodePath(w.getDatabaseNode())..".Paths.GunsSkillPath", "string", w.getDatabaseNode().getPath());
-					elseif k=="Fray" then
-						DB.setValue(Tools.getCharNodePath(w.getDatabaseNode())..".Paths.FraySkillPath", "string", w.getDatabaseNode().getPath());
-					elseif k=="Fray/2 (vs. ranged attacks)" then
-						DB.setValue(Tools.getCharNodePath(w.getDatabaseNode())..".Paths.Fray2SkillPath", "string", w.getDatabaseNode().getPath());
-					end
+--					if k=="Melee" then
+--						DB.setValue(Tools.getCharNodePath(w.getDatabaseNode())..".Paths.MeleeSkillPath", "string", w.getDatabaseNode().getPath());
+--					elseif k=="Guns" then
+--						DB.setValue(Tools.getCharNodePath(w.getDatabaseNode())..".Paths.GunsSkillPath", "string", w.getDatabaseNode().getPath());
+--					elseif k=="Fray" then
+--						DB.setValue(Tools.getCharNodePath(w.getDatabaseNode())..".Paths.FraySkillPath", "string", w.getDatabaseNode().getPath());
+--					elseif k=="Fray/2 (vs. ranged attacks)" then
+--						DB.setValue(Tools.getCharNodePath(w.getDatabaseNode())..".Paths.Fray2SkillPath", "string", w.getDatabaseNode().getPath());
+--					end
 				end
 			end
 		end
@@ -74,6 +75,20 @@ function constructDefaultSkills()
 	end
 end
 
+function CreatePaths()
+	for _,w in pairs(getWindows()) do
+		local k=w.name.getValue();
+		if k=="Melee" then
+			DB.setValue(Tools.getCharNodePath(w.getDatabaseNode())..".Paths.MeleeSkillPath", "string", DB.getPath(w.getDatabaseNode()));
+		elseif k=="Guns" then
+			DB.setValue(Tools.getCharNodePath(w.getDatabaseNode())..".Paths.GunsSkillPath", "string", DB.getPath(w.getDatabaseNode()));
+		elseif k=="Fray" then
+			DB.setValue(Tools.getCharNodePath(w.getDatabaseNode())..".Paths.FraySkillPath", "string", DB.getPath(w.getDatabaseNode()));
+		elseif k=="Fray/2 (vs. ranged attacks)" then
+			DB.setValue(Tools.getCharNodePath(w.getDatabaseNode())..".Paths.Fray2SkillPath", "string", DB.getPath(w.getDatabaseNode()));
+		end
+	end
+end
 
 function onListChanged()
 	update();
