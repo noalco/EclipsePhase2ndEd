@@ -286,8 +286,15 @@ function PerformDamage(rSource, rTarget, rRoll)
 		elseif rRoll.sDesc:match("vs Energy") then
 			nArmorReduction=DB.getValue(rTarget.sCTNode..".Armor.EnergyAV", 0);
 		end
+		
+		local sHalfArmor="";
+		if rRoll.sDesc:match("%[Armor%-Piercing%]") then
+			nArmorReduction=Tools.RoundNumber(nArmorReduction/2);
+			sHalfArmor=" (H)";
+		end
+		
 		if nArmorReduction&gt;0 then
-			sTarget=sTarget.." [Armor Reduction: "..math.min(nArmorReduction, ActionsManager.total(rRoll)).."]";
+			sTarget=sTarget.." [Armor Reduction: "..math.min(nArmorReduction, ActionsManager.total(rRoll))..sHalfArmor.."]";
 			nDamage=math.max(ActionsManager.total(rRoll)*nDamageMult-nArmorReduction, 0);
 		end
 		

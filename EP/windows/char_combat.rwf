@@ -1032,6 +1032,9 @@ function getDescriptionText()
 	elseif DB.getValue(window.getDatabaseNode(), "Weapon.ArmorUsed")=="Kinetic" then
 		sMessage=sMessage.." vs Kinetic";
 	end
+	if DB.getValue(window.getDatabaseNode(), "TraitsNotes", ""):lower():match("armor%-piercing") then
+		sMessage=sMessage.." [Armor-Piercing]";
+	end
 	return sMessage;
 end
 
