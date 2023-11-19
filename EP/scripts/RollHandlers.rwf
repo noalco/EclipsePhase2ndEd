@@ -205,7 +205,7 @@ function PerformDamage(rSource, rTarget, rRoll)
 	end
 	
     if rTarget and rTarget.sCTNode then
-		local nWoundThreshold=DB.getValue(rTarget.sCTNode..".Health.Physical.WoundThreshol");
+		local nWoundThreshold=DB.getValue(rTarget.sCTNode..".Health.Physical.WoundThreshold");
 		sTarget=" -&gt; to "..Tools.getName(rTarget.sCTNode);
 		if rRoll.sDesc:match("vs Kinetic") then
 			nArmorReduction=DB.getValue(rTarget.sCTNode..".Armor.KineticAV", 0);
@@ -218,12 +218,14 @@ function PerformDamage(rSource, rTarget, rRoll)
 		end
 		
 		local nTotalDamageTaken=DB.getValue(rTarget.sCTNode..".Health.Physical.DamageTaken", 0)+nDamage;
-		DB.setValue(rTarget.sCTNode..".Health.Physical.DamageTaken", "number", nTotalDamageTaken);
+		RulesetWizard.changeDBValueOOB(rTarget.sCTNode..".Health.Physical.DamageTaken", nTotalDamageTaken);
+--		DB.setValue(rTarget.sCTNode..".Health.Physical.DamageTaken", "number", nTotalDamageTaken);
 		
 		if nDamage&gt;=nWoundThreshold then
 			local nWounds=math.floor(nDamage/nWoundThreshold);
 			sTarget=sTarget.." [WOUNDS: "..nWounds.."]";
-			DB.setValue(rTarget.sCTNode..".Health.Physical.WoundsTaken", "number", DB.getValue(rTarget.sCTNode..".Health.Physical.WoundsTaken")+nWounds);
+			RulesetWizard.changeDBValueOOB(rTarget.sCTNode..".Health.Physical.WoundsTaken", DB.getValue(rTarget.sCTNode..".Health.Physical.WoundsTaken")+nWounds);
+--			DB.setValue(rTarget.sCTNode..".Health.Physical.WoundsTaken", "number", DB.getValue(rTarget.sCTNode..".Health.Physical.WoundsTaken")+nWounds);
 		end
 		
 		if nTotalDamageTaken&gt;=DB.getValue(rTarget.sCTNode..".Health.Physical.DeathRating") then
@@ -232,11 +234,81 @@ function PerformDamage(rSource, rTarget, rRoll)
 			sTarget=sTarget.." [STATUS: Unconscious/Disabled]";
 		end
     end
+    Debug.chat(rRoll.nDamageMult)
     
     rMessage.text = "Damage"..sArmorType.." ["..nDamage.."]"..sTarget;
 	Comm.deliverChatMessage(rMessage);
 end
 
+function AddDamageBonus(rSource, aTargeting, rRolls)
+	local rRoll={nBonuses=rRolls[1].nBonuses, aDice=rRolls[1].aDice, nMod=rRolls[1].nMod, sType=rRolls[1].sType, sDesc=rRolls[1].sDesc };
+	local iRoll = 0;
+	local sTypeAttack="";
+	local nodeSourceRoll=nil;
+	local nodeTargetRoll=nil;
+	local sRollResult="";
+--	rRolls[1]={};
+	if aTargeting and rSource and rSource.sCTNode then
+		for _,vTargetGroup in ipairs(aTargeting) do
+			for _,vTarget in ipairs(vTargetGroup) do
+				iRoll=iRoll+1;
+				sTypeAttack=rRoll.sDesc:match("%[(.-) DAMAGE%]") or "";
+				if sTypeAttack~="" then
+					sRollResult="Sin entrada en la lista de tiradas";
+					nodeSourceRoll=nil;
+					nodeTargetRoll=nil;
+					for _,n in pairs(DB.getChildren(rSource.sCTNode..".rolls")) do
+						if DB.getValue(n, "TargetCTNode", "")==vTarget.sCTNode and DB.getValue(n, "TypeAttack", "")==sTypeAttack and DB.getValue(n, "TypeResult", "")=="Attack" then
+							sRollResult=combat.tResultsAbr[DB.getValue(n, "RollResult", "")];
+							nodeSourceRoll=n;
+							break;
+						end
+					end
+					for _,n in pairs(DB.getChildren(vTarget.sCTNode..".rolls")) do
+						if DB.getValue(n, "TargetCTNode", "")==rSource.sCTNode and DB.getValue(n, "TypeAttack", "")==sTypeAttack and DB.getValue(n, "TypeResult", "")=="Defense" then
+							nodeTargetRoll=n;
+							break;
+						end
+					end
+					if nodeSourceRoll and nodeTargetRoll then
+	--					{ s'nBonuses' = #0, s'aDice' = s'1d6+1d10+15(vsKinetic)', s'nMod' = #0, s'sType' = s'Damage', s'sDesc' = s'[MELEE DAMAGE] Holdout vs Kinetic' }
+						Debug.chat("están los dos", nodeSourceRoll, nodeTargetRoll);
+						DB.deleteNode(nodeSourceRoll);
+						DB.deleteNode(nodeTargetRoll);
+						rRolls[iRoll]={nBonuses=rRoll.nBonuses, aDice=rRoll.aDice, nMod=rRoll.nMod, sType=rRoll.sType, sDesc=rRoll.sDesc };
+						if combat.tResults[sRollResult] then
+							if combat.tResults[sRollResult].nExtraD6&gt;0 then
+								if type(rRolls[iRoll].aDice)=="string" then
+									Debug.chat(#rRolls[iRoll].aDice)
+									rRolls[iRoll].aDice=combat.tResults[sRollResult].nExtraD6.."d6+"..rRolls[iRoll].aDice;
+								else
+									for i=1,combat.tResults[sRollResult].nExtraD6 do
+										rRolls[iRoll].aDice[#rRolls[iRoll].aDice+1]={type="d6"};
+									end
+									rRolls[iRoll].aDice.expr=combat.tResults[sRollResult].nExtraD6.."d6+"..rRolls[iRoll].aDice.expr;
+								end
+								rRolls[iRoll].sDesc=rRolls[iRoll].sDesc.." [EXTRA DAMAGE: +"..combat.tResults[sRollResult].nExtraD6.."d6]";
+							end
+							rRolls[iRoll].nDamageMult=combat.tResults[sRollResult].nDamageMult;
+						else
+							Debug.chat(sRollResult);
+							rRolls[iRoll] = rRoll;
+							rRolls[iRoll].nDamageMult=1;
+						end
+					else
+						Debug.chat("no están los dos", nodeSource, nodeTarget);
+					end
+				else
+					rRolls[iRoll] = rRoll;
+					Debug.chat("Sin sTypeAttack", rRoll.sDesc, rRoll.sDesc:match("%[(.-) DAMAGE%]"));
+				end
+			end
+		end
+	end
+	Debug.chat(rRolls)
+	Debug.chat(aTargeting)
+	return aTargeting;
+end
 
 
 

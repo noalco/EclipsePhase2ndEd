@@ -4,10 +4,12 @@
     <FolderID>13</FolderID>
     <Script>OOB_ADD_ATTACK="OOB_ADD_ATTACK";
 OOB_ADD_SLEIGHT_ATTACK="OOB_ADD_SLEIGHT_ATTACK";
+--OOB_ADD_COMBAT_RESULT="OOB_ADD_COMBAT_RESULT";
 
 function onInit()
 	OOBManager.registerOOBMsgHandler(OOB_ADD_ATTACK, OOBAddAttack);
 	OOBManager.registerOOBMsgHandler(OOB_ADD_SLEIGHT_ATTACK, OOBAddSleightAttack);
+--	OOBManager.registerOOBMsgHandler(OOB_ADD_SLEIGHT_ATTACK, OOBAddCombatResult);
 	DB.addHandler("combattracker.list.*.active", "onUpdate", CleanRolls);
 	CleanRolls();
 end
@@ -90,6 +92,8 @@ function ResolveCombat(sSourceCTNode, sTargetCTNode, sTypeAttack)
 			
 			tAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack]={};
 			Comm.deliverChatMessage(rMessage);
+			
+--			AddCombatResult(sSourceCTNode, sTargetCTNode, sTypeAttack, sAttackResult);
 		elseif bAttacker and tResults[sAttackResult].nRange&lt;0 then -- The atacker fails and there is no defence roll
 			tAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack]={};
 			rMessage.text = sAttackerName.." vs "..sDefenderName..": "..Interface.getString("attack_miss");
@@ -161,6 +165,8 @@ function ResolveSleightAttack(sSourceCTNode, sTargetCTNode)
 			end
 			Comm.deliverChatMessage(rMessage);
 			tSleightAttacks[sSourceCTNode][sTargetCTNode]={};
+			
+--			AddCombatResult(sSourceCTNode, sTargetCTNode, "SLEIGHT", sAttackResult);
 		elseif bAttacker and tResults[sAttackResult].nRange&lt;0 then -- The atacker fails and there is no defence roll
 			rMessage.text = sAttackerName.." vs "..sDefenderName..": "..Interface.getString("cast_miss");
 			rMessage.icon = "roll_cast_miss";									
@@ -282,7 +288,34 @@ function StoreUnresolvedRoll(sSourceCTNode, sTargetCTNode, sTypeAttack, sTypeRes
 		DB.setValue(rollNode, "CheckedRoll", "number", 0);
 	end
 end
-</Script>
+
+--tCombatResult={}
+--function OOBAddCombatResult(msgOOB)
+--	if Session.IsHost then
+--		AddCombatResult(msgOOB.sSourceCTNode, msgOOB.sTargetCTNode, msgOOB.sTypeAttack, msgOOB.sRollResult);
+--	end
+--end
+--
+--function AddCombatResult(sSourceCTNode, sTargetCTNode, sTypeAttack, sRollResult)
+--	if not sSourceCTNode or not sTargetCTNode or not sTypeAttack or not sRollResult or not tResults[sRollResult] then
+--		return;
+--	end
+--	if Session.IsHost then
+--		if not tCombatResult[sSourceCTNode] then
+--			tCombatResult[sSourceCTNode]={};
+--		end
+--		if not tCombatResult[sSourceCTNode][sTargetCTNode] then
+--			tCombatResult[sSourceCTNode][sTargetCTNode]={};
+--		end
+--		tCombatResult[sSourceCTNode][sTargetCTNode][sTypeAttack]=sRollResult;
+--	else
+--		local msgOOB={};
+--		msgOOB.type=combat.OOB_ADD_COMBAT_RESULT;
+--		msgOOB.sRollResult=sRollResult;
+--		msgOOB.sTypeAttack=sTypeAttack;
+--		Comm.deliverOOBMessage(msgOOB);
+--	end
+--end</Script>
     <RegisterScript>true</RegisterScript>
     <Encoding />
   </Scripts>
