@@ -216,7 +216,7 @@ function AddDamageBonus(rSource, aTargeting, rRolls)
 					if nodeSourceRoll then
 						RulesetWizard.deleteDBNodeOOB(nodeSourceRoll);
 					end
-					if nodeTargetRoll then 
+					if nodeTargetRoll then
 						RulesetWizard.deleteDBNodeOOB(nodeTargetRoll);
 					end
 					rRolls[iRoll]={nBonuses=rRoll.nBonuses, aDice=rRoll.aDice, nMod=rRoll.nMod, sType=rRoll.sType, sDesc=rRoll.sDesc, nDamageMult=rRoll.nDamageMult };

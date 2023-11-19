@@ -904,7 +904,7 @@ end
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"130"}},
       {"Name":"DevelopmentComments"},
-      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"{@self.getDiceString()}","DiceRollDescription":"{@self.getDescriptionText()}","DiceRollType":"Damage","UseModStack":"true","ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"DragIcon":"action_damage","AllowDragDrop":"true","Targeting":"each","ResultHandlerFunction":"RollHandlers.PerformDamage","TargetingHandlerFunction":"RollHandlers.AddDamageBonus","AdditionalInfo":null}},
+      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"{@self.getDiceString()}","DiceRollDescription":"{@self.getDescriptionText()}","DiceRollType":"Damage","UseModStack":"true","ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"DragIcon":"action_damage","AllowDragDrop":"true","Targeting":"all","ResultHandlerFunction":"RollHandlers.PerformDamage","TargetingHandlerFunction":"RollHandlers.AddDamageBonus","AdditionalInfo":null}},
       {"Name":"Disabled"},
       {"Name":"DynamicSize"},
       {"Name":"EmptyText"},

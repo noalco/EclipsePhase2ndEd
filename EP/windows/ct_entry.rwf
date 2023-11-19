@@ -1824,7 +1824,7 @@ end
       {"Name":"DevelopmentComments"},
       {"Name":"Disabled"},
       {"Name":"DynamicSize","Value":{"@xsi:type":"xsd:string","#text":"Dynamic Height"}},
-      {"Name":"FastInit"},
+      {"Name":"FastInit","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"FrameName","Value":{"@xsi:type":"xsd:string","#text":"ct_subgroupbox"}},
       {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string","#text":"8,8,8,8"}},
       {"Name":"GMEditOnly"},

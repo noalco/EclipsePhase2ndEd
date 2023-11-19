@@ -15,6 +15,7 @@ local sDVMod="";
 local sEffect="";
 local bIsRange=false;
 local sVsArmor="";
+local bIsAP=false;
 
 ATTACK=1;
 DAMAGE=2;
@@ -61,14 +62,19 @@ function parseComponents()
 		sText=StringManager.trim(sText);
 		if sDragLabel and sText then
 			aSubStrings, aSubStringsStats = StringManager.split(sText, ",", true);
-			GetFields(aClauseStats[i].startpos, aSubStrings, aSubStringsStats, nNameDesp, bIsRange);
+			if sText:lower():match("armor%-piercing") then
+				bIsAP=true;
+			else
+				bIsAP=false;
+			end
+			GetFields(aClauseStats[i].startpos, aSubStrings, aSubStringsStats, nNameDesp, bIsRange, bIsAP);
 		end
 	end
 		
 	bParsed = true;
 end
 
-function GetFields(startpos, aSubStrings, aSubStringsStats, nNameDesp, bIsRange)
+function GetFields(startpos, aSubStrings, aSubStringsStats, nNameDesp, bIsRange, bIsAP)
 	if aSubStrings and aSubStrings[1] and aSubStringsStats and string.match(aSubStrings[1], "(%d+)") then
 		nAttackTarget = tonumber(string.match(aSubStrings[1], "(%d+)") or "0");
 		table.insert(aComponents, {sLabel=sDragLabel, nAttackTarget=nAttackTarget, nRollType=ATTACK, nStart=startpos, nEnd=startpos+aSubStringsStats[1].endpos+nNameDesp, bIsRange=bIsRange});--, aDVRoll
@@ -78,7 +84,7 @@ function GetFields(startpos, aSubStrings, aSubStringsStats, nNameDesp, bIsRange)
 				sDVRoll=aSubStrings[i]:match("DV%s*(%d+d%d+)");
 				sDVMod=aSubStrings[i]:match("DV%s*%d+d%d+%s*([%+%-]%s*%d*)") or "";
 				sVsArmor=aSubStrings[i]:match("DV%s*%d+d%d+%s*[%+%-]%s*%d*%s%(([KE])%)") or "";
-				table.insert(aComponents, {sLabel=sDragLabel, sDVRoll=sDVRoll, sDVMod=sDVMod, nRollType=DAMAGE, nStart=startpos+aSubStringsStats[i].startpos+nNameDesp, nEnd=startpos+aSubStringsStats[i].endpos+nNameDesp, sVsArmor=sVsArmor, bIsRange=bIsRange});
+				table.insert(aComponents, {sLabel=sDragLabel, sDVRoll=sDVRoll, sDVMod=sDVMod, nRollType=DAMAGE, nStart=startpos+aSubStringsStats[i].startpos+nNameDesp, nEnd=startpos+aSubStringsStats[i].endpos+nNameDesp, sVsArmor=sVsArmor, bIsRange=bIsRange, bIsAP=bIsAP});
 			end
 		end
 	end
@@ -137,6 +143,7 @@ function onHoverUpdate(x, y)
 				sDVMod=aComponents[i].sDVMod;
 				sVsArmor=aComponents[i].sVsArmor;
 				bIsRange=aComponents[i].bIsRange;
+				bIsAP=aComponents[i].bIsAP;
 				return;
 			end
 		elseif aComponents[i].nRollType == EFFECT then
@@ -163,6 +170,7 @@ function onHoverUpdate(x, y)
 	bIsRange=false;
 	sVsArmor="";
 	setHoverCursor("arrow");
+	bIsAP=false;
 end
 
 function action(dragInfo)
@@ -192,6 +200,9 @@ function action(dragInfo)
 				DiceRollDescription=DiceRollDescription.." vs Energy";
 			elseif sVsArmor=="K" then
 				DiceRollDescription=DiceRollDescription.." vs Kinetic";
+			end
+			if bIsAP then
+				DiceRollDescription=DiceRollDescription.." [Armor-Piercing]";
 			end
 			GameSystem.actions["Damage"] = { bUseModStack = "true", sIcon = "action_damage", sTargeting = "each"}
 			sActionType="Damage";
