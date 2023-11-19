@@ -186,7 +186,7 @@ function action(dragInfo)
 			DiceRollDescription = "["..sAttackType.."ATTACK] "..sDragLabel.." (vs "..nAttackTarget..")";
 			GameSystem.actions["AttackCheck"] = { bUseModStack = "true", sIcon = "action_attack", sTargeting = "each"}
 			sActionType="AttackCheck";
-			ActionsManager.registerResultHandler("AttackCheck", RollHandlers.CombatHandler);
+			ActionsManager.registerResultHandler("AttackCheck", RollHandlers.AttackResultHandler);
 			DiceRollString="1d100";
 		elseif isDamage then
 			local sAttackType="";
@@ -206,6 +206,8 @@ function action(dragInfo)
 			end
 			GameSystem.actions["Damage"] = { bUseModStack = "true", sIcon = "action_damage", sTargeting = "each"}
 			sActionType="Damage";
+			ActionsManager.registerResultHandler("Damage", RollHandlers.DamageResultHandler);
+			ActionsManager.registerTargetingHandler("Damage", RollHandlers.DamageTargetingHandler);
 			DiceRollString=sDVRoll..sDVMod;
 		elseif isEffect then
 			DiceRollDescription = "";

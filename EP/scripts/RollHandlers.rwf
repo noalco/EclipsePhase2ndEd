@@ -108,7 +108,7 @@ function CheckHandler(rSource, rTarget, rRoll)
 	return RollChecks.RollCheck(nTotal, nTarget):upper(), nTarget;
 end
 
-function CombatHandler(rSource, rTarget, rRoll)
+function AttackResultHandler(rSource, rTarget, rRoll)
 	local sTypeResult="";
 	local sTypeAttack="";
 	if rRoll.sDesc:match("MELEE") then
@@ -184,13 +184,13 @@ function InitHandler(rSource, rTarget, rRoll)
     end
 end
 
-function TargetingSleightHandler(rSource, aTargeting, rRolls)
+function SleightTargetingHandler(rSource, aTargeting, rRolls)
 	if aTargeting and rSource then
 		local rMessage = ChatManager.createBaseMessage(rSource);
 		rMessage.icon = "roll_cast";
 		for _,vTargetGroup in ipairs(aTargeting) do
 			for _,vTarget in ipairs(vTargetGroup) do
-				rMessage.text = "["..Interface.getString("sleight_cast").."] "..(rRolls[1].sleight or "nonono").." [at "..Tools.getName(vTarget.sCTNode).."]";
+				rMessage.text = "["..Interface.getString("sleight_cast").."] "..(rRolls[1].sleight or "").." [at "..Tools.getName(vTarget.sCTNode).."]";
 				Comm.deliverChatMessage(rMessage);
 			end
 		end
@@ -198,7 +198,7 @@ function TargetingSleightHandler(rSource, aTargeting, rRolls)
 	return aTargeting;
 end
 
-function SleightHandler(rSource, rTarget, rRoll)
+function SleightResultHandler(rSource, rTarget, rRoll)
  	local sTypeResult="";
 	if rRoll then
 		if rRoll.sType=="DefenseSleightCheck" then
@@ -228,7 +228,7 @@ function SleightHandler(rSource, rTarget, rRoll)
     end
  end
 
-function AddDamageBonus(rSource, aTargeting, rRolls)
+function DamageTargetingHandler(rSource, aTargeting, rRolls)
 	local rRoll={nBonuses=rRolls[1].nBonuses, aDice=rRolls[1].aDice, nMod=rRolls[1].nMod, sType=rRolls[1].sType, sDesc=rRolls[1].sDesc, nDamageMult=1 };
 	local iRoll = 0;
 	local sTypeAttack="";
@@ -296,7 +296,7 @@ function AddDamageBonus(rSource, aTargeting, rRolls)
 	return aTargeting;
 end
 
-function PerformDamage(rSource, rTarget, rRoll)
+function DamageResultHandler(rSource, rTarget, rRoll)
 	if not rRoll then
 		return;
 	end
