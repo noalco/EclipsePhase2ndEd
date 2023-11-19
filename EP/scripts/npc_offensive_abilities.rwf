@@ -216,10 +216,16 @@ function action(dragInfo)
 		
 		DiceRollAdditionalInfo = {};
 		if onBeforeDiceRoll then if onBeforeDiceRoll() == false then return; end; end;
+		if isDamage then
+			ActionsManager.actionRoll=RollHandlers.NewActionRoll;
+		end
 		local windataref = window.getDatabaseNode();
 		if windataref == nil then windataref = window; end;
 		RulesetWizardDiceRoller.Roll(dragInfo, windataref, sActionType, DiceRollDescription, DiceRollString, getValue(), DiceRollAdditionalInfo);
 		ModifierStack.reset();
+		if isDamage then
+			ActionsManager.actionRoll=RollHandlers.OldActionRoll;
+		end
 		if onAfterDiceRoll then onAfterDiceRoll(); end;
 		return true;
 	end
