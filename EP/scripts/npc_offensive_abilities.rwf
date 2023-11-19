@@ -78,7 +78,7 @@ function GetFields(startpos, aSubStrings, aSubStringsStats, nNameDesp, bIsRange)
 				sDVRoll=aSubStrings[i]:match("DV%s*(%d+d%d+)");
 				sDVMod=aSubStrings[i]:match("DV%s*%d+d%d+%s*([%+%-]%s*%d*)") or "";
 				sVsArmor=aSubStrings[i]:match("DV%s*%d+d%d+%s*[%+%-]%s*%d*%s%(([KE])%)") or "";
-				table.insert(aComponents, {sLabel=sDragLabel, sDVRoll=sDVRoll, sDVMod=sDVMod, nRollType=DAMAGE, nStart=startpos+aSubStringsStats[i].startpos+nNameDesp, nEnd=startpos+aSubStringsStats[i].endpos+nNameDesp, sVsArmor=sVsArmor});
+				table.insert(aComponents, {sLabel=sDragLabel, sDVRoll=sDVRoll, sDVMod=sDVMod, nRollType=DAMAGE, nStart=startpos+aSubStringsStats[i].startpos+nNameDesp, nEnd=startpos+aSubStringsStats[i].endpos+nNameDesp, sVsArmor=sVsArmor, bIsRange=bIsRange});
 			end
 		end
 	end
@@ -136,6 +136,7 @@ function onHoverUpdate(x, y)
 				sDVRoll=aComponents[i].sDVRoll;
 				sDVMod=aComponents[i].sDVMod;
 				sVsArmor=aComponents[i].sVsArmor;
+				bIsRange=aComponents[i].bIsRange;
 				return;
 			end
 		elseif aComponents[i].nRollType == EFFECT then
@@ -170,23 +171,29 @@ function action(dragInfo)
 		if isAttack then
 			local sAttackType="";
 			if bIsRange then
-				sAttackType="RANGED";
+				sAttackType="RANGED ";
 			else
-				sAttackType="MELEE";
+				sAttackType="MELEE ";
 			end
-			DiceRollDescription = "["..sAttackType.." ATTACK] "..sDragLabel.." (vs "..nAttackTarget..")";
+			DiceRollDescription = "["..sAttackType.."ATTACK] "..sDragLabel.." (vs "..nAttackTarget..")";
 			GameSystem.actions["AttackCheck"] = { bUseModStack = "true", sIcon = "action_attack", sTargeting = "each"}
 			sActionType="AttackCheck";
 			ActionsManager.registerResultHandler("AttackCheck", RollHandlers.CombatHandler);
 			DiceRollString="1d100";
 		elseif isDamage then
-			DiceRollDescription = "[DAMAGE] "..sDragLabel;
+			local sAttackType="";
+			if bIsRange then
+				sAttackType="RANGED ";
+			else
+				sAttackType="MELEE ";
+			end
+			DiceRollDescription = "["..sAttackType.."DAMAGE] "..sDragLabel;
 			if sVsArmor=="E" then
 				DiceRollDescription=DiceRollDescription.." vs Energy";
 			elseif sVsArmor=="K" then
 				DiceRollDescription=DiceRollDescription.." vs Kinetic";
 			end
-			GameSystem.actions["Damage"] = { bUseModStack = "true", sIcon = "action_damage"}
+			GameSystem.actions["Damage"] = { bUseModStack = "true", sIcon = "action_damage", sTargeting = "each"}
 			sActionType="Damage";
 			DiceRollString=sDVRoll..sDVMod;
 		elseif isEffect then

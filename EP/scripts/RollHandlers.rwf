@@ -213,40 +213,34 @@ function AddDamageBonus(rSource, aTargeting, rRolls)
 							break;
 						end
 					end
---					if nodeSourceRoll and nodeTargetRoll then
-	--					{ s'nBonuses' = #0, s'aDice' = s'1d6+1d10+15(vsKinetic)', s'nMod' = #0, s'sType' = s'Damage', s'sDesc' = s'[MELEE DAMAGE] Holdout vs Kinetic' }
---						Debug.chat("están los dos", nodeSourceRoll, nodeTargetRoll);
-						if nodeSourceRoll then
-							RulesetWizard.deleteDBNodeOOB(nodeSourceRoll);
-						end
-						if nodeTargetRoll then 
-							RulesetWizard.deleteDBNodeOOB(nodeTargetRoll);
-						end
-						rRolls[iRoll]={nBonuses=rRoll.nBonuses, aDice=rRoll.aDice, nMod=rRoll.nMod, sType=rRoll.sType, sDesc=rRoll.sDesc, nDamageMult=rRoll.nDamageMult };
-						if combat.tResults[sRollResult] then
-							if combat.tResults[sRollResult].nExtraD6&gt;0 then
-								if type(rRolls[iRoll].aDice)=="string" then
-									Debug.chat(#rRolls[iRoll].aDice)
-									rRolls[iRoll].aDice=combat.tResults[sRollResult].nExtraD6.."d6+"..rRolls[iRoll].aDice;
-								else
-									for i=1,combat.tResults[sRollResult].nExtraD6 do
-										rRolls[iRoll].aDice[#rRolls[iRoll].aDice+1]={type="d6"};
-									end
-									rRolls[iRoll].aDice.expr=combat.tResults[sRollResult].nExtraD6.."d6+"..rRolls[iRoll].aDice.expr;
+					if nodeSourceRoll then
+						RulesetWizard.deleteDBNodeOOB(nodeSourceRoll);
+					end
+					if nodeTargetRoll then 
+						RulesetWizard.deleteDBNodeOOB(nodeTargetRoll);
+					end
+					rRolls[iRoll]={nBonuses=rRoll.nBonuses, aDice=rRoll.aDice, nMod=rRoll.nMod, sType=rRoll.sType, sDesc=rRoll.sDesc, nDamageMult=rRoll.nDamageMult };
+					if combat.tResults[sRollResult] then
+						if combat.tResults[sRollResult].nExtraD6&gt;0 then
+							if type(rRolls[iRoll].aDice)=="string" then
+								Debug.chat(#rRolls[iRoll].aDice)
+								rRolls[iRoll].aDice=combat.tResults[sRollResult].nExtraD6.."d6+"..rRolls[iRoll].aDice;
+							else
+								for i=1,combat.tResults[sRollResult].nExtraD6 do
+									rRolls[iRoll].aDice[#rRolls[iRoll].aDice+1]={type="d6"};
 								end
-								rRolls[iRoll].sDesc=rRolls[iRoll].sDesc.." [EXTRA DAMAGE: +"..combat.tResults[sRollResult].nExtraD6.."d6]";
+								rRolls[iRoll].aDice.expr=combat.tResults[sRollResult].nExtraD6.."d6+"..rRolls[iRoll].aDice.expr;
 							end
-							rRolls[iRoll].nDamageMult=combat.tResults[sRollResult].nDamageMult;
-							if rRolls[iRoll].nDamageMult&gt;1 then
-								rRolls[iRoll].sDesc=rRolls[iRoll].sDesc.." [CRITICAL DAMAGE: x"..combat.tResults[sRollResult].nDamageMult.."]";
-							end
-						else
-							Debug.chat(sRollResult);
-							rRolls[iRoll] = rRoll;
+							rRolls[iRoll].sDesc=rRolls[iRoll].sDesc.." [EXTRA DAMAGE: +"..combat.tResults[sRollResult].nExtraD6.."d6]";
 						end
---					else
---						Debug.chat("no están los dos", nodeSource, nodeTarget);
---					end
+						rRolls[iRoll].nDamageMult=combat.tResults[sRollResult].nDamageMult;
+						if rRolls[iRoll].nDamageMult&gt;1 then
+							rRolls[iRoll].sDesc=rRolls[iRoll].sDesc.." [CRITICAL DAMAGE: x"..combat.tResults[sRollResult].nDamageMult.."]";
+						end
+					else
+						Debug.chat(sRollResult);
+						rRolls[iRoll] = rRoll;
+					end
 				else
 					rRolls[iRoll] = rRoll;
 					Debug.chat("Sin sTypeAttack", rRoll.sDesc, rRoll.sDesc:match("%[(.-) DAMAGE%]"));
@@ -263,7 +257,10 @@ function PerformDamage(rSource, rTarget, rRoll)
 	if not rRoll then
 		return;
 	end
-	rRoll.nDamageMult=tonumber(rRoll.nDamageMult);
+	local nDamageMult=1;
+	if rRoll.nDamageMult then
+		nDamageMult=tonumber(rRoll.nDamageMult);
+	end
 	local rMessage;
 	if rSource then
 		rMessage=ActionsManager.createActionMessage(rSource, rRoll);
@@ -291,7 +288,7 @@ function PerformDamage(rSource, rTarget, rRoll)
 		end
 		if nArmorReduction&gt;0 then
 			sTarget=sTarget.." [Armor Reduction: "..math.min(nArmorReduction, ActionsManager.total(rRoll)).."]";
-			nDamage=math.max(ActionsManager.total(rRoll)*rRoll.nDamageMult-nArmorReduction, 0);
+			nDamage=math.max(ActionsManager.total(rRoll)*nDamageMult-nArmorReduction, 0);
 		end
 		
 		local nTotalDamageTaken=DB.getValue(rTarget.sCTNode..".Health.Physical.DamageTaken", 0)+nDamage;
