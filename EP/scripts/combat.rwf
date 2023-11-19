@@ -187,7 +187,7 @@ end
 
 function OOBAddAttack(msgOOB)
 	if Session.IsHost then
-		AddAttack(msgOOB.sSourceCTNode, msgOOB.sTargetCTNode, msgOOB.sTypeAttack, msgOOB.sTypeResult, msgOOB.sResult, msgOOB.nRollTotal, msgOOB.nTarget);
+		AddAttack(msgOOB.sSourceCTNode, msgOOB.sTargetCTNode, msgOOB.sTypeAttack, msgOOB.sTypeResult, msgOOB.sResult, tonumber(msgOOB.nRollTotal), tonumber(msgOOB.nTarget));
 	end
 end
 
