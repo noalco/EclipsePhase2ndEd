@@ -273,8 +273,8 @@ function AddDamageBonus(rSource, aTargeting, rRolls)
 					if nodeSourceRoll and nodeTargetRoll then
 	--					{ s'nBonuses' = #0, s'aDice' = s'1d6+1d10+15(vsKinetic)', s'nMod' = #0, s'sType' = s'Damage', s'sDesc' = s'[MELEE DAMAGE] Holdout vs Kinetic' }
 						Debug.chat("están los dos", nodeSourceRoll, nodeTargetRoll);
-						DB.deleteNode(nodeSourceRoll);
-						DB.deleteNode(nodeTargetRoll);
+						RulesetWizard.deleteDBNodeOOB(nodeSourceRoll);
+						RulesetWizard.deleteDBNodeOOB(nodeTargetRoll);
 						rRolls[iRoll]={nBonuses=rRoll.nBonuses, aDice=rRoll.aDice, nMod=rRoll.nMod, sType=rRoll.sType, sDesc=rRoll.sDesc };
 						if combat.tResults[sRollResult] then
 							if combat.tResults[sRollResult].nExtraD6&gt;0 then
