@@ -2,7 +2,50 @@
   <Scripts>
     <ScriptName>RollHandlers</ScriptName>
     <FolderID>25</FolderID>
-    <Script>function RollResultFrom0to99(rRoll)
+    <Script>OldActionRoll=nil;
+function onInit()
+--	ChatManager.registerDiceLandedCallback(onDiceLanded);
+	OldActionRoll=ActionsManager.actionRoll;
+--	ActionsManager.actionRoll=NewActionRoll;
+end
+
+-- NOTE: tTargetGroups parameter for this function assumes a list of targeting groups
+function NewActionRoll(rSource, tTargetGroups, rRolls)
+-- To prevent all rRolls-rTargeting combinations from being rolled
+	local bModStackUsed = false;
+	ActionsManager.lockModifiers();
+
+	for i=1,#tTargetGroups do
+		if rRolls[i] then
+			if ActionsManager.applyModifiersAndRoll(rSource, tTargetGroups[i], true, rRolls[i]) then
+				bModStackUsed = true;
+			end
+		else
+			if ActionsManager.applyModifiersAndRoll(rSource, tTargetGroups[i], true, rRolls[1]) then
+				bModStackUsed = true;
+			end
+		end
+	end
+	
+	ActionsManager.unlockModifiers(bModStackUsed);
+end
+
+--function onDiceLanded(draginfo)
+--    local sDragType = draginfo.getType();
+--    if GameSystem.actions[sDragType] then
+--        local rSource, rRolls, aTargets = ActionsManager.decodeActionFromDrag(draginfo, true);
+--        if not aTargets or (#aTargets == 0) then
+--            ActionsManager.resolveAction(rSource, nil, rRoll);
+--        else
+--            -- Resolve the action against the target identified by nTarget index
+--            ActionsManager.resolveAction(rSource, aTargets[tonumber(rRolls[1].nTarget)], rRolls[1]);
+--        end
+--    
+--        return true;
+--    end
+--end
+
+function RollResultFrom0to99(rRoll)
 	if rRoll and rRoll.aDice and rRoll.nTotal then
 		for i=1,#rRoll.aDice do
 			rRoll.aDice[i].value=rRoll.aDice[i].value%100;
@@ -221,11 +264,11 @@ function AddDamageBonus(rSource, aTargeting, rRolls)
 					if nodeTargetRoll then
 						RulesetWizard.deleteDBNodeOOB(nodeTargetRoll);
 					end
-					rRolls[iRoll]={nBonuses=rRoll.nBonuses, aDice=rRoll.aDice, nMod=rRoll.nMod, sType=rRoll.sType, sDesc=rRoll.sDesc, nDamageMult=rRoll.nDamageMult };
+					rRolls[iRoll]={nBonuses=rRoll.nBonuses, aDice=rRoll.aDice, nMod=rRoll.nMod, sType=rRoll.sType, sDesc=rRoll.sDesc, nDamageMult=rRoll.nDamageMult, nTarget = iRoll }; -- nTarget = iRoll: Save the index of the target for later use
+					 -- Save the index of the target for later use
 					if combat.tResults[sRollResult] then
 						if combat.tResults[sRollResult].nExtraD6&gt;0 then
 							if type(rRolls[iRoll].aDice)=="string" then
-								Debug.chat(#rRolls[iRoll].aDice)
 								rRolls[iRoll].aDice=combat.tResults[sRollResult].nExtraD6.."d6+"..rRolls[iRoll].aDice;
 							else
 								for i=1,combat.tResults[sRollResult].nExtraD6 do
@@ -250,8 +293,6 @@ function AddDamageBonus(rSource, aTargeting, rRolls)
 			end
 		end
 	end
-	Debug.chat(rRolls)
-	Debug.chat(aTargeting)
 	return aTargeting;
 end
 

@@ -24,7 +24,7 @@ tResults = {
 	["CRITICAL SUCCESS"]= {nRange=4, nExtraD6=0, nDamageMult=2, sAbr="CS"},
 	["TWO SUPERIOR SUCCESSES"]= {nRange=3, nExtraD6=2, nDamageMult=1, sAbr="2SS"},
 	["ONE SUPERIOR SUCCESS"]= {nRange=2, nExtraD6=1, nDamageMult=1, sAbr="1SS"},
-	["SUCCESS"]= {nRange=1, nExtraD6=1, nDamageMult=1, sAbr="S"},
+	["SUCCESS"]= {nRange=1, nExtraD6=0, nDamageMult=1, sAbr="S"},
 	["FAILURE"]= {nRange=-1, nExtraD6=0, nDamageMult=1, sAbr="F"},
 	["ONE SUPERIOR FAILURE"]= {nRange=-2, nExtraD6=0, nDamageMult=1, sAbr="1SF"},
 	["TWO SUPERIOR FAILURES"]= {nRange=-3, nExtraD6=0, nDamageMult=1, sAbr="2SF"},
