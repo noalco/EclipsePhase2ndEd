@@ -183,65 +183,8 @@ function SleightHandler(rSource, rTarget, rRoll)
     end
  end
 
-function PerformDamage(rSource, rTarget, rRoll)
-	if not rRoll then
-		return;
-	end
-	local rMessage;
-	if rSource then
-		rMessage=ActionsManager.createActionMessage(rSource, rRoll);
-		Comm.deliverChatMessage(rMessage);
-	end
-    rMessage=ChatManager.createBaseMessage();
-    rMessage.icon = "roll_damage";
-    local sTarget="";
-	local sArmorType="";
-	local nArmorReduction=0;
-	local nDamage=ActionsManager.total(rRoll);
-	if rRoll.sDesc:match("vs Kinetic") then
-		sArmorType=" vs Kinetic";
-	elseif rRoll.sDesc:match("vs Energy") then
-		sArmorType=" vs Energy";
-	end
-	
-    if rTarget and rTarget.sCTNode then
-		local nWoundThreshold=DB.getValue(rTarget.sCTNode..".Health.Physical.WoundThreshold");
-		sTarget=" -&gt; to "..Tools.getName(rTarget.sCTNode);
-		if rRoll.sDesc:match("vs Kinetic") then
-			nArmorReduction=DB.getValue(rTarget.sCTNode..".Armor.KineticAV", 0);
-		elseif rRoll.sDesc:match("vs Energy") then
-			nArmorReduction=DB.getValue(rTarget.sCTNode..".Armor.EnergyAV", 0);
-		end
-		if nArmorReduction&gt;0 then
-			sTarget=sTarget.." [Armor Reduction: "..math.min(nArmorReduction, ActionsManager.total(rRoll)).."]";
-			nDamage=math.max(ActionsManager.total(rRoll)-nArmorReduction, 0);
-		end
-		
-		local nTotalDamageTaken=DB.getValue(rTarget.sCTNode..".Health.Physical.DamageTaken", 0)+nDamage;
-		RulesetWizard.changeDBValueOOB(rTarget.sCTNode..".Health.Physical.DamageTaken", nTotalDamageTaken);
---		DB.setValue(rTarget.sCTNode..".Health.Physical.DamageTaken", "number", nTotalDamageTaken);
-		
-		if nDamage&gt;=nWoundThreshold then
-			local nWounds=math.floor(nDamage/nWoundThreshold);
-			sTarget=sTarget.." [WOUNDS: "..nWounds.."]";
-			RulesetWizard.changeDBValueOOB(rTarget.sCTNode..".Health.Physical.WoundsTaken", DB.getValue(rTarget.sCTNode..".Health.Physical.WoundsTaken")+nWounds);
---			DB.setValue(rTarget.sCTNode..".Health.Physical.WoundsTaken", "number", DB.getValue(rTarget.sCTNode..".Health.Physical.WoundsTaken")+nWounds);
-		end
-		
-		if nTotalDamageTaken&gt;=DB.getValue(rTarget.sCTNode..".Health.Physical.DeathRating") then
-			sTarget=sTarget.." [STATUS: Death/Destroyed]";
-		elseif nTotalDamageTaken&gt;=DB.getValue(rTarget.sCTNode..".Health.Physical.Durability") then
-			sTarget=sTarget.." [STATUS: Unconscious/Disabled]";
-		end
-    end
-    Debug.chat(rRoll.nDamageMult)
-    
-    rMessage.text = "Damage"..sArmorType.." ["..nDamage.."]"..sTarget;
-	Comm.deliverChatMessage(rMessage);
-end
-
 function AddDamageBonus(rSource, aTargeting, rRolls)
-	local rRoll={nBonuses=rRolls[1].nBonuses, aDice=rRolls[1].aDice, nMod=rRolls[1].nMod, sType=rRolls[1].sType, sDesc=rRolls[1].sDesc };
+	local rRoll={nBonuses=rRolls[1].nBonuses, aDice=rRolls[1].aDice, nMod=rRolls[1].nMod, sType=rRolls[1].sType, sDesc=rRolls[1].sDesc, nDamageMult=1 };
 	local iRoll = 0;
 	local sTypeAttack="";
 	local nodeSourceRoll=nil;
@@ -270,12 +213,16 @@ function AddDamageBonus(rSource, aTargeting, rRolls)
 							break;
 						end
 					end
-					if nodeSourceRoll and nodeTargetRoll then
+--					if nodeSourceRoll and nodeTargetRoll then
 	--					{ s'nBonuses' = #0, s'aDice' = s'1d6+1d10+15(vsKinetic)', s'nMod' = #0, s'sType' = s'Damage', s'sDesc' = s'[MELEE DAMAGE] Holdout vs Kinetic' }
-						Debug.chat("están los dos", nodeSourceRoll, nodeTargetRoll);
-						RulesetWizard.deleteDBNodeOOB(nodeSourceRoll);
-						RulesetWizard.deleteDBNodeOOB(nodeTargetRoll);
-						rRolls[iRoll]={nBonuses=rRoll.nBonuses, aDice=rRoll.aDice, nMod=rRoll.nMod, sType=rRoll.sType, sDesc=rRoll.sDesc };
+--						Debug.chat("están los dos", nodeSourceRoll, nodeTargetRoll);
+						if nodeSourceRoll then
+							RulesetWizard.deleteDBNodeOOB(nodeSourceRoll);
+						end
+						if nodeTargetRoll then 
+							RulesetWizard.deleteDBNodeOOB(nodeTargetRoll);
+						end
+						rRolls[iRoll]={nBonuses=rRoll.nBonuses, aDice=rRoll.aDice, nMod=rRoll.nMod, sType=rRoll.sType, sDesc=rRoll.sDesc, nDamageMult=rRoll.nDamageMult };
 						if combat.tResults[sRollResult] then
 							if combat.tResults[sRollResult].nExtraD6&gt;0 then
 								if type(rRolls[iRoll].aDice)=="string" then
@@ -290,14 +237,16 @@ function AddDamageBonus(rSource, aTargeting, rRolls)
 								rRolls[iRoll].sDesc=rRolls[iRoll].sDesc.." [EXTRA DAMAGE: +"..combat.tResults[sRollResult].nExtraD6.."d6]";
 							end
 							rRolls[iRoll].nDamageMult=combat.tResults[sRollResult].nDamageMult;
+							if rRolls[iRoll].nDamageMult&gt;1 then
+								rRolls[iRoll].sDesc=rRolls[iRoll].sDesc.." [CRITICAL DAMAGE: x"..combat.tResults[sRollResult].nDamageMult.."]";
+							end
 						else
 							Debug.chat(sRollResult);
 							rRolls[iRoll] = rRoll;
-							rRolls[iRoll].nDamageMult=1;
 						end
-					else
-						Debug.chat("no están los dos", nodeSource, nodeTarget);
-					end
+--					else
+--						Debug.chat("no están los dos", nodeSource, nodeTarget);
+--					end
 				else
 					rRolls[iRoll] = rRoll;
 					Debug.chat("Sin sTypeAttack", rRoll.sDesc, rRoll.sDesc:match("%[(.-) DAMAGE%]"));
@@ -308,6 +257,63 @@ function AddDamageBonus(rSource, aTargeting, rRolls)
 	Debug.chat(rRolls)
 	Debug.chat(aTargeting)
 	return aTargeting;
+end
+
+function PerformDamage(rSource, rTarget, rRoll)
+	if not rRoll then
+		return;
+	end
+	rRoll.nDamageMult=tonumber(rRoll.nDamageMult);
+	local rMessage;
+	if rSource then
+		rMessage=ActionsManager.createActionMessage(rSource, rRoll);
+		Comm.deliverChatMessage(rMessage);
+	end
+    rMessage=ChatManager.createBaseMessage();
+    rMessage.icon = "roll_damage";
+    local sTarget="";
+	local sArmorType="";
+	local nArmorReduction=0;
+	local nDamage=ActionsManager.total(rRoll);
+	if rRoll.sDesc:match("vs Kinetic") then
+		sArmorType=" vs Kinetic";
+	elseif rRoll.sDesc:match("vs Energy") then
+		sArmorType=" vs Energy";
+	end
+	
+    if rTarget and rTarget.sCTNode then
+		local nWoundThreshold=DB.getValue(rTarget.sCTNode..".Health.Physical.WoundThreshold");
+		sTarget=" -&gt; to "..Tools.getName(rTarget.sCTNode);
+		if rRoll.sDesc:match("vs Kinetic") then
+			nArmorReduction=DB.getValue(rTarget.sCTNode..".Armor.KineticAV", 0);
+		elseif rRoll.sDesc:match("vs Energy") then
+			nArmorReduction=DB.getValue(rTarget.sCTNode..".Armor.EnergyAV", 0);
+		end
+		if nArmorReduction&gt;0 then
+			sTarget=sTarget.." [Armor Reduction: "..math.min(nArmorReduction, ActionsManager.total(rRoll)).."]";
+			nDamage=math.max(ActionsManager.total(rRoll)*rRoll.nDamageMult-nArmorReduction, 0);
+		end
+		
+		local nTotalDamageTaken=DB.getValue(rTarget.sCTNode..".Health.Physical.DamageTaken", 0)+nDamage;
+		RulesetWizard.changeDBValueOOB(rTarget.sCTNode..".Health.Physical.DamageTaken", nTotalDamageTaken);
+--		DB.setValue(rTarget.sCTNode..".Health.Physical.DamageTaken", "number", nTotalDamageTaken);
+		
+		if nDamage&gt;=nWoundThreshold then
+			local nWounds=math.floor(nDamage/nWoundThreshold);
+			sTarget=sTarget.." [WOUNDS: "..nWounds.."]";
+			RulesetWizard.changeDBValueOOB(rTarget.sCTNode..".Health.Physical.WoundsTaken", DB.getValue(rTarget.sCTNode..".Health.Physical.WoundsTaken")+nWounds);
+--			DB.setValue(rTarget.sCTNode..".Health.Physical.WoundsTaken", "number", DB.getValue(rTarget.sCTNode..".Health.Physical.WoundsTaken")+nWounds);
+		end
+		
+		if nTotalDamageTaken&gt;=DB.getValue(rTarget.sCTNode..".Health.Physical.DeathRating") then
+			sTarget=sTarget.." [STATUS: Death/Destroyed]";
+		elseif nTotalDamageTaken&gt;=DB.getValue(rTarget.sCTNode..".Health.Physical.Durability") then
+			sTarget=sTarget.." [STATUS: Unconscious/Disabled]";
+		end
+    end
+    
+    rMessage.text = "Damage"..sArmorType.." ["..nDamage.."]"..sTarget;
+	Comm.deliverChatMessage(rMessage);
 end
 
 
