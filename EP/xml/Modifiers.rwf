@@ -1,0 +1,13 @@
+<DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
+  <XMLFiles>
+    <XmlName>Modifiers</XmlName>
+    <FolderID>22</FolderID>
+    <XML>&lt;?xml version="1.0" encoding="iso-8859-1"?&gt;
+&lt;root&gt;
+	&lt;string name="modifier_category_CTAttacks"&gt;CTAttacks&lt;/string&gt;
+	&lt;string name="modifier_label_Mi-Cov"&gt;Mi-Cov&lt;/string&gt;
+	&lt;string name="modifier_label_Mo-Cov"&gt;Mo-Cov&lt;/string&gt;
+	&lt;string name="modifier_label_Ma-Cov"&gt;Ma-Cov&lt;/string&gt;
+&lt;/root&gt;</XML>
+  </XMLFiles>
+</DocumentElement>

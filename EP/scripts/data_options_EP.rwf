@@ -1,7 +1,7 @@
 <DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
   <Scripts>
     <ScriptName>data_options_EP</ScriptName>
-    <FolderID>24</FolderID>
+    <FolderID>25</FolderID>
     <Script>function onInit()
 	OptionsManager.deleteOption(MANUALROLL);
 --	OptionsManager.registerOption2("AUTODEFENSEROLL", true, "option_header_combat", "option_label_AUTODEFENSEROLL", "option_entry_cycler", 

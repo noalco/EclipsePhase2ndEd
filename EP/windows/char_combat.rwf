@@ -408,7 +408,7 @@ end
 ]}}</Definition>
     <LUACode>local dataNode;
 local charNode;
-
+--local bMiss=true;
 --RollHandlers.AttackingOpposedTest
 
 function onInit()
@@ -418,6 +418,8 @@ function onInit()
 	DB.addHandler(DB.getPath(charNode, "Armor.PhAP"), "onUpdate", UpdateSkill);
 	DB.addHandler(DB.getPath(charNode, "Skills.ActiveSkillsList"), "onChildUpdate", UpdateSkill);
 	UpdateSkill();
+	
+--	ActionsManager.registerResultHandler("hiddenmisschance", onRoll);
 end
 
 function onClose()
@@ -478,16 +480,58 @@ function getDescriptionText()
 	else
 		sAttackType="RANGED";
 	end
-	return "["..sAttackType.." ATTACK] "..window.AttackSkill.getValue().." (vs "..getValue()..")";
+	
+	local nHiddenCoverMod, nPerc, sModType=Modifiers.getModifier();
+	local sCoverHidden="";
+	if nHiddenCoverMod ~=0 then
+		sCoverHidden=" ["..sModType..": "..nHiddenCoverMod
+		if nPerc&lt;100 then
+			sCoverHidden=sCoverHidden.." ("..nPerc.."% hit chance)";
+		end
+		sCoverHidden=sCoverHidden.."]";
+	end
+	
+	return "["..sAttackType.." ATTACK] "..window.AttackSkill.getValue().." (vs "..(getValue()+nHiddenCoverMod)..")"..sCoverHidden;
 end
 
 function onBeforeDiceRoll(dragInfo)
-	if window.CurrentAmmo.getValue()&lt;window.MaxAmmo.getValue() then
-		window.CurrentAmmo.setValue(window.CurrentAmmo.getValue()+1);
+	local sType=DB.getValue(dataNode, "Type", "Melee Weapon");
+	if sType=="Ranged Weapon" then
+		if window.CurrentAmmo.getValue()&lt;window.MaxAmmo.getValue() then
+			window.CurrentAmmo.setValue(window.CurrentAmmo.getValue()+1);
+		else
+			local rMessage = ChatManager.createBaseMessage(Tools.getCharNode(getDatabaseNode()));
+			rMessage.text=window.name.getValue().." out of ammo";
+			Comm.deliverChatMessage(rMessage)
+			return false;
+		end
 	end
+
+--	if nPerc and nPerc&lt;100 then
+--		local rRoll = { sType = "hiddenmisschance", sDesc = "", aDice = aDice, nMod = 0 };	
+--		rRoll.aDice = {"d100"};
+--		ActionsManager.performAction(Tools.getCharNode(getDatabaseNode()),nil,rRoll);
+--		return false;
+--	end
+	
 	return true;
 end
-</LUACode>
+
+--function onRoll(rSource, rTarget, rRoll)
+--	local rMessage=ActionsManager.createActionMessage(rSource, rRoll);
+--	rMessage.text="Hit chance test";
+--	Comm.deliverChatMessage(rMessage);
+--	if nPerc and ActionsManager.total(rRoll)&lt;nPerc then
+--		rMessage = ChatManager.createBaseMessage(Tools.getCharNode(getDatabaseNode()));
+--		rMessage.text="Hit chance failure";
+--		Comm.deliverChatMessage(rMessage)		
+--	else
+--		rMessage = ChatManager.createBaseMessage(Tools.getCharNode(getDatabaseNode()));
+--		rMessage.text="Hit chance success";
+--		Comm.deliverChatMessage(rMessage)		
+--		action(dragInfo);
+--	end
+--end</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -1170,7 +1214,7 @@ function onDragStart(button, x, y, draginfo)
 end
 
 function action(dragInfo)
-	window.AttackCheck.action(dragInfo)
+	window.AttackCheck.action(dragInfo);
 end</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />

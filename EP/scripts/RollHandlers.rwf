@@ -1,7 +1,7 @@
 <DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
   <Scripts>
     <ScriptName>RollHandlers</ScriptName>
-    <FolderID>24</FolderID>
+    <FolderID>25</FolderID>
     <Script>function RollResultFrom0to99(rRoll)
 	if rRoll and rRoll.aDice and rRoll.nTotal then
 		for i=1,#rRoll.aDice do
@@ -103,6 +103,8 @@ function CombatHandler(rSource, rTarget, rRoll)
 			sTypeResult="Attack";
 		end
 	end
+	
+	
     local sResult, nTarget=CheckHandler(rSource, rTarget, rRoll);
     if rSource and rTarget and rSource.sCTNode and rTarget.sCTNode then
 		if Session.IsHost then
