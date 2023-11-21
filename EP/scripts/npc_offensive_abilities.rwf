@@ -183,7 +183,18 @@ function action(dragInfo)
 			else
 				sAttackType="MELEE ";
 			end
-			DiceRollDescription = "["..sAttackType.."ATTACK] "..sDragLabel.." (vs "..nAttackTarget..")";
+			
+			local nHiddenCoverMod, nPerc, sModType=Modifiers.getModifier();
+			local sCoverHidden="";
+			if nHiddenCoverMod ~=0 then
+				sCoverHidden=" ["..sModType..": "..nHiddenCoverMod
+				if nPerc&lt;100 then
+					sCoverHidden=sCoverHidden.." ("..nPerc.."% hit chance)";
+				end
+				sCoverHidden=sCoverHidden.."]";
+			end
+			
+			DiceRollDescription = "["..sAttackType.."ATTACK] "..sDragLabel.." (vs "..(nAttackTarget+nHiddenCoverMod)..")"..sCoverHidden;
 			GameSystem.actions["AttackCheck"] = { bUseModStack = "true", sIcon = "action_attack", sTargeting = "each"}
 			sActionType="AttackCheck";
 			ActionsManager.registerResultHandler("AttackCheck", RollHandlers.AttackResultHandler);
