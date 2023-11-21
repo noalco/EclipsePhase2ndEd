@@ -147,11 +147,12 @@ function AttackResultHandler(rSource, rTarget, rRoll)
 		end
 	end
 	
+	local nPerc=tonumber(rRoll.sDesc:match("%((%d+)%% hit chance%)") or 100);
 	
     local sResult, nTarget=CheckHandler(rSource, rTarget, rRoll);
     if rSource and rTarget and rSource.sCTNode and rTarget.sCTNode then
 		if Session.IsHost then
-			combat.AddAttack(rSource.sCTNode, rTarget.sCTNode, sTypeAttack, sTypeResult, sResult, ActionsManager.total(rRoll), nTarget);
+			combat.AddAttack(rSource.sCTNode, rTarget.sCTNode, sTypeAttack, sTypeResult, sResult, ActionsManager.total(rRoll), nTarget, false, nPerc);
 		else
 			local msgOOB={};
 			msgOOB.type=combat.OOB_ADD_ATTACK;
@@ -162,6 +163,8 @@ function AttackResultHandler(rSource, rTarget, rRoll)
 			msgOOB.sResult=sResult;
 			msgOOB.nRollTotal=ActionsManager.total(rRoll);
 			msgOOB.nTarget=nTarget;
+			msgOOB.bModifiedRoll="false";
+			msgOOB.nPerc=nPerc;
 			Comm.deliverOOBMessage(msgOOB);
 		end
     end
@@ -363,7 +366,34 @@ function DamageResultHandler(rSource, rTarget, rRoll)
 	Comm.deliverChatMessage(rMessage);
 end
 
-
+function HitChanceHandler(rSource, rTarget, rRoll)
+    if rSource and rTarget and rSource.sCTNode and rTarget.sCTNode and rRoll then
+		local rMessage=ActionsManager.createActionMessage(rSource, rRoll);
+		if ActionsManager.total(rRoll)&lt;50  then
+			rMessage.icon = "roll_attack_hit";
+			Comm.deliverChatMessage(rMessage);
+			if Session.IsHost then
+				combat.AddAttack(rSource.sCTNode, rTarget.sCTNode, rRoll.sTypeAttack, rRoll.sTypeResult, rRoll.sResult, rRoll.nRollTotal, rRoll.nTarget, false, 100);
+			else
+				local msgOOB={};
+				msgOOB.type=combat.OOB_ADD_ATTACK;
+				msgOOB.sSourceCTNode=rSource.sCTNode;
+				msgOOB.sTargetCTNode=rTarget.sCTNode;
+				msgOOB.sTypeAttack=rRoll.sTypeAttack;
+				msgOOB.sTypeResult=rRoll.sTypeResult;
+				msgOOB.sResult=rRoll.sResult;
+				msgOOB.nRollTotal=rRoll.nRollTotal;
+				msgOOB.nTarget=rRoll.nTarget;
+				msgOOB.bModifiedRoll="false";
+				msgOOB.nPerc=100;
+				Comm.deliverOOBMessage(msgOOB);
+			end
+		else
+			rMessage.icon = "roll_attack_miss";
+			Comm.deliverChatMessage(rMessage);
+		end
+    end
+end
 
 
 

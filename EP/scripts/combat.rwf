@@ -187,14 +187,26 @@ end
 
 function OOBAddAttack(msgOOB)
 	if Session.IsHost then
-		AddAttack(msgOOB.sSourceCTNode, msgOOB.sTargetCTNode, msgOOB.sTypeAttack, msgOOB.sTypeResult, msgOOB.sResult, tonumber(msgOOB.nRollTotal), tonumber(msgOOB.nTarget));
+		AddAttack(msgOOB.sSourceCTNode, msgOOB.sTargetCTNode, msgOOB.sTypeAttack, msgOOB.sTypeResult, msgOOB.sResult, tonumber(msgOOB.nRollTotal), tonumber(msgOOB.nTarget), msgOOB.bModifiedRoll=="true", tonumber(msgOOB.nPerc));
 	end
 end
 
-function AddAttack(sSourceCTNode, sTargetCTNode, sTypeAttack, sTypeResult, sResult, nRollTotal, nTarget, bModifiedRoll)
+function AddAttack(sSourceCTNode, sTargetCTNode, sTypeAttack, sTypeResult, sResult, nRollTotal, nTarget, bModifiedRoll, nPerc)
 --	sTypeAttack: MELEE, RANGED
 --	sTypeResult: Defense, Attack
 	if Session.IsHost and sSourceCTNode and sTargetCTNode and sTypeAttack and sTypeResult and sResult and nRollTotal and nTarget then
+		if tResults[sResult].nRange&gt;0 and nPerc and nPerc&lt;100 then
+			GameSystem.actions["HitChanceCheck"] = { bUseModStack = "false", sTargeting = "none" }
+			ActionsManager.registerResultHandler("HitChanceCheck", RollHandlers.HitChanceHandler);
+			local aDice2, nMod2 = StringManager.convertStringToDice("1d100");
+			local rRoll = { sType = "HitChanceCheck", sDesc = "[HIT CHANCE "..nPerc.."%]", aDice = aDice2, nMod = nMod2, sTypeAttack=sTypeAttack, sTypeResult=sTypeResult, sResult=sResult, nRollTotal=nRollTotal, nTarget=nTarget, bModifiedRoll=bModifiedRoll, nPerc=nPerc};
+			local rTargetNode=DB.findNode(sTargetCTNode);
+			local rSourceNode=DB.findNode(sSourceCTNode);
+			local tTargetGroups=ActionsManager.getTargeting(rSourceNode, rTargetNode, rRoll.sType, { rRoll });
+			ActionsManager.actionRoll(rSourceNode, tTargetGroups, { rRoll });
+			return;
+		end
+
 		if not tAttacts[sSourceCTNode] then
 			tAttacts[sSourceCTNode]={};
 		end
@@ -215,6 +227,7 @@ function AddAttack(sSourceCTNode, sTargetCTNode, sTypeAttack, sTypeResult, sResu
 		end
 		
 		local bOpposedRollNeeded=ResolveCombat(sSourceCTNode, sTargetCTNode, sTypeAttack);
+		
 		if bOpposedRollNeeded and OptionsManager.isOption("AUTODEFENSEROLL", "on") then
 			GameSystem.actions["DefenseCheck"] = { bUseModStack = "true", sIcon = "action_attack", sTargeting = "all" }
 			ActionsManager.registerResultHandler("DefenseCheck", RollHandlers.CombatHandler);
