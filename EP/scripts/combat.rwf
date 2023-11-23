@@ -4,12 +4,10 @@
     <FolderID>13</FolderID>
     <Script>OOB_ADD_ATTACK="OOB_ADD_ATTACK";
 OOB_ADD_SLEIGHT_ATTACK="OOB_ADD_SLEIGHT_ATTACK";
---OOB_ADD_COMBAT_RESULT="OOB_ADD_COMBAT_RESULT";
 
 function onInit()
 	OOBManager.registerOOBMsgHandler(OOB_ADD_ATTACK, OOBAddAttack);
 	OOBManager.registerOOBMsgHandler(OOB_ADD_SLEIGHT_ATTACK, OOBAddSleightAttack);
---	OOBManager.registerOOBMsgHandler(OOB_ADD_SLEIGHT_ATTACK, OOBAddCombatResult);
 	DB.addHandler("combattracker.list.*.active", "onUpdate", CleanRolls);
 	CleanRolls();
 end
@@ -256,32 +254,48 @@ function AddAttack(sSourceCTNode, sTargetCTNode, sTypeAttack, sTypeResult, sResu
 	end
 end
 
-function AddSleightAttack(sSourceCTNode, sTargetCTNode, sTypeResult, sResult, nRollTotal, nTarget, bModifiedRoll)
-	if Session.IsHost and sSourceCTNode and sTargetCTNode and sTypeResult and sResult and nRollTotal and nTarget then
-		if not tSleightAttacks[sSourceCTNode] then
-			tSleightAttacks[sSourceCTNode]={};
-		end
-		if not tSleightAttacks[sSourceCTNode][sTargetCTNode] then
-			tSleightAttacks[sSourceCTNode][sTargetCTNode]={};
-		end
-		tSleightAttacks[sSourceCTNode][sTargetCTNode]["s"..sTypeResult.."Result"]=sResult;
-		tSleightAttacks[sSourceCTNode][sTargetCTNode]["n"..sTypeResult.."Result"]=nRollTotal;
-		
-		if sTypeResult=="Attack" and not bModifiedRoll then
-			StoreUnresolvedRoll(sSourceCTNode, sTargetCTNode, "SLEIGHT", sTypeResult, sResult, nRollTotal, nTarget);
-		elseif sTypeResult=="Defense" and not bModifiedRoll then
-			StoreUnresolvedRoll(sTargetCTNode, sSourceCTNode, "SLEIGHT", sTypeResult, sResult, nRollTotal, nTarget);
-		end
+function OOBAddSleightAttack(msgOOB)
+	if Session.IsHost then
+		AddSleightAttack(msgOOB.sSourceCTNode, msgOOB.sTargetCTNode, msgOOB.sTypeResult, msgOOB.sResult, tonumber(msgOOB.nRollTotal), tonumber(msgOOB.nTarget), msgOOB.bModifiedRoll=="true");
+	end
+end
 
-		if ResolveSleightAttack(sSourceCTNode, sTargetCTNode, sTypeAttack) then
-			GameSystem.actions["DefenseSleightCheck"] = { bUseModStack = "true", sIcon = "action_attack", sTargeting = "all" }
-			ActionsManager.registerResultHandler("DefenseSleightCheck", RollHandlers.SleightHandler);
-			local nDefenseTarget = Tools.getDefenderWillTarget(sTargetCTNode);
-			local aDice2, nMod2 = StringManager.convertStringToDice("1d100");
-			local rRoll = { sType = "DefenseSleightCheck", sDesc = "[SLEIGHT DEFENSE] Willpower (vs "..nDefenseTarget..")", aDice = aDice2, nMod = nMod2};
-			local rTargetNode=DB.findNode(sTargetCTNode);
-			local tTargetGroups=ActionsManager.getTargeting(rTargetNode, DB.findNode(sSourceCTNode), rRoll.sType, { rRoll });
-			ActionsManager.actionRoll(rTargetNode, tTargetGroups, { rRoll });
+function AddSleightAttack(sSourceCTNode, sTargetCTNode, sTypeResult, sResult, nRollTotal, nTarget, bModifiedRoll)
+	if sSourceCTNode and sTargetCTNode and sTypeResult and sResult and nRollTotal and nTarget then
+		if Session.IsHost then
+			if not tSleightAttacks[sSourceCTNode] then
+				tSleightAttacks[sSourceCTNode]={};
+			end
+			if not tSleightAttacks[sSourceCTNode][sTargetCTNode] then
+				tSleightAttacks[sSourceCTNode][sTargetCTNode]={};
+			end
+			tSleightAttacks[sSourceCTNode][sTargetCTNode]["s"..sTypeResult.."Result"]=sResult;
+			tSleightAttacks[sSourceCTNode][sTargetCTNode]["n"..sTypeResult.."Result"]=nRollTotal;
+			
+			if sTypeResult=="Attack" and not bModifiedRoll then
+				StoreUnresolvedRoll(sSourceCTNode, sTargetCTNode, "SLEIGHT", sTypeResult, sResult, nRollTotal, nTarget);
+			elseif sTypeResult=="Defense" and not bModifiedRoll then
+				StoreUnresolvedRoll(sTargetCTNode, sSourceCTNode, "SLEIGHT", sTypeResult, sResult, nRollTotal, nTarget);
+			end
+
+			if ResolveSleightAttack(sSourceCTNode, sTargetCTNode, sTypeAttack) then
+				GameSystem.actions["DefenseSleightCheck"] = { bUseModStack = "true", sIcon = "action_attack", sTargeting = "all" }
+				ActionsManager.registerResultHandler("DefenseSleightCheck", RollHandlers.SleightResultHandler);
+				local nDefenseTarget = Tools.getDefenderWillTarget(sTargetCTNode);
+				local aDice2, nMod2 = StringManager.convertStringToDice("1d100");
+				local rRoll = { sType = "DefenseSleightCheck", sDesc = "[SLEIGHT DEFENSE] Willpower (vs "..nDefenseTarget..")", aDice = aDice2, nMod = nMod2};
+				local rTargetNode=DB.findNode(sTargetCTNode);
+				local tTargetGroups=ActionsManager.getTargeting(rTargetNode, DB.findNode(sSourceCTNode), rRoll.sType, { rRoll });
+				ActionsManager.actionRoll(rTargetNode, tTargetGroups, { rRoll });
+			end
+		else
+			local msgOOB={type=OOB_ADD_SLEIGHT_ATTACK, sSourceCTNode=sSourceCTNode, sTargetCTNode=sTargetCTNode, sTypeResult=sTypeResult, sResult=sResult, nRollTotal=nRollTotal, nTarget=nTarget};
+			if bModifiedRoll then
+				msgOOB.bModifiedRoll="true";
+			else
+				msgOOB.bModifiedRoll="false";
+			end
+			Comm.deliverOOBMessage(msgOOB);	
 		end
 	end
 end

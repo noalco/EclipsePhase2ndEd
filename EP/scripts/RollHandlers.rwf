@@ -185,19 +185,7 @@ function SleightResultHandler(rSource, rTarget, rRoll)
 	end
 	local sResult, nTarget=CheckHandler(rSource, rTarget, rRoll);
     if rSource and rTarget and rSource.sCTNode and rTarget.sCTNode then
-		if Session.IsHost then
-			combat.AddSleightAttack(rSource.sCTNode, rTarget.sCTNode, sTypeResult, sResult, ActionsManager.total(rRoll), nTarget);
-		else
-			local msgOOB={};
-			msgOOB.type=combat.OOB_ADD_SLEIGHT_ATTACK;
-			msgOOB.sSourceCTNode=rSource.sCTNode;
-			msgOOB.sTargetCTNode=rTarget.sCTNode;
-			msgOOB.sTypeResult=sTypeResult;
-			msgOOB.sResult=sResult;
-			msgOOB.nRollTotal=ActionsManager.total(rRoll);
-			msgOOB.nTarget=nTarget;
-			Comm.deliverOOBMessage(msgOOB);
-		end
+		combat.AddSleightAttack(rSource.sCTNode, rTarget.sCTNode, sTypeResult, sResult, ActionsManager.total(rRoll), nTarget);
     end
  end
 
@@ -208,7 +196,6 @@ function DamageTargetingHandler(rSource, aTargeting, rRolls)
 	local nodeSourceRoll=nil;
 	local nodeTargetRoll=nil;
 	local sRollResult="";
---	rRolls[1]={};
 	if aTargeting and rSource and rSource.sCTNode then
 		for _,vTargetGroup in ipairs(aTargeting) do
 			for _,vTarget in ipairs(vTargetGroup) do
@@ -238,7 +225,6 @@ function DamageTargetingHandler(rSource, aTargeting, rRolls)
 						RulesetWizard.deleteDBNodeOOB(nodeTargetRoll);
 					end
 					rRolls[iRoll]={nBonuses=rRoll.nBonuses, aDice=rRoll.aDice, nMod=rRoll.nMod, sType=rRoll.sType, sDesc=rRoll.sDesc, nDamageMult=rRoll.nDamageMult, nTarget = iRoll }; -- nTarget = iRoll: Save the index of the target for later use
-					 -- Save the index of the target for later use
 					if combat.tResults[sRollResult] then
 						if combat.tResults[sRollResult].nExtraD6&gt;0 then
 							if type(rRolls[iRoll].aDice)=="string" then
