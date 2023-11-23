@@ -194,49 +194,64 @@ end
 function AddAttack(sSourceCTNode, sTargetCTNode, sTypeAttack, sTypeResult, sResult, nRollTotal, nTarget, bModifiedRoll, nPerc)
 --	sTypeAttack: MELEE, RANGED
 --	sTypeResult: Defense, Attack
-	if Session.IsHost and sSourceCTNode and sTargetCTNode and sTypeAttack and sTypeResult and sResult and nRollTotal and nTarget then
-		if tResults[sResult].nRange&gt;0 and nPerc and nPerc&lt;100 then
-			GameSystem.actions["HitChanceCheck"] = { bUseModStack = "false", sTargeting = "none" }
-			ActionsManager.registerResultHandler("HitChanceCheck", RollHandlers.HitChanceHandler);
-			local aDice2, nMod2 = StringManager.convertStringToDice("1d100");
-			local rRoll = { sType = "HitChanceCheck", sDesc = "[HIT CHANCE "..nPerc.."%]", aDice = aDice2, nMod = nMod2, sTypeAttack=sTypeAttack, sTypeResult=sTypeResult, sResult=sResult, nRollTotal=nRollTotal, nTarget=nTarget, bModifiedRoll=bModifiedRoll, nPerc=nPerc};
-			local rTargetNode=DB.findNode(sTargetCTNode);
-			local rSourceNode=DB.findNode(sSourceCTNode);
-			local tTargetGroups=ActionsManager.getTargeting(rSourceNode, rTargetNode, rRoll.sType, { rRoll });
-			ActionsManager.actionRoll(rSourceNode, tTargetGroups, { rRoll });
-			return;
-		end
+	if sSourceCTNode and sTargetCTNode and sTypeAttack and sTypeResult and sResult and nRollTotal and nTarget then
+		if Session.IsHost then
+			if tResults[sResult].nRange&gt;0 and nPerc and nPerc&lt;100 then
+				GameSystem.actions["HitChanceCheck"] = { bUseModStack = "false", sTargeting = "none" }
+				ActionsManager.registerResultHandler("HitChanceCheck", RollHandlers.HitChanceHandler);
+				local aDice2, nMod2 = StringManager.convertStringToDice("1d100");
+				local rRoll = { sType = "HitChanceCheck", sDesc = "[HIT CHANCE "..nPerc.."%]", aDice = aDice2, nMod = nMod2, sTypeAttack=sTypeAttack, sTypeResult=sTypeResult, sResult=sResult, nRollTotal=nRollTotal, nTarget=nTarget, bModifiedRoll=bModifiedRoll, nPerc=nPerc};
+				local rTargetNode=DB.findNode(sTargetCTNode);
+				local rSourceNode=DB.findNode(sSourceCTNode);
+				local tTargetGroups=ActionsManager.getTargeting(rSourceNode, rTargetNode, rRoll.sType, { rRoll });
+				ActionsManager.actionRoll(rSourceNode, tTargetGroups, { rRoll });
+				return;
+			end
 
-		if not tAttacts[sSourceCTNode] then
-			tAttacts[sSourceCTNode]={};
-		end
-		if not tAttacts[sSourceCTNode][sTargetCTNode] then
-			tAttacts[sSourceCTNode][sTargetCTNode]={};
-		end
-		if not tAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack] then
-			tAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack]={};
-		end
-		
-		tAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack]["s"..sTypeResult.."Result"]=sResult;
-		tAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack]["n"..sTypeResult.."Result"]=nRollTotal;
-		
-		if sTypeResult=="Attack" and not bModifiedRoll then
-			StoreUnresolvedRoll(sSourceCTNode, sTargetCTNode, sTypeAttack, sTypeResult, sResult, nRollTotal, nTarget);
-		elseif sTypeResult=="Defense" and not bModifiedRoll then
-			StoreUnresolvedRoll(sTargetCTNode, sSourceCTNode, sTypeAttack, sTypeResult, sResult, nRollTotal, nTarget);
-		end
-		
-		local bOpposedRollNeeded=ResolveCombat(sSourceCTNode, sTargetCTNode, sTypeAttack);
-		
-		if bOpposedRollNeeded and OptionsManager.isOption("AUTODEFENSEROLL", "on") then
-			GameSystem.actions["DefenseCheck"] = { bUseModStack = "true", sIcon = "action_attack", sTargeting = "all" }
-			ActionsManager.registerResultHandler("DefenseCheck", RollHandlers.CombatHandler);
-			local sSkill, nDefenseTarget = Tools.getDefenderSkillAndTarget(sTargetCTNode, sTypeAttack);
-			local aDice2, nMod2 = StringManager.convertStringToDice("1d100");
-			local rRoll = { sType = "DefenseCheck", sDesc = "["..sTypeAttack.." DEFENSE] "..sSkill.." (vs "..nDefenseTarget..")", aDice = aDice2, nMod = nMod2};
-			local rTargetNode=DB.findNode(sTargetCTNode);
-			local tTargetGroups=ActionsManager.getTargeting(rTargetNode, DB.findNode(sSourceCTNode), rRoll.sType, { rRoll });
-			ActionsManager.actionRoll(rTargetNode, tTargetGroups, { rRoll });
+			if not tAttacts[sSourceCTNode] then
+				tAttacts[sSourceCTNode]={};
+			end
+			if not tAttacts[sSourceCTNode][sTargetCTNode] then
+				tAttacts[sSourceCTNode][sTargetCTNode]={};
+			end
+			if not tAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack] then
+				tAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack]={};
+			end
+			
+			tAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack]["s"..sTypeResult.."Result"]=sResult;
+			tAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack]["n"..sTypeResult.."Result"]=nRollTotal;
+			
+			if sTypeResult=="Attack" and not bModifiedRoll then
+				StoreUnresolvedRoll(sSourceCTNode, sTargetCTNode, sTypeAttack, sTypeResult, sResult, nRollTotal, nTarget);
+			elseif sTypeResult=="Defense" and not bModifiedRoll then
+				StoreUnresolvedRoll(sTargetCTNode, sSourceCTNode, sTypeAttack, sTypeResult, sResult, nRollTotal, nTarget);
+			end
+			
+			local bOpposedRollNeeded=ResolveCombat(sSourceCTNode, sTargetCTNode, sTypeAttack);
+			
+			if bOpposedRollNeeded and OptionsManager.isOption("AUTODEFENSEROLL", "on") then
+				GameSystem.actions["DefenseCheck"] = { bUseModStack = "true", sIcon = "action_attack", sTargeting = "all" }
+				ActionsManager.registerResultHandler("DefenseCheck", RollHandlers.CombatHandler);
+				local sSkill, nDefenseTarget = Tools.getDefenderSkillAndTarget(sTargetCTNode, sTypeAttack);
+				local aDice2, nMod2 = StringManager.convertStringToDice("1d100");
+				local rRoll = { sType = "DefenseCheck", sDesc = "["..sTypeAttack.." DEFENSE] "..sSkill.." (vs "..nDefenseTarget..")", aDice = aDice2, nMod = nMod2};
+				local rTargetNode=DB.findNode(sTargetCTNode);
+				local tTargetGroups=ActionsManager.getTargeting(rTargetNode, DB.findNode(sSourceCTNode), rRoll.sType, { rRoll });
+				ActionsManager.actionRoll(rTargetNode, tTargetGroups, { rRoll });
+			end
+		else
+			local msgOOB={type=OOB_ADD_ATTACK, sSourceCTNode=sSourceCTNode, sTargetCTNode=sTargetCTNode, sTypeAttack=sTypeAttack, sTypeResult=sTypeResult, sResult=sResult, nRollTotal=nRollTotal, nTarget=nTarget};
+			if bModifiedRoll then
+				msgOOB.bModifiedRoll="true";
+			else
+				msgOOB.bModifiedRoll="false";
+			end
+			if nPerc then
+				msgOOB.nPerc=nPerc;
+			else
+				msgOOB.nPerc=100;
+			end
+			Comm.deliverOOBMessage(msgOOB);
 		end
 	end
 end

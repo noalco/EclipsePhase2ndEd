@@ -69,6 +69,7 @@ function getAttackModifiers(rSource, rTarget, rRoll)
 	local nMod=0;
 	local sModDesc="";
 	local sTypeAttack="";
+	
 	if rRoll.sDesc:match("MELEE") then
 		sTypeAttack="MELEE";
 	else
@@ -93,7 +94,8 @@ function getAttackModifiers(rSource, rTarget, rRoll)
 		end
 	end
 	return nMod, sModDesc;
-end</Script>
+end
+</Script>
     <RegisterScript>true</RegisterScript>
     <Encoding />
   </Scripts>
