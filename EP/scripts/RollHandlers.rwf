@@ -117,24 +117,28 @@ function AttackResultHandler(rSource, rTarget, rRoll)
 		sTypeAttack="RANGED";
 	end
 	
-	if rRoll and rSource and rTarget and rSource.sCTNode and rTarget.sCTNode and sTypeAttack=="MELEE" then
-		local sSize=DB.getValue(rSource.sCTNode..".Size");
-		if not sSize or sSize=="" then
-			sSize="Medium Size";
-		end
-		local nSourceSize=DataCommon.tReach[sSize];
-		
-		sSize=DB.getValue(rTarget.sCTNode..".Size");
-		if not sSize or sSize=="" then
-			sSize="Medium Size";
-		end
-		local nTargetSize=DataCommon.tReach[sSize];
-		
-		if nSourceSize&gt;nTargetSize then
-			rRoll.nMod=rRoll.nMod+math.min((nSourceSize-nTargetSize)*10, 30);
-			rRoll.sDesc=rRoll.sDesc.." [REACH: +"..math.min((nSourceSize-nTargetSize)*10, 30).."]";
-		end
-	end
+--	if rRoll and rSource and rTarget and rSource.sCTNode and rTarget.sCTNode and sTypeAttack=="MELEE" then
+--		local sSize=DB.getValue(rSource.sCTNode..".Size");
+--		if not sSize or sSize=="" then
+--			sSize="Medium Size";
+--		end
+--		local nSourceSize=DataCommon.tReach[sSize];
+--		
+--		sSize=DB.getValue(rTarget.sCTNode..".Size");
+--		if not sSize or sSize=="" then
+--			sSize="Medium Size";
+--		end
+--		local nTargetSize=DataCommon.tReach[sSize];
+--		
+--		if nSourceSize&gt;nTargetSize then
+--			rRoll.nMod=rRoll.nMod+math.min((nSourceSize-nTargetSize)*10, 30);
+--			rRoll.sDesc=rRoll.sDesc.." [REACH: +"..math.min((nSourceSize-nTargetSize)*10, 30).."]";
+--		end
+--	end
+
+	local nMod, sModDesc=Modifiers.getAttackModifiers(rSource, rTarget, rRoll);
+	rRoll.nMod=rRoll.nMod+nMod;
+	rRoll.sDesc=rRoll.sDesc..sModDesc;
 	
 	if rRoll then
 		if rRoll.sType=="DefenseCheck" then

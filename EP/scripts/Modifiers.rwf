@@ -56,25 +56,43 @@ function getModifier()
 		return -30, 50, "HIDDEN";
 	elseif ModifierManager.getKey("Hidden-S") then
 		return -30, 100, "HIDDEN";
---	if ModifierManager.getKey("+1") then
---		return 1;--"+1";
---	elseif ModifierManager.getKey("+2") then
---		return 2;--"+2";
---	elseif ModifierManager.getKey("+3") then
---		return 3;--"+3";
---	elseif ModifierManager.getKey("+4") then
---		return 4;--"+4";
---	elseif ModifierManager.getKey("-1") then
---		return -1;--"-1";
---	elseif ModifierManager.getKey("-2") then
---		return -2;--"-2";
---	elseif ModifierManager.getKey("-3") then
---		return -3;--"-3"
---	elseif ModifierManager.getKey("-4") then
---		return -4;--"-4";
 	else 
 		return 0;--"";
 	end
+end
+
+function getAttackModifiers(rSource, rTarget, rRoll)
+	if not rRoll or not rSource or not rTarget or not rSource.sCTNode or not rTarget.sCTNode then
+		return 0, "";
+	end
+	
+	local nMod=0;
+	local sModDesc="";
+	local sTypeAttack="";
+	if rRoll.sDesc:match("MELEE") then
+		sTypeAttack="MELEE";
+	else
+		sTypeAttack="RANGED";
+	end
+	if sTypeAttack=="MELEE" then
+		local sSize=DB.getValue(rSource.sCTNode..".Size");
+		if not sSize or sSize=="" then
+			sSize="Medium Size";
+		end
+		local nSourceSize=DataCommon.tReach[sSize];
+		
+		sSize=DB.getValue(rTarget.sCTNode..".Size");
+		if not sSize or sSize=="" then
+			sSize="Medium Size";
+		end
+		local nTargetSize=DataCommon.tReach[sSize];
+		
+		if nSourceSize&gt;nTargetSize then
+			nMod=math.min((nSourceSize-nTargetSize)*10, 30);
+			sModDesc=" [REACH: +"..nMod.."]";
+		end
+	end
+	return nMod, sModDesc;
 end</Script>
     <RegisterScript>true</RegisterScript>
     <Encoding />

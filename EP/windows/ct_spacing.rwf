@@ -63,10 +63,10 @@ function UpdateSize()
 --	if sClass=="npc" then
 		local sSize=Size.getValue();
 		if sSize=="Large Size" then
-			space.setValue(2);
+			space.setValue(3);
 			reach.setValue(0);
 		elseif sSize=="Very Large Size" then
-			space.setValue(3);
+			space.setValue(5);
 			reach.setValue(0);
 		else
 			space.setValue(1);
