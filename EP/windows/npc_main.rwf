@@ -545,7 +545,7 @@ end
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"50"}},
       {"Name":"DevelopmentComments"},
-      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"1d100","DiceRollDescription":"[MELEE DEFENSE] Fray (vs {@self.getValue()})","DiceRollType":"DefenseCheck","UseModStack":"true","ResetModStack":"true","SecretRoll":{"@xsi:nil":"true"},"DragIcon":"action_attack","AllowDragDrop":"true","Targeting":"all","ResultHandlerFunction":"RollHandlers.AttackResultHandler","AdditionalInfo":null}},
+      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"1d100","DiceRollDescription":"[MELEE DEFENSE] Fray vs {self}","DiceRollType":"DefenseCheck","UseModStack":"true","ResetModStack":"true","SecretRoll":{"@xsi:nil":"true"},"DragIcon":"action_attack","AllowDragDrop":"true","Targeting":"all","ResultHandlerFunction":"RollHandlers.AttackResultHandler","AdditionalInfo":null}},
       {"Name":"Disabled"},
       {"Name":"DisplaySign"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
@@ -595,7 +595,12 @@ end
 function onInit()
 	onValueChanged();
 	super.onInit();
-end</LUACode>
+end
+
+function onBeforeDiceRoll(dragInfo)
+	DiceRollAdditionalInfo["sTarget"]=getValue();
+end
+</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -618,7 +623,7 @@ end</LUACode>
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"50"}},
       {"Name":"DevelopmentComments"},
-      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"1d100","DiceRollDescription":"[RANGED DEFENSE] Fray (vs {@self.getValue()})","DiceRollType":"DefenseCheck","UseModStack":"true","ResetModStack":"true","SecretRoll":{"@xsi:nil":"true"},"DragIcon":"action_attack","AllowDragDrop":"true","Targeting":"all","ResultHandlerFunction":"RollHandlers.AttackResultHandler","AdditionalInfo":null}},
+      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"1d100","DiceRollDescription":"[RANGED DEFENSE] Fray vs {self}","DiceRollType":"DefenseCheck","UseModStack":"true","ResetModStack":"true","SecretRoll":{"@xsi:nil":"true"},"DragIcon":"action_attack","AllowDragDrop":"true","Targeting":"all","ResultHandlerFunction":"RollHandlers.AttackResultHandler","AdditionalInfo":null}},
       {"Name":"Disabled"},
       {"Name":"DisplaySign"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
@@ -659,7 +664,10 @@ end</LUACode>
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"417"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"175"}}
 ]}}</Definition>
-    <LUACode />
+    <LUACode>function onBeforeDiceRoll(dragInfo)
+	DiceRollAdditionalInfo["sTarget"]=getValue();
+end
+</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -682,7 +690,7 @@ end</LUACode>
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"50"}},
       {"Name":"DevelopmentComments"},
-      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"1d100","DiceRollDescription":"[RANGED DEFENSE] Fray/2 - {@window.FraySpecializationName.getValue()} (vs {@self.getValue()})","DiceRollType":"DefenseCheck","UseModStack":"true","ResetModStack":"true","SecretRoll":{"@xsi:nil":"true"},"DragIcon":"action_attack","AllowDragDrop":"true","Targeting":"all","ResultHandlerFunction":"RollHandlers.AttackResultHandler","AdditionalInfo":null}},
+      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"1d100","DiceRollDescription":"[RANGED DEFENSE] Fray/2 - {@window.FraySpecializationName.getValue()} vs {self}","DiceRollType":"DefenseCheck","UseModStack":"true","ResetModStack":"true","SecretRoll":{"@xsi:nil":"true"},"DragIcon":"action_attack","AllowDragDrop":"true","Targeting":"all","ResultHandlerFunction":"RollHandlers.AttackResultHandler","AdditionalInfo":null}},
       {"Name":"Disabled"},
       {"Name":"DisplaySign"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
@@ -723,7 +731,10 @@ end</LUACode>
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"417"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"205"}}
 ]}}</Definition>
-    <LUACode />
+    <LUACode>function onBeforeDiceRoll(dragInfo)
+	DiceRollAdditionalInfo["sTarget"]=getValue();
+end
+</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -746,7 +757,7 @@ end</LUACode>
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"50"}},
       {"Name":"DevelopmentComments"},
-      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"1d100","DiceRollDescription":"[MELEE DEFENSE] Fray - {@window.FraySpecializationName.getValue()} (vs {@self.getValue()})","DiceRollType":"DefenseCheck","UseModStack":"true","ResetModStack":"true","SecretRoll":{"@xsi:nil":"true"},"DragIcon":"action_attack","AllowDragDrop":"true","Targeting":"all","ResultHandlerFunction":"RollHandlers.AttackResultHandler","AdditionalInfo":null}},
+      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"1d100","DiceRollDescription":"[MELEE DEFENSE] Fray - {@window.FraySpecializationName.getValue()} vs {self}","DiceRollType":"DefenseCheck","UseModStack":"true","ResetModStack":"true","SecretRoll":{"@xsi:nil":"true"},"DragIcon":"action_attack","AllowDragDrop":"true","Targeting":"all","ResultHandlerFunction":"RollHandlers.AttackResultHandler","AdditionalInfo":null}},
       {"Name":"Disabled"},
       {"Name":"DisplaySign"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
@@ -787,14 +798,9 @@ end</LUACode>
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"366"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"205"}}
 ]}}</Definition>
-    <LUACode>--function onValueChanged()
---	window.Fray2Specialization.setValue(Tools.RoundNumber(getValue()/2));
---end
---
---function onInit()
---	onValueChanged();
---	super.onInit();
---end
+    <LUACode>function onBeforeDiceRoll(dragInfo)
+	DiceRollAdditionalInfo["sTarget"]=getValue();
+end
 </LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
@@ -3613,7 +3619,7 @@ end
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"50"}},
       {"Name":"DevelopmentComments"},
-      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"1d100","DiceRollDescription":"[MELEE DEFENSE] Melee (vs {@self.getValue()})","DiceRollType":"DefenseCheck","UseModStack":"true","ResetModStack":"true","SecretRoll":{"@xsi:nil":"true"},"DragIcon":"action_attack","AllowDragDrop":"true","Targeting":"all","ResultHandlerFunction":"RollHandlers.AttackResultHandler","AdditionalInfo":null}},
+      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"1d100","DiceRollDescription":"[MELEE DEFENSE] Melee vs {self}","DiceRollType":"DefenseCheck","UseModStack":"true","ResetModStack":"true","SecretRoll":{"@xsi:nil":"true"},"DragIcon":"action_attack","AllowDragDrop":"true","Targeting":"all","ResultHandlerFunction":"RollHandlers.AttackResultHandler","AdditionalInfo":null}},
       {"Name":"Disabled"},
       {"Name":"DisplaySign"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
@@ -3667,7 +3673,12 @@ end
 function UpdateValue()
 	local sSkills=DB.getValue(window.getDatabaseNode(), "Skills", "");
 	setValue(sSkills:lower():match("melee%s(%d+)") or 0);
-end</LUACode>
+end
+
+function onBeforeDiceRoll(dragInfo)
+	DiceRollAdditionalInfo["sTarget"]=getValue();
+end
+</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -3690,7 +3701,7 @@ end</LUACode>
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"50"}},
       {"Name":"DevelopmentComments"},
-      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"1d100","DiceRollDescription":"[MELEE DEFENSE] Melee - {@window.MeleeSpecializationName.getValue()} (vs {@self.getValue()})","DiceRollType":"DefenseCheck","UseModStack":"true","ResetModStack":"true","SecretRoll":{"@xsi:nil":"true"},"DragIcon":"action_attack","AllowDragDrop":"true","Targeting":"all","ResultHandlerFunction":"RollHandlers.AttackResultHandler","AdditionalInfo":null}},
+      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"1d100","DiceRollDescription":"[MELEE DEFENSE] Melee - {@window.MeleeSpecializationName.getValue()} vs {self}","DiceRollType":"DefenseCheck","UseModStack":"true","ResetModStack":"true","SecretRoll":{"@xsi:nil":"true"},"DragIcon":"action_attack","AllowDragDrop":"true","Targeting":"all","ResultHandlerFunction":"RollHandlers.AttackResultHandler","AdditionalInfo":null}},
       {"Name":"Disabled"},
       {"Name":"DisplaySign"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
@@ -3757,6 +3768,9 @@ function UpdateValue()
 	end
 end
 
+function onBeforeDiceRoll(dragInfo)
+	DiceRollAdditionalInfo["sTarget"]=getValue();
+end
 </LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />

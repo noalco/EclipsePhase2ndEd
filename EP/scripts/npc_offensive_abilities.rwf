@@ -17,6 +17,9 @@ local bIsRange=false;
 local sVsArmor="";
 local bIsAP=false;
 local sModReach=0;
+local nHiddenCoverMod=0;
+local nPerc=100;
+local sModType="";
 
 ATTACK=1;
 DAMAGE=2;
@@ -190,6 +193,7 @@ end
 function onBeforeDiceRoll()
 	if isAttack then
 		DiceRollAdditionalInfo["sModReach"] = sModReach;
+		DiceRollAdditionalInfo["sTarget"]=nAttackTarget+nHiddenCoverMod;
 	elseif isDamage then
 		ActionsManager.actionRoll=RollHandlers.NewActionRoll;
 	end
@@ -212,7 +216,7 @@ function action(dragInfo)
 				sAttackType="MELEE ";
 			end
 			
-			local nHiddenCoverMod, nPerc, sModType=Modifiers.getModifier();
+			nHiddenCoverMod, nPerc, sModType=Modifiers.getModifier();
 			local sCoverHidden="";
 			if nHiddenCoverMod ~=0 then
 				sCoverHidden=" ["..sModType..": "..nHiddenCoverMod
@@ -222,7 +226,7 @@ function action(dragInfo)
 				sCoverHidden=sCoverHidden.."]";
 			end
 			
-			DiceRollDescription = "["..sAttackType.."ATTACK] "..sDragLabel.." (vs "..(nAttackTarget+nHiddenCoverMod)..")"..sCoverHidden;
+			DiceRollDescription = "["..sAttackType.."ATTACK] "..sDragLabel.." vs "..(nAttackTarget+nHiddenCoverMod)..sCoverHidden;
 			GameSystem.actions["AttackCheck"] = { bUseModStack = "true", sIcon = "action_attack", sTargeting = "each"}
 			sActionType="AttackCheck";
 			ActionsManager.registerResultHandler("AttackCheck", RollHandlers.AttackResultHandler);
