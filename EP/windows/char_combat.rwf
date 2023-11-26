@@ -409,6 +409,9 @@ end
     <LUACode>local dataNode;
 local charNode;
 local sAttackSkill="";
+local nHiddenCoverMod=0;
+local nPerc=100;
+local sModType=""
 
 function onInit()
 	dataNode=window.parentcontrol.window.getDatabaseNode();
@@ -494,7 +497,7 @@ function getDescriptionText()
 		sAttackType="RANGED";
 	end
 	
-	local nHiddenCoverMod, nPerc, sModType=Modifiers.getModifier();
+	nHiddenCoverMod, nPerc, sModType=Modifiers.getModifier();
 	local sCoverHidden="";
 	if nHiddenCoverMod ~=0 then
 		sCoverHidden=" ["..sModType..": "..nHiddenCoverMod
@@ -504,7 +507,7 @@ function getDescriptionText()
 		sCoverHidden=sCoverHidden.."]";
 	end
 		
-	return "["..sAttackType.." ATTACK] "..window.name.getValue()..": "..sAttackSkill.." (vs "..(getValue()+nHiddenCoverMod)..")"..sCoverHidden;
+	return "["..sAttackType.." ATTACK] "..window.name.getValue()..": "..sAttackSkill.." vs "..(getValue()+nHiddenCoverMod)..sCoverHidden;
 --	return "["..sAttackType.." ATTACK] "..window.AttackSkill.getValue().." (vs "..(getValue()+nHiddenCoverMod)..")"..sCoverHidden;
 end
 
@@ -532,6 +535,7 @@ function onBeforeDiceRoll(dragInfo)
 			DiceRollAdditionalInfo["sModReach"] = sModReach;
 		end
 	end
+	DiceRollAdditionalInfo["sTarget"]=getValue()+nHiddenCoverMod;
 	return true;
 end
 </LUACode>
