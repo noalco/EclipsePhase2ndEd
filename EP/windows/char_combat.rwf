@@ -507,7 +507,7 @@ function getDescriptionText()
 		end
 		sCoverHidden=sCoverHidden.."]";
 	end
-	return "["..sAttackType.." ATTACK] "..sAttackSkill.." (vs "..(getValue()+nHiddenCoverMod)..")"..sCoverHidden;
+	return "["..sAttackType.." ATTACK] "..window.name.getValue()..": "..sAttackSkill.." (vs "..(getValue()+nHiddenCoverMod)..")"..sCoverHidden;
 --	return "["..sAttackType.." ATTACK] "..window.AttackSkill.getValue().." (vs "..(getValue()+nHiddenCoverMod)..")"..sCoverHidden;
 end
 
