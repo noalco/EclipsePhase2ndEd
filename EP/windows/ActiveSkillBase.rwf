@@ -1689,7 +1689,7 @@ end
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"45"}},
       {"Name":"DevelopmentComments"},
-      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"1d100","DiceRollDescription":"[SKILL SPECIALIZATION] {@window.GetRollSpecializationMessage()} (vs {@self.getCheckValue()..\")\"..sMessage}","DiceRollType":"SkillSpecializationCheck","UseModStack":"true","ResetModStack":"true","SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":"true","ResultHandlerFunction":"RollHandlers.CheckHandler","AdditionalInfo":null}},
+      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"1d100","DiceRollDescription":"[SKILL SPECIALIZATION] {@window.GetRollSpecializationMessage()} vs {@self.getCheckValue()..sMessage}","DiceRollType":"SkillSpecializationCheck","UseModStack":"true","ResetModStack":"true","SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":"true","ResultHandlerFunction":"RollHandlers.CheckHandler","AdditionalInfo":null}},
       {"Name":"Disabled"},
       {"Name":"DisplaySign"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
@@ -1748,7 +1748,13 @@ function getCheckValue()
 		sMessage="";
 		return getValue();
 	end
-end</LUACode>
+end
+
+function onBeforeDiceRoll(dragInfo)
+	DiceRollAdditionalInfo["sTarget"]=getCheckValue();
+	return true;
+end
+</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -1771,7 +1777,7 @@ end</LUACode>
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"45"}},
       {"Name":"DevelopmentComments"},
-      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"1d100","DiceRollDescription":"[SKILL] {@window.GetRollMessage()} (vs {@self.getCheckValue()..\")\"..sMessage}","DiceRollType":"SkillCheck","UseModStack":"true","ResetModStack":"true","SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":"true","ResultHandlerFunction":"RollHandlers.CheckHandler","AdditionalInfo":null}},
+      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"1d100","DiceRollDescription":"[SKILL] {@window.GetRollMessage()} vs {@self.getCheckValue()..sMessage}","DiceRollType":"SkillCheck","UseModStack":"true","ResetModStack":"true","SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":"true","ResultHandlerFunction":"RollHandlers.CheckHandler","AdditionalInfo":null}},
       {"Name":"Disabled"},
       {"Name":"DisplaySign"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
@@ -1836,14 +1842,12 @@ function onValueChanged()
 end
 
 function getCheckValue()
---	local nPhAP=DB.getValue(Tools.getCharNodePath(getDatabaseNode())..".Armor.PhAP", 0);
---	if window.Type.getStringValue()=="Physical" and nPhAP&lt;0 then
---		sMessage=" [Multi-layer armor Penalty: "..nPhAP.."]";
---		return math.max(0, getValue()+nPhAP);
---	else
---		sMessage="";
-		return getValue();
---	end
+	return getValue();
+end
+
+function onBeforeDiceRoll(dragInfo)
+	DiceRollAdditionalInfo["sTarget"]=getCheckValue();
+	return true;
 end</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />

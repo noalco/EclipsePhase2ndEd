@@ -16,7 +16,7 @@ local sEffect="";
 local bIsRange=false;
 local sVsArmor="";
 local bIsAP=false;
-local nModReach=0;
+local sModReach=0;
 
 ATTACK=1;
 DAMAGE=2;
@@ -71,25 +71,25 @@ function parseComponents()
 			
 			if sText:lower():match("reach") then
 				if sText:lower():match("reach%s*%([%+]-%d+%)") then
-					nModReach=tonumber(sText:lower():match("reach%s*%([%+]-(%d+)%)"));
+					sModReach=tonumber(sText:lower():match("reach%s*%([%+]-(%d+)%)"));
 				else
-					nModReach=10;
+					sModReach=10;
 				end
 			else
-				nModReach=0;
+				sModReach=0;
 			end
 			
-			GetFields(aClauseStats[i].startpos, aSubStrings, aSubStringsStats, nNameDesp, bIsRange, bIsAP, nModReach);
+			GetFields(aClauseStats[i].startpos, aSubStrings, aSubStringsStats, nNameDesp, bIsRange, bIsAP, sModReach);
 		end		
 	end
 		
 	bParsed = true;
 end
 
-function GetFields(startpos, aSubStrings, aSubStringsStats, nNameDesp, bIsRange, bIsAP, nModReach)
+function GetFields(startpos, aSubStrings, aSubStringsStats, nNameDesp, bIsRange, bIsAP, sModReach)
 	if aSubStrings and aSubStrings[1] and aSubStringsStats and string.match(aSubStrings[1], "(%d+)") then
 		nAttackTarget = tonumber(string.match(aSubStrings[1], "(%d+)") or "0");
-		table.insert(aComponents, {sLabel=sDragLabel, nAttackTarget=nAttackTarget, nRollType=ATTACK, nStart=startpos, nEnd=startpos+aSubStringsStats[1].endpos+nNameDesp, bIsRange=bIsRange, nModReach=nModReach});--, aDVRoll
+		table.insert(aComponents, {sLabel=sDragLabel, nAttackTarget=nAttackTarget, nRollType=ATTACK, nStart=startpos, nEnd=startpos+aSubStringsStats[1].endpos+nNameDesp, bIsRange=bIsRange, sModReach=sModReach});--, aDVRoll
 		for i=2,#aSubStrings do
 			aSubStrings[i]=StringManager.strip(aSubStrings[i]);
 			if aSubStrings[i]:match("DV%s*%d+d%d+") then
@@ -140,7 +140,7 @@ function onHoverUpdate(x, y)
 				isEffect=false;
 				nAttackTarget=aComponents[i].nAttackTarget;
 				bIsRange=aComponents[i].bIsRange;
-				nModReach=aComponents[i].nModReach;
+				sModReach=aComponents[i].sModReach;
 				return;
 			end
 		elseif aComponents[i].nRollType == DAMAGE then
@@ -184,12 +184,12 @@ function onHoverUpdate(x, y)
 	sVsArmor="";
 	setHoverCursor("arrow");
 	bIsAP=false;
-	nModReach=0;
+	sModReach=0;
 end
 
 function onBeforeDiceRoll()
 	if isAttack then
-		DiceRollAdditionalInfo["nModReach"] = nModReach;
+		DiceRollAdditionalInfo["sModReach"] = sModReach;
 	elseif isDamage then
 		ActionsManager.actionRoll=RollHandlers.NewActionRoll;
 	end

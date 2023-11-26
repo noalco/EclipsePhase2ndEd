@@ -65,11 +65,7 @@ function getAttackModifiers(rSource, rTarget, rRoll)
 	if not rRoll or not rSource or not rTarget or not rSource.sCTNode or not rTarget.sCTNode then
 		return 0, "";
 	end
-	
 	local nMod=0;
-	if rRoll.nModReach then
-		nMod=tonumber(rRoll.nModReach);
-	end
 	
 	local sModDesc="";
 	local sTypeAttack="";
@@ -80,6 +76,10 @@ function getAttackModifiers(rSource, rTarget, rRoll)
 		sTypeAttack="RANGED";
 	end
 	if sTypeAttack=="MELEE" then
+		if rRoll.sModReach then
+			nMod=tonumber(rRoll.sModReach);
+		end
+		
 		local sSize=DB.getValue(rSource.sCTNode..".Size");
 		if not sSize or sSize=="" then
 			sSize="Medium Size";

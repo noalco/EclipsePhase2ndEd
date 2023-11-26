@@ -503,23 +503,6 @@ function getDescriptionText()
 		end
 		sCoverHidden=sCoverHidden.."]";
 	end
-	
---	local sType=DB.getValue(dataNode, "Type", "Melee Weapon");
---	local nModReach=0;
---	local sReach="";
---	if sType=="Melee Weapon" then
---		local sTraits=DB.getValue(window.getDatabaseNode(), "TraitsNotes", ""):lower();
---		if sTraits:match("reach") then
---			if sTraits:match("reach%s*%(%+%d+%)") then
---				nModReach=tonumber(sTraits:match("reach%s*%(%+(%d+)%)"));
---			elseif sTraits:match("reach%s*%(%d+%)") then
---				nModReach=tonumber(sTraits:match("reach%s*%((%d+)%)"));
---			else
---				nModReach=10;
---			end
---			sReach=" [REACH: +"..nModReach.."]";
---		end
---	end
 		
 	return "["..sAttackType.." ATTACK] "..window.name.getValue()..": "..sAttackSkill.." (vs "..(getValue()+nHiddenCoverMod)..")"..sCoverHidden;
 --	return "["..sAttackType.." ATTACK] "..window.AttackSkill.getValue().." (vs "..(getValue()+nHiddenCoverMod)..")"..sCoverHidden;
@@ -540,13 +523,13 @@ function onBeforeDiceRoll(dragInfo)
 	elseif sType=="Melee Weapon" then
 		local sTraits=DB.getValue(window.getDatabaseNode(), "TraitsNotes", ""):lower();
 		if sTraits:match("reach") then
-			local nModReach=0;
+			local sModReach=0;
 			if sTraits:match("reach%s*%([%+]-%d+%)") then
-				nModReach=tonumber(sTraits:match("reach%s*%([%+]-(%d+)%)"));
+				sModReach=tonumber(sTraits:match("reach%s*%([%+]-(%d+)%)"));
 			else
-				nModReach=10;
+				sModReach=10;
 			end
-			DiceRollAdditionalInfo["nModReach"] = nModReach;
+			DiceRollAdditionalInfo["sModReach"] = sModReach;
 		end
 	end
 	return true;

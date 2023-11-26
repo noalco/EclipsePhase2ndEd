@@ -575,7 +575,7 @@ end
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"45"}},
       {"Name":"DevelopmentComments"},
-      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"1d100","DiceRollDescription":"[{@Interface.getString(\"aptitude_chat\")}] {@Interface.getString(\"aptitude_cognition_label\")} (vs {self})","DiceRollType":"AptitudeCheck","UseModStack":"true","ResetModStack":"true","SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":"true","ResultHandlerFunction":"RollHandlers.CheckHandler","AdditionalInfo":null}},
+      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"1d100","DiceRollDescription":"[{@Interface.getString(\"aptitude_chat\")}] {@Interface.getString(\"aptitude_cognition_label\")} vs {self}","DiceRollType":"AptitudeCheck","UseModStack":"true","ResetModStack":"true","SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":"true","ResultHandlerFunction":"RollHandlers.CheckHandler","AdditionalInfo":null}},
       {"Name":"Disabled"},
       {"Name":"DisplaySign"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
@@ -616,7 +616,11 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"122"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"31"}}
 ]}}</Definition>
-    <LUACode />
+    <LUACode>function onBeforeDiceRoll(dragInfo)
+	DiceRollAdditionalInfo["sTarget"]=getValue();
+	return true;
+end
+</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -1600,7 +1604,7 @@ end
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"45"}},
       {"Name":"DevelopmentComments"},
-      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"1d100","DiceRollDescription":"[{@Interface.getString(\"aptitude_chat\")}] {@Interface.getString(\"aptitude_intuition_label\")} (vs {self})","DiceRollType":"AptitudeCheck","UseModStack":"true","ResetModStack":"true","SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":"true","ResultHandlerFunction":"RollHandlers.CheckHandler","AdditionalInfo":null}},
+      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"1d100","DiceRollDescription":"[{@Interface.getString(\"aptitude_chat\")}] {@Interface.getString(\"aptitude_intuition_label\")} vs {self}","DiceRollType":"AptitudeCheck","UseModStack":"true","ResetModStack":"true","SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":"true","ResultHandlerFunction":"RollHandlers.CheckHandler","AdditionalInfo":null}},
       {"Name":"Disabled"},
       {"Name":"DisplaySign"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
@@ -1641,7 +1645,11 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"122"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"61"}}
 ]}}</Definition>
-    <LUACode />
+    <LUACode>function onBeforeDiceRoll(dragInfo)
+	DiceRollAdditionalInfo["sTarget"]=getValue();
+	return true;
+end
+</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -4523,7 +4531,7 @@ end
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"45"}},
       {"Name":"DevelopmentComments"},
-      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"1d100","DiceRollDescription":"[{@Interface.getString(\"aptitude_chat\")}] {@Interface.getString(\"aptitude_reflexes_label\")} (vs {self})","DiceRollType":"AptitudeCheck","UseModStack":"true","ResetModStack":"true","SecretRoll":{"@xsi:nil":"true"},"DragIcon":null,"AllowDragDrop":"true","ResultHandlerFunction":"RollHandlers.CheckHandler","AdditionalInfo":null}},
+      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"1d100","DiceRollDescription":"[{@Interface.getString(\"aptitude_chat\")}] {@Interface.getString(\"aptitude_reflexes_label\")} vs {self}","DiceRollType":"AptitudeCheck","UseModStack":"true","ResetModStack":"true","SecretRoll":{"@xsi:nil":"true"},"DragIcon":null,"AllowDragDrop":"true","ResultHandlerFunction":"RollHandlers.CheckHandler","AdditionalInfo":null}},
       {"Name":"Disabled"},
       {"Name":"DisplaySign"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
@@ -4564,7 +4572,11 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"122"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"91"}}
 ]}}</Definition>
-    <LUACode />
+    <LUACode>function onBeforeDiceRoll(dragInfo)
+	DiceRollAdditionalInfo["sTarget"]=getValue();
+	return true;
+end
+</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -4782,7 +4794,7 @@ end
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"45"}},
       {"Name":"DevelopmentComments"},
-      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"1d100","DiceRollDescription":"[{@Interface.getString(\"aptitude_chat\")}] {@Interface.getString(\"aptitude_savvy_label\")} (vs {self})","DiceRollType":"AptitudeCheck","UseModStack":"true","ResetModStack":"true","SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":"true","ResultHandlerFunction":"RollHandlers.CheckHandler","AdditionalInfo":null}},
+      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"1d100","DiceRollDescription":"[{@Interface.getString(\"aptitude_chat\")}] {@Interface.getString(\"aptitude_savvy_label\")} vs {self}","DiceRollType":"AptitudeCheck","UseModStack":"true","ResetModStack":"true","SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":"true","ResultHandlerFunction":"RollHandlers.CheckHandler","AdditionalInfo":null}},
       {"Name":"Disabled"},
       {"Name":"DisplaySign"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
@@ -4823,7 +4835,11 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"122"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"121"}}
 ]}}</Definition>
-    <LUACode />
+    <LUACode>function onBeforeDiceRoll(dragInfo)
+	DiceRollAdditionalInfo["sTarget"]=getValue();
+	return true;
+end
+</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -4913,7 +4929,7 @@ end
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"45"}},
       {"Name":"DevelopmentComments"},
-      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"1d100","DiceRollDescription":"[{@Interface.getString(\"aptitude_chat\")}] {@Interface.getString(\"aptitude_somatics_label\")} (vs {self})","DiceRollType":"AptitudeCheck","UseModStack":"true","ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":"true","ResultHandlerFunction":"RollHandlers.CheckHandler","AdditionalInfo":null}},
+      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"1d100","DiceRollDescription":"[{@Interface.getString(\"aptitude_chat\")}] {@Interface.getString(\"aptitude_somatics_label\")} vs {self}","DiceRollType":"AptitudeCheck","UseModStack":"true","ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":"true","ResultHandlerFunction":"RollHandlers.CheckHandler","AdditionalInfo":null}},
       {"Name":"Disabled"},
       {"Name":"DisplaySign"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
@@ -4954,7 +4970,11 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"122"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"151"}}
 ]}}</Definition>
-    <LUACode />
+    <LUACode>function onBeforeDiceRoll(dragInfo)
+	DiceRollAdditionalInfo["sTarget"]=getValue();
+	return true;
+end
+</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -5243,7 +5263,7 @@ end
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"45"}},
       {"Name":"DevelopmentComments"},
-      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"1d100","DiceRollDescription":"[{@Interface.getString(\"aptitude_chat\")}] {@Interface.getString(\"aptitude_willpower_label\")} (vs {self})","DiceRollType":"AptitudeCheck","UseModStack":"true","ResetModStack":"true","SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":"true","ResultHandlerFunction":"RollHandlers.CheckHandler","AdditionalInfo":null}},
+      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"1d100","DiceRollDescription":"[{@Interface.getString(\"aptitude_chat\")}] {@Interface.getString(\"aptitude_willpower_label\")} vs {self}","DiceRollType":"AptitudeCheck","UseModStack":"true","ResetModStack":"true","SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":"true","ResultHandlerFunction":"RollHandlers.CheckHandler","AdditionalInfo":null}},
       {"Name":"Disabled"},
       {"Name":"DisplaySign"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
@@ -5284,7 +5304,11 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"122"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"181"}}
 ]}}</Definition>
-    <LUACode />
+    <LUACode>function onBeforeDiceRoll(dragInfo)
+	DiceRollAdditionalInfo["sTarget"]=getValue();
+	return true;
+end
+</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>

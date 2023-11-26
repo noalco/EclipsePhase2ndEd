@@ -94,13 +94,14 @@ function CheckHandler(rSource, rTarget, rRoll)
 	else
 		rMessage = ActionsManager.createActionMessage(rSource, rRoll);
 	end
-	local nTarget=tonumber(rMessage.text:match("%(vs (%-*%d+)%)"));
-	local sTarget=""..nTarget;
+	local sTarget=rRoll.sTarget;
+	nTarget=tonumber(sTarget);
+	
+	nTarget=nTarget+nMod;
 	if nTarget&lt;0 then
 		sTarget="%"..sTarget;
 	end
-	rMessage.text=rMessage.text:gsub("vs "..sTarget, "vs "..math.max(0,nTarget+nMod));
-	nTarget=nTarget+nMod;
+	rMessage.text=rMessage.text:gsub("vs "..sTarget, "vs "..math.max(0,nTarget));
 
 	local nTotal = ActionsManager.total(rRoll);
 	rMessage.text=rMessage.text.." ["..RollChecks.RollCheck(nTotal, nTarget):upper().."]";
