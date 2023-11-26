@@ -506,32 +506,9 @@ function onBeforeDiceRoll(dragInfo)
 			return false;
 		end
 	end
-
---	if nPerc and nPerc&lt;100 then
---		local rRoll = { sType = "hiddenmisschance", sDesc = "", aDice = aDice, nMod = 0 };	
---		rRoll.aDice = {"d100"};
---		ActionsManager.performAction(Tools.getCharNode(getDatabaseNode()),nil,rRoll);
---		return false;
---	end
-	
 	return true;
 end
-
---function onRoll(rSource, rTarget, rRoll)
---	local rMessage=ActionsManager.createActionMessage(rSource, rRoll);
---	rMessage.text="Hit chance test";
---	Comm.deliverChatMessage(rMessage);
---	if nPerc and ActionsManager.total(rRoll)&lt;nPerc then
---		rMessage = ChatManager.createBaseMessage(Tools.getCharNode(getDatabaseNode()));
---		rMessage.text="Hit chance failure";
---		Comm.deliverChatMessage(rMessage)		
---	else
---		rMessage = ChatManager.createBaseMessage(Tools.getCharNode(getDatabaseNode()));
---		rMessage.text="Hit chance success";
---		Comm.deliverChatMessage(rMessage)		
---		action(dragInfo);
---	end
---end</LUACode>
+</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -720,6 +697,10 @@ end</LUACode>
 		setValue("Athletics");
 	elseif sType=="system" then
 		setValue("Interface");
+	elseif sType=="kinetic" then
+		setValue("Guns");
+	elseif sType=="seeker" then
+		setValue("Guns");
 	else
 		setValue("");
 	end
@@ -1067,7 +1048,7 @@ function getDescriptionText()
 	local sType=DB.getValue(window.getDatabaseNode(), "Type", "Melee Weapon");
 	if sType=="Melee Weapon" then
 		sTypeAttack="MELEE ";
-	elseif sType=="Ranged Weapon" then
+	else --if sType=="Ranged Weapon" then
 		sTypeAttack="RANGED ";
 	end
 	local sMessage="["..sTypeAttack.."DAMAGE] "..window.name.getValue();
@@ -1078,6 +1059,13 @@ function getDescriptionText()
 	end
 	if DB.getValue(window.getDatabaseNode(), "TraitsNotes", ""):lower():match("armor%-piercing") then
 		sMessage=sMessage.." [Armor-Piercing]";
+	elseif sType=="Ranged Weapon" and DB.getValue(window.getDatabaseNode(), "Weapon.RangedWeaponType", "Beam Weapon")=="Kinetic Weapon" then
+		local sAmmoPath=DB.getValue(window.getDatabaseNode(), "Weapon.AmmoChosen", "Standard");
+		if sAmmoPath and sAmmoPath~="Standard" and sAmmoPath~="" then
+			if DB.getValue(sAmmoPath..".TraitsNotes", ""):lower():match("armor%-piercing") then
+				sMessage=sMessage.." [Armor-Piercing]";
+			end
+		end
 	end
 	return sMessage;
 end
@@ -2055,6 +2043,10 @@ end</LUACode>
 			setValue("thrown");
 		elseif sRangedType=="Weapon System" then
 			setValue("system");
+		elseif sRangedType=="Kinetic Weapon" then
+			setValue("kinetic");
+		elseif sRangedType=="Seeker Weapon" then
+			setValue("seeker");
 		end
 		window.AttackSkill.UpdateAttackSkill();
 	elseif sTypeValue=="Micromissile/Minigrenade" then

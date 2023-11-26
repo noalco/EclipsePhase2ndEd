@@ -27,6 +27,32 @@
 	["Survival"] = {sApt="INT", nAptMult=1, sType="Mental", bHasField=false},
 }
 
+--ActiveSkillsLower = {
+--	["athletics"] = ActiveSkills["Athletics"],
+--	["deceive"] = ActiveSkills["Deceive"],
+--	["exotic skill"] = ActiveSkills["Exotic Skill"],
+--	["fray"] = ActiveSkills["Fray"],
+--	["fray/2"] = ActiveSkills["Fray/2 (vs. ranged attacks)"],
+--	["fray/2 (vs. ranged attacks)"] = ActiveSkills["Fray/2 (vs. ranged attacks)"],
+--	["free fall"] = ActiveSkills["Free Fall"],
+--	["guns"] = ActiveSkills["Guns"],
+--	["hardware"] = ActiveSkills["Hardware"],
+--	["infiltrate"] = ActiveSkills["Infiltrate"],
+--	["infosec"] = ActiveSkills["Infosec"],
+--	["interface"] = ActiveSkills["Interface"],
+--	["kinesics"] = ActiveSkills["Kinesics"],
+--	["medicine"] = ActiveSkills["Medicine"],
+--	["melee"] = ActiveSkills["Melee"],
+--	["perceive"] = ActiveSkills["Perceive"],
+--	["persuade"] = ActiveSkills["Persuade"],
+--	["pilot"] = ActiveSkills["Pilot"],
+--	["program"] = ActiveSkills["Program"],
+--	["provoke"] = ActiveSkills["Provoke"],
+--	["psi"] = ActiveSkills["Psi"],
+--	["research"] = ActiveSkills["Research"],
+--	["survival"] = ActiveSkills["Survival"],
+--}
+
 Aptitudes = {
 	["COG"] = {sPath=".Aptitudes.Scores.Cognition", sPool="Insight"},
 	["INT"] = {sPath=".Aptitudes.Scores.Intuition", sPool="Insight"},

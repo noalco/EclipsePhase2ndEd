@@ -127,7 +127,8 @@ function UpdateAttackRoll(sUpdateType)
 	else
 		return;
 	end
-end</Script>
+end
+</Script>
     <RegisterScript>false</RegisterScript>
     <Encoding />
   </Scripts>

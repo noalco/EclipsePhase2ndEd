@@ -64,7 +64,6 @@
 	local sResult=RollChecks.RollCheck(window.RollTotal.getValue(), window.RollTarget.getValue());
 	sResult=sResult:upper();
 	window.RollResult.setValue(combat.tResults[sResult].sAbr);
---	window.ButtonUpgrade.UpdateVisibility();
 	window.UpdateAttackRoll("FLIP-FLOP ROLL");
 end
 </LUACode>

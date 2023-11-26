@@ -304,7 +304,7 @@ function StoreUnresolvedRoll(sSourceCTNode, sTargetCTNode, sTypeAttack, sTypeRes
 	if not sSourceCTNode or not sTargetCTNode or not sTypeResult or not sTypeAttack or not nRollTotal or not sRollResult or not tResults[sRollResult] or not nRollTarget then
 		return;
 	end
-	local sTargetName=Tools.getName(sTargetCTNode)
+	local sTargetName=Tools.getName(sTargetCTNode);
 
 	local rollsNode=DB.getChild(sSourceCTNode..".rolls");
 	local bNodeFound=false;
@@ -330,34 +330,7 @@ function StoreUnresolvedRoll(sSourceCTNode, sTargetCTNode, sTypeAttack, sTypeRes
 		DB.setValue(rollNode, "CheckedRoll", "number", 0);
 	end
 end
-
---tCombatResult={}
---function OOBAddCombatResult(msgOOB)
---	if Session.IsHost then
---		AddCombatResult(msgOOB.sSourceCTNode, msgOOB.sTargetCTNode, msgOOB.sTypeAttack, msgOOB.sRollResult);
---	end
---end
---
---function AddCombatResult(sSourceCTNode, sTargetCTNode, sTypeAttack, sRollResult)
---	if not sSourceCTNode or not sTargetCTNode or not sTypeAttack or not sRollResult or not tResults[sRollResult] then
---		return;
---	end
---	if Session.IsHost then
---		if not tCombatResult[sSourceCTNode] then
---			tCombatResult[sSourceCTNode]={};
---		end
---		if not tCombatResult[sSourceCTNode][sTargetCTNode] then
---			tCombatResult[sSourceCTNode][sTargetCTNode]={};
---		end
---		tCombatResult[sSourceCTNode][sTargetCTNode][sTypeAttack]=sRollResult;
---	else
---		local msgOOB={};
---		msgOOB.type=combat.OOB_ADD_COMBAT_RESULT;
---		msgOOB.sRollResult=sRollResult;
---		msgOOB.sTypeAttack=sTypeAttack;
---		Comm.deliverOOBMessage(msgOOB);
---	end
---end</Script>
+</Script>
     <RegisterScript>true</RegisterScript>
     <Encoding />
   </Scripts>

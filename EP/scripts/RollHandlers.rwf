@@ -202,7 +202,8 @@ function DamageTargetingHandler(rSource, aTargeting, rRolls)
 				iRoll=iRoll+1;
 				sTypeAttack=rRoll.sDesc:match("%[(.-) DAMAGE%]") or "";
 				if sTypeAttack~="" then
-					sRollResult="Sin entrada en la lista de tiradas";
+--					sRollResult="Sin entrada en la lista de tiradas";
+					sRollResult="";
 					nodeSourceRoll=nil;
 					nodeTargetRoll=nil;
 					for _,n in pairs(DB.getChildren(rSource.sCTNode..".rolls")) do
@@ -242,12 +243,12 @@ function DamageTargetingHandler(rSource, aTargeting, rRolls)
 							rRolls[iRoll].sDesc=rRolls[iRoll].sDesc.." [CRITICAL DAMAGE: x"..combat.tResults[sRollResult].nDamageMult.."]";
 						end
 					else
-						Debug.chat(sRollResult);
+--						Debug.chat(sRollResult);
 						rRolls[iRoll] = rRoll;
 					end
 				else
 					rRolls[iRoll] = rRoll;
-					Debug.chat("Sin sTypeAttack", rRoll.sDesc, rRoll.sDesc:match("%[(.-) DAMAGE%]"));
+--					Debug.chat("Sin sTypeAttack", rRoll.sDesc, rRoll.sDesc:match("%[(.-) DAMAGE%]"));
 				end
 			end
 		end
