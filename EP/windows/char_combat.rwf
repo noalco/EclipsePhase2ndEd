@@ -409,8 +409,6 @@ end
     <LUACode>local dataNode;
 local charNode;
 local sAttackSkill="";
---local bMiss=true;
---RollHandlers.AttackingOpposedTest
 
 function onInit()
 	dataNode=window.parentcontrol.window.getDatabaseNode();
@@ -420,8 +418,6 @@ function onInit()
 	DB.addHandler(DB.getPath(charNode, "Armor.PhAP"), "onUpdate", UpdateSkill);
 	DB.addHandler(DB.getPath(charNode, "Skills.ActiveSkillsList"), "onChildUpdate", UpdateSkill);
 	UpdateSkill();
-	
---	ActionsManager.registerResultHandler("hiddenmisschance", onRoll);
 end
 
 function onClose()
@@ -507,12 +503,31 @@ function getDescriptionText()
 		end
 		sCoverHidden=sCoverHidden.."]";
 	end
+	
+--	local sType=DB.getValue(dataNode, "Type", "Melee Weapon");
+--	local nModReach=0;
+--	local sReach="";
+--	if sType=="Melee Weapon" then
+--		local sTraits=DB.getValue(window.getDatabaseNode(), "TraitsNotes", ""):lower();
+--		if sTraits:match("reach") then
+--			if sTraits:match("reach%s*%(%+%d+%)") then
+--				nModReach=tonumber(sTraits:match("reach%s*%(%+(%d+)%)"));
+--			elseif sTraits:match("reach%s*%(%d+%)") then
+--				nModReach=tonumber(sTraits:match("reach%s*%((%d+)%)"));
+--			else
+--				nModReach=10;
+--			end
+--			sReach=" [REACH: +"..nModReach.."]";
+--		end
+--	end
+		
 	return "["..sAttackType.." ATTACK] "..window.name.getValue()..": "..sAttackSkill.." (vs "..(getValue()+nHiddenCoverMod)..")"..sCoverHidden;
 --	return "["..sAttackType.." ATTACK] "..window.AttackSkill.getValue().." (vs "..(getValue()+nHiddenCoverMod)..")"..sCoverHidden;
 end
 
 function onBeforeDiceRoll(dragInfo)
 	local sType=DB.getValue(dataNode, "Type", "Melee Weapon");
+	
 	if sType=="Ranged Weapon" then
 		if window.CurrentAmmo.getValue()&lt;window.MaxAmmo.getValue() then
 			window.CurrentAmmo.setValue(window.CurrentAmmo.getValue()+1);
@@ -521,6 +536,17 @@ function onBeforeDiceRoll(dragInfo)
 			rMessage.text=window.name.getValue().." out of ammo";
 			Comm.deliverChatMessage(rMessage)
 			return false;
+		end
+	elseif sType=="Melee Weapon" then
+		local sTraits=DB.getValue(window.getDatabaseNode(), "TraitsNotes", ""):lower();
+		if sTraits:match("reach") then
+			local nModReach=0;
+			if sTraits:match("reach%s*%([%+]-%d+%)") then
+				nModReach=tonumber(sTraits:match("reach%s*%([%+]-(%d+)%)"));
+			else
+				nModReach=10;
+			end
+			DiceRollAdditionalInfo["nModReach"] = nModReach;
 		end
 	end
 	return true;

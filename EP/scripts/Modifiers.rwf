@@ -67,6 +67,10 @@ function getAttackModifiers(rSource, rTarget, rRoll)
 	end
 	
 	local nMod=0;
+	if rRoll.nModReach then
+		nMod=tonumber(rRoll.nModReach);
+	end
+	
 	local sModDesc="";
 	local sTypeAttack="";
 	
@@ -89,7 +93,14 @@ function getAttackModifiers(rSource, rTarget, rRoll)
 		local nTargetSize=DataCommon.tReach[sSize];
 		
 		if nSourceSize&gt;nTargetSize then
-			nMod=math.min((nSourceSize-nTargetSize)*10, 30);
+--			if rRoll.sDesc:match("%[REACH: %+%d+%]") then
+--				nMod=rRoll.sDesc:match("%[REACH: %+(%d+)%]");
+--				rRoll.sDesc:gsub(" %[REACH: %+%d+%]", "")
+--			end
+			
+			nMod=nMod+math.min((nSourceSize-nTargetSize)*10, 30);
+		end
+		if nMod&gt;0 then
 			sModDesc=" [REACH: +"..nMod.."]";
 		end
 	end
