@@ -95,7 +95,8 @@ function CheckHandler(rSource, rTarget, rRoll)
 		rMessage = ActionsManager.createActionMessage(rSource, rRoll);
 	end
 	local sTarget=rRoll.sTarget or "0";
-	nTarget=tonumber(sTarget);
+	Debug.chat(sTarget)
+	local nTarget=tonumber(sTarget);
 	
 	nTarget=nTarget+nMod;
 --	if nTarget&lt;0 then
@@ -133,7 +134,8 @@ function AttackResultHandler(rSource, rTarget, rRoll)
 		end
 	end
 	
-	local nPerc=tonumber(rRoll.sDesc:match("%((%d+)%% hit chance%)") or 100);
+--	local nPerc=tonumber(rRoll.sDesc:match("%((%d+)%% hit chance%)") or 100);
+	local nPerc=tonumber(rRoll.sPerc or "100");
 	
     local sResult, nTarget=CheckHandler(rSource, rTarget, rRoll);
     if rSource and rTarget and rSource.sCTNode and rTarget.sCTNode then

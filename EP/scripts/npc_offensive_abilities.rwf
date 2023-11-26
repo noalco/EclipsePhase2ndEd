@@ -194,6 +194,7 @@ function onBeforeDiceRoll()
 	if isAttack then
 		DiceRollAdditionalInfo["sModReach"] = sModReach;
 		DiceRollAdditionalInfo["sTarget"]=nAttackTarget+nHiddenCoverMod;
+		DiceRollAdditionalInfo["sPerc"]=nPerc;
 	elseif isDamage then
 		ActionsManager.actionRoll=RollHandlers.NewActionRoll;
 	end

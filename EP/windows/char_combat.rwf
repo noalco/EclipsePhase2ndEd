@@ -536,6 +536,7 @@ function onBeforeDiceRoll(dragInfo)
 		end
 	end
 	DiceRollAdditionalInfo["sTarget"]=getValue()+nHiddenCoverMod;
+	DiceRollAdditionalInfo["sPerc"]=nPerc;
 	return true;
 end
 </LUACode>
