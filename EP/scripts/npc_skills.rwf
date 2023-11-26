@@ -122,6 +122,11 @@ function onHoverUpdate(x, y)
 	bEsp=false;
 end
 
+function onBeforeDiceRoll(dragInfo)
+	DiceRollAdditionalInfo["sTarget"]=nSkillTarget;
+	return true;
+end
+
 function action(dragInfo)
 	local sActionType="";
 	if sDragLabel then
@@ -129,7 +134,7 @@ function action(dragInfo)
 		if bEsp then
 			sEsp=" SPECIALIZATION";
 		end
-		DiceRollDescription = "[SKILL"..sEsp.."] "..sDragLabel.." (vs "..nSkillTarget..")";
+		DiceRollDescription = "[SKILL"..sEsp.."] "..sDragLabel.." vs "..nSkillTarget;
 		GameSystem.actions["SkillCheck"] = { bUseModStack = "true"}
 		sActionType="SkillCheck";
 		DiceRollString="1d100";

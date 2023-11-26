@@ -103,13 +103,18 @@ function onHoverUpdate(x, y)
 	setHoverCursor("arrow");
 end
 
+function onBeforeDiceRoll(dragInfo)
+	DiceRollAdditionalInfo["sTarget"]=nSkillTarget;
+	return true;
+end
+
 function action(dragInfo)
 	local sActionType="";
 	if sDragLabel then
 		if sDragLabel~="" then
 			sDragLabel=" "..sDragLabel;
 		end
-		DiceRollDescription = "[PERCEIVE]"..sDragLabel.." (vs "..nSkillTarget..")";
+		DiceRollDescription = "[PERCEIVE]"..sDragLabel.." vs "..nSkillTarget;
 		GameSystem.actions["SkillCheck"] = { bUseModStack = "true"}
 		sActionType="SkillCheck";
 		DiceRollString="1d100";

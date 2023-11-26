@@ -98,9 +98,9 @@ function CheckHandler(rSource, rTarget, rRoll)
 	nTarget=tonumber(sTarget);
 	
 	nTarget=nTarget+nMod;
-	if nTarget&lt;0 then
-		sTarget="%"..sTarget;
-	end
+--	if nTarget&lt;0 then
+--		sTarget="%"..sTarget;
+--	end
 	rMessage.text=rMessage.text:gsub("vs "..sTarget, "vs "..math.max(0,nTarget));
 
 	local nTotal = ActionsManager.total(rRoll);
