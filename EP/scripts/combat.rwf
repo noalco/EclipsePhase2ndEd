@@ -232,7 +232,7 @@ function AddAttack(sSourceCTNode, sTargetCTNode, sTypeAttack, sTypeResult, sResu
 				ActionsManager.registerResultHandler("DefenseCheck", RollHandlers.CombatHandler);
 				local sSkill, nDefenseTarget = Tools.getDefenderSkillAndTarget(sTargetCTNode, sTypeAttack);
 				local aDice2, nMod2 = StringManager.convertStringToDice("1d100");
-				local rRoll = { sType = "DefenseCheck", sDesc = "["..sTypeAttack.." DEFENSE] "..sSkill.." (vs "..nDefenseTarget..")", aDice = aDice2, nMod = nMod2};
+				local rRoll = { sType = "DefenseCheck", sDesc = "["..sTypeAttack.." DEFENSE] "..sSkill.." vs "..nDefenseTarget, aDice = aDice2, nMod = nMod2, sTarget=nDefenseTarget};
 				local rTargetNode=DB.findNode(sTargetCTNode);
 				local tTargetGroups=ActionsManager.getTargeting(rTargetNode, DB.findNode(sSourceCTNode), rRoll.sType, { rRoll });
 				ActionsManager.actionRoll(rTargetNode, tTargetGroups, { rRoll });
@@ -283,7 +283,7 @@ function AddSleightAttack(sSourceCTNode, sTargetCTNode, sTypeResult, sResult, nR
 				ActionsManager.registerResultHandler("DefenseSleightCheck", RollHandlers.SleightResultHandler);
 				local nDefenseTarget = Tools.getDefenderWillTarget(sTargetCTNode);
 				local aDice2, nMod2 = StringManager.convertStringToDice("1d100");
-				local rRoll = { sType = "DefenseSleightCheck", sDesc = "[SLEIGHT DEFENSE] Willpower (vs "..nDefenseTarget..")", aDice = aDice2, nMod = nMod2};
+				local rRoll = { sType = "DefenseSleightCheck", sDesc = "[SLEIGHT DEFENSE] Willpower vs "..nDefenseTarget, aDice = aDice2, nMod = nMod2, sTarget=nDefenseTarget};
 				local rTargetNode=DB.findNode(sTargetCTNode);
 				local tTargetGroups=ActionsManager.getTargeting(rTargetNode, DB.findNode(sSourceCTNode), rRoll.sType, { rRoll });
 				ActionsManager.actionRoll(rTargetNode, tTargetGroups, { rRoll });

@@ -94,7 +94,7 @@ function CheckHandler(rSource, rTarget, rRoll)
 	else
 		rMessage = ActionsManager.createActionMessage(rSource, rRoll);
 	end
-	local sTarget=rRoll.sTarget;
+	local sTarget=rRoll.sTarget or "0";
 	nTarget=tonumber(sTarget);
 	
 	nTarget=nTarget+nMod;

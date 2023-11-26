@@ -152,8 +152,8 @@
 	&lt;string name="cast_hit"&gt;the sleight pass the target's mental defenses&lt;/string&gt;
 	&lt;string name="cast_miss"&gt;the sleight misses&lt;/string&gt;
 	&lt;string name="cast_possible_hit"&gt;possible sleight effect&lt;/string&gt;
-	&lt;string name="melee_defence_roll_required"&gt;must defend against melee attack&lt;/string&gt;
-	&lt;string name="ranged_defence_roll_required"&gt;must defend against ranged attack&lt;/string&gt;
+	&lt;string name="melee_defence_roll_required"&gt;must defend against a melee attack&lt;/string&gt;
+	&lt;string name="ranged_defence_roll_required"&gt;must defend against a ranged attack&lt;/string&gt;
 	&lt;string name="sleight_cast"&gt;CAST&lt;/string&gt;
 	
 	&lt;!-- Options --&gt;
