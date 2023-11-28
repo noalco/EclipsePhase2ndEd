@@ -152,7 +152,7 @@ end
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"35"}},
       {"Name":"DevelopmentComments"},
-      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"1d100","DiceRollDescription":"[APTITUDE] Cognition vs {self}","DiceRollType":"AptitudeCheck","UseModStack":"true","ResetModStack":"true","SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":"true","ResultHandlerFunction":"RollHandlers.CheckHandler","AdditionalInfo":null}},
+      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"1d100","DiceRollDescription":"[APTITUDE] Cognition vs {self}","DiceRollType":"AptitudeCheck","UseModStack":"true","ResetModStack":"true","SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":"true","ResultHandlerFunction":"RollHandlers.CheckHandler","AdditionalInfo":{"LabelValue":{"Label":"stargey","Value":"{self}"}}}},
       {"Name":"Disabled"},
       {"Name":"DisplaySign"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
@@ -193,11 +193,11 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"73"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"473"}}
 ]}}</Definition>
-    <LUACode>function onBeforeDiceRoll(dragInfo)
-	DiceRollAdditionalInfo["sTarget"]=getValue();
-	return true;
-end
-</LUACode>
+    <LUACode>--function onBeforeDiceRoll(dragInfo)
+--	DiceRollAdditionalInfo["sTarget"]=getValue();
+--	return true;
+--end
+--</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -545,7 +545,7 @@ end
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"50"}},
       {"Name":"DevelopmentComments"},
-      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"1d100","DiceRollDescription":"[MELEE DEFENSE] Fray vs {self}","DiceRollType":"DefenseCheck","UseModStack":"true","ResetModStack":"true","SecretRoll":{"@xsi:nil":"true"},"DragIcon":"action_attack","AllowDragDrop":"true","Targeting":"all","ResultHandlerFunction":"RollHandlers.AttackResultHandler","AdditionalInfo":null}},
+      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"1d100","DiceRollDescription":"[MELEE DEFENSE] Fray vs {self}","DiceRollType":"DefenseCheck","UseModStack":"true","ResetModStack":"true","SecretRoll":{"@xsi:nil":"true"},"DragIcon":"action_attack","AllowDragDrop":"true","Targeting":"all","ResultHandlerFunction":"RollHandlers.AttackResultHandler","AdditionalInfo":{"LabelValue":{"Label":"sTarget","Value":"{self}"}}}},
       {"Name":"Disabled"},
       {"Name":"DisplaySign"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
@@ -596,11 +596,11 @@ function onInit()
 	onValueChanged();
 	super.onInit();
 end
-
-function onBeforeDiceRoll(dragInfo)
-	DiceRollAdditionalInfo["sTarget"]=getValue();
-end
-</LUACode>
+--
+--function onBeforeDiceRoll(dragInfo)
+--	DiceRollAdditionalInfo["sTarget"]=getValue();
+--end
+--</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -623,7 +623,7 @@ end
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"50"}},
       {"Name":"DevelopmentComments"},
-      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"1d100","DiceRollDescription":"[RANGED DEFENSE] Fray vs {self}","DiceRollType":"DefenseCheck","UseModStack":"true","ResetModStack":"true","SecretRoll":{"@xsi:nil":"true"},"DragIcon":"action_attack","AllowDragDrop":"true","Targeting":"all","ResultHandlerFunction":"RollHandlers.AttackResultHandler","AdditionalInfo":null}},
+      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"1d100","DiceRollDescription":"[RANGED DEFENSE] Fray vs {self}","DiceRollType":"DefenseCheck","UseModStack":"true","ResetModStack":"true","SecretRoll":{"@xsi:nil":"true"},"DragIcon":"action_attack","AllowDragDrop":"true","Targeting":"all","ResultHandlerFunction":"RollHandlers.AttackResultHandler","AdditionalInfo":{"LabelValue":{"Label":"sTarget","Value":"{self}"}}}},
       {"Name":"Disabled"},
       {"Name":"DisplaySign"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
@@ -664,10 +664,10 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"417"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"175"}}
 ]}}</Definition>
-    <LUACode>function onBeforeDiceRoll(dragInfo)
-	DiceRollAdditionalInfo["sTarget"]=getValue();
-end
-</LUACode>
+    <LUACode>--function onBeforeDiceRoll(dragInfo)
+--	DiceRollAdditionalInfo["sTarget"]=getValue();
+--end
+--</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -690,7 +690,7 @@ end
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"50"}},
       {"Name":"DevelopmentComments"},
-      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"1d100","DiceRollDescription":"[RANGED DEFENSE] Fray/2 - {@window.FraySpecializationName.getValue()} vs {self}","DiceRollType":"DefenseCheck","UseModStack":"true","ResetModStack":"true","SecretRoll":{"@xsi:nil":"true"},"DragIcon":"action_attack","AllowDragDrop":"true","Targeting":"all","ResultHandlerFunction":"RollHandlers.AttackResultHandler","AdditionalInfo":null}},
+      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"1d100","DiceRollDescription":"[RANGED DEFENSE] Fray/2 - {@window.FraySpecializationName.getValue()} vs {self}","DiceRollType":"DefenseCheck","UseModStack":"true","ResetModStack":"true","SecretRoll":{"@xsi:nil":"true"},"DragIcon":"action_attack","AllowDragDrop":"true","Targeting":"all","ResultHandlerFunction":"RollHandlers.AttackResultHandler","AdditionalInfo":{"LabelValue":{"Label":"sTarget","Value":"{self}"}}}},
       {"Name":"Disabled"},
       {"Name":"DisplaySign"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
@@ -731,10 +731,10 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"417"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"205"}}
 ]}}</Definition>
-    <LUACode>function onBeforeDiceRoll(dragInfo)
-	DiceRollAdditionalInfo["sTarget"]=getValue();
-end
-</LUACode>
+    <LUACode>--function onBeforeDiceRoll(dragInfo)
+--	DiceRollAdditionalInfo["sTarget"]=getValue();
+--end
+--</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -757,7 +757,7 @@ end
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"50"}},
       {"Name":"DevelopmentComments"},
-      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"1d100","DiceRollDescription":"[MELEE DEFENSE] Fray - {@window.FraySpecializationName.getValue()} vs {self}","DiceRollType":"DefenseCheck","UseModStack":"true","ResetModStack":"true","SecretRoll":{"@xsi:nil":"true"},"DragIcon":"action_attack","AllowDragDrop":"true","Targeting":"all","ResultHandlerFunction":"RollHandlers.AttackResultHandler","AdditionalInfo":null}},
+      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"1d100","DiceRollDescription":"[MELEE DEFENSE] Fray - {@window.FraySpecializationName.getValue()} vs {self}","DiceRollType":"DefenseCheck","UseModStack":"true","ResetModStack":"true","SecretRoll":{"@xsi:nil":"true"},"DragIcon":"action_attack","AllowDragDrop":"true","Targeting":"all","ResultHandlerFunction":"RollHandlers.AttackResultHandler","AdditionalInfo":{"LabelValue":{"Label":"sTarget","Value":"{self}"}}}},
       {"Name":"Disabled"},
       {"Name":"DisplaySign"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
@@ -798,10 +798,10 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"366"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"205"}}
 ]}}</Definition>
-    <LUACode>function onBeforeDiceRoll(dragInfo)
-	DiceRollAdditionalInfo["sTarget"]=getValue();
-end
-</LUACode>
+    <LUACode>--function onBeforeDiceRoll(dragInfo)
+--	DiceRollAdditionalInfo["sTarget"]=getValue();
+--end
+--</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -1489,7 +1489,7 @@ end
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"35"}},
       {"Name":"DevelopmentComments"},
-      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"1d100","DiceRollDescription":"[APTITUDE] Intuition vs {self}","DiceRollType":"AptitudeCheck","UseModStack":"true","ResetModStack":"true","SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":"true","ResultHandlerFunction":"RollHandlers.CheckHandler","AdditionalInfo":null}},
+      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"1d100","DiceRollDescription":"[APTITUDE] Intuition vs {self}","DiceRollType":"AptitudeCheck","UseModStack":"true","ResetModStack":"true","SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":"true","ResultHandlerFunction":"RollHandlers.CheckHandler","AdditionalInfo":{"LabelValue":{"Label":"sTarget","Value":"{self}"}}}},
       {"Name":"Disabled"},
       {"Name":"DisplaySign"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
@@ -1530,11 +1530,11 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"145"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"473"}}
 ]}}</Definition>
-    <LUACode>function onBeforeDiceRoll(dragInfo)
-	DiceRollAdditionalInfo["sTarget"]=getValue();
-	return true;
-end
-</LUACode>
+    <LUACode>--function onBeforeDiceRoll(dragInfo)
+--	DiceRollAdditionalInfo["sTarget"]=getValue();
+--	return true;
+--end
+--</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -3619,7 +3619,7 @@ end
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"50"}},
       {"Name":"DevelopmentComments"},
-      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"1d100","DiceRollDescription":"[MELEE DEFENSE] Melee vs {self}","DiceRollType":"DefenseCheck","UseModStack":"true","ResetModStack":"true","SecretRoll":{"@xsi:nil":"true"},"DragIcon":"action_attack","AllowDragDrop":"true","Targeting":"all","ResultHandlerFunction":"RollHandlers.AttackResultHandler","AdditionalInfo":null}},
+      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"1d100","DiceRollDescription":"[MELEE DEFENSE] Melee vs {self}","DiceRollType":"DefenseCheck","UseModStack":"true","ResetModStack":"true","SecretRoll":{"@xsi:nil":"true"},"DragIcon":"action_attack","AllowDragDrop":"true","Targeting":"all","ResultHandlerFunction":"RollHandlers.AttackResultHandler","AdditionalInfo":{"LabelValue":{"Label":"sTarget","Value":"{self}"}}}},
       {"Name":"Disabled"},
       {"Name":"DisplaySign"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
@@ -3675,10 +3675,10 @@ function UpdateValue()
 	setValue(sSkills:lower():match("melee%s(%d+)") or 0);
 end
 
-function onBeforeDiceRoll(dragInfo)
-	DiceRollAdditionalInfo["sTarget"]=getValue();
-end
-</LUACode>
+--function onBeforeDiceRoll(dragInfo)
+--	DiceRollAdditionalInfo["sTarget"]=getValue();
+--end
+--</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -3701,7 +3701,7 @@ end
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"50"}},
       {"Name":"DevelopmentComments"},
-      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"1d100","DiceRollDescription":"[MELEE DEFENSE] Melee - {@window.MeleeSpecializationName.getValue()} vs {self}","DiceRollType":"DefenseCheck","UseModStack":"true","ResetModStack":"true","SecretRoll":{"@xsi:nil":"true"},"DragIcon":"action_attack","AllowDragDrop":"true","Targeting":"all","ResultHandlerFunction":"RollHandlers.AttackResultHandler","AdditionalInfo":null}},
+      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"1d100","DiceRollDescription":"[MELEE DEFENSE] Melee - {@window.MeleeSpecializationName.getValue()} vs {self}","DiceRollType":"DefenseCheck","UseModStack":"true","ResetModStack":"true","SecretRoll":{"@xsi:nil":"true"},"DragIcon":"action_attack","AllowDragDrop":"true","Targeting":"all","ResultHandlerFunction":"RollHandlers.AttackResultHandler","AdditionalInfo":{"LabelValue":{"Label":"sTarget","Value":"{self}"}}}},
       {"Name":"Disabled"},
       {"Name":"DisplaySign"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
@@ -3768,9 +3768,9 @@ function UpdateValue()
 	end
 end
 
-function onBeforeDiceRoll(dragInfo)
-	DiceRollAdditionalInfo["sTarget"]=getValue();
-end
+--function onBeforeDiceRoll(dragInfo)
+--	DiceRollAdditionalInfo["sTarget"]=getValue();
+--end
 </LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
@@ -4115,7 +4115,6 @@ end
       {"Name":"DevelopmentComments"},
       {"Name":"Disabled"},
       {"Name":"Dynamic"},
-      {"Name":"DynamicSize"},
       {"Name":"FrameName","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"HostControl"},
@@ -4160,14 +4159,6 @@ function update()
 	local nodeRecord = getDatabaseNode();
 	local bReadOnly = WindowManager.getReadOnlyState(nodeRecord);
 	local bID = LibraryData.getIDState("npc", nodeRecord);
---    nonid_name.setReadOnly(bReadOnly);
---	space.setReadOnly(bReadOnly);
---	reach.setReadOnly(bReadOnly);
---	skills.setReadOnly(bReadOnly);
---	items.setReadOnly(bReadOnly);
---	npcnotes.setReadOnly(bReadOnly);
---	languages.setReadOnly(bReadOnly);	
-
 end
 </LUACode>
     <GroupIndex>0</GroupIndex>
@@ -4534,7 +4525,7 @@ end
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"35"}},
       {"Name":"DevelopmentComments"},
-      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"1d100","DiceRollDescription":"[APTITUDE] Reflexes vs {self}","DiceRollType":"AptitudeCheck","UseModStack":"true","ResetModStack":"true","SecretRoll":{"@xsi:nil":"true"},"DragIcon":null,"AllowDragDrop":"true","ResultHandlerFunction":"RollHandlers.CheckHandler","AdditionalInfo":null}},
+      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"1d100","DiceRollDescription":"[APTITUDE] Reflexes vs {self}","DiceRollType":"AptitudeCheck","UseModStack":"true","ResetModStack":"true","SecretRoll":{"@xsi:nil":"true"},"DragIcon":null,"AllowDragDrop":"true","ResultHandlerFunction":"RollHandlers.CheckHandler","AdditionalInfo":{"LabelValue":{"Label":"sTarget","Value":"{self}"}}}},
       {"Name":"Disabled"},
       {"Name":"DisplaySign"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
@@ -4575,11 +4566,11 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"217"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"473"}}
 ]}}</Definition>
-    <LUACode>function onBeforeDiceRoll(dragInfo)
-	DiceRollAdditionalInfo["sTarget"]=getValue();
-	return true;
-end
-</LUACode>
+    <LUACode>--function onBeforeDiceRoll(dragInfo)
+--	DiceRollAdditionalInfo["sTarget"]=getValue();
+--	return true;
+--end
+--</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -4673,7 +4664,7 @@ end
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"35"}},
       {"Name":"DevelopmentComments"},
-      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"1d100","DiceRollDescription":"[APTITUDE] Savvy vs {self}","DiceRollType":"AptitudeCheck","UseModStack":"true","ResetModStack":"true","SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":"true","ResultHandlerFunction":"RollHandlers.CheckHandler","AdditionalInfo":null}},
+      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"1d100","DiceRollDescription":"[APTITUDE] Savvy vs {self}","DiceRollType":"AptitudeCheck","UseModStack":"true","ResetModStack":"true","SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":"true","ResultHandlerFunction":"RollHandlers.CheckHandler","AdditionalInfo":{"LabelValue":{"Label":"sTarget","Value":"{self}"}}}},
       {"Name":"Disabled"},
       {"Name":"DisplaySign"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
@@ -4714,11 +4705,11 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"289"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"473"}}
 ]}}</Definition>
-    <LUACode>function onBeforeDiceRoll(dragInfo)
-	DiceRollAdditionalInfo["sTarget"]=getValue();
-	return true;
-end
-</LUACode>
+    <LUACode>--function onBeforeDiceRoll(dragInfo)
+--	DiceRollAdditionalInfo["sTarget"]=getValue();
+--	return true;
+--end
+--</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -5237,7 +5228,7 @@ end
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"35"}},
       {"Name":"DevelopmentComments"},
-      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"1d100","DiceRollDescription":"[APTITUDE] Somatics vs {self}","DiceRollType":"AptitudeCheck","UseModStack":"true","ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":"true","ResultHandlerFunction":"RollHandlers.CheckHandler","AdditionalInfo":null}},
+      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"1d100","DiceRollDescription":"[APTITUDE] Somatics vs {self}","DiceRollType":"AptitudeCheck","UseModStack":"true","ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":"true","ResultHandlerFunction":"RollHandlers.CheckHandler","AdditionalInfo":{"LabelValue":{"Label":"sTarget","Value":"{self}"}}}},
       {"Name":"Disabled"},
       {"Name":"DisplaySign"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
@@ -5278,11 +5269,11 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"361"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"473"}}
 ]}}</Definition>
-    <LUACode>function onBeforeDiceRoll(dragInfo)
-	DiceRollAdditionalInfo["sTarget"]=getValue();
-	return true;
-end
-</LUACode>
+    <LUACode>--function onBeforeDiceRoll(dragInfo)
+--	DiceRollAdditionalInfo["sTarget"]=getValue();
+--	return true;
+--end
+--</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -5957,7 +5948,7 @@ end
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"35"}},
       {"Name":"DevelopmentComments"},
-      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"1d100","DiceRollDescription":"[APTITUDE] Willpower vs {self}","DiceRollType":"AptitudeCheck","UseModStack":"true","ResetModStack":"true","SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":"true","ResultHandlerFunction":"RollHandlers.CheckHandler","AdditionalInfo":null}},
+      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"1d100","DiceRollDescription":"[APTITUDE] Willpower vs {self}","DiceRollType":"AptitudeCheck","UseModStack":"true","ResetModStack":"true","SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":"true","ResultHandlerFunction":"RollHandlers.CheckHandler","AdditionalInfo":{"LabelValue":{"Label":"sTarget","Value":"{self}"}}}},
       {"Name":"Disabled"},
       {"Name":"DisplaySign"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
@@ -5998,11 +5989,11 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"433"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"473"}}
 ]}}</Definition>
-    <LUACode>function onBeforeDiceRoll(dragInfo)
-	DiceRollAdditionalInfo["sTarget"]=getValue();
-	return true;
-end
-</LUACode>
+    <LUACode>--function onBeforeDiceRoll(dragInfo)
+--	DiceRollAdditionalInfo["sTarget"]=getValue();
+--	return true;
+--end
+--</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>

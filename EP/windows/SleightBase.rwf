@@ -76,7 +76,7 @@
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"20"}},
       {"Name":"DevelopmentComments"},
-      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"1d100","DiceRollDescription":"[SLEIGHT ATTACK] Psi vs {@self.getPsiTargetValue()} {@self.sModMessage}","DiceRollType":"AttackSleightCheck","UseModStack":"true","ResetModStack":"true","SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":"true","Targeting":"each","ResultHandlerFunction":"RollHandlers.SleightResultHandler","TargetingHandlerFunction":"RollHandlers.SleightTargetingHandler","AdditionalInfo":null}},
+      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"1d100","DiceRollDescription":"[SLEIGHT ATTACK] Psi vs {@self.getPsiTargetValue()} {@self.sModMessage}","DiceRollType":"AttackSleightCheck","UseModStack":"true","ResetModStack":"true","SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":"true","Targeting":"each","ResultHandlerFunction":"RollHandlers.SleightResultHandler","TargetingHandlerFunction":"RollHandlers.SleightTargetingHandler","AdditionalInfo":{"LabelValue":[{"Label":"sleight","Value":"{@window.name.getValue()}"},{"Label":"sTarget","Value":"{@self.nPsiTarget}"}]}}},
       {"Name":"Disabled"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"FontName","Value":{"@xsi:type":"xsd:string","#text":"button-white"}},
@@ -113,7 +113,7 @@
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"5"}}
 ]}}</Definition>
     <LUACode>sModMessage="";
-local nPsiTarget=0;
+nPsiTarget=0;
 
 function getPsiTargetValue()
 	sModMessage="";
@@ -157,10 +157,10 @@ function getPsiTargetValue()
 	return nPsiTarget;
 end
 
-function onBeforeDiceRoll(dragInfo)
-	DiceRollAdditionalInfo["sleight"] = window.name.getValue();
-	DiceRollAdditionalInfo["sTarget"] = nPsiTarget;
-end
+--function onBeforeDiceRoll(dragInfo)
+--	DiceRollAdditionalInfo["sleight"] = window.name.getValue();
+--	DiceRollAdditionalInfo["sTarget"] = nPsiTarget;
+--end
 
 function onAfterDiceRoll()
 	window.windowlist.window.InfectionRatingIncrease.setValue(window.windowlist.window.InfectionRatingIncrease.getValue()+window.InfectionMod.getValue());
@@ -487,7 +487,6 @@ end
       {"Name":"DevelopmentComments"},
       {"Name":"Disabled"},
       {"Name":"Dynamic"},
-      {"Name":"DynamicSize"},
       {"Name":"FrameName"},
       {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"HostControl"},

@@ -95,7 +95,6 @@ function CheckHandler(rSource, rTarget, rRoll)
 		rMessage = ActionsManager.createActionMessage(rSource, rRoll);
 	end
 	local sTarget=rRoll.sTarget or "0";
-	Debug.chat(sTarget)
 	local nTarget=tonumber(sTarget);
 	
 	nTarget=nTarget+nMod;
