@@ -206,7 +206,7 @@ function onAfterDiceRoll()
 	end
 end
 
-function action(dragInfo)
+function action(draginfo)
 	local sActionType="";
 	if sDragLabel then
 		if isAttack then
@@ -264,7 +264,7 @@ function action(dragInfo)
 		if onBeforeDiceRoll then if onBeforeDiceRoll() == false then return; end; end;
 		local windataref = window.getDatabaseNode();
 		if windataref == nil then windataref = window; end;
-		RulesetWizardDiceRoller.Roll(dragInfo, windataref, sActionType, DiceRollDescription, DiceRollString, getValue(), DiceRollAdditionalInfo);
+		RulesetWizardDiceRoller.Roll(draginfo, windataref, sActionType, DiceRollDescription, DiceRollString, getValue(), DiceRollAdditionalInfo);
 		ModifierStack.reset();
 		if onAfterDiceRoll then onAfterDiceRoll(); end;
 		return true;
@@ -278,7 +278,6 @@ function onDoubleClick(x, y)
 end
 
 function onDragStart(button, x, y, draginfo)
---	return action(draginfo);
 	action(draginfo);
 
 	bDragging = true;

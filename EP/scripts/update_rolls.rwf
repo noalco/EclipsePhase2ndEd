@@ -2,7 +2,7 @@
   <Scripts>
     <ScriptName>update_rolls</ScriptName>
     <FolderID>13</FolderID>
-    <Script>function ShowUpdatedRollMessage(sUpdateType)
+    <Script>function ShowUpdatedRollMessage(sUpdateType, sSourceCTNode)
 --{ s'sType' = s'npc', s'sCreatureNode' = s'combattracker.list.id-00003', s'sCTNode' = s'combattracker.list.id-00003', s'sName' = s'Iktomi Kumobot 1' } 
 --{ s'sType' = s'charsheet', s'sCreatureNode' = s'charsheet.id-00001', s'sCTNode' = s'combattracker.list.id-00001', s'sName' = s'PC' }
 
@@ -19,7 +19,7 @@
 	local rRoll={ nBonuses = 0, 
 		aDice = { [1] = { value = RollTotal.getValue(), ["type"] = "d100", result = RollTotal.getValue() }, expr = "1d100", total = RollTotal.getValue() }, 
 		nMod = 0, 
-		sType = TypeResult.getValue().."Check", 
+		sType = TypeResult.getValue().."Check_sSource_"..sSourceCTNode, 
 		bSecret = bFALSE, 
 		nTotal = RollTotal.getValue(), 
 		sDesc = "["..TypeAttack.getValue().." "..TypeResult.getValue():upper().."] "..sUpdateType.." (vs "..RollTarget.getValue()..")" }; --"..RollTotal.getValue().."
@@ -56,18 +56,15 @@ function UpdateAttackRoll(sUpdateType)
 			for _,n in pairs(DB.getChildren(TargetCTNode.getValue()..".rolls")) do
 				-- Looking for the opposite roll
 				if DB.getValue(n, "TargetCTNode", "")==sSearchCTNode and DB.getValue(n, "TypeResult", "")==sOppositeTypeResult and DB.getValue(n, "TypeAttack", "")==sTypeAttack and DB.getValue(n, "CheckedRoll", 0)==0 then
-					
 					combat.tAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack]["s"..sOppositeTypeResult.."Result"]=combat.tResultsAbr[DB.getValue(n, "RollResult", "F")];
 					combat.tAttacts[sSourceCTNode][sTargetCTNode][sTypeAttack]["n"..sOppositeTypeResult.."Result"]=DB.getValue(n, "RollTotal", 0);
-					
 					DB.setValue(n, "CheckedRoll", "number", 1);
-					
 					break;
 				end
 			end
 		end
 		
-		ShowUpdatedRollMessage(sUpdateType)
+		ShowUpdatedRollMessage(sUpdateType, sSearchCTNode)
 		
 		if Session.IsHost then
 			combat.AddAttack(sSourceCTNode, sTargetCTNode, sTypeAttack, sTypeResult, combat.tResultsAbr[RollResult.getValue()], RollTotal.getValue(), RollTarget.getValue(), true);
@@ -98,18 +95,15 @@ function UpdateAttackRoll(sUpdateType)
 			for _,n in pairs(DB.getChildren(TargetCTNode.getValue()..".rolls")) do
 				-- Looking for the opposite roll
 				if DB.getValue(n, "TargetCTNode", "")==sSearchCTNode and DB.getValue(n, "TypeResult", "")==sOppositeTypeResult and DB.getValue(n, "TypeAttack", "")=="SLEIGHT" and DB.getValue(n, "CheckedRoll", 0)==0 then
-					
 					combat.tSleightAttacks[sSourceCTNode][sTargetCTNode]["s"..sOppositeTypeResult.."Result"]=combat.tResultsAbr[DB.getValue(n, "RollResult", "F")];
 					combat.tSleightAttacks[sSourceCTNode][sTargetCTNode]["n"..sOppositeTypeResult.."Result"]=DB.getValue(n, "RollTotal", 0);
-					
 					DB.setValue(n, "CheckedRoll", "number", 1);
-					
 					break;
 				end
 			end
 		end
 		
-		ShowUpdatedRollMessage(sUpdateType)
+		ShowUpdatedRollMessage(sUpdateType, sSearchCTNode)
 		
 		if Session.IsHost then
 			combat.AddSleightAttack(sSourceCTNode, sTargetCTNode, sTypeResult, combat.tResultsAbr[RollResult.getValue()], RollTotal.getValue(), RollTarget.getValue(), true);

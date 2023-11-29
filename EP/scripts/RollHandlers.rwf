@@ -3,9 +3,13 @@
     <ScriptName>RollHandlers</ScriptName>
     <FolderID>25</FolderID>
     <Script>OldActionRoll=nil;
+OldOnChatDragStart=nil;
+
 function onInit()
 --	ChatManager.registerDiceLandedCallback(onDiceLanded);
 	OldActionRoll=ActionsManager.actionRoll;
+	OldOnChatDragStart=ActionsManager.onChatDragStart;
+	ActionsManager.onChatDragStart=NewOnChatDragStart;
 --	ActionsManager.actionRoll=NewActionRoll;
 end
 
@@ -30,6 +34,22 @@ function NewActionRoll(rSource, tTargetGroups, rRolls)
 	ActionsManager.unlockModifiers(bModStackUsed);
 end
 
+function NewOnChatDragStart(draginfo)
+	local sDragType = draginfo.getType();
+	if sDragType and sDragType:match("_sSource_") then
+		local sSource="";
+		sDragType, sSource=sDragType:match("(.*)_sSource_(.+)");
+--		sDragType="AttackCheck";
+		draginfo.setType(sDragType);
+		ActionsManager.encodeActors(draginfo, ActorManager.resolveActor(sSource));
+	end
+	
+	if GameSystem.actions[sDragType] and GameSystem.actions[sDragType].sIcon then
+		draginfo.setIcon(GameSystem.actions[sDragType].sIcon);
+	end
+end
+
+
 --function onDiceLanded(draginfo)
 --    local sDragType = draginfo.getType();
 --    if GameSystem.actions[sDragType] then
@@ -45,7 +65,8 @@ end
 --    end
 --end
 
-function RollResultFrom0to99(rRoll)
+
+function RollResultFrom0to99(rRoll, xxx)
 	if rRoll and rRoll.aDice and rRoll.nTotal then
 		for i=1,#rRoll.aDice do
 			rRoll.aDice[i].value=rRoll.aDice[i].value%100;
@@ -53,7 +74,7 @@ function RollResultFrom0to99(rRoll)
 		end
 		rRoll.aDice.total=rRoll.aDice.total%100;
 		rRoll.nTotal=rRoll.nTotal%100;
-	else
+	else -- Build rRoll from chat drag information
 		rRoll.nTotal=rRoll.nMod;
 		rRoll.aDice["total"]=rRoll.nMod;
 		rRoll.aDice["expr"]="d100";
@@ -80,6 +101,7 @@ function RollResultFrom0to99(rRoll)
 		rRoll.sDesc=rRoll.sDesc:gsub(" %[SUCCESS%]", "");
 
 		rRoll.nMod=0;
+		rRoll.sTarget=rRoll.sDesc:match("vs (%d+)") or "";
 	end
 	return rRoll;
 end
@@ -98,13 +120,17 @@ function CheckHandler(rSource, rTarget, rRoll)
 	local nTarget=tonumber(sTarget);
 	
 	nTarget=nTarget+nMod;
---	if nTarget&lt;0 then
---		sTarget="%"..sTarget;
---	end
 	rMessage.text=rMessage.text:gsub("vs "..sTarget, "vs "..math.max(0,nTarget));
 
 	local nTotal = ActionsManager.total(rRoll);
 	rMessage.text=rMessage.text.." ["..RollChecks.RollCheck(nTotal, nTarget):upper().."]";
+
+	if (rMessage.type=="AttackCheck" or rMessage.type=="AttackSleightCheck") and rSource and rSource.sCTNode then
+		rMessage.type=rMessage.type.."_sSource_"..rSource.sCTNode;
+	elseif (rMessage.type=="DefenseCheck" or rMessage.type=="DefenseSleightCheck") and rTarget and rTarget.sCTNode then
+		rMessage.type=rMessage.type.."_sSource_"..rTarget.sCTNode;
+	end
+	
 	Comm.deliverChatMessage(rMessage);
 	return RollChecks.RollCheck(nTotal, nTarget):upper(), nTarget;
 end
