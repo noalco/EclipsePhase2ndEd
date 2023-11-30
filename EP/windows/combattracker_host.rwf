@@ -1023,6 +1023,15 @@ end
 	
 	registerMenuItem(Interface.getString("list_menu_createitem"), "insert", 5);
 
+	local tData = {
+		sTrackerPath = CombatManager.CT_LIST,
+		sCombatantParentPath = CombatManager.CT_COMBATANT_PARENT,
+		sCombatantPath = CombatManager.CT_COMBATANT_PATH,
+		fSort = CustomSort,
+		fCleanup = CombatManager.deleteCleanup,
+	};
+	CombatManager.setTracker("", tData);
+
 end
 
 function onClose()
@@ -1065,6 +1074,34 @@ function onMenuSelection(selection)
 	end
 end
 
+function CustomSort(w1, w2)
+	local efective_initresult1=DB.getValue(w1, "efective_initresult", 0);
+	local efective_initresult2=DB.getValue(w2, "efective_initresult", 0);
+	if efective_initresult1~=efective_initresult2 then
+		return efective_initresult1&gt;efective_initresult2;
+	else
+		local sClass1, sRecord1=DB.getValue(w1, "link");
+		local sClass2, sRecord2=DB.getValue(w2, "link");
+		local REF1;
+		local REF2;
+		if sClass1=="charsheet" then
+			REF1=DB.getValue(sRecord1..".Aptitudes.Scores.Reflexes", 5);
+		else
+			REF1=DB.getValue(w1, "Aptitudes.Scores.Reflexes", 5);
+		end
+		if sClass2=="charsheet" then
+			REF2=DB.getValue(sRecord2..".Aptitudes.Scores.Reflexes", 5);
+		else
+			REF2=DB.getValue(w2, "Aptitudes.Scores.Reflexes", 5);
+		end
+		if REF1~=REF2 then
+			return REF1&gt;REF2
+		else
+			CombatManager.sortfuncSimple(w1, w2);
+		end
+	end
+end
+
 function onSortCompare(w1, w2)
 	return CombatManager.onSortCompare(w1.getDatabaseNode(), w2.getDatabaseNode());
 end
@@ -1102,7 +1139,12 @@ function onDrop(x, y, draginfo)
 	local sCTNode = UtilityManager.getWindowDatabasePath(getWindowAt(x,y));
 	return CombatDropManager.handleAnyDrop(draginfo, sCTNode);
 end
-</LUACode>
+
+function CleanTtI()
+	for _,w in pairs(getWindows()) do
+		w.TtI.setValue(0);
+	end
+end</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -1217,10 +1259,10 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"406"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"353"}}
 ]}}</Definition>
-    <LUACode>--function onValueChanged()
---	window.CleanRolls();
---end
---</LUACode>
+    <LUACode>function onValueChanged()
+	window.list.CleanTtI();
+end
+</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
