@@ -107,6 +107,7 @@ function RollResultFrom0to99(rRoll, xxx)
 end
 
 function CheckHandler(rSource, rTarget, rRoll)
+	rRoll.bDefaulting=rRoll.bDefaulting=="true";
 	rRoll=RollResultFrom0to99(rRoll)
 	local nMod=rRoll.nMod;
 	rRoll.nMod=0;
@@ -123,7 +124,8 @@ function CheckHandler(rSource, rTarget, rRoll)
 	rMessage.text=rMessage.text:gsub("vs "..sTarget, "vs "..math.max(0,nTarget));
 
 	local nTotal = ActionsManager.total(rRoll);
-	rMessage.text=rMessage.text.." ["..RollChecks.RollCheck(nTotal, nTarget):upper().."]";
+	local sResult=RollChecks.RollCheck(nTotal, nTarget, rRoll.bDefaulting):upper();
+	rMessage.text=rMessage.text.." ["..sResult.."]";
 
 	if (rMessage.type=="AttackCheck" or rMessage.type=="AttackSleightCheck") and rSource and rSource.sCTNode then
 		rMessage.type=rMessage.type.."_sSource_"..rSource.sCTNode;
@@ -132,7 +134,7 @@ function CheckHandler(rSource, rTarget, rRoll)
 	end
 	
 	Comm.deliverChatMessage(rMessage);
-	return RollChecks.RollCheck(nTotal, nTarget):upper(), nTarget;
+	return sResult, nTarget;
 end
 
 function AttackResultHandler(rSource, rTarget, rRoll)

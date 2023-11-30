@@ -8,16 +8,22 @@
 	return nDec==nUnid;
 end
 
-function RollCheck(nRoll, nTarget)
+function RollCheck(nRoll, nTarget, bDefaulting)
 	local bDouble=isDouble(nRoll);
 	if nRoll&lt;=nTarget and nRoll~=99 or nRoll==0 then -- success
-		if bDouble or nRoll==0 then return "Critical success";
+		if bDouble or nRoll==0 then
+			if bDefaulting then
+				return "Success";
+			else
+				return "Critical success";
+			end
 		elseif nRoll&gt;=66 then return "Two superior successes";
 		elseif nRoll&gt;=33 then return "One superior success";
 		else return "Success";
 		end
 	else --failure
-		if bDouble or nRoll==99 then return "Critical failure";
+		if bDouble or nRoll==99 then
+		return "Critical failure";
 		elseif nRoll&lt;=33 then return "Two superior failures";
 		elseif nRoll&lt;=66 then return "One superior failure";
 		else return "Failure";

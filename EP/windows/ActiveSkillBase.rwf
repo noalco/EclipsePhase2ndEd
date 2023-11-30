@@ -112,10 +112,21 @@ function UpdateBonus()
 	Interest.setValue(FindSkillWithField("Interest", sSkillName, Field.getValue()));
 end
 
+function isDefaulting()
+	if Background.getValue()==0 and Career.getValue()==0 and Interest.getValue()==0 and CustomizationPoints.getValue()==0 then
+		return "true";
+	else
+		return "false";
+	end
+end
+
 function GetRollMessage()
 	local sMessage=name.getValue();
 	if Field.getValue()~="" then
 		sMessage=sMessage..": "..Field.getValue();
+	end
+	if isDefaulting()=="true" then
+		sMessage="[DEFAULTING] "..sMessage
 	end
 	return sMessage;
 end
@@ -128,11 +139,7 @@ function GetRollSpecializationMessage()
 	return sMessage;
 end
 
-
-
-
 local sFraySkillPath="";
-
 function UpdateSpec()
 	local bIsFray2=name.getValue()=="Fray/2 (vs. ranged attacks)";
 	Specialization.setEnabled(not bIsFray2);
@@ -1688,7 +1695,7 @@ end
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"45"}},
       {"Name":"DevelopmentComments"},
-      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"1d100","DiceRollDescription":"[SKILL SPECIALIZATION] {@window.GetRollSpecializationMessage()} vs {@self.getCheckValue()..sMessage}","DiceRollType":"SkillSpecializationCheck","UseModStack":"true","ResetModStack":"true","SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":"true","ResultHandlerFunction":"RollHandlers.CheckHandler","AdditionalInfo":{"LabelValue":{"Label":"sTarget","Value":"{@self.getCheckValue()}"}}}},
+      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"1d100","DiceRollDescription":"[SKILL SPECIALIZATION] {@window.GetRollSpecializationMessage()} vs {@self.getCheckValue()..sMessage}","DiceRollType":"SkillSpecializationCheck","UseModStack":"true","ResetModStack":"true","SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":"true","ResultHandlerFunction":"RollHandlers.CheckHandler","AdditionalInfo":{"LabelValue":[{"Label":"sTarget","Value":"{@self.getCheckValue()}"},{"Label":"bDefaulting","Value":"{@window.isDefaulting()}"}]}}},
       {"Name":"Disabled"},
       {"Name":"DisplaySign"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
@@ -1776,7 +1783,7 @@ end
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"45"}},
       {"Name":"DevelopmentComments"},
-      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"1d100","DiceRollDescription":"[SKILL] {@window.GetRollMessage()} vs {@self.getCheckValue()..sMessage}","DiceRollType":"SkillCheck","UseModStack":"true","ResetModStack":"true","SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":"true","ResultHandlerFunction":"RollHandlers.CheckHandler","AdditionalInfo":{"LabelValue":{"Label":"sTarget","Value":"{@self.getCheckValue()}"}}}},
+      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"1d100","DiceRollDescription":"[SKILL] {@window.GetRollMessage()} vs {@self.getCheckValue()..sMessage}","DiceRollType":"SkillCheck","UseModStack":"true","ResetModStack":"true","SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":"true","ResultHandlerFunction":"RollHandlers.CheckHandler","AdditionalInfo":{"LabelValue":[{"Label":"sTarget","Value":"{@self.getCheckValue()}"},{"Label":"bDefaulting","Value":"{@window.isDefaulting()}"}]}}},
       {"Name":"Disabled"},
       {"Name":"DisplaySign"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
