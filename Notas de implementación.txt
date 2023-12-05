@@ -1,0 +1,317 @@
+- Tiradas:
+	- d100			X
+	- Éxito: menor o igual que la la habilidad -> Target number			X
+	- Cuanto más alto, mejor			X
+	- Superior Results:			X
+		- Éxito con 33 o más -> superior success			X
+		- Éxito con 66 o más -> dos superior successs			X
+		- Fallo con 66 o menos -> superior failure			X
+		- Fallo con 33 o menos -> dos superior failures			X
+	- Críticos:			X
+		- Si doble (11, 22, 33...) -> critical result			X
+		- Si doble y éxito -> critical success			X
+		- Si doble y fallo -> critical failure			X
+		- 00 es siempre un critical success			X
+		- 99 es siempre un critical failure			X
+		- If a critical is also a superior result, only the critical applies.			X
+	- Defaulting
+		- Si no tienes una skill, puedes tirar por su aptitude asociada.			X
+		- There is no modifier for defaulting on a skill test, but critical successes are ignored.			???
+	- Daños y otras cosas: d6 y d10
+
+- Modificadores: Afectan a la dificultad, no a la tirada
+	Difficulty 		Situational Factor 	Modifier
+	Very Easy 		Major Bonus 		+30
+	Easy 			Moderate Benefit 	+20
+	Slightly Easy 	Minor Boost 		+10
+	Average 							+/–0
+	Slightly Hard 	Minor Hindrance 	–10
+	Hard Moderate 	Impediment 			–20
+	Very Hard 		Major Drawback 		–30
+
+- Iniciativa:
+	- 1d6 + Initiative stat			X
+	- EL valor más alto actúa primero			X
+	- Ante empates, se actua a la vez, se desempata por REF o se lanza para desempatar
+	- La iniciativa se mantiene todo el combate			X
+	- Take the Initiative: Se puede gastar Vigor o Insight para actuar primero. Se vuelve a la posición original en el siguiente round.
+		- Si varios gastan Vigor o Insight, actúan en orden de iniciativa por delante del resto
+	- Extra Action: Al final del turno se puede gastar Vigor o Insight para tener Extra Actions.
+		- If multiple characters take extra actions, they are handled in Initiative order.
+
+- Pools:
+	- Each pool is linked to a different group of aptitudes and skills			X
+		- Insight pool is linked to mental capabilities: Cognition, Intuition, and their linked skills.			X
+		- Moxie pool is linked to social interactions: Savvy, Willpower, and linked skills. It may also be used for Rep and Infection Tests.			X
+		- Vigor pool is linked to physical efforts: Reflexes, Somatics, and their linked skills.			X
+		- Flex is a wild-card pool. It can be used to affect dice rolls for any tests and for narrative control.			X
+	- RECHARGING POOLS			X
+		- Short Recharge (2/day) - 10 minutos - 1d6 pool points (you decide where to allocate them)			X
+		- Long Recharge (1/day) - 4 u 8 horas - A long recharge completely recharged your pools to their full value.			X
+	- TEMPORARY POOLS			X
+		- Some effects, such as drugs and psi sleights, provide temporary pool bonuses.			X
+		- These points should be considered extra points that are expended before any of your regular pool points.			X
+		- These bonus points may be restored with a recharge, but only if all of your normal pool points are restored first.
+	- USING POOLS
+		- You may spend points from your pools to affect the tests you make
+		- Each pool may only be used for tests that use their linked skills or aptitudes
+		- Flex may be used on any tests
+		- Unless otherwise noted, only 1 pool point may be spent per test
+			- Before Roll: Ignore all modifiers to the test.
+			- Before Roll: Add +20 to the test’s target number.			X
+			- After Roll: Flip-flop a d100 roll. For example, 83 becomes 38.
+			- After Roll: Upgrade a success to a superior success (or one to two).
+			- After Roll: Downgrade a critical failure to a regular failure.
+			- Ongoing (Insight/Moxie/Vigor Only): Receive +5 (1 point) or +10 (2 points) to all skill tests linked to one aptitude for 24 hours or until your next recharge ->35.
+		- INSIGHT
+			- Take the Initiative: Go first in an action turn
+			- Extra Action: Take an extra complex mental or mesh action (al final del turno)
+			- Acquire a Clue: Gain a hint or lead through investigation, research, or analysis of the facts at hand, without needing to make a test			X
+		- MOXIE
+			- Ignore Trauma: Ignore the effects of 1 trauma for 24 hours or until your next recharge
+			- Refresh Rep: Restore rep network favors at a cost of 1 point for a Minor favor and 2 points for a Moderate favor. Major favors cannot be refreshed this way.			X
+			- Acquire a Clue: Get a tip or lead by gathering information via social interactions without needing to make a test.			X
+			- Control Your Infection: Avoid making an Infection Test when using a psi sleight (asyncs only).
+			- Negate Gaffe: Ignore a player’s social gaffe that the character wouldn’t make.
+		- VIGOR
+			- Take the Initiative: Go first in an action turn
+			- Extra Action: Take an extra complex mental or mesh action (al final del turno)
+			- Ignore Wound: Ignore the effects of 1 wound for 24 hours or until your next recharge ->35
+		- FLEX
+			- Introduce NPC			X
+			- Introduce an Item			X
+			- Define the Environment			X
+			- Define a Relationship			X
+			
+
+CHARACTER STATS			X
+	- Everyone gets 20 CP (Customization Points)			X
+	
+	- EGO - mind, personality, memories, inherent traits, and learned skills			X
+		- Aptitudes			X
+		- Aptitude Checks			X
+		- Skills			X
+		- Initiative			X
+		- Lucidity			X
+		- Trauma Threshold			X
+		- Insanity Rating			X
+		- Ego traits			X
+		- Motivations			X
+		- Some Flex Pool			X
+			- Every ego starts with 1 permanent Flex point Pools			X
+			- Extra Flex points cost 2 CP each. You may not start with more than 3 ego Flex points (not counting Flex derived from your morph)
+			- 2 MP = 1 Flex, upto a maximum of 3.			X
+				- These Flex points are temporary, they will be reset the next time you resleeve
+		
+	- Morph - is your physical (or sometimes virtual) form. It provides you with pools to enhance your skills, Durability to represent your health and constitution, implants or robotic enhancements, and some traits and derived stats of its own.			X
+		- Se puede tener más de uno			X
+		- Pools			X
+		- Durability			X
+		- Wound Threshold			X
+		- Death Rating			X
+		- Morph traits			X
+			- Positive traits have an MP cost listed.			X
+			- Negative traits give you bonus MP.			X
+			- No more than 6 MP worth of negative traits may be purchased.			X
+		
+	- APTITUDES			X
+		- Mín. 5 Máx. 30			X
+			- Extra aptitude points cost 1 CP each.			X
+		- Cognition (COG) represents your intelligence, problem-solving talent, and capacity for logical analysis.			X
+		- Intuition (INT) is your gut instinct and ability to evaluate on the fly. It includes physical awareness, creativity, cleverness, and cunning.			X
+		- Reflexes (REF) is your coordination, manual dexterity, nimbleness, balance, and reaction speed.			X
+		- Savvy (SAV) represents your social awareness, adaptability, empathy, and ability to influence others.			X
+		- Somatics (SOM) is how well you can exploit your morph’s physical capabilities, including strength, stamina, and sustained positioning and motion.			X
+		- Willpower (WIL) is your self-control, mental fortitude, and strength of personality.			X
+		- Aptitude Checks -> Aptitude × 3			X
+	
+	- DERIVED STATS
+		- Initiative (INIT): Initiative determines the order in which people act during action turns. Initiative & Order of Actions -> 33. -> (REF + INT) ÷ 5			X
+		- Wound Threshold (WT): The amount of damage you can take before receiving a wound. Physical Health -> 220. -> DUR ÷ 5			X
+		- Durability (DUR): Your character’s health, determined by your morph. Physical Health -> 220.			X
+		- Death Rating (DR): The amount of damage it takes to kill you, determined by morph. Physical Health -> 220. -> DUR x 1.5 (biomorphs); DUR x 2 (synthmorphs/infomorphs)			X
+		- Trauma Threshold (TT): The amount of stress you can take before receiving a trauma. Lucidity and Stress -> 222. -> LUC ÷ 5			X
+		- Lucidity (LUC): Your character’s mental health, based on Willpower. Lucidity and Stress -> 222. -> WIL × 2			X
+		- Insanity Rating (IR): The amount of stress that will drive you insane, based on Willpower. Lucidity and Stress -> 222. -> LUC × 2			X
+		- Pools: Your Insight, Moxie, Vigor, and Flex pools, mostly derived from your morph, with a Flex bonus from your ego. Pools -> 34.			X
+		- Infection Rating: If playing an async, your Infection Rating indicates the strength of the virus's hold over you. Infection Rating -> 272. -> Psi trait level × 10			X
+	
+	- Traits			X
+		- Positive traits have a CP cost listed.			X
+		- Negative traits give you bonus CP.			X
+			- No more than 6 CP worth of negative traits may be purchased.			X
+	
+	- Rep			X
+		- reputation score in different social networks			X
+			- You have 100 points to divide between rep networks.			X
+			- Every point of CP buys you 5 rep points.			X
+		- @-rep: The Circle-A List, for autonomists, anarchists, Titanians, scum, and Extropians.			X
+		- c-rep: CivicNet, used by the Planetary Consortium, Morningstar Constellation, Lunar-Lagrange Alliance, Jovian Republic, and other hypercorps and capitalists.			X
+		- f-rep: Fame, the media network used by metacelebrities, journalists, socialites, artists, and glitterati.			X
+		- g-rep: Guanxi, the network for triads, cartels, gangs, and other criminal groups.			X
+		- i-rep: The Eye, Firewall’s secret internal network.			X
+		- r-rep: Research Network Affiliates, used by Argonauts, scientists, technologists, and researchers of all stripes.			X
+		- x-rep: ExploreNet, the social network for gatecrashers and exoplanet colonists			X
+	
+	- Gear
+		- packs
+		- Combat wear			X
+			- Ranged -> varios datos			X
+				- Munición			X
+				- Firing Modes			X
+				- Range			X
+			- Melee -> solo el daño (DV)			X
+			- Armor -> dos valores enegy and kinetic			X
+		- Gear Points (GP) 			X
+	- Motivations			X
+	
+	- Skills			X
+		- Each point of CP gets you 5 skill points			X
+			- no skill may be raised above 80. (¿en la creación?)			???
+		- Pueden tener valores de			X
+			- Background			X
+			- Career			X
+			- Interest			X
+			- Faction (solo Know: [Faction])			???
+			- Customization Points			X
+			- Aptitude (bono enlazado de las aptitudes)			X
+			- SPECIALIZATIONS			X
+				- +10 bonus to that skill when that specialization applies.			X
+				- This specialization bonus does not count towards the skill maximum of 80.			X
+		- Skills con segundo nombre			X
+			- Active skills:			X
+				- Hardware			X
+				- Medicine			X
+				- Pilot			X
+				- Exotic Skill (Apt. dependiente)			X
+ 			- Know skills			X
+				- todas			X
+			- SPECIALIZATIONS			X
+	
+	- Languajes: 2+			X
+		- 1 si COG + INT is 35+			X
+		- 2 si COG + INT is 45+			X
+		- You may purchase additional languages at 1 CP each.			X
+		- Sin tiradas (o se sabe o no se sabe)			X
+	
+	- SLEIGHTS (psi powers)			X
+		- Psi sleights cost 1 CP per sleight.			X
+		- You may only purchase psi-gamma sleights if you have the Psi trait at Level 2.			X
+		- The maximum number of sleights you may purchase during character creation is 10.			X
+	
+- Combate
+	- Ataque			X
+		- Melee (close combat)			X
+		- Guns (ranged weapons)			X
+		- Athletics (thrown grenades)			X
+		- Hardware: Explosives (placed charges)			X
+		- Interface (electronic weapon systems)			X
+		- Exotic skill			X
+	- Defensa			X
+		- Defense is an automatic action. Unless they are surprised ->227 or incapacitated ->226, the defender always has the option to respond.			X
+		- Melee Defense: Against a melee attack, the defender may choose to block and parry using their own Melee skill or dodge using Fray.			X
+		- Ranged Defense: Ranged and area-effect attacks are much harder to dodge; defenders use their Fray skill ÷ 2.			X
+		- Psi Defense: Psi sleights are resisted with WIL Check.			X
+		- Full Defense: Characters that have declared they are engaging in full defense ▶226 may defend as above, with a +30 modifier.			X
+	- Opposed test Ataque vs Defensa			X
+		- If the attacker fails, the attack misses completely			X
+		- If the attacker succeeds and the defender fails, the attack hits.			X
+		- If both attacker and defender succeed in their tests, compare their dice rolls.			X
+			- If the attacker’s dice roll is higher, the attack hits despite a spirited defense; otherwise, the attack fails to connect			X
+		- Defender Superior/Critical Failure: Ignored.			X
+	- Daño
+		- Every attack has a Damage Value (DV)	X
+			- Dos tipos energy y kinetic	X
+		- Se resta el Armor Value (AV) adecuado del objetivo	X
+		- armor-piercing attacks reduce the AV by half.	X
+		- Attacker Superior Success: For each superior success the attacker scores, increase the DV inflicted by +1d6.	X
+		- If the attacker hits with a critical, the damage is doubled.	X
+		- Heridas
+			- All physical harm is measured in damage points.	X
+			- If the accumulated damage equals or exceeds the defender’s Durability, they are incapacitated and may die	X
+				- You gain the unconscious/disabled condition ->226 and cannot be revived until your damage points are reduced below your Durability,
+			- If the accumulated damage equals the defender’s Death Rating, they are killed/destroyed.	X
+			- If the inflicted damage, less armor, from a single attack equals or exceeds the defender’s Wound Threshold, they suffer one or more wounds	X
+				- A wound is scored for each multiple of the Wound Threshold that the damage exceeds.	X
+				- Each wound applies a cumulative –10 modifier to actions and –1 to Initiative.
+
+- Mental health
+	- Stress points
+		- If you build up an amount of stress points equal to or greater than your Lucidity score, your ego immediately suffers a mental breakdown
+		- Any source capable of inflicting cognitive stress is given a Stress Value (SV).
+			- Some Stress Values list two numbers. The first number before the slash applies if you fail your WIL Check. The second number, after the slash, applies even if you succeed.
+	- Trauma
+		- If your character receives a number of stress points at once that equals or exceeds their Trauma Threshold, they have suffered a trauma.
+		- Each trauma applies a cumulative –10 modifier to all of the character’s actions and –1 to Initiative
+
+- Natural healing
+	
+	
+	
+	
+	
+- Asyncs
+	- INFECTION RATING			X
+		- Your base Infection Rating equals your Psi trait level × 10			X
+		- Every time you use psi-gamma sleights or push a sleight, your Infection Rating increases			X
+		- Every time you recharge, it decreases			X
+	- PSI RANGE			X
+		- Touch: Touch range gives you a +20 modifier to your Psi Test. You must have physical contact with the target			X
+		- Point-Blank: +10 Psi Test. You must be within 2 meters of the target or less.			X
+		- Close: No modifier. You must be within 10 meters of the target. For every 2 meters beyond that, apply a –10 modifier to the test.			X
+		- Psi vs. Psi: sleights are more effective against other asyncs and exsurgents. Double the range of each category			X
+	- OPPOSED TESTS			X
+		- Async’s Psi skill versus the defender’s WIL Check			X
+		- Psi Full Defense: you may spend a complex action to concentrate your mental defenses, gaining a +30 modifier to resist sleights until your next action.			X
+		- Criticals:			X
+			- If the defender wins with a critical success, the async is temporarily “locked out” of their mind and may not target them again until they take a recharge action			X
+			- If the async rolls a critical failure, they suffer 1d6 DV as the effort takes a physical toll in the form of headaches and ruptured blood vessels.			X
+			- If the async wins with a critical success, double the potency of the sleight’s effect. In the case of psi attacks, the DV is doubled.			X
+	- MENTAL ARMOR
+		- The Psi Armor and Psi Shield sleights provide mental armor. Like physical armor, this mental armor reduces the amount of damage inflicted by a psychic assault.
+	- DURATION
+		- Constant: Constant sleights are always “on.”
+		- Instant: Instant sleights inflict an immediate and permanent effect that lasts without effort.
+		- Temporary: Temporary sleights last for a limited duration with no extra effort. The temporary duration is determined your WIL ÷ 5 and is measured in action turns, minutes, or hours, as noted.
+		- Sustained: Sustained sleights last as long as you want, but require active effort and concentration: apply a –10 modifier to all other skill tests while the sleight is sustained. The async must also stay within Close range + 10 meters of the target, otherwise the sleight immediately ends.
+	- INFECTION MODIFIERS
+		- Whenever you use psi-gamma sleights, two things happen:			X
+			- your Infection Rating increases by that sleight’s Infection modifier			X
+			- the exovirus must make an Infection Test:			X
+				- The target number for your Infection Test equals your current Infection Rating			X
+				- If this test fails, nothing happens, and you pull off the sleight without any negative effects			X
+				- If it succeeds, you suffer an influence effect appropriate to the sub-strain			X
+				- Critical Failure: You are immune to influence effects until your next recharge.			X
+				- Superior Success: Apply a +1 modifier to the influence effect roll per superior success.			X
+				- Critical Success: an influence effect is chosen and the GM also picks one of the following:			X
+					- Checkout Time
+					- Interference
+		- THE INFECTION'S INFLUENCE			X
+			- Roll 1d6 and consult your sub-strain’s influence effects, applying +1 per superior success rolled on the Infection Test.			X
+		- PUSHING SLEIGHTS
+			- Your Infection Modifier doubles and you automatically suffer DV 1d6
+			- Choose one of the following effects for your pushed sleight:
+				- Increased Range: Range doubles. This effect is cumulative with the range increase against other asyncs
+				- Increased Effect: Any modifiers provided by the sleight are doubled.
+				- Increased Power: The sleight is resisted by WIL Check ÷ 2.
+				- Increased Penetration: Psi Shield armor is reduced by half.
+				- Increased Duration: Double the sleight’s Duration (temporary sleights only).
+				- Extra Target: You may affect one extra target with the sleight.
+			- You may also push already active psi-chi sleights. increase your Infection Rating by 5 and make an Infection Test. Psi-chi pushes are temporary, lasting only WIL ÷ 5 minutes.
+		- INFECTION RATING THRESHOLDS
+			- Infection Rating 33+: Apply the Increased Effect push effect to all of your psi-chi sleights.
+			- Infection Rating 66+: Apply one free push effect to all of your psi-gamma sleights. The same effect must be applied to each.
+		- EASING THE INFECTION
+			- For every short recharge action you take, reduce your Infection Rating by 10.
+			- It may not be decreased lower than your base Infection Rating (Psi Level × 10).
+			- For every long recharge, reset your Infection to its base rating.
+			- You may not reduce your Infection Rating if you have active influence effects — the urge must be satiated first.
+			
+- Por hacer
+	- Añadir las tiradas de skills y aptitudes a cr_rolls
+	- Modificadores ataques
+	- Efectos/Condiciones
+	- Botón de ignorar Reach (para Grappling)
+	- Controlar el trait touch-only y añadir botón de ignorar touch-only (para hacer daño con armas shock)
+	- Reacer la clase sleight base, eliminando los cyclers (poner abreviaturas) y añadir efectos y daños
+	- Cambiar el firing mode por un cycler y automatizar sus efectos (para los que diferencian entre ataque y daño, poner las dos opciones en el cycler)
