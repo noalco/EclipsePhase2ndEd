@@ -119,11 +119,29 @@ function CheckHandler(rSource, rTarget, rRoll)
 	end
 	local sTarget=rRoll.sTarget or "0";
 	local nTarget=tonumber(sTarget);
+	
+	local nWoundMod=0;
+	local sWoundMod="";
+	if rSource then
+		nWoundMod=-10*DB.getValue(rSource.sCreatureNode..".Health.Physical.WoundsTaken", 0);
+		if nWoundMod~=0 then
+			sWoundMod=" [WOUNDS: "..nWoundMod.."]";
+		end
+	end
+	
+	local nTraumaMod=0;
+	local sTraumaMod="";
+	if rSource then
+		nTraumaMod=-10*DB.getValue(rSource.sCreatureNode..".Health.Mental.TraumasTaken", 0);
+		if nTraumaMod~=0 then
+			sTraumaMod=" [TRAUMAS: "..nTraumaMod.."]";
+		end
+	end
+		
 	local nGeneralMod, sGeneralMod=Modifiers.getGeneralModifier()
 	
-	nTarget=nTarget+nMod+nGeneralMod;
-	rMessage.text=rMessage.text:gsub("vs "..sTarget, "vs "..math.max(0,nTarget))..sGeneralMod;
-	
+	nTarget=nTarget+nMod+nGeneralMod+nWoundMod+nTraumaMod;
+	rMessage.text=rMessage.text:gsub("vs "..sTarget, "vs "..math.max(0,nTarget))..sGeneralMod..sWoundMod..sTraumaMod;
 
 	local nTotal = ActionsManager.total(rRoll);
 	local sResult=RollChecks.RollCheck(nTotal, nTarget, rRoll.bDefaulting):upper();
@@ -176,7 +194,7 @@ function InitHandler(rSource, rTarget, rRoll)
     local rMessage = ActionsManager.createActionMessage(rSource, rRoll);
     Comm.deliverChatMessage(rMessage);    
 
-    if (rSource) then
+    if (rSource and rSource.sCTNode) then
         local nTotal = ActionsManager.total(rRoll);
         rCreature = DB.findNode(rSource.sCTNode);
         if rCreature then

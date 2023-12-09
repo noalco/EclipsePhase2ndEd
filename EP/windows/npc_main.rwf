@@ -1276,7 +1276,7 @@ end
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"60"}},
       {"Name":"DevelopmentComments"},
-      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"1d6+{self}","DiceRollDescription":"[INIY]","DiceRollType":"initiative","UseModStack":"true","ResetModStack":"true","SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":"true","Targeting":"none","ResultHandlerFunction":"RollHandlers.InitHandler","AdditionalInfo":null}},
+      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"{@self.getRoll()}","DiceRollDescription":"[{@Interface.getString(\"init_chat\")}] {@self.sWoundMod}","DiceRollType":"initiative","UseModStack":"true","ResetModStack":"true","SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":"true","Targeting":"none","ResultHandlerFunction":"RollHandlers.InitHandler","AdditionalInfo":null}},
       {"Name":"Disabled"},
       {"Name":"DisplaySign"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
@@ -1317,13 +1317,33 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"130"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"145"}}
 ]}}</Definition>
-    <LUACode>function Update()
+    <LUACode>sWoundMod="";
+
+function Update()
 	setValue(Tools.RoundNumber((window.Reflexes.getValue()+window.Intuition.getValue())/5))
 end
 
 function onInit()
 	Update();
 	super.onInit();
+end
+
+function getRoll()	
+	local nWoundMod=-1*DB.getValue(window.getDatabaseNode(), "Health.Physical.WoundsTaken", 0);
+	sWoundMod="";
+	if nWoundMod~=0 then
+		sWoundMod="[WOUNDS: "..nWoundMod.."]";
+	end
+
+	local nMod=getValue()+nWoundMod;
+	
+	if nMod==0 then
+		return "1d6";
+	elseif nMod&gt;0 then
+		return "1d6+"..nMod;
+	else
+		return "1d6"..nMod;
+	end
 end</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />

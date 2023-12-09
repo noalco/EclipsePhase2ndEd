@@ -1137,14 +1137,16 @@ end
 
 function onDrop(x, y, draginfo)
 	local sCTNode = UtilityManager.getWindowDatabasePath(getWindowAt(x,y));
-	return CombatDropManager.handleAnyDrop(draginfo, sCTNode);
+	local ReturnValue=CombatDropManager.handleAnyDrop(draginfo, sCTNode);
+	return ReturnValue; 
 end
 
 function CleanTtI()
 	for _,w in pairs(getWindows()) do
 		w.TtI.setValue(0);
 	end
-end</LUACode>
+end
+</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>

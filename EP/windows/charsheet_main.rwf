@@ -1212,7 +1212,7 @@ end
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"45"}},
       {"Name":"DevelopmentComments"},
-      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"1d6+{self}","DiceRollDescription":"[{@Interface.getString(\"init_chat\")}]","DiceRollType":"initiative","UseModStack":"true","ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"Targeting":"none","ResultHandlerFunction":"RollHandlers.InitHandler","AdditionalInfo":null}},
+      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"{@self.getRoll()}","DiceRollDescription":"[{@Interface.getString(\"init_chat\")}] {@self.sWoundMod} {@self.sTraumaMod}","DiceRollType":"initiative","UseModStack":"true","ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"Targeting":"none","ResultHandlerFunction":"RollHandlers.InitHandler","AdditionalInfo":null}},
       {"Name":"Disabled"},
       {"Name":"DisplaySign"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
@@ -1253,13 +1253,40 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"399"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"178"}}
 ]}}</Definition>
-    <LUACode>function Update()
-	setValue(Tools.RoundNumber((window.Reflexes.getValue()+window.Intuition.getValue())/5))
+    <LUACode>sWoundMod="";
+sTraumaMod="";
+
+function Update()
+	setValue(Tools.RoundNumber((window.Reflexes.getValue()+window.Intuition.getValue())/5));
 end
 
 function onInit()
 	Update();
 	super.onInit();
+end
+
+function getRoll()	
+	local nWoundMod=-1*window.WoundsTaken.getValue();
+	sWoundMod="";
+	if nWoundMod~=0 then
+		sWoundMod="[WOUNDS: "..nWoundMod.."]";
+	end
+	
+	local nTraumaMod=-1*window.TraumasTaken.getValue();
+	sTraumaMod="";
+	if nTraumaMod~=0 then
+		sTraumaMod="[TRAUMAS: "..nTraumaMod.."]";
+	end
+
+	local nMod=getValue()+nWoundMod+nTraumaMod;
+	
+	if nMod==0 then
+		return "1d6";
+	elseif nMod&gt;0 then
+		return "1d6+"..nMod;
+	else
+		return "1d6"..nMod;
+	end
 end</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
