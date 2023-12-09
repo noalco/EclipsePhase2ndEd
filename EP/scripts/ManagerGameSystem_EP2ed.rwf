@@ -6,7 +6,7 @@
 	-- Languages
 	GameSystem.languagefonts = {
 		[Interface.getString("language_value_arabic")] = "Arabic",
---		[Interface.getString("language_value_chinese")] = "Chinese",
+		[Interface.getString("language_value_chinese")] = "Chinese",
 		[Interface.getString("language_value_hindi")] = "Hindi",
 --		[Interface.getString("language_value_russian")] = "Dwarven",
 		[Interface.getString("language_value_skandinaviska")] = "Skandinaviska",
@@ -15,12 +15,12 @@
 		-- Standard languages
 		[Interface.getString("language_value_common")] = "",
 		[Interface.getString("language_value_arabic")] = GameSystem.languagefonts[Interface.getString("language_value_arabic")]; -- "Arabic",
-		[Interface.getString("language_value_cantonese")] = "",
+		[Interface.getString("language_value_cantonese")] = GameSystem.languagefonts[Interface.getString("language_value_chinese")], -- "Chinese",
 		[Interface.getString("language_value_english")] = "",
 		[Interface.getString("language_value_french")] = "",
 		[Interface.getString("language_value_hindi")] = GameSystem.languagefonts[Interface.getString("language_value_hindi")]; -- "Hindi",
-		[Interface.getString("language_value_japanese")] = "",
-		[Interface.getString("language_value_mandarin")] = "",
+		[Interface.getString("language_value_japanese")] = GameSystem.languagefonts[Interface.getString("language_value_chinese")], -- "Chinese",
+		[Interface.getString("language_value_mandarin")] = GameSystem.languagefonts[Interface.getString("language_value_chinese")], -- "Chinese",
 		[Interface.getString("language_value_portuguese")] = "",
 		[Interface.getString("language_value_russian")] = "",
 		[Interface.getString("language_value_skandinaviska")] = GameSystem.languagefonts[Interface.getString("language_value_skandinaviska")]; -- "Skandinaviska",
