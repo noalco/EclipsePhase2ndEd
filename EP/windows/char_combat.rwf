@@ -497,7 +497,7 @@ function getDescriptionText()
 		sAttackType="RANGED";
 	end
 	
-	nHiddenCoverMod, nPerc, sModType=Modifiers.getModifier();
+	nHiddenCoverMod, nPerc, sModType=Modifiers.getCoverHiddenModifier();
 	local sCoverHidden="";
 	if nHiddenCoverMod ~=0 then
 		sCoverHidden=" ["..sModType..": "..nHiddenCoverMod

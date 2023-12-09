@@ -1,7 +1,7 @@
 <DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
   <Scripts>
     <ScriptName>npc_offensive_abilities</ScriptName>
-    <FolderID>24</FolderID>
+    <FolderID>25</FolderID>
     <Script>local bParsed = false;
 local aComponents = {};
 
@@ -217,7 +217,7 @@ function action(draginfo)
 				sAttackType="MELEE ";
 			end
 			
-			nHiddenCoverMod, nPerc, sModType=Modifiers.getModifier();
+			nHiddenCoverMod, nPerc, sModType=Modifiers.getCoverHiddenModifier();
 			local sCoverHidden="";
 			if nHiddenCoverMod ~=0 then
 				sCoverHidden=" ["..sModType..": "..nHiddenCoverMod

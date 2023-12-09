@@ -1,0 +1,21 @@
+<DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
+  <XMLFiles>
+    <XmlName>gameelements</XmlName>
+    <FolderID>0</FolderID>
+    <XML>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;root&gt;
+	&lt;panel name="dicepanel" merge="join"&gt;
+		&lt;anchored&gt;
+			&lt;left offset="305" /&gt;
+		&lt;/anchored&gt;
+	&lt;/panel&gt;
+
+	&lt;die name="dF" merge="delete" /&gt;
+	&lt;die name="rF" merge="delete" /&gt;
+	&lt;die name="gF" merge="delete" /&gt;
+	&lt;die name="bF" merge="delete" /&gt;
+	&lt;die name="pF" merge="delete" /&gt;
+&lt;/root&gt;
+</XML>
+  </XMLFiles>
+</DocumentElement>

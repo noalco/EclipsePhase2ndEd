@@ -1,7 +1,7 @@
 <DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
   <Scripts>
     <ScriptName>RollChecks</ScriptName>
-    <FolderID>25</FolderID>
+    <FolderID>26</FolderID>
     <Script>function isDouble(nRoll)
 	local nUnid=nRoll % 10;
 	local nDec=(nRoll-nUnid)/10;

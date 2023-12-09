@@ -1,51 +1,45 @@
 <DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
   <Scripts>
     <ScriptName>Modifiers</ScriptName>
-    <FolderID>22</FolderID>
+    <FolderID>23</FolderID>
     <Script>_tModifierWindowPresets =
 {
---	{ 
---		sCategory = "general",
---		tPresets = 
---		{
---			"+1",
---			"-1",
---			"+2",
---			"-2",
---			"+3",
---			"-3",
---			"+4",
---			"-4",
---		},
---	},
+	{ 
+		sCategory = "general",
+		tPresets = 
+		{
+			"+10",
+			"-10",
+			"+20",
+			"-20",
+			"+30",
+			"-30",
+		},
+	},
 	{
-		sCategory = "CTAttacks",
+		sCategory = "CoverHidden",
 		tPresets = {"Mi-Cov", "Mo-Cov", "Ma-Cov", "Hidden-F", "Hidden-S"},
 	}
 };
 
 _tModifierExclusionSets =
 {
---	{	"+1",
---		"+2",
---		"+3",
---		"+4",
---		"-1",
---		"-2",
---		"-3",
---		"-4"
---	 },
+	{	"+10",
+		"+20",
+		"+30",
+		"-10",
+		"-20",
+		"-30",
+	 },
 	 {"Mi-Cov", "Mo-Cov", "Ma-Cov", "Hidden-F", "Hidden-S"},
 };
 
 function onInit()
-
 	ModifierManager.addModWindowPresets(_tModifierWindowPresets);
 	ModifierManager.addKeyExclusionSets(_tModifierExclusionSets);
-
 end
 
-function getModifier()
+function getCoverHiddenModifier()
 	if ModifierManager.getKey("Mi-Cov") then
 		return -10, 100, "COVER";
 	elseif ModifierManager.getKey("Mo-Cov") then
@@ -57,7 +51,25 @@ function getModifier()
 	elseif ModifierManager.getKey("Hidden-S") then
 		return -30, 100, "HIDDEN";
 	else 
-		return 0;--"";
+		return 0, "";
+	end
+end
+
+function getGeneralModifier()
+	if ModifierManager.getKey("+10") then
+		return 10, " [+10]";
+	elseif ModifierManager.getKey("+20") then
+		return 20, " [+20]";
+	elseif ModifierManager.getKey("+30") then
+		return 30, " [+30]";
+	elseif ModifierManager.getKey("-10") then
+		return -10, " [-10]";
+	elseif ModifierManager.getKey("-20") then
+		return -20, " [-20]";
+	elseif ModifierManager.getKey("-30") then
+		return -30, " [-30]";
+	else 
+		return 0, "";
 	end
 end
 

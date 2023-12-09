@@ -1,7 +1,7 @@
 <DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
   <Scripts>
     <ScriptName>RollHandlers</ScriptName>
-    <FolderID>25</FolderID>
+    <FolderID>26</FolderID>
     <Script>OldActionRoll=nil;
 OldOnChatDragStart=nil;
 
@@ -119,9 +119,11 @@ function CheckHandler(rSource, rTarget, rRoll)
 	end
 	local sTarget=rRoll.sTarget or "0";
 	local nTarget=tonumber(sTarget);
+	local nGeneralMod, sGeneralMod=Modifiers.getGeneralModifier()
 	
-	nTarget=nTarget+nMod;
-	rMessage.text=rMessage.text:gsub("vs "..sTarget, "vs "..math.max(0,nTarget));
+	nTarget=nTarget+nMod+nGeneralMod;
+	rMessage.text=rMessage.text:gsub("vs "..sTarget, "vs "..math.max(0,nTarget))..sGeneralMod;
+	
 
 	local nTotal = ActionsManager.total(rRoll);
 	local sResult=RollChecks.RollCheck(nTotal, nTarget, rRoll.bDefaulting):upper();

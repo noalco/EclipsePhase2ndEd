@@ -1,7 +1,7 @@
 <DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
   <Scripts>
     <ScriptName>onSortCompareFunctions</ScriptName>
-    <FolderID>28</FolderID>
+    <FolderID>29</FolderID>
     <Script>function onSortCompareTraits(w1, w2)
 	if w1.name.getValue():lower()==w2.name.getValue():lower() then
 		return DB.getValue(w1.getDatabaseNode(), "TraitLevel", 1)&gt;DB.getValue(w2.getDatabaseNode(), "TraitLevel", 1);
