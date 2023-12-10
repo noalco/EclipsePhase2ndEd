@@ -605,27 +605,50 @@ end
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"0"}}
 ]}}</Definition>
     <LUACode>function onInit()
-	-- Set the displays to what should be shown
-	setTargetingVisible();
-	setSpacingVisible();
-	setEffectsVisible();
-	setAttacksVisible();
-	setDefenseVisible();
-	setRollsVisible();
-	
-	-- Acquire token reference, if any
-	self.linkToken();
-	
-	-- Set up the PC links
-	self.onLinkChanged();
-	self.onFactionChanged();
-	
-	-- Register the deletion menu item for the host
-	registerMenuItem(Interface.getString("list_menu_deleteitem"), "delete", 6);
-	registerMenuItem(Interface.getString("list_menu_deleteconfirm"), "delete", 6, 7);
+	if isExtraActions() then
+		HideExtraActionsControls();
+	else
+		-- Set the displays to what should be shown
+		setTargetingVisible();
+		setSpacingVisible();
+		setEffectsVisible();
+		setAttacksVisible();
+		setDefenseVisible();
+		setRollsVisible();
+		
+		-- Acquire token reference, if any
+		self.linkToken();
+		
+		-- Set up the PC links
+		self.onLinkChanged();
+		self.onFactionChanged();
+		
+		-- Register the deletion menu item for the host
+		registerMenuItem(Interface.getString("list_menu_deleteitem"), "delete", 6);
+		registerMenuItem(Interface.getString("list_menu_deleteconfirm"), "delete", 6, 7);
+	end
 	
 	DB.addHandler(DB.getPath(getDatabaseNode(), "active"), "onUpdate", ActivateOnTurn);
 	ActivateOnTurn();
+end
+
+function HideExtraActionsControls()
+	if isExtraActions() then
+		setFrame("ctentrybox_extra_actions");
+		for _,c in pairs(getControls()) do
+			if c.getName()=="nonid_name" then
+				c.setVisible(true);
+				c.setFont("modcollector");
+				c.setReadOnly(true);
+				c.setLine(false, 0);
+				c.setStaticBounds(69, 8, 150, 20)
+			elseif c.getName()=="active" then
+				c.setVisible(true);
+			else
+				c.setVisible(false);
+			end
+		end
+	end
 end
 
 function onClose()
@@ -674,32 +697,36 @@ end
 
 function updateDisplay()
 	local sFaction = friendfoe.getStringValue();
-
-	if DB.getValue(getDatabaseNode(), "active", 0) == 1 then
-		name.setFont("sheetlabel");
-		nonid_name.setFont("sheetlabel");
-		
-		if sFaction == "friend" then
-			setFrame("ctentrybox_friend_active");
-		elseif sFaction == "neutral" then
-			setFrame("ctentrybox_neutral_active");
-		elseif sFaction == "foe" then
-			setFrame("ctentrybox_foe_active");
-		else
-			setFrame("ctentrybox_active");
-		end
+	
+	if isExtraActions() then
+		HideExtraActionsControls();
 	else
-		name.setFont("sheettext");
-		nonid_name.setFont("sheettext");
-		
-		if sFaction == "friend" then
-			setFrame("ctentrybox_friend");
-		elseif sFaction == "neutral" then
-			setFrame("ctentrybox_neutral");
-		elseif sFaction == "foe" then
-			setFrame("ctentrybox_foe");
+		if DB.getValue(getDatabaseNode(), "active", 0) == 1 then
+			name.setFont("sheetlabel");
+			nonid_name.setFont("sheetlabel");
+			
+			if sFaction == "friend" then
+				setFrame("ctentrybox_friend_active");
+			elseif sFaction == "neutral" then
+				setFrame("ctentrybox_neutral_active");
+			elseif sFaction == "foe" then
+				setFrame("ctentrybox_foe_active");
+			else
+				setFrame("ctentrybox_active");
+			end
 		else
-			setFrame("ctentrybox");
+			name.setFont("sheettext");
+			nonid_name.setFont("sheettext");
+			
+			if sFaction == "friend" then
+				setFrame("ctentrybox_friend");
+			elseif sFaction == "neutral" then
+				setFrame("ctentrybox_neutral");
+			elseif sFaction == "foe" then
+				setFrame("ctentrybox_foe");
+			else
+				setFrame("ctentrybox");
+			end
 		end
 	end
 end
@@ -767,7 +794,9 @@ function isActive()
 	return (active.getValue() == 1);
 end
 
-
+function isExtraActions()
+	return nonid_name.getValue()=="Extra Actions";
+end
 --
 -- SECTION VISIBILITY FUNCTIONS
 --
@@ -818,7 +847,19 @@ local activateattacksPrev=0;
 local activatedefensePrev=0;
 --local activaterollsPrev=0;
 function ActivateOnTurn()
-	if not isPC() then
+	if isExtraActions() then
+		if active.getValue()==1 then
+			windowlist.bExtraActions=true;
+			for _,w in pairs(windowlist.getWindows()) do
+				if w.efective_initresult.update then
+					w.efective_initresult.update();
+				end
+			end
+--			CombatManager.nextActor();
+--			windowlist.window.button_ct_nextactor.onButtonPress();
+		end
+		HideExtraActionsControls();
+	elseif not isPC() then
 		if active.getValue()==1 then
 			activateattacksPrev=activateattacks.getValue();
 			activateattacks.setValue(1);
@@ -1155,12 +1196,24 @@ end
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"764"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"765"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"5"}}
 ]}}</Definition>
     <LUACode>function update()
-	setValue(window.initresult.getValue()+100*window.TtI.getValue());
-    window.windowlist.applySort();
+	if window.isExtraActions() then
+		setValue(-1000);
+	else
+		if window.windowlist.bExtraActions then
+			setValue(window.initresult.getValue()-2000*window.ExtraAction.getValue());
+		else
+			setValue(window.initresult.getValue()+100*window.TtI.getValue());
+		end
+		window.windowlist.applySort();
+	end
+end
+
+function onInit()
+	update();
 end
 </LUACode>
     <GroupIndex>0</GroupIndex>
@@ -1268,6 +1321,62 @@ end
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"116"}}
 ]}}</Definition>
     <LUACode />
+    <GroupIndex>0</GroupIndex>
+    <Template />
+  </WindowControls>
+  <WindowControls>
+    <WindowName>ct_entry</WindowName>
+    <ControlName>ExtraAction</ControlName>
+    <ZIndex>41</ZIndex>
+    <ControlClass>FGCheckbox</ControlClass>
+    <Definition>{"ArrayOfFGControlPropertyInfo":{"@xmlns:xsd":"http://www.w3.org/2001/XMLSchema","@xmlns:xsi":"http://www.w3.org/2001/XMLSchema-instance","FGControlPropertyInfo":[
+      {"Name":"AdvancedAnchoring","Value":{"@xsi:type":"ArrayOfAdvancedAnchor"}},
+      {"Name":"AdvancedTemplate"},
+      {"Name":"BackgroundColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
+      {"Name":"ControlName","Value":{"@xsi:type":"xsd:string","#text":"ExtraAction"}},
+      {"Name":"CustomAnchoring","Value":{"@xsi:type":"ArrayOfAnchorDefinition"}},
+      {"Name":"CustomProperties","Value":{"@xsi:type":"ArrayOfCustomProperty"}},
+      {"Name":"DefaultChecked"},
+      {"Name":"DesignerHeight","Value":{"@xsi:type":"xsd:int","#text":"20"}},
+      {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
+      {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"20"}},
+      {"Name":"DevelopmentComments"},
+      {"Name":"Disabled"},
+      {"Name":"FrameName"},
+      {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"GMEditOnly"},
+      {"Name":"GMVisibleOnly"},
+      {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"1"}},
+      {"Name":"HoverCursor"},
+      {"Name":"InheritSizePosition"},
+      {"Name":"InsertBefore"},
+      {"Name":"Invisible"},
+      {"Name":"MaximumHeight"},
+      {"Name":"MaximumWidth"},
+      {"Name":"Merge"},
+      {"Name":"MinimumHeight"},
+      {"Name":"MinimumWidth"},
+      {"Name":"NextTabTarget"},
+      {"Name":"OffStateIcon"},
+      {"Name":"OnStateIcon"},
+      {"Name":"PrevTabTarget"},
+      {"Name":"ReadOnly"},
+      {"Name":"RelativeMargin"},
+      {"Name":"RelativeStacking"},
+      {"Name":"ScriptFile"},
+      {"Name":"Source"},
+      {"Name":"StackVertWith"},
+      {"Name":"StateFrames","Value":{"@xsi:type":"ArrayOfStateFrame"}},
+      {"Name":"Tooltip","Value":{"@xsi:type":"xsd:string","#text":"Mark for Take an Extra Action "}},
+      {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
+      {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"163"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"18"}}
+]}}</Definition>
+    <LUACode>function onValueChanged()
+	window.efective_initresult.update();
+end
+</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -1392,8 +1501,8 @@ end
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"178"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"4"}}
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"179"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"5"}}
 ]}}</Definition>
     <LUACode>function onValueChanged()
 	window.efective_initresult.update();

@@ -725,17 +725,7 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"0"}}
 ]}}</Definition>
-    <LUACode>--function onInit()
---	DB.addHandler(DB.getPath(list.getDatabaseNode())..".*.active", "onUpdate", CleanRolls);
---	CleanRolls();
---end
---
---function CleanRolls()
---	for _,w in pairs(list.getWindows()) do
---		DB.deleteChildren(w.sub_rolls.getDatabaseNode());
---	end
---	combat.tPrevAttacts={}
---end</LUACode>
+    <LUACode />
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
@@ -1012,7 +1002,9 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"68"}}
 ]}}</Definition>
-    <LUACode>function onInit()
+    <LUACode>bExtraActions=false;
+
+function onInit()
 	self.onVisibilityToggle();
 
 	local node = getDatabaseNode();
@@ -1031,7 +1023,30 @@ end
 		fCleanup = CombatManager.deleteCleanup,
 	};
 	CombatManager.setTracker("", tData);
+	CreateExtraActions();
 
+end
+
+function CreateExtraActions()
+	local bExtraActionsExist=false;
+	for _,w in pairs (getWindows()) do
+		if w.nonid_name and w.nonid_name.getValue()=="Extra Actions" then
+			bExtraActionsExist=true;
+			break;
+		end
+	end
+	if not bExtraActionsExist then
+--		local ExtraActions=DB.createChild(getDatabaseNode())
+--		local win = createWindowWithClass("ct_extra_actions", ExtraActions);
+		local win = createWindow();
+--		win.resetMenuItems();
+		win.active.setValue(0);
+		win.nonid_name.setValue("Extra Actions");
+		win.efective_initresult.setValue(-1000);
+		win.tokenvis.setValue(1);
+		win.HideExtraActionsControls();
+		DB.setValue(win.getDatabaseNode(), "friendfoe", "string", "Extra Actions");
+	end
 end
 
 function onClose()
@@ -1044,15 +1059,17 @@ end
 
 function onNameOrTokenUpdated(vNode)
 	for _,w in pairs(getWindows()) do
-		w.target_summary.onTargetsChanged();
+		if w.target_summary then
+			w.target_summary.onTargetsChanged();
+		end;
 		
-		if w.sub_targeting.subwindow then
+		if w.sub_targeting and w.sub_targeting.subwindow then
 			for _,wTarget in pairs(w.sub_targeting.subwindow.targets.getWindows()) do
 				wTarget.onRefChanged();
 			end
 		end
 		
-		if w.sub_effects.subwindow then
+		if w.sub_effects and w.sub_effects.subwindow then
             for _,wEffect in pairs(w.sub_effects.subwindow.effects.getWindows()) do
                 wEffect.target_summary.onTargetsChanged();
             end
@@ -1097,7 +1114,7 @@ function CustomSort(w1, w2)
 		if REF1~=REF2 then
 			return REF1&gt;REF2
 		else
-			CombatManager.sortfuncSimple(w1, w2);
+			return CombatManager.sortfuncSimple(w1, w2);
 		end
 	end
 end
@@ -1114,7 +1131,7 @@ function toggleVisibility()
 	
 	local visibilityon = window.button_global_visibility.getValue();
 	for _,v in pairs(getWindows()) do
-		if v.friendfoe.getStringValue() ~= "friend" then
+		if v.friendfoe.getStringValue() ~= "friend" and not v.isExtraActions() then
 			if visibilityon ~= v.tokenvis.getValue() then
 				v.tokenvis.setValue(visibilityon);
 			end
@@ -1141,11 +1158,13 @@ function onDrop(x, y, draginfo)
 	return ReturnValue; 
 end
 
-function CleanTtI()
+function CleanTtIExtraAction()
 	for _,w in pairs(getWindows()) do
 		w.TtI.setValue(0);
+		w.ExtraAction.setValue(0);
 	end
 end
+
 </LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
@@ -1262,7 +1281,8 @@ end
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"353"}}
 ]}}</Definition>
     <LUACode>function onValueChanged()
-	window.list.CleanTtI();
+	window.list.CleanTtIExtraAction();
+	window.list.bExtraActions=false;
 end
 </LUACode>
     <GroupIndex>0</GroupIndex>
