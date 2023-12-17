@@ -3,12 +3,12 @@
     <ScriptName>data_options_EP</ScriptName>
     <FolderID>26</FolderID>
     <Script>function onInit()
-	OptionsManager.deleteOption("option_label_MANUALROLL");
-	OptionsManager.deleteOption("option_label_RSHT");
+	OptionsManager.deleteOption("MANUALROLL");
 	OptionsManager.registerOption2("RNDS", false, "option_header_combat", "option_label_RNDS", "option_entry_cycler", 
 			{ labels = "option_val_on", values = "on", baselabel = "option_val_on", baseval = "on", default = "on" });	
 --	OptionsManager.registerOption2("AUTODEFENSEROLL", true, "option_header_combat", "option_label_AUTODEFENSEROLL", "option_entry_cycler", 
 --			{ labels = "option_val_on", values = "on", baselabel = "option_val_off", baseval = "off", default = "off" });
+	OptionsManager.deleteOption("RSHT");
 	OptionsManager.registerOption2("RSHT", false, "option_header_combat", "option_label_RSHT", "option_entry_cycler", 
 			{ labels = "option_val_all|option_val_friendly", values = "all|on", baselabel = "option_val_off", baseval = "all", default = "all" });
 end</Script>

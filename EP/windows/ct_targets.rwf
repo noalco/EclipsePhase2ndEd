@@ -268,7 +268,16 @@ end
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"0"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"0"}}
 ]}}</Definition>
-    <LUACode />
+    <LUACode>
+function onInit()
+	DB.addHandler(DB.getPath(getDatabaseNode(), "*.noderef"), "onUpdate", CheckTargetExtraActions)
+end
+
+function CheckTargetExtraActions(nodeUpdated)
+	if DB.getValue(nodeUpdated, "")==window.parentcontrol.window.windowlist.sExtraActionsPath then
+		DB.deleteNode(DB.getParent(nodeUpdated));
+	end
+end</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>

@@ -1003,6 +1003,7 @@ end
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"68"}}
 ]}}</Definition>
     <LUACode>bExtraActions=false;
+sExtraActionsPath="";
 
 function onInit()
 	self.onVisibilityToggle();
@@ -1024,6 +1025,7 @@ function onInit()
 	};
 	CombatManager.setTracker("", tData);
 	CreateExtraActions();
+	applySort();
 
 end
 
@@ -1032,6 +1034,7 @@ function CreateExtraActions()
 	for _,w in pairs (getWindows()) do
 		if w.nonid_name and w.nonid_name.getValue()=="Extra Actions" then
 			bExtraActionsExist=true;
+			sExtraActionsPath=DB.getPath(w.getDatabaseNode());
 			break;
 		end
 	end
@@ -1046,6 +1049,7 @@ function CreateExtraActions()
 		win.tokenvis.setValue(1);
 		win.HideExtraActionsControls();
 		DB.setValue(win.getDatabaseNode(), "friendfoe", "string", "Extra Actions");
+		sExtraActionsPath=DB.getPath(win.getDatabaseNode());
 	end
 end
 

@@ -1167,7 +1167,7 @@ end
       {"Name":"FrameOffset","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"GMEditOnly"},
       {"Name":"GMVisibleOnly"},
-      {"Name":"HideOnValue","Value":{"@xsi:type":"xsd:decimal","#text":"0"}},
+      {"Name":"HideOnValue"},
       {"Name":"HideRollWidget"},
       {"Name":"HorizontalAnchor","Value":{"@xsi:type":"xsd:int","#text":"1"}},
       {"Name":"HoverCursor"},
@@ -1196,8 +1196,8 @@ end
       {"Name":"Tooltip"},
       {"Name":"UseAsTemplate","Value":{"@xsi:type":"xsd:string"}},
       {"Name":"VerticalAnchor","Value":{"@xsi:type":"xsd:int","#text":"0"}},
-      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"765"}},
-      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"5"}}
+      {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"768"}},
+      {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"0"}}
 ]}}</Definition>
     <LUACode>function update()
 	if window.isExtraActions() then
