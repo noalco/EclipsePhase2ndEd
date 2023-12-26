@@ -2,12 +2,17 @@
   <Scripts>
     <ScriptName>combat</ScriptName>
     <FolderID>13</FolderID>
-    <Script>OOB_ADD_ATTACK="OOB_ADD_ATTACK";
+    <Script>--	sTypeAttack={MELEE, RANGED, SLEIGHT}
+--	sTypeResult={Attack, Defense}
+
+OOB_ADD_ATTACK="OOB_ADD_ATTACK";
 OOB_ADD_SLEIGHT_ATTACK="OOB_ADD_SLEIGHT_ATTACK";
+OOB_ADD_STRESS_TEST_RESULT="OOB_ADD_STRESS_TEST_RESULT";
 
 function onInit()
 	OOBManager.registerOOBMsgHandler(OOB_ADD_ATTACK, OOBAddAttack);
 	OOBManager.registerOOBMsgHandler(OOB_ADD_SLEIGHT_ATTACK, OOBAddSleightAttack);
+	OOBManager.registerOOBMsgHandler(OOB_ADD_STRESS_TEST_RESULT, OOBAddStressTestResult);
 	DB.addHandler("combattracker.list.*.active", "onUpdate", CleanRolls);
 	CleanRolls();
 end
@@ -189,8 +194,6 @@ function OOBAddAttack(msgOOB)
 end
 
 function AddAttack(sSourceCTNode, sTargetCTNode, sTypeAttack, sTypeResult, sResult, nRollTotal, nTarget, bModifiedRoll, nPerc)
---	sTypeAttack: MELEE, RANGED
---	sTypeResult: Defense, Attack
 	if sSourceCTNode and sTargetCTNode and sTypeAttack and sTypeResult and sResult and nRollTotal and nTarget then
 		if Session.IsHost then
 			if tResults[sResult].nRange&gt;0 and nPerc and nPerc&lt;100 then
@@ -299,8 +302,49 @@ function AddSleightAttack(sSourceCTNode, sTargetCTNode, sTypeResult, sResult, nR
 	end
 end
 
+function OOBAddStressTestResult(msgOOB)
+	if Session.IsHost then
+		AddStressTestResult(msgOOB.sSourceCTNode, msgOOB.sTargetCTNode, msgOOB.sResult, tonumber(msgOOB.nRollTotal), tonumber(msgOOB.nTarget), msgOOB.bModifiedRoll=="true");
+	end
+end
+
+tStressTestResults = {}
+function AddStressTestResult(sSourceCTNode, sTargetCTNode, sResult, nRollTotal, nTarget, bModifiedRoll)
+	if sSourceCTNode and sTargetCTNode and sResult and nRollTotal and nTarget then
+		if Session.IsHost then
+			rMessage = ChatManager.createBaseMessage(DB.findNode(sTargetCTNode));
+			rMessage.icon = "roll_cast";
+			if tResults[sResult].nRange&lt;0 then
+				rMessage.text="Fails";
+			else
+				rMessage.text="Passes";
+			end
+			rMessage.text=rMessage.text.." the Stress Test against "..Tools.getName(sSourceCTNode);
+			Comm.deliverChatMessage(rMessage);
+			if not tStressTestResults[sSourceCTNode] then
+				tStressTestResults[sSourceCTNode]={};
+			end
+			if not tStressTestResults[sSourceCTNode][sTargetCTNode] then
+				tStressTestResults[sSourceCTNode][sTargetCTNode]={};
+			end
+			tStressTestResults[sSourceCTNode][sTargetCTNode]["sResult"]=sResult;
+			tStressTestResults[sSourceCTNode][sTargetCTNode]["nResult"]=nRollTotal;
+			
+			StoreUnresolvedRoll(sTargetCTNode, sSourceCTNode, "STRESS TEST", "", sResult, nRollTotal, nTarget);
+		else
+			local msgOOB={type=OOB_ADD_STRESS_TEST_RESULT, sSourceCTNode=sSourceCTNode, sTargetCTNode=sTargetCTNode, sResult=sResult, nRollTotal=nRollTotal, nTarget=nTarget};
+			if bModifiedRoll then
+				msgOOB.bModifiedRoll="true";
+			else
+				msgOOB.bModifiedRoll="false";
+			end
+			Comm.deliverOOBMessage(msgOOB);	
+		end
+	end
+end
+
 function StoreUnresolvedRoll(sSourceCTNode, sTargetCTNode, sTypeAttack, sTypeResult, sRollResult, nRollTotal, nRollTarget)
-	if not sSourceCTNode or not sTargetCTNode or not sTypeResult or not sTypeAttack or not nRollTotal or not sRollResult or not tResults[sRollResult] or not nRollTarget then
+	if not sSourceCTNode or not sTargetCTNode or not sTypeResult or not sTypeAttack or not sTypeResult or not sRollResult or not nRollTotal or not nRollTarget or not tResults[sRollResult] then
 		return;
 	end
 	local sTargetName=Tools.getName(sTargetCTNode);
@@ -321,7 +365,11 @@ function StoreUnresolvedRoll(sSourceCTNode, sTargetCTNode, sTypeAttack, sTypeRes
 		DB.setValue(rollNode, "RollResult", "string", tResults[sRollResult].sAbr);
 		DB.setValue(rollNode, "RollTotal", "number", nRollTotal);
 		DB.setValue(rollNode, "RollTarget", "number", nRollTarget);
-		DB.setValue(rollNode, "RollText", "string", StringManager.capitalize(sTypeAttack:lower()).." "..sTypeResult.." vs "..sTargetName);
+		if sTypeResult~="" then
+			DB.setValue(rollNode, "RollText", "string", StringManager.capitalize(sTypeAttack:lower()).." "..sTypeResult.." vs "..sTargetName);
+		else
+			DB.setValue(rollNode, "RollText", "string", StringManager.capitalize(sTypeAttack:lower()).." vs "..sTargetName);
+		end
 		DB.setValue(rollNode, "TargetCTNode", "string", sTargetCTNode);
 		DB.setValue(rollNode, "TypeResult", "string", sTypeResult);
 		DB.setValue(rollNode, "TypeAttack", "string", sTypeAttack);

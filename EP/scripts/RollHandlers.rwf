@@ -412,11 +412,11 @@ function StressTestTargetingHandler(rSource, aTargeting, rRolls)
 				iRoll=iRoll+1;
 				local sClass, sRecord=DB.getValue(vTarget.sCTNode..".link");
 				if sClass=="npc" then
-					nRollTarget=DB.getValue(vTarget.sCTNode..".Aptitudes.Checks.WillpowerCheck");
+					nRollTarget=DB.getValue(vTarget.sCTNode..".Aptitudes.Checks.WillpowerCheck", 0);
 				else
-					nRollTarget=DB.getValue(sRecord..".Aptitudes.Checks.WillpowerCheck");
+					nRollTarget=DB.getValue(sRecord..".Aptitudes.Checks.WillpowerCheck", 0);
 				end
-				rRolls[iRoll]={nBonuses=rRoll.nBonuses, aDice=rRoll.aDice, nMod=rRoll.nMod, sType=rRoll.sType, sDesc="[STRESS TEST] Willpower vs "..nRollTarget, sTarget=nRollTarget, nTarget = iRoll }; -- nTarget = iRoll: Save the index of the target for later use
+				rRolls[iRoll]={nBonuses=rRoll.nBonuses, aDice=rRoll.aDice, nMod=rRoll.nMod, sType=rRoll.sType, sDesc="[STRESS TEST] Willpower vs "..(nRollTarget or 0), sTarget=nRollTarget, nTarget = iRoll }; -- nTarget = iRoll: Save the index of the target for later use
 			end
 		end
 	end
@@ -425,37 +425,60 @@ end
 
 function StressTestResultHandler(rSource, rTarget, rRoll)
 	local sResult, nTarget=CheckHandler(rTarget, rSource, rRoll);
+    if rSource and rTarget and rSource.sCTNode and rTarget.sCTNode then
+		combat.AddStressTestResult(rSource.sCTNode, rTarget.sCTNode, sResult, ActionsManager.total(rRoll), nTarget, false);
+	end
 end
 
+function StressDamageTargetingHandler(rSource, aTargeting, rRolls)
+	if not rRolls[1].sSV or rRolls[1].sSV=="" then
+		return nil;
+	end
+	local rRoll={nBonuses=rRolls[1].nBonuses, aDice=rRolls[1].aDice, nMod=rRolls[1].nMod, sType=rRolls[1].sType, sDesc=rRolls[1].sDesc};
+	local iRoll = 0;
+	local sSV_failure="0";
+	local sSV_success="0";
+	local bStressTestSuccess;
+	if rRolls[1].sSV:match(".*/.*") then
+		sSV_failure, sSV_success=rRolls[1].sSV:match("(.*)/(.*)");
+	else
+		sSV_failure=rRolls[1].sSV;
+	end
+	local aSV_failure, nMod_failure=StringManager.convertStringToDice(sSV_failure);
+	local aSV_success, nMod_success=StringManager.convertStringToDice(sSV_success);
+	if aTargeting and rSource then
+		for _,vTargetGroup in ipairs(aTargeting) do
+			for _,vTarget in ipairs(vTargetGroup) do
+				bStressTestSuccess=false;
+				iRoll=iRoll+1;
+				if vTarget.sCTNode then
+					for _,n in pairs(DB.getChildren(vTarget.sCTNode..".rolls")) do
+						if DB.getValue(n, "TargetCTNode", "")==rSource.sCTNode then
+							bStressTestSuccess=combat.tResults[combat.tResultsAbr[DB.getValue(n, "RollResult", "")]].nRange&gt;0;
+							break;
+						end
+					end
+					if bStressTestSuccess then
+						rRolls[iRoll]={nBonuses=rRoll.nBonuses, aDice=aSV_success, nMod=nMod_success, sType=rRoll.sType, sDesc=rRoll.sDesc, nTarget = iRoll }; -- nTarget = iRoll: Save the index of the target for later use
+					else
+						rRolls[iRoll]={nBonuses=rRoll.nBonuses, aDice=aSV_failure, nMod=nMod_failure, sType=rRoll.sType, sDesc=rRoll.sDesc, nTarget = iRoll }; -- nTarget = iRoll: Save the index of the target for later use
+					end
+				else
+					rRolls[iRoll]={nBonuses=rRoll.nBonuses, aDice=aSV_failure, nMod=nMod_failure, sType=rRoll.sType, sDesc=rRoll.sDesc, nTarget = iRoll }; -- nTarget = iRoll: Save the index of the target for later use
+				end
+			end
+		end
+	end
+	
+	return aTargeting;
+end
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</Script>
+function StressDamageResultHandler(rSource, rTarget, rRoll)
+	if rSource then
+		rMessage=ActionsManager.createActionMessage(rSource, rRoll);
+		Comm.deliverChatMessage(rMessage);
+	end	
+end</Script>
     <RegisterScript>true</RegisterScript>
     <Encoding />
   </Scripts>

@@ -1,0 +1,177 @@
+<DocumentElement xmlns="http://tempuri.org/Ruleset.xsd">
+  <Scripts>
+    <ScriptName>npc_sv</ScriptName>
+    <FolderID>25</FolderID>
+    <Script>local bParsed = false;
+local aComponents = {};
+
+-- The nDragMod and sDragLabel fields keep track of the entry under the cursor
+local sDragLabel = nil;
+local nDragMod = nil;
+local bDragging = false;
+local sSV="";
+
+function onValueChanged()
+	parseComponents();
+end
+
+-- Reset selection when the cursor leaves the control
+function onHover(bOnControl)
+	if bDragging or bOnControl then
+		return;
+	end
+
+	if not bParsed then
+--		parseComponents();
+	end
+
+	sDragLabel = nil;
+	nDragMod = nil;
+	setSelectionPosition(0);
+end
+
+function parseComponents()
+	aComponents = {};
+	
+	local aClauses, aClauseStats = StringManager.split(getValue(), ",", true);
+	local sSV="";
+	for i = 1, #aClauses do
+		if string.match(aClauses[i], "SV .*/.*%s*%(.*%)") then -- Format: SV expr/expr (desc)
+			sSV=string.match(aClauses[i], "SV (.*/.*)%s*%(.*%)");
+		
+--			nSkillTarget = tonumber(string.match(aExpecialization[1], "(%d+)") or "0");
+--			sDragLabel=string.match(aExpecialization[1], "(.*) %d+") or "";
+--			sDragLabel=StringManager.trim(StringManager.strip(sDragLabel));
+--			table.insert(aComponents, {sLabel=sDragLabel, nSkillTarget=nSkillTarget, nStart=aClauseStats[i].startpos+aExpecializationStats[1].startpos-1, nEnd=aClauseStats[i].startpos+aExpecializationStats[1].endpos-1});
+--			nSkillTarget = tonumber(string.match(aExpecialization[2], "(%d+)") or "0");
+--			sDragLabel=sDragLabel.." - "..string.match(aExpecialization[2], "(.*) %d+") or "";
+--			sDragLabel=StringManager.trim(StringManager.strip(sDragLabel));
+--			table.insert(aComponents, {sLabel=sDragLabel, nSkillTarget=nSkillTarget, nStart=aClauseStats[i].startpos+aExpecializationStats[2].startpos-1, nEnd=aClauseStats[i].startpos+aExpecializationStats[2].endpos-1, bEsp=true});
+		elseif string.match(aClauses[i], "SV .*/.*") then -- Format: SV expr/expr
+			sSV=string.match(aClauses[i], "SV (.*/.*)");
+		elseif string.match(aClauses[i], "SV .*%s*%(.*%)") then -- Format: SV expr (desc)
+			sSV=string.match(aClauses[i], "SV (.*)%s*%(.*%)");
+		elseif string.match(aClauses[i], "SV .*") then -- Format: SV expr
+			sSV=string.match(aClauses[i], "SV (.*)");
+		else
+			sSV="";
+		end
+		if sSV~="" then
+			table.insert(aComponents, {sLabel="Stress Value", nStart=aClauseStats[i].startpos, nEnd=aClauseStats[i].endpos, sSV=sSV});
+		end
+	end
+		
+	bParsed = true;
+end
+
+-- Reset selection when the cursor leaves the control
+function onHover(bOnControl)
+	if bDragging or bOnControl then
+		return;
+	end
+
+	if not bParsed then
+		parseComponents();
+	end
+
+	sDragLabel = nil;
+	nDragMod = nil;
+	setSelectionPosition(0);
+end
+
+-- Hilight skill hovered on
+function onHoverUpdate(x, y)
+	if bDragging then
+		return;
+	end
+
+	if not bParsed then
+		parseComponents();
+	end
+	local nMouseIndex = getIndexAt(x, y);
+
+	for i = 1, #aComponents, 1 do
+		if aComponents[i].nStart &lt;= nMouseIndex and aComponents[i].nEnd &gt; nMouseIndex then
+			setCursorPosition(aComponents[i].nStart);
+			setSelectionPosition(aComponents[i].nEnd);
+			sDragLabel = aComponents[i].sLabel;
+			sSV=aComponents[i].sSV;
+			setHoverCursor("hand");
+			return;
+		end
+	end
+
+	sDragLabel = nil;
+	sSV = "";
+	setHoverCursor("arrow");
+	bEsp=false;
+end
+
+function onBeforeDiceRoll(dragInfo)
+	ActionsManager.actionRoll=RollHandlers.NewActionRoll;
+end
+
+function onAfterDiceRoll()
+	ActionsManager.actionRoll=RollHandlers.OldActionRoll;
+end
+
+function action(dragInfo)
+	local sActionType="";
+	if sDragLabel then
+		DiceRollDescription = "[STRESS DAMAGE]";
+		sActionType="StressDamage";
+		GameSystem.actions[sActionType] = { bUseModStack = "true", sIcon = "action_damage", sTargeting = "each"}
+		ActionsManager.registerTargetingHandler(sActionType, RollHandlers.StressDamageTargetingHandler);
+		ActionsManager.registerResultHandler(sActionType, RollHandlers.StressDamageResultHandler);
+		DiceRollString="";
+		
+		DiceRollAdditionalInfo = {sSV=sSV};
+		if onBeforeDiceRoll then if onBeforeDiceRoll() == false then return; end; end;
+		local windataref = window.getDatabaseNode();
+		if windataref == nil then windataref = window; end;
+		RulesetWizardDiceRoller.Roll(dragInfo, windataref, sActionType, DiceRollDescription, DiceRollString, getValue(), DiceRollAdditionalInfo);
+		ModifierStack.reset();
+		if onAfterDiceRoll then onAfterDiceRoll(); end;
+		return true;
+	end
+end
+
+function onDoubleClick(x, y)
+	bEsDobleClick=true;
+	action();
+	return true;
+end
+
+function onDragStart(button, x, y, draginfo)
+--	return action(draginfo);
+	action(draginfo);
+
+	bDragging = true;
+	setCursorPosition(0);
+	
+	return true;
+end
+
+function onDragEnd(draginfo)
+	bDragging = false;
+end
+
+-- Suppress default processing to support dragging
+function onClickDown(button, x, y)
+	return true;
+end
+
+-- On mouse click, set focus, set cursor position and clear selection
+function onClickRelease(button, x, y)
+	setFocus();
+	
+	local n = getIndexAt(x, y);
+	setSelectionPosition(n);
+	setCursorPosition(n);
+	
+	return true;
+end</Script>
+    <RegisterScript>false</RegisterScript>
+    <Encoding />
+  </Scripts>
+</DocumentElement>

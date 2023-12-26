@@ -93,10 +93,13 @@ end
 
 function getName(sPath)
 	if sPath and sPath~="" then
-		if DB.getValue(sPath..".isidentified", 1)==1 then
+		local sClass,_=DB.getValue(sPath..".link", "");
+		if sClass=="charsheet" or sClass=="npc" and DB.getValue(sPath..".isidentified", 0)==1 then
 			return DB.getValue(sPath..".name", "");
-		else
+		elseif sClass=="npc" and DB.getValue(sPath..".isidentified", 0)==0 then
 			return DB.getValue(sPath..".nonid_name", "");
+		else
+			return DB.getValue(sPath..".name", "");
 		end
 	else
 		return "";
