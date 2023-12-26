@@ -66,7 +66,7 @@ end
 --end
 
 
-function RollResultFrom0to99(rRoll, xxx)
+function RollResultFrom0to99(rRoll)
 	if rRoll and rRoll.aDice and rRoll.nTotal then
 		for i=1,#rRoll.aDice do
 			rRoll.aDice[i].value=rRoll.aDice[i].value%100;
@@ -402,8 +402,30 @@ function HitChanceHandler(rSource, rTarget, rRoll)
     end
 end
 
+function StressTestTargetingHandler(rSource, aTargeting, rRolls)
+	local rRoll={nBonuses=rRolls[1].nBonuses, aDice=rRolls[1].aDice, nMod=rRolls[1].nMod, sType=rRolls[1].sType, sDesc=rRolls[1].sDesc};
+	local iRoll = 0;
+	local nRollTarget;
+	if aTargeting and rSource then
+		for _,vTargetGroup in ipairs(aTargeting) do
+			for _,vTarget in ipairs(vTargetGroup) do
+				iRoll=iRoll+1;
+				local sClass, sRecord=DB.getValue(vTarget.sCTNode..".link");
+				if sClass=="npc" then
+					nRollTarget=DB.getValue(vTarget.sCTNode..".Aptitudes.Checks.WillpowerCheck");
+				else
+					nRollTarget=DB.getValue(sRecord..".Aptitudes.Checks.WillpowerCheck");
+				end
+				rRolls[iRoll]={nBonuses=rRoll.nBonuses, aDice=rRoll.aDice, nMod=rRoll.nMod, sType=rRoll.sType, sDesc="[STRESS TEST] Willpower vs "..nRollTarget, sTarget=nRollTarget, nTarget = iRoll }; -- nTarget = iRoll: Save the index of the target for later use
+			end
+		end
+	end
+	return aTargeting;
+end
 
-
+function StressTestResultHandler(rSource, rTarget, rRoll)
+	local sResult, nTarget=CheckHandler(rTarget, rSource, rRoll);
+end
 
 
 

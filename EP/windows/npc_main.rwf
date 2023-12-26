@@ -83,7 +83,7 @@
       {"Name":"DesignerLocked","Value":{"@xsi:type":"xsd:boolean","#text":"true"}},
       {"Name":"DesignerWidth","Value":{"@xsi:type":"xsd:int","#text":"20"}},
       {"Name":"DevelopmentComments"},
-      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"AllowDragDrop":{"@xsi:nil":"true"},"AdditionalInfo":null}},
+      {"Name":"DiceRoll","Value":{"@xsi:type":"PropertyDiceRoll","DiceRollString":"1d100","DiceRollDescription":null,"DiceRollType":"StressTest","UseModStack":{"@xsi:nil":"true"},"ResetModStack":{"@xsi:nil":"true"},"SecretRoll":{"@xsi:nil":"true"},"DragIcon":"action_roll","AllowDragDrop":"true","Targeting":"each","ResultHandlerFunction":"RollHandlers.StressTestResultHandler","TargetingHandlerFunction":"RollHandlers.StressTestTargetingHandler","AdditionalInfo":null}},
       {"Name":"Disabled"},
       {"Name":"FontColor","Value":{"@xsi:type":"xsd:string","#text":"0;0;0;0"}},
       {"Name":"FontName","Value":{"@xsi:type":"xsd:string","#text":"button-white"}},
@@ -119,7 +119,14 @@
       {"Name":"XPos","Value":{"@xsi:type":"xsd:int","#text":"110"}},
       {"Name":"YPos","Value":{"@xsi:type":"xsd:int","#text":"70"}}
 ]}}</Definition>
-    <LUACode />
+    <LUACode>
+function onBeforeDiceRoll(dragInfo)
+	ActionsManager.actionRoll=RollHandlers.NewActionRoll;
+end
+
+function onAfterDiceRoll()
+	ActionsManager.actionRoll=RollHandlers.OldActionRoll;
+end</LUACode>
     <GroupIndex>0</GroupIndex>
     <Template />
   </WindowControls>
