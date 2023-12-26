@@ -93,7 +93,11 @@ end
 
 function getName(sPath)
 	if sPath and sPath~="" then
-		return DB.getValue(sPath..".name", "");
+		if DB.getValue(sPath..".isidentified", 1)==1 then
+			return DB.getValue(sPath..".name", "");
+		else
+			return DB.getValue(sPath..".nonid_name", "");
+		end
 	else
 		return "";
 	end

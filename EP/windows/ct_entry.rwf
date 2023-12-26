@@ -678,7 +678,24 @@ function onIDChanged()
 	nonid_name.setVisible(not bID);
 
 	isidentified.setVisible(LibraryData.getIDMode(sRecordType));
+	
+	local sVisibleName="";
+	if bID then
+		sVisibleName=name.getValue();
+	else
+		sVisibleName=nonid_name.getValue();
+	end
+	local sPath=DB.getPath(getDatabaseNode());
+	for _,w in pairs(windowlist.getWindows()) do
+		for _,r in pairs(w.sub_rolls.getWindows()) do
+			if r.TargetCTNode.getValue()==sPath then
+				Debug.chat(r.RollText.getValue():match("(.* vs )")..sVisibleName)
+				r.RollText.setValue(r.RollText.getValue():match("(.* vs )")..sVisibleName);
+			end
+		end
+	end
 end
+
 function onFactionChanged()
 	-- Update the entry frame
 	self.updateDisplay();
